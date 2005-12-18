@@ -25,6 +25,12 @@
     return self;
 }
 
+- (id)dealloc
+{
+    [state release];
+    [moves release];
+}
+
 - (void)setState:(id)st
 {
     if (state) {
