@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface AlphaBeta : NSObject {
-
+    id state;
+    NSMutableArray *moves;
 }
-
+- (id)initWithState:(id)st;
+- (id)currentState;
 @end

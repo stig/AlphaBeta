@@ -8,7 +8,25 @@
 
 #import "AlphaBeta.h"
 
-
 @implementation AlphaBeta
+
+- (id)init
+{
+    return [self initWithState:nil];
+}
+
+- (id)initWithState:(id)st
+{
+    if (self = [super init]) {
+        state = st;
+        moves = [NSMutableArray new];
+    }
+    return self;
+}
+
+- (id)currentState
+{
+    return state;
+}
 
 @end
