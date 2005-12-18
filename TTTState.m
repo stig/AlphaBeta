@@ -33,9 +33,16 @@
 {
     int row = [m y];
     int col = [m x];
-    if (!board[col][row]) {
+    
+    if (row > 2 || row < 0 || col > 2 || col < 0) {
+        [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
+    }
+    else if (!board[col][row]) {
         board[col][row] = playerTurn;
         playerTurn = 3 - playerTurn;
+    }
+    else {
+        [NSException raise:@"square busy" format:@"Move already taken (%d, %d)", row, col];   
     }
 }
 
@@ -51,7 +58,7 @@
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
             if (!board[i][j]) {
-                [moves addObject:[[TTTMove alloc] initWithX:j andY:i]];
+                [moves addObject:[[TTTMove alloc] initWithX:i andY:j]];
             }
         }
     }
