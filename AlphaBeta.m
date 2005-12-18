@@ -45,6 +45,11 @@
     return state;
 }
 
+- (id)lastMove
+{
+    return [moves lastObject];
+}
+
 - (int)countMoves
 {
     return [moves count];

@@ -17,6 +17,7 @@
 - (id)initWithState:(id)st;
 - (void)setState:(id)st;
 - (id)currentState;
+- (id)lastMove;
 - (void)aiMove;
 - (int)countMoves;
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply;
