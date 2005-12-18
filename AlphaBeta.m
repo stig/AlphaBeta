@@ -12,37 +12,39 @@
 
 - (id)init
 {
-    return [self initWithState:nil];
+    if (self = [super init]) {
+        states = [NSMutableArray new];
+        moves = [NSMutableArray new];
+        [self setMaxPly:3];
+    }
+    return self;
 }
 
 - (id)initWithState:(id)st
 {
-    if (self = [super init]) {
-        [self setState:st];
-        [self setMaxPly:3];
-        moves = [NSMutableArray new];
-    }
+    [self init];
+    [self setState:st];
     return self;
 }
 
 - (void)dealloc
 {
-    [state release];
+    [states release];
     [moves release];
     [super dealloc];
 }
 
 - (void)setState:(id)st
 {
-    if (state) {
+    if ([states count]) {
         [NSException raise:@"state set" format:@"State already set"];   
     }
-    state = [st retain];
+    [states addObject:st];
 }
 
 - (id)currentState
 {
-    return state;
+    return [states lastObject];
 }
 
 - (id)lastMove

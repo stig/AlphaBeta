@@ -10,9 +10,9 @@
 #import <AlphaBetaState.h>
 
 @interface AlphaBeta : NSObject {
-    id state;
-    int maxPly;
+    NSMutableArray *states;
     NSMutableArray *moves;
+    int maxPly;
 }
 - (id)initWithState:(id)st;
 - (void)setState:(id)st;
