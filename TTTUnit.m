@@ -33,7 +33,7 @@
 - (void)testAvailMoves
 {
     STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertEquals([moves count], (int)9, nil);
+    STAssertEquals([moves count], (unsigned)9, nil);
     id s;
     int i;
     for (i = 0; i < 9; i++) {
