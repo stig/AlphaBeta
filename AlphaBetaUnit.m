@@ -51,6 +51,8 @@
 
 - (void)testFindMoves
 {
+    [ab setMaxPly:2];   // states below assumes a ply 2 search
+
     [ab aiMove];
     NSString *s = [[ab currentState] string]; 
     STAssertTrue([s isEqualToString:@"000010000"], @"got: %@", s);
@@ -59,7 +61,7 @@
     
     [ab aiMove];
     s = [[ab currentState] string]; 
-    STAssertTrue([s isEqualToString:@"200010000"], @"got: %@", s);
+    STAssertTrue([s isEqualToString:@"000010002"], @"got: %@", s);
     STAssertEquals([ab countMoves], (int)2, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)1.0, 0.1, nil);
 }

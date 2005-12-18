@@ -54,8 +54,6 @@
 {
     NSMutableArray *mvs = [[[self currentState] listAvailableMoves] autorelease];
     
-    return [[self currentState] fitness];
-    
     if ([mvs count] == 0 || !ply) {
         return [[self currentState] fitness];
     }
@@ -76,13 +74,14 @@
     NSMutableArray *mvs = [[[self currentState] listAvailableMoves] autorelease];
     int i;
     id best = nil;
-    float max = 0.0;
+    float alpha = -10000.0;
+    float beta = 10000.0;
     for (i = 0; i < [mvs count]; i++) {
         id m = [mvs objectAtIndex:i];
         [self move:m];
-        float sc = -[self abWithAlpha:-100.0 beta:100.0 plyLeft:maxPly-1];
-        if (sc > max) {
-            max = sc;
+        float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:maxPly-1];
+        if (sc >= alpha) {
+            alpha = sc;
             [best autorelease];
             best = [m retain];
         }
@@ -93,14 +92,14 @@
 
 - (void)move:(id)m
 {
-    [self move:m];
+    [[self currentState] applyMove:m];
     [moves addObject:m];
 }
 
 - (void)undo
 {
     id m = [moves lastObject];
-    [self undo];
+    [[self currentState] undoMove:m];
     [moves removeLastObject];
     [m autorelease];
 }
