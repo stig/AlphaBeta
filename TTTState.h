@@ -12,7 +12,8 @@
 
 @interface TTTState : NSObject {
     int board[3][3];
-    int player;
+    int playerTurn;
 }
 - (NSString *)string;
+- (int)playerTurn;
 @end

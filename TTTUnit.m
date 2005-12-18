@@ -24,11 +24,26 @@
     id st = [[TTTState alloc] init];
     NSMutableArray *moves;
     
+    STAssertTrue([st playerTurn] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
     STAssertTrue([st fitnessValue] == 0.0, @"initial state is neutral");
     
     STAssertNotNil(moves = [st listAvailableMoves], nil);
     STAssertTrue([moves count] == 9, @"got expected number of moves back");
+    
+    id m = [moves lastObject];
+    [st applyMove:m];
+    STAssertTrue([st playerTurn] == 2, nil);
+    STAssertTrue([[st string] isEqualToString:@"000000001"], nil);
+
+    [moves release];
+    STAssertNotNil(moves = [st listAvailableMoves], nil);
+    STAssertTrue([moves count] == 8, @"got expected number of moves back");
+
+    m = [moves lastObject];
+    [st applyMove:m];
+    STAssertTrue([[st string] isEqualToString:@"000000021"], nil);
+    
 }
 
 

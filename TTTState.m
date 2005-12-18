@@ -19,9 +19,24 @@
                 board[i][j] = 0;
             }
         }
-        player = 1;
+        playerTurn = 1;
     }
     return self;
+}
+
+- (int)playerTurn
+{
+    return playerTurn;
+}
+
+- (void)applyMove:(id)m
+{
+    int row = [m y];
+    int col = [m x];
+    if (!board[col][row]) {
+        board[col][row] = playerTurn;
+        playerTurn = 3 - playerTurn;
+    }
 }
 
 - (float)fitnessValue
