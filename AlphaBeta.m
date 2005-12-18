@@ -25,10 +25,11 @@
     return self;
 }
 
-- (id)dealloc
+- (void)dealloc
 {
     [state release];
     [moves release];
+    [super dealloc];
 }
 
 - (void)setState:(id)st
