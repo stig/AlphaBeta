@@ -47,79 +47,34 @@
 - (void)testState
 {
     id st = [[TTTState alloc] init];
-    NSMutableArray *moves;
     
     STAssertTrue([st playerTurn] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
     STAssertTrue([st fitnessValue] == 0.0, @"initial state is neutral");
     
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 9, @"got %d moves", [moves count]);
-    
-    id m = [moves objectAtIndex:0];
-    [st applyMove:m];
-    STAssertTrue([st playerTurn] == 2, nil);
-    STAssertTrue([[st string] isEqualToString:@"100000000"], @"got: %@", [st string]);
-
-    [moves release];
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 8, @"got %d moves", [moves count]);
-    m = [moves objectAtIndex:0];
-    [st applyMove:m];
-    STAssertTrue([[st string] isEqualToString:@"100200000"], @"got: %@", [st string]);
-    
-    [moves release];
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 7, @"got %d moves", [moves count]);
-    m = [moves objectAtIndex:0];
-    [st applyMove:m];
-    STAssertTrue([[st string] isEqualToString:@"100200100"], @"got: %@", [st string]);
-    
-    [moves release];
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 6, @"got %d moves", [moves count]);
-    m = [moves objectAtIndex:0];
-    [st applyMove:m];
-    STAssertTrue([[st string] isEqualToString:@"120200100"], @"got: %@", [st string]);
-
-    [moves release];
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 5, @"got %d moves", [moves count]);
-    m = [moves objectAtIndex:0];
-    [st applyMove:m];
-    STAssertTrue([[st string] isEqualToString:@"120210100"], @"got: %@", [st string]);
-    
-    [moves release];
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 4, @"got %d moves", [moves count]);
-    m = [moves objectAtIndex:0];
-    [st applyMove:m];
-    STAssertTrue([[st string] isEqualToString:@"120210120"], @"got: %@", [st string]);    
-
-    [moves release];
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 3, @"got %d moves", [moves count]);
-    m = [moves objectAtIndex:0];
-    [st applyMove:m];
-    STAssertTrue([[st string] isEqualToString:@"121210120"], @"got: %@", [st string]);    
-    
-    [moves release];
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 2, @"got %d moves", [moves count]);
-    m = [moves objectAtIndex:0];
-    [st applyMove:m];
-    STAssertTrue([[st string] isEqualToString:@"121212120"], @"got: %@", [st string]);    
-    
-    [moves release];
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 1, @"got %d moves", [moves count]);
-    m = [moves objectAtIndex:0];
-    [st applyMove:m];
-    STAssertTrue([[st string] isEqualToString:@"121212121"], @"got: %@", [st string]);
-    
-    [moves release];
-    STAssertNotNil(moves = [st listAvailableMoves], nil);
-    STAssertTrue([moves count] == 0, @"no possible moves left");
+    int i;
+    for (i = 9; i > 0; i--) {
+        NSMutableArray *moves;
+        STAssertNotNil(moves = [st listAvailableMoves], nil);
+        STAssertTrue([moves count] == i, @"got %d moves", [moves count]);
+        id m = [moves objectAtIndex:0];
+        [st applyMove:m];
+        STAssertTrue([st playerTurn] == i % 2 + 1, @"expected(%d): %d, got: %d", i, i % 2 + 1, [st playerTurn]);
+        
+        id s;
+        switch (i) {
+            case 9: s = @"100000000"; break;
+            case 8: s = @"100200000"; break;
+            case 7: s = @"100200100"; break;
+            case 6: s = @"120200100"; break;
+            case 5: s = @"120210100"; break;
+            case 4: s = @"120210120"; break;
+            case 3: s = @"121210120"; break;
+            case 2: s = @"121212120"; break;
+            case 1: s = @"121212121"; break;
+        }
+        STAssertTrue([[st string] isEqualToString:s], @"got(%d): %@", i, [st string]);
+    }
 }
 
 
