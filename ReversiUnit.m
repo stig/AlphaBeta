@@ -141,15 +141,13 @@
     [ab setMaxPly:2];   // states below assumes a ply 2 search
     STAssertNil([ab lastMove], nil);
     
-    /*
-    [ab aiMove]; 
+    STAssertNoThrow([ab aiMove], nil);
     NSString *s = [[ab currentState] string];
     STAssertTrue([s isEqualToString:@"0100 0110 0120 0000"], @"got: %@", s);
     STAssertEquals([ab countMoves], (int)1, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)-4.0, 0.1, nil);
     s = [[ab lastMove] string];
     STAssertTrue([s isEqualToString:@"11"], @"got: %@", s);
-    */
 }
 
 @end
