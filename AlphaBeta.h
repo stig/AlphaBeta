@@ -22,4 +22,6 @@
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply;
 - (void)move:(id)m;
 - (void)undo;
+- (int)maxPly;
+- (void)setMaxPly:(int)ply;
 @end

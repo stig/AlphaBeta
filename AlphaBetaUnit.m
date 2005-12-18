@@ -17,16 +17,23 @@
     st = [[TTTState alloc] init];
     STAssertTrue([st playerTurn] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
+    
+    ab = [[AlphaBeta alloc] initWithState:st];
+    STAssertNotNil(ab, @"got nil back");
+    STAssertTrue([ab currentState] == st, @"did not get expected state back");
+    STAssertEquals([ab countMoves], (int)0, nil);
 }
 
 - (void)tearDown
 {
     [st release];
+    [ab release];
 }
 
 - (void)testInitAndSetState
 {
-    id ab = [[AlphaBeta alloc] init];
+    [ab release];
+    ab = [[AlphaBeta alloc] init];
     STAssertNotNil(ab, @"got nil back");
     STAssertNil([ab currentState], @"did not get expected state back");
     [ab setState:st];
@@ -36,14 +43,16 @@
     STAssertEquals([ab countMoves], (int)0, nil);
 }
 
+- (void)testMaxPly
+{
+    STAssertEquals([ab maxPly], (int)3, nil);
+    STAssertThrows([ab setMaxPly:-3], @"allowed negative ply");
+    [ab setMaxPly:5];
+    STAssertEquals([ab maxPly], (int)5, nil);
+}
+
 - (void)testFindMoves
 {
-    id ab = [[AlphaBeta alloc] initWithState:st];
-    STAssertNotNil(ab, @"got nil back");
-    STAssertTrue([ab currentState] == st, @"did not get expected state back");
-    STAssertEquals([ab countMoves], (int)0, nil);
-
-    
     [ab aiMove];
     NSString *s = [[ab currentState] string]; 
     STAssertTrue([s isEqualToString:@"000010000"], @"got: %@", s);

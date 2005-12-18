@@ -10,6 +10,7 @@
 
 @interface AlphaBetaUnit : SenTestCase {
     id st;
+    id ab;
 }
 
 @end

@@ -19,7 +19,7 @@
 {
     if (self = [super init]) {
         [self setState:st];
-        maxPly = 2;
+        [self setMaxPly:3];
         moves = [NSMutableArray new];
     }
     return self;
@@ -99,4 +99,15 @@
     [m autorelease];
 }
 
+- (int)maxPly
+{
+    return maxPly;
+}
+- (void)setMaxPly:(int)ply
+{ 
+    if (ply < 0) {
+        [NSException raise:@"negative ply" format:@"maxPly must be positive"];
+    }
+    maxPly = ply;
+}
 @end
