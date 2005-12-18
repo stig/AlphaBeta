@@ -20,6 +20,7 @@
 - (id)lastMove;
 - (void)aiMove;
 - (int)countMoves;
+- (int)countStates;
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply;
 - (void)move:(id)m;
 - (void)undo;

@@ -57,6 +57,10 @@
     return [moves count];
 }
 
+- (int)countStates
+{
+    return [states count];
+}
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply
 {
     NSMutableArray *mvs = [[[self currentState] listAvailableMoves] autorelease];
