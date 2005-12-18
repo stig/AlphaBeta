@@ -30,7 +30,6 @@
     if (state) {
         [NSException raise:@"state set" format:@"State already set"];   
     }
-    [state autorelease];
     state = [st retain];
 }
 

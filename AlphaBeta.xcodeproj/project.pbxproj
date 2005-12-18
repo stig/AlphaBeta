@@ -15,6 +15,7 @@
 		53F5D647095436DF008D0B74 /* AlphaBetaUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */; };
 		53F5D6CB09543C8C008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
 		53F5D6CE09543D07008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
+		53F5D93E0954A560008D0B74 /* AlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F5D93C0954A560008D0B74 /* AlphaBetaState.h */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		53B4589F094C8E7100E1D64E /* TTTUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTUnit.m; sourceTree = "<group>"; };
 		53F5D645095436DF008D0B74 /* AlphaBetaUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBetaUnit.h; sourceTree = "<group>"; };
 		53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaBetaUnit.m; sourceTree = "<group>"; };
+		53F5D93C0954A560008D0B74 /* AlphaBetaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBetaState.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlphaBeta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 			children = (
 				53B45866094C7B2700E1D64E /* AlphaBeta.h */,
 				53B45867094C7B2800E1D64E /* AlphaBeta.m */,
+				53F5D93C0954A560008D0B74 /* AlphaBetaState.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53B45868094C7B2800E1D64E /* AlphaBeta.h in Headers */,
+				53F5D93E0954A560008D0B74 /* AlphaBetaState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

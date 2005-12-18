@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TTTState.h"
+#import <AlphaBetaState.h>
 
 @interface AlphaBeta : NSObject {
-    TTTState *state;
+    id state;
     int maxPly;
     NSMutableArray *moves;
 }

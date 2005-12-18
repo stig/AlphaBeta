@@ -7,18 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AlphaBetaState.h"
 #import "TTTMove.h"
 
-@interface TTTState : NSObject <NSCopying> {
+@interface TTTState : NSObject <AlphaBetaState> {
     int board[3][3];
     int player;
 }
 - (NSString *)string;
 - (int)player;
-
-/* for now specify the methods here... */
-- (float)fitness;
-- (NSMutableArray *)listAvailableMoves;
-- (void)applyMove:(id)m;
-- (void)undoMove:(id)m;
 @end
