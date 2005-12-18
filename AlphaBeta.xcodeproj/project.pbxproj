@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5337D5CC09557D1300CCFA02 /* Reversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C397CD095566D700E6E128 /* Reversi.framework */; };
+		5337D5EF09557D2300CCFA02 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
 		53B45868094C7B2800E1D64E /* AlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45866094C7B2700E1D64E /* AlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53B45885094C7C4300E1D64E /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45884094C7C4300E1D64E /* TTTState.m */; };
 		53B4588A094C7C8A00E1D64E /* TTTMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45889094C7C8A00E1D64E /* TTTMove.m */; };
 		53B458A0094C8E7100E1D64E /* TTTUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B4589F094C8E7100E1D64E /* TTTUnit.m */; };
 		53B4591D094C9BEF00E1D64E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		53C397DF0955673F00E6E128 /* ReversiUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397DE0955673F00E6E128 /* ReversiUnit.m */; };
+		53C397E40955681C00E6E128 /* ReversiState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C397E20955681C00E6E128 /* ReversiState.h */; };
+		53C397E50955681C00E6E128 /* ReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E30955681C00E6E128 /* ReversiState.m */; };
+		53C397E80955682D00E6E128 /* ReversiMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C397E60955682D00E6E128 /* ReversiMove.h */; };
+		53C397E90955682D00E6E128 /* ReversiMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E70955682D00E6E128 /* ReversiMove.m */; };
 		53F5D647095436DF008D0B74 /* AlphaBetaUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */; };
 		53F5D6CB09543C8C008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
 		53F5D6CE09543D07008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
@@ -51,6 +58,13 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = AlphaBeta;
 		};
+		53C397D6095566E500E6E128 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 53C397CC095566D700E6E128;
+			remoteInfo = Reversi;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +81,14 @@
 		53B45889094C7C8A00E1D64E /* TTTMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTMove.m; sourceTree = "<group>"; };
 		53B4589E094C8E7100E1D64E /* TTTUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTUnit.h; sourceTree = "<group>"; };
 		53B4589F094C8E7100E1D64E /* TTTUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTUnit.m; sourceTree = "<group>"; };
+		53C397CD095566D700E6E128 /* Reversi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reversi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53C397CE095566D700E6E128 /* Reversi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Reversi-Info.plist"; sourceTree = "<group>"; };
+		53C397DD0955673F00E6E128 /* ReversiUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiUnit.h; sourceTree = "<group>"; };
+		53C397DE0955673F00E6E128 /* ReversiUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiUnit.m; sourceTree = "<group>"; };
+		53C397E20955681C00E6E128 /* ReversiState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiState.h; sourceTree = "<group>"; };
+		53C397E30955681C00E6E128 /* ReversiState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiState.m; sourceTree = "<group>"; };
+		53C397E60955682D00E6E128 /* ReversiMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiMove.h; sourceTree = "<group>"; };
+		53C397E70955682D00E6E128 /* ReversiMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiMove.m; sourceTree = "<group>"; };
 		53F5D645095436DF008D0B74 /* AlphaBetaUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBetaUnit.h; sourceTree = "<group>"; };
 		53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaBetaUnit.m; sourceTree = "<group>"; };
 		53F5D93C0954A560008D0B74 /* AlphaBetaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBetaState.h; sourceTree = "<group>"; };
@@ -76,6 +98,15 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		53B45875094C7BFA00E1D64E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5337D5CC09557D1300CCFA02 /* Reversi.framework in Frameworks */,
+				5337D5EF09557D2300CCFA02 /* AlphaBeta.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53C397CB095566D700E6E128 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -98,6 +129,7 @@
 			children = (
 				8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */,
 				53B45878094C7BFA00E1D64E /* UnitTests.octest */,
+				53C397CD095566D700E6E128 /* Reversi.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,12 +138,14 @@
 			isa = PBXGroup;
 			children = (
 				08FB77AEFE84172EC02AAC07 /* Classes */,
+				53C397D8095566F700E6E128 /* Reversi */,
 				53B45871094C7BCB00E1D64E /* UnitTests */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
 				53B45879094C7BFA00E1D64E /* UnitTests-Info.plist */,
+				53C397CE095566D700E6E128 /* Reversi-Info.plist */,
 			);
 			name = AlphaBeta;
 			sourceTree = "<group>";
@@ -178,13 +212,35 @@
 				53B4589F094C8E7100E1D64E /* TTTUnit.m */,
 				53F5D645095436DF008D0B74 /* AlphaBetaUnit.h */,
 				53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */,
+				53C397DD0955673F00E6E128 /* ReversiUnit.h */,
+				53C397DE0955673F00E6E128 /* ReversiUnit.m */,
 			);
 			name = UnitTests;
+			sourceTree = "<group>";
+		};
+		53C397D8095566F700E6E128 /* Reversi */ = {
+			isa = PBXGroup;
+			children = (
+				53C397E60955682D00E6E128 /* ReversiMove.h */,
+				53C397E70955682D00E6E128 /* ReversiMove.m */,
+				53C397E20955681C00E6E128 /* ReversiState.h */,
+				53C397E30955681C00E6E128 /* ReversiState.m */,
+			);
+			name = Reversi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		53C397C8095566D700E6E128 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53C397E40955681C00E6E128 /* ReversiState.h in Headers */,
+				53C397E80955682D00E6E128 /* ReversiMove.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF500486A6940098B216 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,6 +294,7 @@
 			};
 			dependencies = (
 				53B4587F094C7C0400E1D64E /* PBXTargetDependency */,
+				53C397D7095566E500E6E128 /* PBXTargetDependency */,
 			);
 			name = UnitTests;
 			productName = UnitTests;
@@ -264,6 +321,73 @@
 </plist>
 ";
 			productType = "com.apple.product-type.bundle";
+		};
+		53C397CC095566D700E6E128 /* Reversi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53C397D2095566D800E6E128 /* Build configuration list for PBXNativeTarget "Reversi" */;
+			buildPhases = (
+				53C397C8095566D700E6E128 /* Headers */,
+				53C397C9095566D700E6E128 /* Resources */,
+				53C397CA095566D700E6E128 /* Sources */,
+				53C397CB095566D700E6E128 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Reversi-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Reversi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			dependencies = (
+			);
+			name = Reversi;
+			productName = Reversi;
+			productReference = 53C397CD095566D700E6E128 /* Reversi.framework */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Reversi</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.Reversi</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>FMWK</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.framework";
 		};
 		8DC2EF4F0486A6940098B216 /* AlphaBeta */ = {
 			isa = PBXNativeTarget;
@@ -320,12 +444,20 @@
 			targets = (
 				8DC2EF4F0486A6940098B216 /* AlphaBeta */,
 				53B45877094C7BFA00E1D64E /* UnitTests */,
+				53C397CC095566D700E6E128 /* Reversi */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		53B45873094C7BFA00E1D64E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53C397C9095566D700E6E128 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -368,6 +500,16 @@
 				53B458A0094C8E7100E1D64E /* TTTUnit.m in Sources */,
 				53F5D647095436DF008D0B74 /* AlphaBetaUnit.m in Sources */,
 				53F5D6CE09543D07008D0B74 /* AlphaBeta.m in Sources */,
+				53C397DF0955673F00E6E128 /* ReversiUnit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53C397CA095566D700E6E128 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53C397E50955681C00E6E128 /* ReversiState.m in Sources */,
+				53C397E90955682D00E6E128 /* ReversiMove.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +528,11 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
 			targetProxy = 53B4587E094C7C0400E1D64E /* PBXContainerItemProxy */;
+		};
+		53C397D7095566E500E6E128 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 53C397CC095566D700E6E128 /* Reversi */;
+			targetProxy = 53C397D6095566E500E6E128 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -589,6 +736,104 @@
 			};
 			name = Default;
 		};
+		53C397D3095566D800E6E128 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Reversi-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Reversi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Debug;
+		};
+		53C397D4095566D800E6E128 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Reversi-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Reversi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Release;
+		};
+		53C397D5095566D800E6E128 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Reversi-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Reversi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -618,6 +863,15 @@
 				53B4587B094C7BFB00E1D64E /* Debug */,
 				53B4587C094C7BFB00E1D64E /* Release */,
 				53B4587D094C7BFB00E1D64E /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		53C397D2095566D800E6E128 /* Build configuration list for PBXNativeTarget "Reversi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53C397D3095566D800E6E128 /* Debug */,
+				53C397D4095566D800E6E128 /* Release */,
+				53C397D5095566D800E6E128 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
