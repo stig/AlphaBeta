@@ -6,8 +6,6 @@
 //  Copyright 2005 Stig Brautaset. All rights reserved.
 //
 
-#import "TTTState.h"
-#import "AlphaBeta.h"
 #import "AlphaBetaUnit.h"
 
 @implementation AlphaBetaUnit

@@ -7,10 +7,12 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "TTTState.h"
+#import "AlphaBeta.h"
 
 @interface AlphaBetaUnit : SenTestCase {
-    id st;
-    id ab;
+    TTTState *st;
+    AlphaBeta *ab;
 }
 
 @end
