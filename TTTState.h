@@ -11,10 +11,10 @@
 
 @interface TTTState : NSObject <NSCopying> {
     int board[3][3];
-    int playerTurn;
+    int player;
 }
 - (NSString *)string;
-- (int)playerTurn;
+- (int)player;
 
 /* for now specify the methods here... */
 - (float)fitness;

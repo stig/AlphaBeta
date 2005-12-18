@@ -19,14 +19,14 @@
                 board[i][j] = 0;
             }
         }
-        playerTurn = 1;
+        player = 1;
     }
     return self;
 }
 
-- (int)playerTurn
+- (int)player
 {
-    return playerTurn;
+    return player;
 }
 
 - (void)applyMove:(id)m
@@ -38,8 +38,8 @@
         [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
     }
     else if (!board[col][row]) {
-        board[col][row] = playerTurn;
-        playerTurn = 3 - playerTurn;
+        board[col][row] = player;
+        player = 3 - player;
     }
     else {
         [NSException raise:@"square busy" format:@"Move already taken (%d, %d)", row, col];   
@@ -56,7 +56,7 @@
     }
     else if (board[col][row]) {
         board[col][row] = 0;
-        playerTurn = 3 - playerTurn;
+        player = 3 - player;
     }
     else {
         [NSException raise:@"square not taken" format:@"Move not taken (%d, %d)", row, col];   
@@ -84,7 +84,7 @@ static float calcFitness(int me, int counts[3])
     int countd1[3] = {0};
     int countd2[3] = {0};
     
-    me = [self playerTurn];
+    me = [self player];
     for (i = 0; i < 3; i++) {
         int counth[3] = {0};
         int countv[3] = {0};

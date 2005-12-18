@@ -13,7 +13,7 @@
 - (void)setUp
 {
     st = [[TTTState alloc] init];
-    STAssertTrue([st playerTurn] == 1, nil);
+    STAssertTrue([st player] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
     
     ab = [[AlphaBeta alloc] initWithState:st];

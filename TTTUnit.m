@@ -55,7 +55,7 @@
 
 - (void)testFitness
 {    
-    STAssertTrue([st playerTurn] == 1, nil);
+    STAssertTrue([st player] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
     STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
     [st applyMove:[[TTTMove alloc] initWithCol:0 andRow:0]];
@@ -68,7 +68,7 @@
 
 - (void)testState
 {    
-    STAssertTrue([st playerTurn] == 1, nil);
+    STAssertTrue([st player] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
     
     int i;
@@ -77,7 +77,7 @@
         STAssertTrue([moves count] == i, @"got %d moves", [moves count]);
         id m = [moves objectAtIndex:0];
         [st applyMove:m];
-        STAssertTrue([st playerTurn] == i % 2 + 1, @"expected(%d): %d, got: %d", i, i % 2 + 1, [st playerTurn]);
+        STAssertTrue([st player] == i % 2 + 1, @"expected(%d): %d, got: %d", i, i % 2 + 1, [st player]);
         
         id s;
         switch (i) {
@@ -95,7 +95,7 @@
         id cp = [st copy];
         STAssertTrue(st != cp, @"copies are the same, but should not be");
         STAssertTrue([[cp string] isEqualToString:s], @"got(%d): %@", i, [cp string]);
-        STAssertEquals([cp playerTurn], (int)[st playerTurn], @"got (%d): %d", i, [cp playerTurn]);
+        STAssertEquals([cp player], (int)[st player], @"got (%d): %d", i, [cp player]);
     }
 }
 
