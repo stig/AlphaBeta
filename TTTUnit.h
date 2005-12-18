@@ -7,10 +7,11 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-
+#import "TTTState.h"
 
 @interface TTTUnit : SenTestCase {
-
+    TTTState *st;
+    NSMutableArray *moves;
 }
 
 @end

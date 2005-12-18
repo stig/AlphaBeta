@@ -7,9 +7,20 @@
 //
 
 #import "TTTUnit.h"
-#import "TTTState.h"
 
 @implementation TTTUnit
+
+- (void)setUp
+{
+    st = [[TTTState alloc] init];
+    moves = nil;
+}
+
+- (void)tearDown
+{
+    [st release];
+    [moves release];
+}
 
 - (void)testMove
 {
@@ -21,8 +32,6 @@
 
 - (void)testAvailMoves
 {
-    id st = [[TTTState alloc] init];
-    NSMutableArray *moves;
     STAssertNotNil(moves = [st listAvailableMoves], nil);
     id s;
     int i;
@@ -45,9 +54,7 @@
 }
 
 - (void)testFitness
-{
-    id st = [[TTTState alloc] init];
-    
+{    
     STAssertTrue([st playerTurn] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
     STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
@@ -60,15 +67,12 @@
 }
 
 - (void)testState
-{
-    id st = [[TTTState alloc] init];
-    
+{    
     STAssertTrue([st playerTurn] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
     
     int i;
     for (i = 9; i > 0; i--) {
-        NSMutableArray *moves;
         STAssertNotNil(moves = [st listAvailableMoves], nil);
         STAssertTrue([moves count] == i, @"got %d moves", [moves count]);
         id m = [moves objectAtIndex:0];
