@@ -10,7 +10,7 @@
 
 @implementation TTTMove
 
-- (TTTMove *)initWithX:(int)x andY:(int)y
+- (TTTMove *)initWithCol:(int)x andRow:(int)y
 {
     if (self = [super init]) {
         col = x;
@@ -18,11 +18,13 @@
     }
     return self;
 }
-- (int)x
+
+- (int)col
 {
     return col;
 }
-- (int)y
+
+- (int)row
 {
     return row;
 }

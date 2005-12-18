@@ -31,8 +31,8 @@
 
 - (void)applyMove:(id)m
 {
-    int row = [m y];
-    int col = [m x];
+    int row = [m row];
+    int col = [m col];
     
     if (row > 2 || row < 0 || col > 2 || col < 0) {
         [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
@@ -48,8 +48,8 @@
 
 - (void)undoMove:(id)m
 {
-    int row = [m y];
-    int col = [m x];
+    int row = [m row];
+    int col = [m col];
     
     if (row > 2 || row < 0 || col > 2 || col < 0) {
         [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
@@ -109,7 +109,7 @@ static float calcFitness(int me, int counts[3])
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
             if (!board[i][j]) {
-                [moves addObject:[[TTTMove alloc] initWithX:i andY:j]];
+                [moves addObject:[[TTTMove alloc] initWithCol:i andRow:j]];
             }
         }
     }
