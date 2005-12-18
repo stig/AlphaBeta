@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		5337D5CC09557D1300CCFA02 /* Reversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C397CD095566D700E6E128 /* Reversi.framework */; };
 		5337D5EF09557D2300CCFA02 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
-		5357B52D0955D6D500E12436 /* TTTMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45888094C7C8A00E1D64E /* TTTMove.h */; };
+		5357B52D0955D6D500E12436 /* TTTMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45888094C7C8A00E1D64E /* TTTMove.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5357B52E0955D6D600E12436 /* TTTMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45889094C7C8A00E1D64E /* TTTMove.m */; };
-		5357B52F0955D6D600E12436 /* TTTState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45883094C7C4300E1D64E /* TTTState.h */; };
+		5357B52F0955D6D600E12436 /* TTTState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45883094C7C4300E1D64E /* TTTState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5357B5300955D6D700E12436 /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45884094C7C4300E1D64E /* TTTState.m */; };
+		5357B54C0955DA7300E12436 /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5357B5180955D68100E12436 /* TicTacToe.framework */; };
 		53B45868094C7B2800E1D64E /* AlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45866094C7B2700E1D64E /* AlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53B458A0094C8E7100E1D64E /* TTTUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B4589F094C8E7100E1D64E /* TTTUnit.m */; };
 		53B4591D094C9BEF00E1D64E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
@@ -120,6 +121,7 @@
 			files = (
 				5337D5CC09557D1300CCFA02 /* Reversi.framework in Frameworks */,
 				5337D5EF09557D2300CCFA02 /* AlphaBeta.framework in Frameworks */,
+				5357B54C0955DA7300E12436 /* TicTacToe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
