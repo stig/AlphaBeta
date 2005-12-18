@@ -50,6 +50,30 @@
     }
 }
 
+- (void)testStateAndFitness8x8
+{
+    STAssertTrue([st player] == 1, nil);
+    STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
+    
+    NSString *s = [st string];
+    STAssertTrue([s isEqualToString:@"00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000"], @"got: %@", s);
+    
+    [st applyMove:[[ReversiMove alloc] initWithCol:3 andRow:2]];
+    STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, @"got %f", [st fitness]);
+    s = [st string];
+    STAssertTrue([s isEqualToString:@"00000000 00000000 00010000 00011000 00012000 00000000 00000000 00000000"], @"got: %@", s);
+    
+    [st applyMove:[[ReversiMove alloc] initWithCol:4 andRow:2]];
+    STAssertEqualsWithAccuracy([st fitness], (float)0.0, 0.0001, @"got %f", [st fitness]);
+    s = [st string];
+    STAssertTrue([s isEqualToString:@"00000000 00000000 00012000 00012000 00012000 00000000 00000000 00000000"], @"got: %@", s);
+    
+    [st applyMove:[[ReversiMove alloc] initWithCol:5 andRow:5]];
+    STAssertEqualsWithAccuracy([st fitness], (float)-2.0, 0.0001, @"got %f", [st fitness]);
+    s = [st string];
+    STAssertTrue([s isEqualToString:@"00000000 00000000 00012000 00012000 00011000 00000100 00000000 00000000"], @"got: %@", s);
+}
+
 - (void)testStateAndFitness4x4
 {
     [st release];
@@ -59,22 +83,22 @@
     STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
 
     NSString *s = [st string];
-    STAssertTrue([s isEqualToString:@"0000021001200000"], @"got: %@", s);
+    STAssertTrue([s isEqualToString:@"0000 0210 0120 0000"], @"got: %@", s);
 
     [st applyMove:[[ReversiMove alloc] initWithCol:1 andRow:0]];
     STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, @"got %f", [st fitness]);
     s = [st string];
-    STAssertTrue([s isEqualToString:@"0100011001200000"], @"got: %@", s);
+    STAssertTrue([s isEqualToString:@"0100 0110 0120 0000"], @"got: %@", s);
 
     [st applyMove:[[ReversiMove alloc] initWithCol:2 andRow:0]];
     STAssertEqualsWithAccuracy([st fitness], (float)0.0, 0.0001, @"got %f", [st fitness]);
     s = [st string];
-    STAssertTrue([s isEqualToString:@"0120012001200000"], @"got: %@", s);
+    STAssertTrue([s isEqualToString:@"0120 0120 0120 0000"], @"got: %@", s);
     
     [st applyMove:[[ReversiMove alloc] initWithCol:3 andRow:3]];
     STAssertEqualsWithAccuracy([st fitness], (float)-1.0, 0.0001, @"got %f", [st fitness]);    
     s = [st string];
-    STAssertTrue([s isEqualToString:@"0120012001100001"], @"got: %@", s);
+    STAssertTrue([s isEqualToString:@"0120 0120 0110 0001"], @"got: %@", s);
 }
 
 

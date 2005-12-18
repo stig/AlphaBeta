@@ -369,6 +369,9 @@ again:
         for (j = 0; j < size; j++) {
             [s appendFormat:@"%d", board[j][i]];
         }
+        if (i < size - 1) {
+            [s appendFormat:@" "];
+        }
     }
     return s;
 }
