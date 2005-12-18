@@ -31,7 +31,28 @@
     STAssertTrue([[move string] isEqualToString:@"21"], nil);
 }
 
-- (void)testAvailMoves
+- (void)testAvailMoves6x6
+{
+    [st release];
+    st = [[ReversiState alloc] initWithBoardSize:6];
+    STAssertNotNil(moves = [st listAvailableMoves], nil);
+    STAssertEquals([moves count], (unsigned)4, nil);
+    id s;
+    int i;
+    for (i = 0; i < 4; i++) {
+        id s2;
+        switch (i) {
+            case 0: s = @"12"; break;
+            case 1: s = @"21"; break;
+            case 2: s = @"34"; break;
+            case 3: s = @"43"; break;
+        }
+        s2 = [[moves objectAtIndex:i] string];
+        STAssertTrue([s2 isEqualToString:s], @"expected %@, got %@", s, s2);
+    }
+}
+
+- (void)testAvailMoves8x8
 {
     STAssertNotNil(moves = [st listAvailableMoves], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
