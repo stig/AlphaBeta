@@ -57,10 +57,10 @@
     int i;
     for (i = 0; i < [mvs count]; i++) {
         id m = [mvs objectAtIndex:i];
-        [[self currentState] applyMove:m];
+        [self move:m];
         float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
         alpha = alpha > sc ? alpha : sc;
-        [[self currentState] undoMove:m];
+        [self undo];
     }
     return alpha;
 }
@@ -73,15 +73,30 @@
     float max = 0.0;
     for (i = 0; i < [mvs count]; i++) {
         id m = [mvs objectAtIndex:i];
-        [state applyMove:m];
+        [self move:m];
         float sc = -[self abWithAlpha:-100.0 beta:100.0 plyLeft:maxPly-1];
         if (sc > max) {
             max = sc;
             [best autorelease];
             best = [m retain];
         }
-        [[self currentState] undoMove:m];
+        [self undo];
     }
-    [[self currentState] applyMove:best];
+    [self move:best];
 }
+
+- (void)move:(id)m
+{
+    [self move:m];
+    [moves addObject:m];
+}
+
+- (void)undo
+{
+    id m = [moves lastObject];
+    [self undo];
+    [moves removeLastObject];
+    [m autorelease];
+}
+
 @end
