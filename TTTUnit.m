@@ -44,13 +44,27 @@
     }
 }
 
+- (void)testFitness
+{
+    id st = [[TTTState alloc] init];
+    
+    STAssertTrue([st playerTurn] == 1, nil);
+    STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
+    STAssertTrue([st fitnessValue] == 0.0, @"got: %f", [st fitnessValue]);
+    [st applyMove:[[TTTMove alloc] initWithX:0 andY:0]];
+    STAssertEqualsWithAccuracy([st fitnessValue], (float)-3.0, 0.0001, @"got %f", [st fitnessValue]);
+    [st applyMove:[[TTTMove alloc] initWithX:0 andY:1]];
+    STAssertEqualsWithAccuracy([st fitnessValue], (float)1.0, 0.0001, @"got %f", [st fitnessValue]);    
+    [st applyMove:[[TTTMove alloc] initWithX:1 andY:1]];
+    STAssertEqualsWithAccuracy([st fitnessValue], (float)-7.0, 0.0001, @"got %f", [st fitnessValue]);    
+}
+
 - (void)testState
 {
     id st = [[TTTState alloc] init];
     
     STAssertTrue([st playerTurn] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
-    STAssertTrue([st fitnessValue] == 0.0, @"initial state is neutral");
     
     int i;
     for (i = 9; i > 0; i--) {

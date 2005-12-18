@@ -46,9 +46,43 @@
     }
 }
 
+static float calcFitness(int me, int counts[3])
+{
+    int you = 3 - me;
+    float score = 0.0;
+    if (counts[me] && !counts[you]) {
+        score += counts[me] * counts[me];
+    }
+    else if (!counts[me] && counts[you]) {
+        score -= counts[you] * counts[you];
+    }
+    return score;
+}
+
+
 - (float)fitnessValue
 {
-    return 0.0;
+    int i, j, me;
+    float score = 0.0;
+    int countd1[3] = {0};
+    int countd2[3] = {0};
+    
+    me = [self playerTurn];
+    for (i = 0; i < 3; i++) {
+        int counth[3] = {0};
+        int countv[3] = {0};
+        for (j = 0; j < 3; j++) {
+            counth[board[i][j]]++;
+            countv[board[j][i]]++;
+        }
+        countd1[board[i][i]]++;
+        countd2[board[i][2-i]]++;
+        score += calcFitness(me, counth);
+        score += calcFitness(me, countv);
+    }
+    score += calcFitness(me, countd1);
+    score += calcFitness(me, countd2);    
+    return score;
 }
 
 - (NSMutableArray *)listAvailableMoves
