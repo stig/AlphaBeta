@@ -24,6 +24,11 @@
     return self;
 }
 
+- (BOOL)canUndo
+{
+    return YES;
+}
+
 - (int)player
 {
     return player;

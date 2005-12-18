@@ -99,16 +99,24 @@
 
 - (void)move:(id)m
 {
+    id s = [self currentState];
+    if (![s canUndo]) {
+        [states addObject:[s copy]];
+    }
     [[self currentState] applyMove:m];
     [moves addObject:m];
 }
 
 - (void)undo
 {
-    id m = [moves lastObject];
-    [[self currentState] undoMove:m];
+    id s = [self currentState];
+    if (![s canUndo]) {
+        [states removeLastObject];
+    }
+    else {
+        [s undoMove:[moves lastObject]]; 
+    }
     [moves removeLastObject];
-    [m autorelease];
 }
 
 - (int)maxPly

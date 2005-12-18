@@ -14,5 +14,6 @@
 - (NSMutableArray *)listAvailableMoves;
 - (void)applyMove:(id)m;
 - (void)undoMove:(id)m;
+- (BOOL)canUndo;
 
 @end
