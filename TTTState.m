@@ -110,4 +110,9 @@ static float calcFitness(int me, int counts[3])
     }
     return s;
 }
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    return NSCopyObject(self, 0, zone);
+}
 @end

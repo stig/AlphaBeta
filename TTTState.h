@@ -10,7 +10,7 @@
 #import "AlphaBetaState.h"
 #import "TTTMove.h"
 
-@interface TTTState : NSObject {
+@interface TTTState : NSObject <NSCopying> {
     int board[3][3];
     int playerTurn;
 }

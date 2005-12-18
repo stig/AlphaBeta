@@ -88,8 +88,11 @@
             case 1: s = @"121212121"; break;
         }
         STAssertTrue([[st string] isEqualToString:s], @"got(%d): %@", i, [st string]);
+        id cp = [st copy];
+        STAssertTrue(st != cp, @"copies are the same, but should not be");
+        STAssertTrue([[cp string] isEqualToString:s], @"got(%d): %@", i, [cp string]);
+        STAssertEquals([cp playerTurn], (int)[st playerTurn], @"got (%d): %d", i, [cp playerTurn]);
     }
 }
-
 
 @end
