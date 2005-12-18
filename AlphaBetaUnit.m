@@ -57,13 +57,13 @@
     NSString *s = [[ab currentState] string]; 
     STAssertTrue([s isEqualToString:@"000010000"], @"got: %@", s);
     STAssertEquals([ab countMoves], (int)1, nil);
-    STAssertEqualsWithAccuracy([[ab currentState] fitnessValue], (float)-4.0, 0.1, nil);
+    STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)-4.0, 0.1, nil);
     
     [ab aiMove];
     s = [[ab currentState] string]; 
     STAssertTrue([s isEqualToString:@"200010000"], @"got: %@", s);
     STAssertEquals([ab countMoves], (int)2, nil);
-    STAssertEqualsWithAccuracy([[ab currentState] fitnessValue], (float)1.0, 0.1, nil);
+    STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)1.0, 0.1, nil);
 }
 
 @end

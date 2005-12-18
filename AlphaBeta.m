@@ -48,10 +48,10 @@
 {
     NSMutableArray *mvs = [[[self currentState] listAvailableMoves] autorelease];
     
-    return [[self currentState] fitnessValue];
+    return [[self currentState] fitness];
     
     if ([mvs count] == 0 || !ply) {
-        return [[self currentState] fitnessValue];
+        return [[self currentState] fitness];
     }
     
     int i;
@@ -103,6 +103,7 @@
 {
     return maxPly;
 }
+
 - (void)setMaxPly:(int)ply
 { 
     if (ply < 0) {

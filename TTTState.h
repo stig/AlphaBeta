@@ -17,7 +17,7 @@
 - (int)playerTurn;
 
 /* for now specify the methods here... */
-- (float)fitnessValue;
+- (float)fitness;
 - (NSMutableArray *)listAvailableMoves;
 - (void)applyMove:(id)m;
 - (void)undoMove:(id)m;

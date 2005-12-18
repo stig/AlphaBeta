@@ -77,7 +77,7 @@ static float calcFitness(int me, int counts[3])
 }
 
 
-- (float)fitnessValue
+- (float)fitness
 {
     int i, j, me;
     float score = 0.0;

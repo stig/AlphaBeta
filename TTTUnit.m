@@ -50,13 +50,13 @@
     
     STAssertTrue([st playerTurn] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
-    STAssertTrue([st fitnessValue] == 0.0, @"got: %f", [st fitnessValue]);
+    STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
     [st applyMove:[[TTTMove alloc] initWithX:0 andY:0]];
-    STAssertEqualsWithAccuracy([st fitnessValue], (float)-3.0, 0.0001, @"got %f", [st fitnessValue]);
+    STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, @"got %f", [st fitness]);
     [st applyMove:[[TTTMove alloc] initWithX:0 andY:1]];
-    STAssertEqualsWithAccuracy([st fitnessValue], (float)1.0, 0.0001, @"got %f", [st fitnessValue]);    
+    STAssertEqualsWithAccuracy([st fitness], (float)1.0, 0.0001, @"got %f", [st fitness]);    
     [st applyMove:[[TTTMove alloc] initWithX:1 andY:1]];
-    STAssertEqualsWithAccuracy([st fitnessValue], (float)-7.0, 0.0001, @"got %f", [st fitnessValue]);    
+    STAssertEqualsWithAccuracy([st fitness], (float)-7.0, 0.0001, @"got %f", [st fitness]);    
 }
 
 - (void)testState
