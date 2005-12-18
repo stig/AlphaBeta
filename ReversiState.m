@@ -56,11 +56,40 @@ typedef struct _RStateCount {
     return self;
 }
 
+- (int**)board
+{
+    return board;
+}
+
+- (void)setPlayer:(int)p
+{
+    player = p;
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    ReversiState *copy = [[ReversiState alloc] initWithBoardSize:size];
+    int i, j;
+    int **b = [copy board];
+    for (i = 0; i < size; i++) {
+        for (j = 0; j < size; j++) {
+            b[i][j] = board[i][j];
+        }
+    }
+    [self setPlayer:player];
+    return copy;
+}
+
 - (void)dealloc
 {
     free(board[0]);
     free(board);
     [super dealloc];
+}
+
+- (BOOL)canUndo
+{
+    return NO;
 }
 
 - (int)player

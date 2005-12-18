@@ -8,6 +8,7 @@
 
 #import "ReversiUnit.h"
 #import "ReversiMove.h"
+#import "AlphaBeta.h"
 
 @implementation ReversiUnit
 
@@ -78,11 +79,15 @@
     
     NSString *s = [st string];
     STAssertTrue([s isEqualToString:@"00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000"], @"got: %@", s);
+    id copy = [st copy];
+    STAssertTrue([[copy string] isEqualToString:s], nil);
     
     [st applyMove:[[ReversiMove alloc] initWithCol:3 andRow:2]];
     STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, @"got %f", [st fitness]);
     s = [st string];
     STAssertTrue([s isEqualToString:@"00000000 00000000 00010000 00011000 00012000 00000000 00000000 00000000"], @"got: %@", s);
+    STAssertTrue(![[copy string] isEqualToString:s], nil);
+    [copy release];
     
     [st applyMove:[[ReversiMove alloc] initWithCol:4 andRow:2]];
     STAssertEqualsWithAccuracy([st fitness], (float)0.0, 0.0001, @"got %f", [st fitness]);
@@ -105,6 +110,7 @@
 
     NSString *s = [st string];
     STAssertTrue([s isEqualToString:@"0000 0210 0120 0000"], @"got: %@", s);
+    STAssertTrue([[[st copy] string] isEqualToString:s], nil);
 
     [st applyMove:[[ReversiMove alloc] initWithCol:1 andRow:0]];
     STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, @"got %f", [st fitness]);
@@ -122,5 +128,28 @@
     STAssertTrue([s isEqualToString:@"0120 0120 0110 0001"], @"got: %@", s);
 }
 
+- (void)testAlphaBeta
+{
+    [st release];
+    st = [[ReversiState alloc] initWithBoardSize:4];
+
+    AlphaBeta *ab = [[AlphaBeta alloc] initWithState:st];
+    STAssertNotNil(ab, @"got nil back");
+    STAssertTrue([ab currentState] == st, @"did not get expected state back");
+    STAssertEquals([ab countMoves], (int)0, nil);
+    
+    [ab setMaxPly:2];   // states below assumes a ply 2 search
+    STAssertNil([ab lastMove], nil);
+    
+    /*
+    [ab aiMove]; 
+    NSString *s = [[ab currentState] string];
+    STAssertTrue([s isEqualToString:@"0100 0110 0120 0000"], @"got: %@", s);
+    STAssertEquals([ab countMoves], (int)1, nil);
+    STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)-4.0, 0.1, nil);
+    s = [[ab lastMove] string];
+    STAssertTrue([s isEqualToString:@"11"], @"got: %@", s);
+    */
+}
 
 @end
