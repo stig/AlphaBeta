@@ -61,18 +61,19 @@
 {
     NSMutableArray *mvs = [[[self currentState] listAvailableMoves] autorelease];
     
-    if ([mvs count] == 0 || !ply) {
+    if (![mvs count] || !ply) {
+        [mvs release];
         return [[self currentState] fitness];
     }
     
     int i;
     for (i = 0; i < [mvs count]; i++) {
-        id m = [mvs objectAtIndex:i];
-        [self move:m];
+        [self move:[mvs objectAtIndex:i]];
         float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
         alpha = alpha > sc ? alpha : sc;
         [self undo];
     }
+    [mvs release];
     return alpha;
 }
 
@@ -82,7 +83,7 @@
     int i;
     id best = nil;
     float alpha = -10000.0;
-    float beta = 10000.0;
+    float beta  = +10000.0;
     for (i = 0; i < [mvs count]; i++) {
         id m = [mvs objectAtIndex:i];
         [self move:m];
@@ -94,6 +95,7 @@
         }
         [self undo];
     }
+    [mvs release];
     [self move:best];
 }
 
