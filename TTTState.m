@@ -29,4 +29,17 @@
     return 0.0;
 }
 
+- (NSMutableArray *)listAvailableMoves
+{
+    NSMutableArray *moves = [[NSMutableArray alloc] init];
+    int i, j;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            if (!board[i][j]) {
+                [moves addObject:[[TTTMove alloc] initWithX:j andY:i]];
+            }
+        }
+    }
+    return moves;
+}
 @end

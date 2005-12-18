@@ -20,10 +20,14 @@
 
 - (void)testState
 {
+    int i;
     id st = [[TTTState alloc] init];
+    NSMutableArray *moves;
     
     STAssertTrue([st fitnessValue] == 0.0, @"initial state is neutral");
     
+    moves = [st listAvailableMoves];
+    STAssertTrue([moves count] == 9, @"got expected number of moves back");
 }
 
 @end
