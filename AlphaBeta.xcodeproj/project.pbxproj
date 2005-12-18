@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		5337D5CC09557D1300CCFA02 /* Reversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C397CD095566D700E6E128 /* Reversi.framework */; };
 		5337D5EF09557D2300CCFA02 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
+		5357B52D0955D6D500E12436 /* TTTMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45888094C7C8A00E1D64E /* TTTMove.h */; };
+		5357B52E0955D6D600E12436 /* TTTMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45889094C7C8A00E1D64E /* TTTMove.m */; };
+		5357B52F0955D6D600E12436 /* TTTState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45883094C7C4300E1D64E /* TTTState.h */; };
+		5357B5300955D6D700E12436 /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45884094C7C4300E1D64E /* TTTState.m */; };
 		53B45868094C7B2800E1D64E /* AlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45866094C7B2700E1D64E /* AlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		53B45885094C7C4300E1D64E /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45884094C7C4300E1D64E /* TTTState.m */; };
-		53B4588A094C7C8A00E1D64E /* TTTMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45889094C7C8A00E1D64E /* TTTMove.m */; };
 		53B458A0094C8E7100E1D64E /* TTTUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B4589F094C8E7100E1D64E /* TTTUnit.m */; };
 		53B4591D094C9BEF00E1D64E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		53C397DF0955673F00E6E128 /* ReversiUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397DE0955673F00E6E128 /* ReversiUnit.m */; };
@@ -21,7 +23,6 @@
 		53C397E90955682D00E6E128 /* ReversiMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E70955682D00E6E128 /* ReversiMove.m */; };
 		53F5D647095436DF008D0B74 /* AlphaBetaUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */; };
 		53F5D6CB09543C8C008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
-		53F5D6CE09543D07008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
 		53F5D93E0954A560008D0B74 /* AlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F5D93C0954A560008D0B74 /* AlphaBetaState.h */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,13 @@
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
+		5357B5360955D70000E12436 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5357B5170955D68100E12436 /* TicTacToe */;
+			remoteInfo = TicTacToe;
+		};
 		53B4587E094C7C0400E1D64E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -71,6 +79,8 @@
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* AlphaBeta_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBeta_Prefix.pch; sourceTree = "<group>"; };
+		5357B5180955D68100E12436 /* TicTacToe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TicTacToe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5357B5190955D68100E12436 /* TicTacToe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "TicTacToe-Info.plist"; sourceTree = "<group>"; };
 		53B45866094C7B2700E1D64E /* AlphaBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBeta.h; sourceTree = "<group>"; };
 		53B45867094C7B2800E1D64E /* AlphaBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaBeta.m; sourceTree = "<group>"; };
 		53B45878094C7BFA00E1D64E /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +107,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5357B5160955D68100E12436 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53B45875094C7BFA00E1D64E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -130,6 +147,7 @@
 				8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */,
 				53B45878094C7BFA00E1D64E /* UnitTests.octest */,
 				53C397CD095566D700E6E128 /* Reversi.framework */,
+				5357B5180955D68100E12436 /* TicTacToe.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,15 +155,14 @@
 		0867D691FE84028FC02AAC07 /* AlphaBeta */ = {
 			isa = PBXGroup;
 			children = (
-				08FB77AEFE84172EC02AAC07 /* Classes */,
+				08FB77AEFE84172EC02AAC07 /* AlphaBeta */,
 				53C397D8095566F700E6E128 /* Reversi */,
+				5357B5260955D69600E12436 /* TicTacToe */,
 				53B45871094C7BCB00E1D64E /* UnitTests */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				53B45879094C7BFA00E1D64E /* UnitTests-Info.plist */,
-				53C397CE095566D700E6E128 /* Reversi-Info.plist */,
 			);
 			name = AlphaBeta;
 			sourceTree = "<group>";
@@ -163,19 +180,22 @@
 			isa = PBXGroup;
 			children = (
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				53B45879094C7BFA00E1D64E /* UnitTests-Info.plist */,
+				53C397CE095566D700E6E128 /* Reversi-Info.plist */,
+				5357B5190955D68100E12436 /* TicTacToe-Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+		08FB77AEFE84172EC02AAC07 /* AlphaBeta */ = {
 			isa = PBXGroup;
 			children = (
 				53B45866094C7B2700E1D64E /* AlphaBeta.h */,
 				53B45867094C7B2800E1D64E /* AlphaBeta.m */,
 				53F5D93C0954A560008D0B74 /* AlphaBetaState.h */,
 			);
-			name = Classes;
+			name = AlphaBeta;
 			sourceTree = "<group>";
 		};
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
@@ -201,13 +221,20 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		53B45871094C7BCB00E1D64E /* UnitTests */ = {
+		5357B5260955D69600E12436 /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
 				53B45883094C7C4300E1D64E /* TTTState.h */,
 				53B45884094C7C4300E1D64E /* TTTState.m */,
 				53B45888094C7C8A00E1D64E /* TTTMove.h */,
 				53B45889094C7C8A00E1D64E /* TTTMove.m */,
+			);
+			name = TicTacToe;
+			sourceTree = "<group>";
+		};
+		53B45871094C7BCB00E1D64E /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
 				53B4589E094C8E7100E1D64E /* TTTUnit.h */,
 				53B4589F094C8E7100E1D64E /* TTTUnit.m */,
 				53F5D645095436DF008D0B74 /* AlphaBetaUnit.h */,
@@ -232,6 +259,15 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		5357B5130955D68100E12436 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5357B52D0955D6D500E12436 /* TTTMove.h in Headers */,
+				5357B52F0955D6D600E12436 /* TTTState.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53C397C8095566D700E6E128 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,6 +289,73 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		5357B5170955D68100E12436 /* TicTacToe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5357B51A0955D68200E12436 /* Build configuration list for PBXNativeTarget "TicTacToe" */;
+			buildPhases = (
+				5357B5130955D68100E12436 /* Headers */,
+				5357B5140955D68100E12436 /* Resources */,
+				5357B5150955D68100E12436 /* Sources */,
+				5357B5160955D68100E12436 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TicTacToe-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = TicTacToe;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			dependencies = (
+			);
+			name = TicTacToe;
+			productName = TicTacToe;
+			productReference = 5357B5180955D68100E12436 /* TicTacToe.framework */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>TicTacToe</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.TicTacToe</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>FMWK</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.framework";
+		};
 		53B45877094C7BFA00E1D64E /* UnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 53B4587A094C7BFB00E1D64E /* Build configuration list for PBXNativeTarget "UnitTests" */;
@@ -295,6 +398,7 @@
 			dependencies = (
 				53B4587F094C7C0400E1D64E /* PBXTargetDependency */,
 				53C397D7095566E500E6E128 /* PBXTargetDependency */,
+				5357B5370955D70000E12436 /* PBXTargetDependency */,
 			);
 			name = UnitTests;
 			productName = UnitTests;
@@ -445,11 +549,19 @@
 				8DC2EF4F0486A6940098B216 /* AlphaBeta */,
 				53B45877094C7BFA00E1D64E /* UnitTests */,
 				53C397CC095566D700E6E128 /* Reversi */,
+				5357B5170955D68100E12436 /* TicTacToe */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5357B5140955D68100E12436 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53B45873094C7BFA00E1D64E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -491,15 +603,21 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5357B5150955D68100E12436 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5357B52E0955D6D600E12436 /* TTTMove.m in Sources */,
+				5357B5300955D6D700E12436 /* TTTState.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53B45874094C7BFA00E1D64E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53B45885094C7C4300E1D64E /* TTTState.m in Sources */,
-				53B4588A094C7C8A00E1D64E /* TTTMove.m in Sources */,
 				53B458A0094C8E7100E1D64E /* TTTUnit.m in Sources */,
 				53F5D647095436DF008D0B74 /* AlphaBetaUnit.m in Sources */,
-				53F5D6CE09543D07008D0B74 /* AlphaBeta.m in Sources */,
 				53C397DF0955673F00E6E128 /* ReversiUnit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,6 +642,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5357B5370955D70000E12436 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5357B5170955D68100E12436 /* TicTacToe */;
+			targetProxy = 5357B5360955D70000E12436 /* PBXContainerItemProxy */;
+		};
 		53B4587F094C7C0400E1D64E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
@@ -548,6 +671,104 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5357B51B0955D68200E12436 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TicTacToe-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = TicTacToe;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Debug;
+		};
+		5357B51C0955D68200E12436 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TicTacToe-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = TicTacToe;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Release;
+		};
+		5357B51D0955D68200E12436 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TicTacToe-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = TicTacToe;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
 		53B4585D094C7B2300E1D64E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -837,6 +1058,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5357B51A0955D68200E12436 /* Build configuration list for PBXNativeTarget "TicTacToe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5357B51B0955D68200E12436 /* Debug */,
+				5357B51C0955D68200E12436 /* Release */,
+				5357B51D0955D68200E12436 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		53B4585C094C7B2300E1D64E /* Build configuration list for PBXNativeTarget "AlphaBeta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
