@@ -13,6 +13,7 @@
 		53B45885094C7C4300E1D64E /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45884094C7C4300E1D64E /* TTTState.m */; };
 		53B4588A094C7C8A00E1D64E /* TTTMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45889094C7C8A00E1D64E /* TTTMove.m */; };
 		53B458A0094C8E7100E1D64E /* TTTUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B4589F094C8E7100E1D64E /* TTTUnit.m */; };
+		53B4591D094C9BEF00E1D64E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53B4591D094C9BEF00E1D64E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
