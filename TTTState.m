@@ -42,4 +42,16 @@
     }
     return moves;
 }
+
+- (NSString *)string
+{
+    NSMutableString *s = [NSMutableString string];
+    int i, j;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            [s appendFormat:@"%d", board[j][i]];
+        }
+    }
+    return s;
+}
 @end

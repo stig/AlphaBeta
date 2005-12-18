@@ -14,5 +14,5 @@
     int board[3][3];
     int player;
 }
-
+- (NSString *)string;
 @end

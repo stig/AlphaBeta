@@ -14,5 +14,6 @@
 }
 - (TTTMove *)initWithX:(int)x andY:(int)y;
 - (int)x;
-- (int)y; 
+- (int)y;
+- (NSString *)string;
 @end

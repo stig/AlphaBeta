@@ -16,18 +16,20 @@
     id move = [[TTTMove alloc] initWithX:2 andY:1];
     STAssertTrue([move x] == 2, nil);
     STAssertTrue([move y] == 1, nil);
+    STAssertTrue([[move string] isEqualToString:@"21"], nil);
 }
 
 - (void)testState
 {
-    int i;
     id st = [[TTTState alloc] init];
     NSMutableArray *moves;
     
+    STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
     STAssertTrue([st fitnessValue] == 0.0, @"initial state is neutral");
     
-    moves = [st listAvailableMoves];
+    STAssertNotNil(moves = [st listAvailableMoves], nil);
     STAssertTrue([moves count] == 9, @"got expected number of moves back");
 }
+
 
 @end
