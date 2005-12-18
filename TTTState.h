@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AlphaBetaState.h"
 #import "TTTMove.h"
 
 @interface TTTState : NSObject <NSCopying> {
@@ -16,4 +15,10 @@
 }
 - (NSString *)string;
 - (int)playerTurn;
+
+/* for now specify the methods here... */
+- (float)fitnessValue;
+- (NSMutableArray *)listAvailableMoves;
+- (void)applyMove:(id)m;
+- (void)undoMove:(id)m;
 @end

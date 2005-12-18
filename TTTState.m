@@ -46,6 +46,23 @@
     }
 }
 
+- (void)undoMove:(id)m
+{
+    int row = [m y];
+    int col = [m x];
+    
+    if (row > 2 || row < 0 || col > 2 || col < 0) {
+        [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
+    }
+    else if (board[col][row]) {
+        board[col][row] = 0;
+        playerTurn = 3 - playerTurn;
+    }
+    else {
+        [NSException raise:@"square not taken" format:@"Move not taken (%d, %d)", row, col];   
+    }
+}
+
 static float calcFitness(int me, int counts[3])
 {
     int you = 3 - me;

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		53B45868094C7B2800E1D64E /* AlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45866094C7B2700E1D64E /* AlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		53B4586C094C7B3A00E1D64E /* AlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B4586A094C7B3A00E1D64E /* AlphaBetaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53B45885094C7C4300E1D64E /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45884094C7C4300E1D64E /* TTTState.m */; };
 		53B4588A094C7C8A00E1D64E /* TTTMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45889094C7C8A00E1D64E /* TTTMove.m */; };
 		53B458A0094C8E7100E1D64E /* TTTUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B4589F094C8E7100E1D64E /* TTTUnit.m */; };
@@ -59,7 +58,6 @@
 		32DBCF5E0370ADEE00C91783 /* AlphaBeta_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBeta_Prefix.pch; sourceTree = "<group>"; };
 		53B45866094C7B2700E1D64E /* AlphaBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBeta.h; sourceTree = "<group>"; };
 		53B45867094C7B2800E1D64E /* AlphaBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaBeta.m; sourceTree = "<group>"; };
-		53B4586A094C7B3A00E1D64E /* AlphaBetaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBetaState.h; sourceTree = "<group>"; };
 		53B45878094C7BFA00E1D64E /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B45879094C7BFA00E1D64E /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		53B45883094C7C4300E1D64E /* TTTState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTState.h; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 			children = (
 				53B45866094C7B2700E1D64E /* AlphaBeta.h */,
 				53B45867094C7B2800E1D64E /* AlphaBeta.m */,
-				53B4586A094C7B3A00E1D64E /* AlphaBetaState.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -190,7 +187,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				53B45868094C7B2800E1D64E /* AlphaBeta.h in Headers */,
-				53B4586C094C7B3A00E1D64E /* AlphaBetaState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

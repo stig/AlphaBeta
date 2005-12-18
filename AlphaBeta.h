@@ -7,11 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TTTState.h"
 
 @interface AlphaBeta : NSObject {
-    id state;
+    TTTState *state;
+    int maxPly;
     NSMutableArray *moves;
 }
 - (id)initWithState:(id)st;
+- (void)setState:(id)st;
 - (id)currentState;
+- (void)aiMove;
+- (int)countMoves;
+- (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply;
 @end
