@@ -64,11 +64,11 @@
     
     [ab aiMove];
     s = [[ab currentState] string]; 
-    STAssertTrue([s isEqualToString:@"000010002"], @"got: %@", s);
+    STAssertTrue([s isEqualToString:@"200010000"], @"got: %@", s);
     STAssertEquals([ab countMoves], (int)2, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)1.0, 0.1, nil);
     s = [[ab lastMove] string];
-    STAssertTrue([s isEqualToString:@"22"], @"got: %@", s);
+    STAssertTrue([s isEqualToString:@"00"], @"got: %@", s);
 }
 
 @end

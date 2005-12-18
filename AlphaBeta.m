@@ -87,7 +87,7 @@
         id m = [mvs objectAtIndex:i];
         [self move:m];
         float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:maxPly-1];
-        if (sc >= alpha) {
+        if (sc > alpha) {
             alpha = sc;
             [best autorelease];
             best = [m retain];
