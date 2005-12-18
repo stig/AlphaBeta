@@ -260,10 +260,10 @@ again:
         return;
     }
     else if (x < 0 || x > (size-1) || y < 0 || y > (size-1)) {
-        [NSException raise:@"illegal move" format:@""];
+        [NSException raise:@"illegal move" format:@"Illegal move"];
     } 
     else if (board[x][y] != 0) {
-        [NSException raise:@"square busy" format:@""];
+        [NSException raise:@"square busy" format:@"Square busy"];
     }
     
     /* left */
@@ -387,7 +387,7 @@ again:
         return;
     }
     player = me;
-    [NSException raise:@"illegal move" format:@""];
+    [NSException raise:@"illegal move" format:@"Move achieved nothing: %@ (on %@)", [m string], [self string]];
 }
 
 - (NSString *)string
@@ -407,7 +407,7 @@ again:
 
 - (void)undoMove:(id)m
 {
-    [NSException raise:@"cannot undo" format:@""];
+    [NSException raise:@"cannot undo" format:@"Cannot undo"];
 }
 
 @end
