@@ -68,7 +68,7 @@ typedef struct _RStateCount {
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    ReversiState *copy = [[ReversiState alloc] initWithBoardSize:size];
+    ReversiState *copy = [[ReversiState allocWithZone:zone] initWithBoardSize:size];
     int i, j;
     int **b = [copy board];
     for (i = 0; i < size; i++) {
@@ -76,7 +76,7 @@ typedef struct _RStateCount {
             b[i][j] = board[i][j];
         }
     }
-    [self setPlayer:player];
+    [copy setPlayer:player];
     return copy;
 }
 
@@ -387,7 +387,7 @@ again:
         return;
     }
     player = me;
-    [NSException raise:@"illegal move" format:@"Move achieved nothing: %@ (on %@)", [m string], [self string]];
+    [NSException raise:@"illegal move" format:@"Move achieved nothing: %@ for player %d (on %@)", [m string], player, [self string]];
 }
 
 - (NSString *)string
