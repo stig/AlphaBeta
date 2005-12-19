@@ -22,6 +22,8 @@
 		53C397E50955681C00E6E128 /* ReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E30955681C00E6E128 /* ReversiState.m */; };
 		53C397E80955682D00E6E128 /* ReversiMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C397E60955682D00E6E128 /* ReversiMove.h */; };
 		53C397E90955682D00E6E128 /* ReversiMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E70955682D00E6E128 /* ReversiMove.m */; };
+		53EC354609576BE200AC6EBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		53EC355809576BFB00AC6EBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		53F5D647095436DF008D0B74 /* AlphaBetaUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */; };
 		53F5D6CB09543C8C008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
 		53F5D93E0954A560008D0B74 /* AlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F5D93C0954A560008D0B74 /* AlphaBetaState.h */; };
@@ -83,7 +85,7 @@
 		5357B5180955D68100E12436 /* TicTacToe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TicTacToe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5357B5190955D68100E12436 /* TicTacToe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "TicTacToe-Info.plist"; sourceTree = "<group>"; };
 		53B45866094C7B2700E1D64E /* AlphaBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBeta.h; sourceTree = "<group>"; };
-		53B45867094C7B2800E1D64E /* AlphaBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaBeta.m; sourceTree = "<group>"; };
+		53B45867094C7B2800E1D64E /* AlphaBeta.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = AlphaBeta.m; sourceTree = "<group>"; usesTabs = 0; };
 		53B45878094C7BFA00E1D64E /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B45879094C7BFA00E1D64E /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		53B45883094C7C4300E1D64E /* TTTState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTState.h; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53EC355809576BFB00AC6EBC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53EC354609576BE200AC6EBC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
