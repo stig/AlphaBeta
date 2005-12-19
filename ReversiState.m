@@ -25,9 +25,9 @@ typedef struct _RStateCount {
     if (self = [super init]) {
         size = theSize;
         player = 1;
-        board = malloc(size * (sizeof(int*)));
+        board = NSZoneMalloc([self zone], size * (sizeof(int*)));
         if (board) {
-            board[0] = malloc(size * size * (sizeof(int)));
+            board[0] = NSZoneMalloc([self zone], size * size * (sizeof(int)));
             if (board[0]) {
                 int i, j;
                 for (i = 1; i < size; i++) {
