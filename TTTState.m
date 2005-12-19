@@ -109,7 +109,7 @@ static float calcFitness(int me, int counts[3])
 
 - (NSMutableArray *)listAvailableMoves
 {
-    NSMutableArray *moves = [[NSMutableArray alloc] init];
+    NSMutableArray *moves = [NSMutableArray new];
     int i, j;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
@@ -118,7 +118,7 @@ static float calcFitness(int me, int counts[3])
             }
         }
     }
-    return moves;
+    return [moves autorelease];
 }
 
 - (NSString *)string
@@ -130,7 +130,7 @@ static float calcFitness(int me, int counts[3])
             [s appendFormat:@"%d", board[j][i]];
         }
     }
-    return s;
+    return [s autorelease];
 }
 
 - (id)copyWithZone:(NSZone *)zone

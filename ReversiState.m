@@ -49,7 +49,7 @@ typedef struct _RStateCount {
             }
         }
         else {
-            [super release];
+            [self release];
             return nil;
         }
     }
@@ -82,7 +82,9 @@ typedef struct _RStateCount {
 
 - (void)dealloc
 {
-    free(board[0]);
+    if (board) {
+        free(board[0]);   
+    }
     free(board);
     [super dealloc];
 }
@@ -127,14 +129,12 @@ typedef struct _RStateCount {
     }
     
     mine = [moves count];
-    [moves release];
     
     player = 3 - player;
     moves = [self listAvailableMoves];
     player = 3 - player;
     
     diff = mine - [moves count];
-    [moves release];
     
     counts = [self countSquares];
     mine = counts.c[me] - counts.c[you];
@@ -243,7 +243,7 @@ again:
         [moves addObject:[[ReversiMove alloc] initWithCol:-1 andRow:-1]];
     }
     
-    return moves;
+    return [moves autorelease];
 }
 
 - (void)applyMove:(id)m
@@ -402,7 +402,7 @@ again:
             [s appendFormat:@" "];
         }
     }
-    return s;
+    return [s autorelease];
 }
 
 - (void)undoMove:(id)m

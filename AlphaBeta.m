@@ -63,10 +63,9 @@
 }
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply
 {
-    NSMutableArray *mvs = [[[self currentState] listAvailableMoves] autorelease];
+    NSMutableArray *mvs = [[self currentState] listAvailableMoves];
     
     if (![mvs count] || !ply) {
-        [mvs release];
         return [[self currentState] fitness];
     }
     
@@ -77,13 +76,12 @@
         alpha = alpha > sc ? alpha : sc;
         [self undo];
     }
-    [mvs release];
     return alpha;
 }
 
 - (void)aiMove
 {
-    NSMutableArray *mvs = [[[self currentState] listAvailableMoves] autorelease];
+    NSMutableArray *mvs = [[self currentState] listAvailableMoves];
     int i;
     id best = nil;
     float alpha = -10000.0;
@@ -94,12 +92,10 @@
         float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:maxPly-1];
         if (sc > alpha) {
             alpha = sc;
-            [best autorelease];
-            best = [m retain];
+            best = m;
         }
         [self undo];
     }
-    [mvs release];
     [self move:best];
 }
 
@@ -115,6 +111,10 @@
 
 - (void)undo
 {
+    if (![moves count]) {
+        [NSException raise:@"undo" format:@"No moves to undo"];
+    }
+    
     id s = [self currentState];
     if (![s canUndo]) {
         [states removeLastObject];

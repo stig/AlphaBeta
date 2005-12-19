@@ -31,7 +31,7 @@
 
 - (NSString *)string
 {
-    return [NSString stringWithFormat:@"%d%d", col, row];
+    return [[NSString stringWithFormat:@"%d%d", col, row] autorelease];
 }
 
 @end
