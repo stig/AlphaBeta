@@ -15,7 +15,7 @@
     st = [[TTTState alloc] init];
     STAssertTrue([st player] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
-    
+
     ab = [[AlphaBeta alloc] initWithState:st];
     STAssertNotNil(ab, @"got nil back");
     STAssertTrue([ab currentState] == st, @"did not get expected state back");
@@ -53,17 +53,17 @@
 {
     [ab setMaxPly:2];   // states below assumes a ply 2 search
     STAssertNil([ab lastMove], nil);
-    
+
     [ab aiMove];
-    NSString *s = [[ab currentState] string]; 
+    NSString *s = [[ab currentState] string];
     STAssertTrue([s isEqualToString:@"000010000"], @"got: %@", s);
     STAssertEquals([ab countMoves], (int)1, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)-4.0, 0.1, nil);
     s = [[ab lastMove] string];
     STAssertTrue([s isEqualToString:@"11"], @"got: %@", s);
-    
+
     [ab aiMove];
-    s = [[ab currentState] string]; 
+    s = [[ab currentState] string];
     STAssertTrue([s isEqualToString:@"200010000"], @"got: %@", s);
     STAssertEquals([ab countMoves], (int)2, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)1.0, 0.1, nil);

@@ -83,7 +83,7 @@ typedef struct _RStateCount {
 - (void)dealloc
 {
     if (board) {
-        free(board[0]);   
+        free(board[0]);
     }
     free(board);
     [super dealloc];
@@ -116,29 +116,29 @@ typedef struct _RStateCount {
     NSArray *moves;
     int mine, diff, me, you;
     RStateCount counts;
-    
+
     me = player;
     you = 3 - me;
-    
+
     moves = [self listAvailableMoves];
     if (!moves) {
         counts = [self countSquares];
         mine = counts.c[me] - counts.c[you];
-        return (float)(mine > 0 ? +100000.0 : 
+        return (float)(mine > 0 ? +100000.0 :
                        mine < 0 ? -100000.0 : 0);
     }
-    
+
     mine = [moves count];
-    
+
     player = 3 - player;
     moves = [self listAvailableMoves];
     player = 3 - player;
-    
+
     diff = mine - [moves count];
-    
+
     counts = [self countSquares];
     mine = counts.c[me] - counts.c[you];
-    
+
     return (float)(diff + mine);
 }
 
@@ -146,65 +146,65 @@ typedef struct _RStateCount {
 {
     int tx, ty;
     int not_me = 3 - me;
-    
+
     /* slot must not already be occupied */
     if (board[x][y] != 0)
         return NO;
-    
+
     /* left */
     for (tx = x - 1; tx >= 0 && board[tx][y] == not_me; tx--)
         ;
-    if (tx >= 0 && tx != x - 1 && board[tx][y] == me) 
+    if (tx >= 0 && tx != x - 1 && board[tx][y] == me)
         return YES;
-    
+
     /* right */
     for (tx = x + 1; tx < size && board[tx][y] == not_me; tx++)
         ;
     if (tx < size && tx != x + 1 && board[tx][y] == me)
         return YES;
-    
+
     /* up */
     for (ty = y - 1; ty >= 0 && board[x][ty] == not_me; ty--)
         ;
-    if (ty >= 0 && ty != y - 1 && board[x][ty] == me) 
+    if (ty >= 0 && ty != y - 1 && board[x][ty] == me)
         return YES;
-    
+
     /* down */
     for (ty = y + 1; ty < size && board[x][ty] == not_me; ty++)
         ;
-    if (ty < size && ty != y + 1 && board[x][ty] == me) 
+    if (ty < size && ty != y + 1 && board[x][ty] == me)
         return YES;
-    
+
     /* up/left */
     tx = x - 1;
-    ty = y - 1; 
+    ty = y - 1;
     while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
-        tx--; 
+        tx--;
         ty--;
     }
     if (tx >= 0 && ty >= 0 && tx != x - 1 && ty != y - 1 && board[tx][ty] == me)
         return YES;
-    
+
     /* up/right */
     tx = x - 1;
-    ty = y + 1; 
+    ty = y + 1;
     while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
         tx--;
         ty++;
     }
     if (tx >= 0 && ty < size && tx != x - 1 && ty != y + 1 && board[tx][ty] == me)
         return YES;
-    
+
     /* down/right */
     tx = x + 1;
-    ty = y + 1; 
+    ty = y + 1;
     while (tx < size && ty < size && board[tx][ty] == not_me) {
         tx++;
         ty++;
     }
-    if (tx < size && ty < size && tx != x + 1 && ty != y + 1 && board[tx][ty] == me) 
+    if (tx < size && ty < size && tx != x + 1 && ty != y + 1 && board[tx][ty] == me)
         return YES;
-    
+
     /* down/left */
     tx = x + 1;
     ty = y - 1;
@@ -214,7 +214,7 @@ typedef struct _RStateCount {
     }
     if (tx < size && ty >= 0 && tx != x + 1 && ty != y - 1 && board[tx][ty] == me)
         return YES;
-    
+
     return NO;
 }
 
@@ -222,7 +222,7 @@ typedef struct _RStateCount {
 {
     NSMutableArray *moves = [NSMutableArray new];
     int me, i, j;
-    
+
     me = player;
 again:
     for (i = 0; i < size; i++) {
@@ -232,7 +232,7 @@ again:
             }
         }
     }
-    
+
     if (![moves count]) {
         if (me == player) {
             me = 3 - me;
@@ -242,7 +242,7 @@ again:
     else if (me != player) {
         [moves addObject:[[ReversiMove alloc] initWithCol:-1 andRow:-1]];
     }
-    
+
     return [moves autorelease];
 }
 
@@ -253,19 +253,19 @@ again:
     int me = player;
     int not_me = 3 - me;
     int tx, ty, flipped = 0;
-    
+
     player = not_me;
-    
+
     if (x == -1 && y == -1) {
         return;
     }
     else if (x < 0 || x > (size-1) || y < 0 || y > (size-1)) {
         [NSException raise:@"illegal move" format:@"Illegal move"];
-    } 
+    }
     else if (board[x][y] != 0) {
         [NSException raise:@"square busy" format:@"Square busy"];
     }
-    
+
     /* left */
     for (tx = x - 1; tx >= 0 && board[tx][y] == not_me; tx--)
         ;
@@ -277,7 +277,7 @@ again:
         }
         flipped++;
     }
-    
+
     /* right */
     for (tx = x + 1; tx < size && board[tx][y] == not_me; tx++)
         ;
@@ -289,7 +289,7 @@ again:
         }
         flipped++;
     }
-    
+
     /* up */
     for (ty = y - 1; ty >= 0 && board[x][ty] == not_me; ty--)
         ;
@@ -301,7 +301,7 @@ again:
         }
         flipped++;
     }
-    
+
     /* down */
     for (ty = y + 1; ty < size && board[x][ty] == not_me; ty++)
         ;
@@ -313,10 +313,10 @@ again:
         }
         flipped++;
     }
-    
+
     /* up/left */
     tx = x - 1;
-    ty = y - 1; 
+    ty = y - 1;
     while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
         tx--;
         ty--;
@@ -331,10 +331,10 @@ again:
         }
         flipped++;
     }
-    
+
     /* up/right */
     tx = x - 1;
-    ty = y + 1; 
+    ty = y + 1;
     while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
         tx--;
         ty++;
@@ -349,10 +349,10 @@ again:
         }
         flipped++;
     }
-    
+
     /* down/right */
     tx = x + 1;
-    ty = y + 1; 
+    ty = y + 1;
     while (tx < size && ty < size && board[tx][ty] == not_me) {
         tx++;
         ty++;
@@ -367,7 +367,7 @@ again:
         }
         flipped++;
     }
-    
+
     /* down/left */
     tx = x + 1;
     ty = y - 1;
@@ -385,7 +385,7 @@ again:
         }
         flipped++;
     }
-    
+
     if (flipped) {
         board[x][y] = me;
         return;

@@ -55,23 +55,23 @@
 }
 
 - (void)testFitness
-{    
+{
     STAssertTrue([st player] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
     STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
     [st applyMove:[[TTTMove alloc] initWithCol:0 andRow:0]];
     STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, @"got %f", [st fitness]);
     [st applyMove:[[TTTMove alloc] initWithCol:0 andRow:1]];
-    STAssertEqualsWithAccuracy([st fitness], (float)1.0, 0.0001, @"got %f", [st fitness]);    
+    STAssertEqualsWithAccuracy([st fitness], (float)1.0, 0.0001, @"got %f", [st fitness]);
     [st applyMove:[[TTTMove alloc] initWithCol:1 andRow:1]];
-    STAssertEqualsWithAccuracy([st fitness], (float)-7.0, 0.0001, @"got %f", [st fitness]);    
+    STAssertEqualsWithAccuracy([st fitness], (float)-7.0, 0.0001, @"got %f", [st fitness]);
 }
 
 - (void)testState
-{    
+{
     STAssertTrue([st player] == 1, nil);
     STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
-    
+
     int i;
     for (i = 9; i > 0; i--) {
         STAssertNotNil(moves = [st listAvailableMoves], nil);
@@ -79,7 +79,7 @@
         id m = [moves objectAtIndex:0];
         [st applyMove:m];
         STAssertTrue([st player] == i % 2 + 1, @"expected(%d): %d, got: %d", i, i % 2 + 1, [st player]);
-        
+
         id s;
         switch (i) {
             case 9: s = @"100000000"; break;

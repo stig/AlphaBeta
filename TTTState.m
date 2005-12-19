@@ -38,7 +38,7 @@
 {
     int row = [m row];
     int col = [m col];
-    
+
     if (row > 2 || row < 0 || col > 2 || col < 0) {
         [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
     }
@@ -47,7 +47,7 @@
         player = 3 - player;
     }
     else {
-        [NSException raise:@"square busy" format:@"Move already taken (%d, %d)", row, col];   
+        [NSException raise:@"square busy" format:@"Move already taken (%d, %d)", row, col];
     }
 }
 
@@ -55,7 +55,7 @@
 {
     int row = [m row];
     int col = [m col];
-    
+
     if (row > 2 || row < 0 || col > 2 || col < 0) {
         [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
     }
@@ -64,7 +64,7 @@
         player = 3 - player;
     }
     else {
-        [NSException raise:@"square not taken" format:@"Move not taken (%d, %d)", row, col];   
+        [NSException raise:@"square not taken" format:@"Move not taken (%d, %d)", row, col];
     }
 }
 
@@ -88,7 +88,7 @@ static float calcFitness(int me, int counts[3])
     float score = 0.0;
     int countd1[3] = {0};
     int countd2[3] = {0};
-    
+
     me = [self player];
     for (i = 0; i < 3; i++) {
         int counth[3] = {0};
@@ -103,7 +103,7 @@ static float calcFitness(int me, int counts[3])
         score += calcFitness(me, countv);
     }
     score += calcFitness(me, countd1);
-    score += calcFitness(me, countd2);    
+    score += calcFitness(me, countd2);
     return score;
 }
 

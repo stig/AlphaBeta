@@ -37,7 +37,7 @@
 - (void)setState:(id)st
 {
     if ([states count]) {
-        [NSException raise:@"state set" format:@"State already set"];   
+        [NSException raise:@"state set" format:@"State already set"];
     }
     [states addObject:st];
 }
@@ -64,11 +64,11 @@
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply
 {
     NSMutableArray *mvs = [[self currentState] listAvailableMoves];
-    
+
     if (![mvs count] || !ply) {
         return [[self currentState] fitness];
     }
-    
+
     int i;
     for (i = 0; i < [mvs count]; i++) {
         [self move:[mvs objectAtIndex:i]];
@@ -114,13 +114,13 @@
     if (![moves count]) {
         [NSException raise:@"undo" format:@"No moves to undo"];
     }
-    
+
     id s = [self currentState];
     if (![s canUndo]) {
         [states removeLastObject];
     }
     else {
-        [s undoMove:[moves lastObject]]; 
+        [s undoMove:[moves lastObject]];
     }
     [moves removeLastObject];
 }
@@ -131,7 +131,7 @@
 }
 
 - (void)setMaxPly:(int)ply
-{ 
+{
     if (ply < 0) {
         [NSException raise:@"negative ply" format:@"maxPly must be positive"];
     }
