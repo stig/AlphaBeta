@@ -179,40 +179,40 @@ typedef struct _RStateCount {
     tx = x - 1;
     ty = y - 1; 
     while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
-        tx--; ty--;
+        tx--; 
+        ty--;
     }
-    if (tx >= 0 && ty >= 0 && tx != x - 1 && ty != y - 1 && 
-        board[tx][ty] == me)
+    if (tx >= 0 && ty >= 0 && tx != x - 1 && ty != y - 1 && board[tx][ty] == me)
         return YES;
     
     /* up/right */
     tx = x - 1;
     ty = y + 1; 
     while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
-        tx--; ty++;
+        tx--;
+        ty++;
     }
-    if (tx >= 0 && ty < size && tx != x - 1 && ty != y + 1 && 
-        board[tx][ty] == me)
+    if (tx >= 0 && ty < size && tx != x - 1 && ty != y + 1 && board[tx][ty] == me)
         return YES;
     
     /* down/right */
     tx = x + 1;
     ty = y + 1; 
     while (tx < size && ty < size && board[tx][ty] == not_me) {
-        tx++; ty++;
+        tx++;
+        ty++;
     }
-    if (tx < size && ty < size && tx != x + 1 && ty != y + 1 && 
-        board[tx][ty] == me) 
+    if (tx < size && ty < size && tx != x + 1 && ty != y + 1 && board[tx][ty] == me) 
         return YES;
     
     /* down/left */
     tx = x + 1;
     ty = y - 1;
     while (tx < size && ty >= 0 && board[tx][ty] == not_me) {
-        tx++; ty--;
+        tx++;
+        ty--;
     }
-    if (tx < size && ty >= 0 && tx != x + 1 && ty != y - 1 && 
-        board[tx][ty] == me)
+    if (tx < size && ty >= 0 && tx != x + 1 && ty != y - 1 && board[tx][ty] == me)
         return YES;
     
     return NO;
@@ -318,15 +318,16 @@ again:
     tx = x - 1;
     ty = y - 1; 
     while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
-        tx--; ty--;
+        tx--;
+        ty--;
     }
-    if (tx >= 0 && ty >= 0 && tx != x - 1 && ty != y - 1 && 
-        board[tx][ty] == me) {
+    if (tx >= 0 && ty >= 0 && tx != x - 1 && ty != y - 1 && board[tx][ty] == me) {
         tx = x - 1;
         ty = y - 1;
         while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
             board[tx][ty] = me;
-            tx--; ty--;
+            tx--;
+            ty--;
         }
         flipped++;
     }
@@ -335,15 +336,16 @@ again:
     tx = x - 1;
     ty = y + 1; 
     while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
-        tx--; ty++;
+        tx--;
+        ty++;
     }
-    if (tx >= 0 && ty < size && tx != x - 1 && ty != y + 1 && 
-        board[tx][ty] == me) {
+    if (tx >= 0 && ty < size && tx != x - 1 && ty != y + 1 && board[tx][ty] == me) {
         tx = x - 1;
         ty = y + 1;
         while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
             board[tx][ty] = me;
-            tx--; ty++;
+            tx--;
+            ty++;
         }
         flipped++;
     }
@@ -352,15 +354,16 @@ again:
     tx = x + 1;
     ty = y + 1; 
     while (tx < size && ty < size && board[tx][ty] == not_me) {
-        tx++; ty++;
+        tx++;
+        ty++;
     }
-    if (tx < size && ty < size && tx != x + 1 && ty != y + 1 && 
-        board[tx][ty] == me) {
+    if (tx < size && ty < size && tx != x + 1 && ty != y + 1 && board[tx][ty] == me) {
         tx = x + 1;
         ty = y + 1;
         while (tx < size && ty < size && board[tx][ty] == not_me) {
             board[tx][ty] = me;
-            tx++; ty++;
+            tx++;
+            ty++;
         }
         flipped++;
     }
@@ -369,15 +372,16 @@ again:
     tx = x + 1;
     ty = y - 1;
     while (tx < size && ty >= 0 && board[tx][ty] == not_me) {
-        tx++; ty--;
+        tx++;
+        ty--;
     }
-    if (tx < size && ty >= 0 && tx != x + 1 && ty != y - 1 && 
-        board[tx][ty] == me) {
+    if (tx < size && ty >= 0 && tx != x + 1 && ty != y - 1 && board[tx][ty] == me) {
         tx = x + 1;
         ty = y - 1;
         while (tx < size && ty >= 0 && board[tx][ty] == not_me) {
             board[tx][ty] = me;
-            tx++; ty--;
+            tx++;
+            ty--;
         }
         flipped++;
     }
