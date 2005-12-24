@@ -6,7 +6,7 @@
 //  Copyright 2005 Stig Brautaset. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 
 @interface ReversiMove : NSObject {

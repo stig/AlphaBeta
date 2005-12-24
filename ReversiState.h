@@ -6,8 +6,8 @@
 //  Copyright 2005 Stig Brautaset. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "AlphaBetaState.h"
+#import <Foundation/Foundation.h>
+#import <AlphaBeta/AlphaBetaState.h>
 
 typedef struct _ReversiStateCount {
     int c[3];
