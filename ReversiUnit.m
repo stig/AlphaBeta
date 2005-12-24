@@ -82,6 +82,7 @@
 {
     STAssertTrue([st player] == 1, nil);
     STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
+
     ReversiStateCount c = [st countSquares];
     STAssertEquals(c.c[0], (int)64, nil);
     STAssertEquals(c.c[1], (int)2, nil);

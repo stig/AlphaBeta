@@ -52,19 +52,31 @@
     return self;
 }
 
+- (id)initWithBoardSize:(int)sz andPlayer:(int)p
+{
+    self = [self initWithBoardSize:sz];
+    player = p;
+    return self;
+}
+
 - (int**)board
 {
     return board;
 }
 
-- (void)setPlayer:(int)p
+- (int)player
 {
-    player = p;
+    return player;
+}
+
+- (int)size
+{
+    return size;
 }
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    ReversiState *copy = [[ReversiState allocWithZone:zone] initWithBoardSize:size];
+    ReversiState *copy = [[ReversiState allocWithZone:zone] initWithBoardSize:size andPlayer:player];
     int i, j;
     int **b = [copy board];
     for (i = 0; i < size; i++) {
@@ -72,7 +84,6 @@
             b[i][j] = board[i][j];
         }
     }
-    [copy setPlayer:player];
     return copy;
 }
 
@@ -88,11 +99,6 @@
 - (BOOL)canUndo
 {
     return NO;
-}
-
-- (int)player
-{
-    return player;
 }
 
 - (ReversiStateCount)countSquares
