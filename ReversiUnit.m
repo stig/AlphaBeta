@@ -9,6 +9,8 @@
 #import "ReversiUnit.h"
 #import "ReversiMove.h"
 #import "AlphaBeta.h"
+#import "ReversiState.h"
+
 
 @implementation ReversiUnit
 
@@ -36,6 +38,10 @@
 {
     [st release];
     st = [[ReversiState alloc] initWithBoardSize:6];
+    ReversiStateCount c = [st countSquares];
+    STAssertEquals(c.c[0], (int)32, nil);
+    STAssertEquals(c.c[1], (int)2, nil);
+    STAssertEquals(c.c[2], (int)2, nil);
     STAssertNotNil(moves = [st listAvailableMoves], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
     id s;
@@ -76,6 +82,10 @@
 {
     STAssertTrue([st player] == 1, nil);
     STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
+    ReversiStateCount c = [st countSquares];
+    STAssertEquals(c.c[0], (int)64, nil);
+    STAssertEquals(c.c[1], (int)2, nil);
+    STAssertEquals(c.c[2], (int)2, nil);
 
     NSString *s = [st string];
     STAssertTrue([s isEqualToString:@"00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000"], @"got: %@", s);

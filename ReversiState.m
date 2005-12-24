@@ -9,10 +9,6 @@
 #import "ReversiState.h"
 #import "ReversiMove.h"
 
-typedef struct _RStateCount {
-    int c[3];
-} RStateCount;
-
 @implementation ReversiState
 
 - (id)init
@@ -99,10 +95,10 @@ typedef struct _RStateCount {
     return player;
 }
 
-- (RStateCount)countSquares
+- (ReversiStateCount)countSquares
 {
     int i, j;
-    RStateCount count = {{0}};
+    ReversiStateCount count = {{0}};
     for (i = 0; i < size; i++) {
         for (j = 0; j < size; j++) {
             count.c[ board[i][j] ]++;
@@ -115,7 +111,7 @@ typedef struct _RStateCount {
 {
     NSArray *moves;
     int mine, diff, me, you;
-    RStateCount counts;
+    ReversiStateCount counts;
 
     me = player;
     you = 3 - me;

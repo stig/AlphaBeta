@@ -9,6 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "AlphaBetaState.h"
 
+typedef struct _ReversiStateCount {
+    int c[3];
+} ReversiStateCount;
+
 @interface ReversiState : NSObject <AlphaBetaState> {
     int player;
     int size;
@@ -18,4 +22,5 @@
 - (int)player;
 - (NSString *)string;
 - (id)initWithBoardSize:(int)theSize;
+- (ReversiStateCount)countSquares;
 @end
