@@ -18,12 +18,12 @@
 - (void)setState:(id)st;
 - (id)currentState;
 - (id)lastMove;
-- (void)aiMove;
+- (id)aiMove;
 - (int)countMoves;
 - (int)countStates;
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply;
-- (void)move:(id)m;
-- (void)undo;
+- (id)move:(id)m;
+- (id)undo;
 - (int)maxPly;
 - (void)setMaxPly:(int)ply;
 @end

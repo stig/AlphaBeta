@@ -79,7 +79,7 @@
     return alpha;
 }
 
-- (void)aiMove
+- (id)aiMove
 {
     NSMutableArray *mvs = [[self currentState] listAvailableMoves];
     int i;
@@ -96,10 +96,10 @@
         }
         [self undo];
     }
-    [self move:best];
+    return [self move:best];
 }
 
-- (void)move:(id)m
+- (id)move:(id)m
 {
     id s = [self currentState];
     if (![s canUndo]) {
@@ -107,9 +107,10 @@
     }
     [[self currentState] applyMove:m];
     [moves addObject:m];
+    return [self currentState];
 }
 
-- (void)undo
+- (id)undo
 {
     if (![moves count]) {
         [NSException raise:@"undo" format:@"No moves to undo"];
@@ -123,6 +124,7 @@
         [s undoMove:[moves lastObject]];
     }
     [moves removeLastObject];
+    return [self currentState];
 }
 
 - (int)maxPly

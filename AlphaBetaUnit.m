@@ -54,7 +54,7 @@
     [ab setMaxPly:2];   // states below assumes a ply 2 search
     STAssertNil([ab lastMove], nil);
 
-    [ab aiMove];
+    STAssertNotNil([ab aiMove], nil);
     NSString *s = [[ab currentState] string];
     STAssertTrue([s isEqualToString:@"000010000"], @"got: %@", s);
     STAssertEquals([ab countMoves], (int)1, nil);
