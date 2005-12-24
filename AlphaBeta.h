@@ -12,18 +12,18 @@
 @interface AlphaBeta : NSObject {
     NSMutableArray *states;
     NSMutableArray *moves;
-    int maxPly;
+    unsigned maxPly;
 }
 - (id)initWithState:(id)st;
 - (void)setState:(id)st;
 - (id)currentState;
 - (id)lastMove;
 - (id)aiMove;
-- (int)countMoves;
-- (int)countStates;
-- (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply;
+- (unsigned)countMoves;
+- (unsigned)countStates;
+- (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(unsigned)ply;
 - (id)move:(id)m;
 - (id)undo;
-- (int)maxPly;
-- (void)setMaxPly:(int)ply;
+- (unsigned)maxPly;
+- (void)setMaxPly:(unsigned)ply;
 @end

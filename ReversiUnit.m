@@ -84,9 +84,9 @@
     STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
 
     ReversiStateCount c = [st countSquares];
-    STAssertEquals(c.c[0], (int)64, nil);
-    STAssertEquals(c.c[1], (int)2, nil);
-    STAssertEquals(c.c[2], (int)2, nil);
+    STAssertEquals(c.c[0], (unsigned)64, nil);
+    STAssertEquals(c.c[1], (unsigned)2, nil);
+    STAssertEquals(c.c[2], (unsigned)2, nil);
 
     NSString *s = [st string];
     STAssertTrue([s isEqualToString:@"00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000"], @"got: %@", s);
@@ -147,18 +147,18 @@
     AlphaBeta *ab = [[AlphaBeta alloc] initWithState:st];
     STAssertNotNil(ab, @"got nil back");
     STAssertTrue([ab currentState] == st, @"did not get expected state back");
-    STAssertEquals([ab countMoves], (int)0, nil);
+    STAssertEquals([ab countMoves], (unsigned)0, nil);
 
     [ab setMaxPly:1];   // states below assumes a ply 2 search
     STAssertNil([ab lastMove], nil);
 
     STAssertNoThrow([ab aiMove], nil); // why is this failing?
-    STAssertEquals([ab countMoves], (int)1, nil);
-    STAssertEquals([ab countStates], (int)2, nil);
+    STAssertEquals([ab countMoves], (unsigned)1, nil);
+    STAssertEquals([ab countStates], (unsigned)2, nil);
 
     STAssertNoThrow([ab aiMove], nil); // why is this failing?
-    STAssertEquals([ab countMoves], (int)2, nil);
-    STAssertEquals([ab countStates], (int)3, nil);
+    STAssertEquals([ab countMoves], (unsigned)2, nil);
+    STAssertEquals([ab countStates], (unsigned)3, nil);
 }
 
 @end

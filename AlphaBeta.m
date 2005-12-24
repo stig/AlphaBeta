@@ -52,16 +52,16 @@
     return [moves lastObject];
 }
 
-- (int)countMoves
+- (unsigned)countMoves
 {
     return [moves count];
 }
 
-- (int)countStates
+- (unsigned)countStates
 {
     return [states count];
 }
-- (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(int)ply
+- (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(unsigned)ply
 {
     NSMutableArray *mvs = [[self currentState] listAvailableMoves];
 
@@ -127,12 +127,12 @@
     return [self currentState];
 }
 
-- (int)maxPly
+- (unsigned)maxPly
 {
     return maxPly;
 }
 
-- (void)setMaxPly:(int)ply
+- (void)setMaxPly:(unsigned)ply
 {
     if (ply < 0) {
         [NSException raise:@"negative ply" format:@"maxPly must be positive"];

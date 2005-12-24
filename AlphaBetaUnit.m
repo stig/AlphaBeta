@@ -19,7 +19,7 @@
     ab = [[AlphaBeta alloc] initWithState:st];
     STAssertNotNil(ab, @"got nil back");
     STAssertTrue([ab currentState] == st, @"did not get expected state back");
-    STAssertEquals([ab countMoves], (int)0, nil);
+    STAssertEquals([ab countMoves], (unsigned)0, nil);
 }
 
 - (void)tearDown
@@ -38,15 +38,15 @@
     STAssertTrue([ab currentState] == st, @"did not get expected state back");
     STAssertThrows([ab setState:nil], @"can set state when already set");
     STAssertThrows([ab setState:st], @"can set state when already set");
-    STAssertEquals([ab countMoves], (int)0, nil);
+    STAssertEquals([ab countMoves], (unsigned)0, nil);
 }
 
 - (void)testMaxPly
 {
-    STAssertEquals([ab maxPly], (int)3, nil);
+    STAssertEquals([ab maxPly], (unsigned)3, nil);
     STAssertThrows([ab setMaxPly:-3], @"allowed negative ply");
     [ab setMaxPly:5];
-    STAssertEquals([ab maxPly], (int)5, nil);
+    STAssertEquals([ab maxPly], (unsigned)5, nil);
 }
 
 - (void)testFindMoves
@@ -57,7 +57,7 @@
     STAssertNotNil([ab aiMove], nil);
     NSString *s = [[ab currentState] string];
     STAssertTrue([s isEqualToString:@"000010000"], @"got: %@", s);
-    STAssertEquals([ab countMoves], (int)1, nil);
+    STAssertEquals([ab countMoves], (unsigned)1, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)-4.0, 0.1, nil);
     s = [[ab lastMove] string];
     STAssertTrue([s isEqualToString:@"11"], @"got: %@", s);
@@ -65,7 +65,7 @@
     [ab aiMove];
     s = [[ab currentState] string];
     STAssertTrue([s isEqualToString:@"200010000"], @"got: %@", s);
-    STAssertEquals([ab countMoves], (int)2, nil);
+    STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)1.0, 0.1, nil);
     s = [[ab lastMove] string];
     STAssertTrue([s isEqualToString:@"00"], @"got: %@", s);
