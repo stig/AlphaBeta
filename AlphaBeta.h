@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AlphaBetaState.h>
 
 @interface AlphaBeta : NSObject {
     NSMutableArray *states;

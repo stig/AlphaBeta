@@ -7,6 +7,7 @@
 //
 
 #import "AlphaBeta.h"
+#import "AlphaBetaState.h"
 
 @implementation AlphaBeta
 
