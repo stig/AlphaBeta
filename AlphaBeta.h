@@ -26,4 +26,5 @@
 - (id)undo;
 - (unsigned)maxPly;
 - (void)setMaxPly:(unsigned)ply;
+- (float)fitness;
 @end

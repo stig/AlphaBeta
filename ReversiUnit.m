@@ -148,6 +148,7 @@
     STAssertNotNil(ab, @"got nil back");
     STAssertTrue([ab currentState] == st, @"did not get expected state back");
     STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertEqualsWithAccuracy([ab fitness], (float)0.0, 0.0001, @"got %f", [ab fitness]);
 
     [ab setMaxPly:1];   // states below assumes a ply 2 search
     STAssertNil([ab lastMove], nil);
@@ -155,10 +156,12 @@
     STAssertNoThrow([ab aiMove], nil); // why is this failing?
     STAssertEquals([ab countMoves], (unsigned)1, nil);
     STAssertEquals([ab countStates], (unsigned)2, nil);
-
+    STAssertEqualsWithAccuracy([ab fitness], (float)-3.0, 0.0001, @"got %f", [ab fitness]);
+    
     STAssertNoThrow([ab aiMove], nil); // why is this failing?
     STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEquals([ab countStates], (unsigned)3, nil);
+    STAssertEqualsWithAccuracy([ab fitness], (float)-1.0, 0.0001, @"got %f", [ab fitness]);
 }
 
 @end

@@ -37,6 +37,11 @@
     [super dealloc];
 }
 
+- (float)fitness
+{
+    return [[self currentState] fitness];
+}
+
 - (void)setState:(id)st
 {
     if ([states count]) {
