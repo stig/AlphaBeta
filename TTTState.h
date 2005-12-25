@@ -10,7 +10,7 @@
 #import "AlphaBetaState.h"
 #import "TTTMove.h"
 
-@interface TTTState : NSObject <AlphaBetaState> {
+@interface TTTState : NSObject <AlphaBetaStateWithUndo> {
     int board[3][3];
     int player;
 }

@@ -24,11 +24,6 @@
     return self;
 }
 
-- (BOOL)canUndo
-{
-    return YES;
-}
-
 - (int)player
 {
     return player;
@@ -133,8 +128,4 @@ static float calcFitness(int me, int counts[3])
     return [s autorelease];
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
-    return NSCopyObject(self, 0, zone);
-}
 @end

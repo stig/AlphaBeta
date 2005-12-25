@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AlphaBeta/AlphaBetaState.h>
+#import "AlphaBetaState.h"
 
 typedef struct _ReversiStateCount {
     int c[3];
 } ReversiStateCount;
 
-@interface ReversiState : NSObject <AlphaBetaState> {
+@interface ReversiState : NSObject <AlphaBetaStateWithCopy> {
     int player;
     int size;
     int **board;

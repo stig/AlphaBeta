@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @protocol AlphaBetaState
-
 - (float)fitness;
 - (NSMutableArray *)listAvailableMoves;
 - (void)applyMove:(id)m;
-- (void)undoMove:(id)m;
-- (BOOL)canUndo;
-
 @end
+
+@protocol AlphaBetaStateWithCopy <AlphaBetaState, NSCopying>
+@end
+
+@protocol AlphaBetaStateWithUndo <AlphaBetaState>
+- (void)undoMove:(id)m;
+@end
+

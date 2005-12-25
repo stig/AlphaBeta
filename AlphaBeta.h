@@ -12,6 +12,7 @@
     NSMutableArray *states;
     NSMutableArray *moves;
     unsigned maxPly;
+    BOOL canUndo;
 }
 - (id)initWithState:(id)st;
 - (void)setState:(id)st;

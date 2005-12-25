@@ -96,11 +96,6 @@
     [super dealloc];
 }
 
-- (BOOL)canUndo
-{
-    return NO;
-}
-
 - (ReversiStateCount)countSquares
 {
     int i, j;
@@ -411,9 +406,5 @@ again:
     return [s autorelease];
 }
 
-- (void)undoMove:(id)m
-{
-    [NSException raise:@"cannot undo" format:@"Cannot undo"];
-}
 
 @end

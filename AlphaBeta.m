@@ -16,6 +16,7 @@
     if (self = [super init]) {
         states = [NSMutableArray new];
         moves = [NSMutableArray new];
+        canUndo = NO;
         [self setMaxPly:3];
     }
     return self;
@@ -23,8 +24,9 @@
 
 - (id)initWithState:(id)st
 {
-    [self init];
-    [self setState:st];
+    if (self = [self init]) {
+        [self setState:st];
+    }
     return self;
 }
 
@@ -41,6 +43,7 @@
         [NSException raise:@"state set" format:@"State already set"];
     }
     [states addObject:st];
+    canUndo = [st conformsToProtocol:@protocol(AlphaBetaStateWithUndo)];
 }
 
 - (id)currentState
@@ -103,7 +106,7 @@
 - (id)move:(id)m
 {
     id s = [self currentState];
-    if (![s canUndo]) {
+    if (!canUndo) {
         [states addObject:[s copy]];
     }
     [[self currentState] applyMove:m];
@@ -118,7 +121,7 @@
     }
 
     id s = [self currentState];
-    if (![s canUndo]) {
+    if (!canUndo) {
         [states removeLastObject];
     }
     else {
