@@ -8,9 +8,11 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "TTTState.h"
+#import "AlphaBeta.h"
 
 @interface TTTUnit : SenTestCase {
     TTTState *st;
+    AlphaBeta *ab;
     NSMutableArray *moves;
 }
 

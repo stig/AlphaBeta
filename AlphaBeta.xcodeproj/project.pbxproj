@@ -24,7 +24,6 @@
 		53C397E90955682D00E6E128 /* ReversiMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E70955682D00E6E128 /* ReversiMove.m */; };
 		53EC354609576BE200AC6EBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		53EC355809576BFB00AC6EBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		53F5D647095436DF008D0B74 /* AlphaBetaUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */; };
 		53F5D6CB09543C8C008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
 		53F5D93E0954A560008D0B74 /* AlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F5D93C0954A560008D0B74 /* AlphaBetaState.h */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -102,8 +101,6 @@
 		53C397E30955681C00E6E128 /* ReversiState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiState.m; sourceTree = "<group>"; };
 		53C397E60955682D00E6E128 /* ReversiMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiMove.h; sourceTree = "<group>"; };
 		53C397E70955682D00E6E128 /* ReversiMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiMove.m; sourceTree = "<group>"; };
-		53F5D645095436DF008D0B74 /* AlphaBetaUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBetaUnit.h; sourceTree = "<group>"; };
-		53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaBetaUnit.m; sourceTree = "<group>"; };
 		53F5D93C0954A560008D0B74 /* AlphaBetaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBetaState.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlphaBeta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,8 +240,6 @@
 			children = (
 				53B4589E094C8E7100E1D64E /* TTTUnit.h */,
 				53B4589F094C8E7100E1D64E /* TTTUnit.m */,
-				53F5D645095436DF008D0B74 /* AlphaBetaUnit.h */,
-				53F5D646095436DF008D0B74 /* AlphaBetaUnit.m */,
 				53C397DD0955673F00E6E128 /* ReversiUnit.h */,
 				53C397DE0955673F00E6E128 /* ReversiUnit.m */,
 			);
@@ -623,7 +618,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				53B458A0094C8E7100E1D64E /* TTTUnit.m in Sources */,
-				53F5D647095436DF008D0B74 /* AlphaBetaUnit.m in Sources */,
 				53C397DF0955673F00E6E128 /* ReversiUnit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
