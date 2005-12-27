@@ -9,6 +9,9 @@
 #import "AlphaBeta.h"
 #import "AlphaBetaState.h"
 
+const float AlphaBetaFitnessMax =  1000000000.0;
+const float AlphaBetaFitnessMin = -1000000000.0;
+
 @implementation AlphaBeta
 
 - (id)init
@@ -93,8 +96,8 @@
     NSMutableArray *mvs = [[self currentState] listAvailableMoves];
     int i;
     id best = nil;
-    float alpha = -10000.0;
-    float beta  = +10000.0;
+    float alpha = AlphaBetaFitnessMin - 1; // worse than min fitness...
+    float beta  = AlphaBetaFitnessMax;
     for (i = 0; i < [mvs count]; i++) {
         id m = [mvs objectAtIndex:i];
         [self move:m];

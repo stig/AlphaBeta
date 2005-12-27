@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+extern const float AlphaBetaFitnessMax;
+extern const float AlphaBetaFitnessMin;
+
 @interface AlphaBeta : NSObject {
     NSMutableArray *states;
     NSMutableArray *moves;
