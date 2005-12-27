@@ -148,4 +148,11 @@
     }
     maxPly = ply;
 }
+
+- (BOOL)isGameOver
+{
+    NSArray *a = [[self currentState] listAvailableMoves];
+    BOOL yn = [a count] ? NO : YES;
+    return yn;
+}
 @end

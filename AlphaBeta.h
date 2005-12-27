@@ -27,4 +27,5 @@
 - (unsigned)maxPly;
 - (void)setMaxPly:(unsigned)ply;
 - (float)fitness;
+- (BOOL)isGameOver;
 @end

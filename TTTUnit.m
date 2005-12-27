@@ -58,8 +58,13 @@
             case 7: s = @"21"; break;
             case 8: s = @"22"; break;
         }
-        s2 = [[moves objectAtIndex:i] string];
+        id m = [moves objectAtIndex:i];
+        s2 = [m string];
         STAssertTrue([s2 isEqualToString:s], @"expected %@, got %@", s, s2);
+        [st applyMove:m];
+        STAssertTrue(![[st string] isEqualToString:@"000000000"], nil);
+        [st undoMove:m];
+        STAssertTrue([[st string] isEqualToString:@"000000000"], nil);
     }
 }
 
@@ -121,6 +126,7 @@
     STAssertThrows([ab setState:nil], @"can set state when already set");
     STAssertThrows([ab setState:st], @"can set state when already set");
     STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertEquals([ab isGameOver], (BOOL)NO, nil);
 }
 
 - (void)testMaxPly
