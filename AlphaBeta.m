@@ -73,6 +73,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
 {
     return [states count];
 }
+
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(unsigned)ply
 {
     NSMutableArray *mvs = [[self currentState] listAvailableMoves];
@@ -96,7 +97,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     NSMutableArray *mvs = [[self currentState] listAvailableMoves];
     int i;
     id best = nil;
-    float alpha = AlphaBetaFitnessMin - 1; // worse than min fitness...
+    float alpha = AlphaBetaFitnessMin - 1; // worse than min fitness.
     float beta  = AlphaBetaFitnessMax;
     for (i = 0; i < [mvs count]; i++) {
         id m = [mvs objectAtIndex:i];

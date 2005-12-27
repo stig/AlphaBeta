@@ -147,6 +147,7 @@
     STAssertTrue([s isEqualToString:@"000010000"], @"got: %@", s);
     STAssertEquals([ab countMoves], (unsigned)1, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)-4.0, 0.1, nil);
+    STAssertEqualsWithAccuracy([ab fitness], (float)-4.0, 0.1, nil);
     s = [[ab lastMove] string];
     STAssertTrue([s isEqualToString:@"11"], @"got: %@", s);
     
@@ -155,6 +156,7 @@
     STAssertTrue([s isEqualToString:@"200010000"], @"got: %@", s);
     STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)1.0, 0.1, nil);
+    STAssertEqualsWithAccuracy([ab fitness], (float)1.0, 0.1, nil);
     s = [[ab lastMove] string];
     STAssertTrue([s isEqualToString:@"00"], @"got: %@", s);
 }
