@@ -145,7 +145,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     return maxPly;
 }
 
-- (void)setMaxPly:(unsigned)ply
+- (void)setMaxPly:(int)ply
 {
     if (ply < 0) {
         [NSException raise:@"negative ply" format:@"maxPly must be positive"];
@@ -159,4 +159,5 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     BOOL yn = [a count] ? NO : YES;
     return yn;
 }
+
 @end

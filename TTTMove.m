@@ -10,6 +10,11 @@
 
 @implementation TTTMove
 
++ (TTTMove *)newWithCol:(int)x andRow:(int)y
+{
+    return [[TTTMove alloc] initWithCol:x andRow:y];
+}
+
 - (TTTMove *)initWithCol:(int)x andRow:(int)y
 {
     if (self = [super init]) {

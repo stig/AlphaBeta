@@ -12,6 +12,9 @@
     int col;
     int row;
 }
+
++ (TTTMove *)newWithCol:(int)x andRow:(int)y;
+
 - (TTTMove *)initWithCol:(int)x andRow:(int)y;
 - (int)col;
 - (int)row;

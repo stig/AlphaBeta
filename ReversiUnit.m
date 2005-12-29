@@ -23,7 +23,6 @@
 - (void)tearDown
 {
     [st release];
-    [moves release];
 }
 
 - (void)testMove
@@ -32,6 +31,7 @@
     STAssertTrue([move col] == 2, nil);
     STAssertTrue([move row] == 1, nil);
     STAssertTrue([[move string] isEqualToString:@"21"], nil);
+    [move release];
 }
 
 - (void)testAvailMoves6x6
@@ -39,23 +39,21 @@
     [st release];
     st = [[ReversiState alloc] initWithBoardSize:6];
     ReversiStateCount c = [st countSquares];
-    STAssertEquals(c.c[0], (int)32, nil);
-    STAssertEquals(c.c[1], (int)2, nil);
-    STAssertEquals(c.c[2], (int)2, nil);
+    STAssertEquals(c.c[0], (unsigned)32, nil);
+    STAssertEquals(c.c[1], (unsigned)2, nil);
+    STAssertEquals(c.c[2], (unsigned)2, nil);
     STAssertNotNil(moves = [st listAvailableMoves], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
-    id s;
     int i;
     for (i = 0; i < 4; i++) {
-        id s2;
+        NSString *s;
         switch (i) {
             case 0: s = @"12"; break;
             case 1: s = @"21"; break;
             case 2: s = @"34"; break;
             case 3: s = @"43"; break;
         }
-        s2 = [[moves objectAtIndex:i] string];
-        STAssertTrue([s2 isEqualToString:s], @"expected %@, got %@", s, s2);
+        STAssertEqualObjects([[moves objectAtIndex:i] string], s, nil);
     }
 }
 
@@ -63,18 +61,16 @@
 {
     STAssertNotNil(moves = [st listAvailableMoves], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
-    id s;
     int i;
     for (i = 0; i < 4; i++) {
-        id s2;
+        NSString *s;
         switch (i) {
             case 0: s = @"23"; break;
             case 1: s = @"32"; break;
             case 2: s = @"45"; break;
             case 3: s = @"54"; break;
         }
-        s2 = [[moves objectAtIndex:i] string];
-        STAssertTrue([s2 isEqualToString:s], @"expected %@, got %@", s, s2);
+        STAssertEqualObjects([[moves objectAtIndex:i] string], s, nil);
     }
 }
 
@@ -84,31 +80,27 @@
     STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
 
     ReversiStateCount c = [st countSquares];
-    STAssertEquals(c.c[0], (unsigned)64, nil);
+    STAssertEquals(c.c[0], (unsigned)60, nil);
     STAssertEquals(c.c[1], (unsigned)2, nil);
     STAssertEquals(c.c[2], (unsigned)2, nil);
 
-    NSString *s = [st string];
-    STAssertTrue([s isEqualToString:@"00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000"], @"got: %@", s);
+    STAssertEqualObjects([st string], @"00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000", nil);
     id copy = [st copy];
-    STAssertTrue([[copy string] isEqualToString:s], nil);
+    STAssertEqualObjects([copy string], [st string], nil);
 
     [st applyMove:[[ReversiMove alloc] initWithCol:3 andRow:2]];
     STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, @"got %f", [st fitness]);
-    s = [st string];
-    STAssertTrue([s isEqualToString:@"00000000 00000000 00010000 00011000 00012000 00000000 00000000 00000000"], @"got: %@", s);
-    STAssertTrue(![[copy string] isEqualToString:s], nil);
+    STAssertEqualObjects([st string], @"00000000 00000000 00010000 00011000 00012000 00000000 00000000 00000000", nil);
+    STAssertTrue(![[copy string] isEqualToString:[st string]], nil);
     [copy release];
 
     [st applyMove:[[ReversiMove alloc] initWithCol:4 andRow:2]];
     STAssertEqualsWithAccuracy([st fitness], (float)0.0, 0.0001, @"got %f", [st fitness]);
-    s = [st string];
-    STAssertTrue([s isEqualToString:@"00000000 00000000 00012000 00012000 00012000 00000000 00000000 00000000"], @"got: %@", s);
+    STAssertEqualObjects([st string], @"00000000 00000000 00012000 00012000 00012000 00000000 00000000 00000000", nil);
 
     [st applyMove:[[ReversiMove alloc] initWithCol:5 andRow:5]];
     STAssertEqualsWithAccuracy([st fitness], (float)-2.0, 0.0001, @"got %f", [st fitness]);
-    s = [st string];
-    STAssertTrue([s isEqualToString:@"00000000 00000000 00012000 00012000 00011000 00000100 00000000 00000000"], @"got: %@", s);
+    STAssertEqualObjects([st string], @"00000000 00000000 00012000 00012000 00011000 00000100 00000000 00000000", nil);
 }
 
 - (void)testStateAndFitness4x4
@@ -116,27 +108,23 @@
     [st release];
     st = [[ReversiState alloc] initWithBoardSize:4];
 
-    STAssertTrue([st player] == 1, nil);
-    STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
+    STAssertEquals([st player], (int)1, nil);
+    STAssertEquals([st fitness], (float)0.0, nil);
 
-    NSString *s = [st string];
-    STAssertTrue([s isEqualToString:@"0000 0210 0120 0000"], @"got: %@", s);
-    STAssertTrue([[[st copy] string] isEqualToString:s], nil);
+    STAssertEqualObjects([st string], @"0000 0210 0120 0000", nil);
+    STAssertEqualObjects([[st copy] string], [st string], nil);
 
     [st applyMove:[[ReversiMove alloc] initWithCol:1 andRow:0]];
     STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, @"got %f", [st fitness]);
-    s = [st string];
-    STAssertTrue([s isEqualToString:@"0100 0110 0120 0000"], @"got: %@", s);
+    STAssertEqualObjects([st string], @"0100 0110 0120 0000", nil);
 
     [st applyMove:[[ReversiMove alloc] initWithCol:2 andRow:0]];
     STAssertEqualsWithAccuracy([st fitness], (float)0.0, 0.0001, @"got %f", [st fitness]);
-    s = [st string];
-    STAssertTrue([s isEqualToString:@"0120 0120 0120 0000"], @"got: %@", s);
+    STAssertEqualObjects([st string], @"0120 0120 0120 0000", nil);
 
     [st applyMove:[[ReversiMove alloc] initWithCol:3 andRow:3]];
     STAssertEqualsWithAccuracy([st fitness], (float)-1.0, 0.0001, @"got %f", [st fitness]);
-    s = [st string];
-    STAssertTrue([s isEqualToString:@"0120 0120 0110 0001"], @"got: %@", s);
+    STAssertEqualObjects([st string], @"0120 0120 0110 0001", nil);
 }
 
 - (void)testAlphaBeta

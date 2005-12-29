@@ -10,7 +10,7 @@
 #import "AlphaBetaState.h"
 
 typedef struct _ReversiStateCount {
-    int c[3];
+    unsigned c[3];
 } ReversiStateCount;
 
 @interface ReversiState : NSObject <AlphaBetaStateWithCopy> {

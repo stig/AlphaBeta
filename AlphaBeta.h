@@ -28,7 +28,7 @@ extern const float AlphaBetaFitnessMin;
 - (id)move:(id)m;
 - (id)undo;
 - (unsigned)maxPly;
-- (void)setMaxPly:(unsigned)ply;
+- (void)setMaxPly:(int)ply;
 - (float)fitness;
 - (BOOL)isGameOver;
 @end

@@ -73,7 +73,7 @@ static float calcFitness(int me, int counts[3])
     else if (!counts[me] && counts[you]) {
         score -= counts[you] * counts[you];
     }
-    return score;
+    return abs(score) == 9 ? score * 100 : score;
 }
 
 
@@ -104,7 +104,10 @@ static float calcFitness(int me, int counts[3])
 
 - (NSMutableArray *)listAvailableMoves
 {
-    NSMutableArray *moves = [NSMutableArray new];
+    NSMutableArray *moves = [[NSMutableArray new] autorelease];
+    if (abs([self fitness]) > 100) {
+        return moves;
+    }
     int i, j;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
@@ -113,7 +116,7 @@ static float calcFitness(int me, int counts[3])
             }
         }
     }
-    return [moves autorelease];
+    return moves;
 }
 
 - (NSString *)string
@@ -123,6 +126,9 @@ static float calcFitness(int me, int counts[3])
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
             [s appendFormat:@"%d", board[j][i]];
+        }
+        if (i < 2) {
+            [s appendFormat:@" "];
         }
     }
     return [s autorelease];

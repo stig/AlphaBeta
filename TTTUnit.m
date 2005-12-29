@@ -7,28 +7,21 @@
 //
 
 #import "TTTUnit.h"
+#import "TTTMove.h"
 
 @implementation TTTUnit
 
 - (void)setUp
 {
+    ab = [[AlphaBeta alloc] init];
     st = [[TTTState alloc] init];
-    STAssertTrue([st player] == 1, nil);
-    STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
-    
-    ab = [[AlphaBeta alloc] initWithState:st];
-    STAssertNotNil(ab, @"got nil back");
-    STAssertTrue([ab currentState] == st, @"did not get expected state back");
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
-
     moves = nil;
 }
 
 - (void)tearDown
 {
-    [st release];
     [ab release];
-    [moves release];
+    [st release];
 }
 
 - (void)testMove
@@ -39,14 +32,55 @@
     STAssertTrue([[move string] isEqualToString:@"21"], nil);
 }
 
+- (void)testAvailMovesAndFitness
+{
+    [ab setState:st];
+    
+    id cs = [ab currentState];
+    STAssertEqualObjects([cs string], @"000 000 000", nil);
+    STAssertEquals([[cs listAvailableMoves] count], (unsigned)9, nil);
+    STAssertEqualsWithAccuracy([cs fitness], (float)0.0, 0.000001, nil);
+    
+    [ab move:[TTTMove newWithCol:0 andRow:0]];
+    [ab move:[TTTMove newWithCol:1 andRow:0]];
+    [ab move:[TTTMove newWithCol:0 andRow:1]];
+    [ab move:[TTTMove newWithCol:2 andRow:0]];
+    [ab move:[TTTMove newWithCol:0 andRow:2]];
+    
+    cs = [ab currentState];
+    STAssertEqualObjects([cs string], @"122 100 100", nil);
+    STAssertEquals([[cs listAvailableMoves] count], (unsigned)0, nil);
+    STAssertEqualsWithAccuracy([cs fitness], (float)-901.0, 0.000001, nil);
+    
+    [ab undo];
+    [ab undo];
+    [ab move:[TTTMove newWithCol:0 andRow:2]]; // player 2
+    [ab move:[TTTMove newWithCol:2 andRow:0]];
+    [ab move:[TTTMove newWithCol:1 andRow:1]];
+    [ab move:[TTTMove newWithCol:2 andRow:1]];
+
+    cs = [ab currentState];
+    STAssertEqualObjects([cs string], @"121 121 200", nil);
+    STAssertEquals([[cs listAvailableMoves] count], (unsigned)2, nil);
+    STAssertEqualsWithAccuracy([cs fitness], (float)1.0, 0.000001, nil);
+
+    [ab move:[TTTMove newWithCol:2 andRow:2]];
+    [ab move:[TTTMove newWithCol:1 andRow:2]];
+    
+    cs = [ab currentState];
+    STAssertEqualObjects([cs string], @"121 121 212", nil);
+    STAssertEquals([[cs listAvailableMoves] count], (unsigned)0, nil);
+    STAssertEqualsWithAccuracy([cs fitness], (float)0.0, 0.000001, nil);
+    
+}
+
 - (void)testAvailMoves
 {
     STAssertNotNil(moves = [st listAvailableMoves], nil);
     STAssertEquals([moves count], (unsigned)9, nil);
-    id s;
     int i;
     for (i = 0; i < 9; i++) {
-        id s2;
+        id s;
         switch (i) {
             case 0: s = @"00"; break;
             case 1: s = @"01"; break;
@@ -59,66 +93,56 @@
             case 8: s = @"22"; break;
         }
         id m = [moves objectAtIndex:i];
-        s2 = [m string];
-        STAssertTrue([s2 isEqualToString:s], @"expected %@, got %@", s, s2);
+        STAssertEqualObjects([m string], s, nil);
         [st applyMove:m];
-        STAssertTrue(![[st string] isEqualToString:@"000000000"], nil);
+        STAssertTrue(![[st string] isEqualToString:@"000 000 000"], nil);
         [st undoMove:m];
-        STAssertTrue([[st string] isEqualToString:@"000000000"], nil);
+        STAssertEqualObjects([st string], @"000 000 000", nil);
     }
 }
 
 - (void)testFitness
 {
     STAssertTrue([st player] == 1, nil);
-    STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
-    STAssertTrue([st fitness] == 0.0, @"got: %f", [st fitness]);
+    STAssertEqualObjects([st string], @"000 000 000", nil);
+    STAssertEquals([st fitness], (float)0.0, nil);
     [st applyMove:[[TTTMove alloc] initWithCol:0 andRow:0]];
-    STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, @"got %f", [st fitness]);
+    STAssertEqualsWithAccuracy([st fitness], (float)-3.0, 0.0001, nil);
     [st applyMove:[[TTTMove alloc] initWithCol:0 andRow:1]];
-    STAssertEqualsWithAccuracy([st fitness], (float)1.0, 0.0001, @"got %f", [st fitness]);
+    STAssertEqualsWithAccuracy([st fitness], (float)1.0, 0.0001, nil);
     [st applyMove:[[TTTMove alloc] initWithCol:1 andRow:1]];
-    STAssertEqualsWithAccuracy([st fitness], (float)-7.0, 0.0001, @"got %f", [st fitness]);
+    STAssertEqualsWithAccuracy([st fitness], (float)-7.0, 0.0001, nil);
 }
 
 - (void)testState
 {
     STAssertTrue([st player] == 1, nil);
-    STAssertTrue([[st string] isEqualToString:@"000000000"], @"is the initial state");
-
+    STAssertEqualObjects([st string], @"000 000 000", nil);
+    
     int i;
-    for (i = 9; i > 0; i--) {
+    for (i = 9; i > 2; i--) {
         STAssertNotNil(moves = [st listAvailableMoves], nil);
-        STAssertTrue([moves count] == i, @"got %d moves", [moves count]);
+        STAssertEquals([moves count], (unsigned)i, nil);
         id m = [moves objectAtIndex:0];
         [st applyMove:m];
         STAssertTrue([st player] == i % 2 + 1, @"expected(%d): %d, got: %d", i, i % 2 + 1, [st player]);
-
-        id s;
+        
+        id s = nil;
         switch (i) {
-            case 9: s = @"100000000"; break;
-            case 8: s = @"100200000"; break;
-            case 7: s = @"100200100"; break;
-            case 6: s = @"120200100"; break;
-            case 5: s = @"120210100"; break;
-            case 4: s = @"120210120"; break;
-            case 3: s = @"121210120"; break;
-            case 2: s = @"121212120"; break;
-            case 1: s = @"121212121"; break;
+            case 9: s = @"100 000 000"; break;
+            case 8: s = @"100 200 000"; break;
+            case 7: s = @"100 200 100"; break;
+            case 6: s = @"120 200 100"; break;
+            case 5: s = @"120 210 100"; break;
+            case 4: s = @"120 210 120"; break;
+            case 3: s = @"121 210 120"; break;
         }
-        STAssertTrue([[st string] isEqualToString:s], @"got(%d): %@", i, [st string]);
-        id cp = [st copy];
-        STAssertTrue(st != cp, @"copies are the same, but should not be");
-        STAssertTrue([[cp string] isEqualToString:s], @"got(%d): %@", i, [cp string]);
-        STAssertEquals([cp player], (int)[st player], @"got (%d): %d", i, [cp player]);
+        STAssertEqualObjects([st string], s, @"got(%d): %@", i, [st string]);
     }
 }
 
-
 - (void)testInitAndSetState
 {
-    [ab release];
-    ab = [[AlphaBeta alloc] init];
     STAssertNotNil(ab, @"got nil back");
     STAssertNil([ab currentState], @"did not get expected state back");
     [ab setState:st];
@@ -140,25 +164,22 @@
 - (void)testFindMoves
 {
     [ab setMaxPly:2];   // states below assumes a ply 2 search
+    [ab setState:st];
     STAssertNil([ab lastMove], nil);
     
     STAssertNotNil([ab aiMove], nil);
-    NSString *s = [[ab currentState] string];
-    STAssertTrue([s isEqualToString:@"000010000"], @"got: %@", s);
+    STAssertEqualObjects([[ab currentState] string], @"000 010 000", nil);
     STAssertEquals([ab countMoves], (unsigned)1, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)-4.0, 0.1, nil);
     STAssertEqualsWithAccuracy([ab fitness], (float)-4.0, 0.1, nil);
-    s = [[ab lastMove] string];
-    STAssertTrue([s isEqualToString:@"11"], @"got: %@", s);
+    STAssertEqualObjects([[ab lastMove] string], @"11", nil);
     
     [ab aiMove];
-    s = [[ab currentState] string];
-    STAssertTrue([s isEqualToString:@"200010000"], @"got: %@", s);
+    STAssertEqualObjects([[ab currentState] string], @"200 010 000", nil);
     STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)1.0, 0.1, nil);
     STAssertEqualsWithAccuracy([ab fitness], (float)1.0, 0.1, nil);
-    s = [[ab lastMove] string];
-    STAssertTrue([s isEqualToString:@"00"], @"got: %@", s);
+    STAssertEqualObjects([[ab lastMove] string], @"00", nil);
 }
 
 @end
