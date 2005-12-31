@@ -36,6 +36,6 @@
 
 - (NSString *)string
 {
-    return [[NSString stringWithFormat:@"%d%d", col, row] autorelease];
+    return [NSString stringWithFormat:@"%d%d", col, row];
 }
 @end

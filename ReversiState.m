@@ -403,7 +403,7 @@ again:
             [s appendFormat:@" "];
         }
     }
-    return [s autorelease];
+    return s;
 }
 
 

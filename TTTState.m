@@ -131,7 +131,7 @@ static float calcFitness(int me, int counts[3])
             [s appendFormat:@" "];
         }
     }
-    return [s autorelease];
+    return s;
 }
 
 @end
