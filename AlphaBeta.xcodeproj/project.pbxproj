@@ -18,14 +18,14 @@
 		5357B5300955D6D700E12436 /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45884094C7C4300E1D64E /* TTTState.m */; };
 		53B45868094C7B2800E1D64E /* AlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45866094C7B2700E1D64E /* AlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53B4591D094C9BEF00E1D64E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		53C397E40955681C00E6E128 /* ReversiState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C397E20955681C00E6E128 /* ReversiState.h */; };
+		53C397E40955681C00E6E128 /* ReversiState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C397E20955681C00E6E128 /* ReversiState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53C397E50955681C00E6E128 /* ReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E30955681C00E6E128 /* ReversiState.m */; };
-		53C397E80955682D00E6E128 /* ReversiMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C397E60955682D00E6E128 /* ReversiMove.h */; };
+		53C397E80955682D00E6E128 /* ReversiMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C397E60955682D00E6E128 /* ReversiMove.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53C397E90955682D00E6E128 /* ReversiMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E70955682D00E6E128 /* ReversiMove.m */; };
 		53EC354609576BE200AC6EBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		53EC355809576BFB00AC6EBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		53F5D6CB09543C8C008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
-		53F5D93E0954A560008D0B74 /* AlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F5D93C0954A560008D0B74 /* AlphaBetaState.h */; };
+		53F5D93E0954A560008D0B74 /* AlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F5D93C0954A560008D0B74 /* AlphaBetaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -58,21 +58,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = AlphaBeta;
 		};
 		53238ED3096362340064AFCD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 53C397CC095566D700E6E128 /* Reversi */;
+			remoteGlobalIDString = 53C397CC095566D700E6E128;
 			remoteInfo = Reversi;
 		};
 		53238ED5096362340064AFCD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5357B5170955D68100E12436 /* TicTacToe */;
+			remoteGlobalIDString = 5357B5170955D68100E12436;
 			remoteInfo = TicTacToe;
 		};
 /* End PBXContainerItemProxy section */
@@ -683,7 +683,7 @@
 				INFOPLIST_FILE = "UnitTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -716,7 +716,7 @@
 				INFOPLIST_FILE = "UnitTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -748,7 +748,7 @@
 				INFOPLIST_FILE = "UnitTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -886,6 +886,10 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_STYLE = DYNAMIC;
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0xb0000000,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AlphaBeta;
 				WRAPPER_EXTENSION = framework;
@@ -910,6 +914,10 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_STYLE = DYNAMIC;
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0xb0000000,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AlphaBeta;
 				WRAPPER_EXTENSION = framework;
@@ -932,6 +940,10 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_STYLE = DYNAMIC;
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0xb0000000,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AlphaBeta;
 				WRAPPER_EXTENSION = framework;
@@ -977,6 +989,8 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-seg1addr",
+					0xc0000000,
 				);
 				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
@@ -1010,6 +1024,8 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-seg1addr",
+					0xc0000000,
 				);
 				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
@@ -1042,6 +1058,8 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-seg1addr",
+					0xc0000000,
 				);
 				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
