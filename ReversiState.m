@@ -119,6 +119,9 @@
 
     moves = [self listAvailableMoves];
     if (!moves) {
+        [NSException raise:@"unexpected" format:@"Unexpected return"];
+    }
+    else if (![moves count]) {
         counts = [self countSquares];
         mine = counts.c[me] - counts.c[you];
         return (float)(mine > 0 ? +100000.0 :

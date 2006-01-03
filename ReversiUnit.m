@@ -165,9 +165,9 @@
     STAssertEqualObjects([[ab aiMove] string], @"122222 212222 212111 211110 212200 212200", nil);
     STAssertEqualObjects([[ab aiMove] string], @"122222 212222 212122 222222 212200 212200", nil);
     STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222122 211110 212200", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222122 222222 212200", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 221122 222122 211110", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 221122 222122 222222", nil);    
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222122 211220 212220", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222112 211111 212220", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222112 211112 212222", nil);    
 }
 
 - (void)testAlphaBeta
