@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface ReversiMove : NSObject {
     int row;
     int col;

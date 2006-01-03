@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AlphaBetaState.h"
+#import <AlphaBeta/AlphaBetaState.h>
 
 typedef struct _ReversiStateCount {
     unsigned c[3];
