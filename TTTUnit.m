@@ -156,7 +156,6 @@
 - (void)testMaxPly
 {
     STAssertEquals([ab maxPly], (unsigned)3, nil);
-    STAssertThrows([ab setMaxPly:-3], @"allowed negative ply");
     [ab setMaxPly:5];
     STAssertEquals([ab maxPly], (unsigned)5, nil);
 }

@@ -145,11 +145,8 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     return maxPly;
 }
 
-- (void)setMaxPly:(int)ply
+- (void)setMaxPly:(unsigned)ply
 {
-    if (ply < 0) {
-        [NSException raise:@"negative ply" format:@"maxPly must be positive"];
-    }
     maxPly = ply;
 }
 
