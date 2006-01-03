@@ -127,6 +127,49 @@
     STAssertEqualObjects([st string], @"0120 0120 0110 0001", nil);
 }
 
+- (void)testTrace
+{
+    [st release];
+    st = [[ReversiState alloc] initWithBoardSize:6];
+
+    AlphaBeta *ab = [[AlphaBeta alloc] initWithState:st];
+    [ab setMaxPly:3];
+    
+    STAssertEqualObjects([st string], @"000000 000000 002100 001200 000000 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 000000 011100 001200 000000 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 000000 011100 022200 000000 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 000000 011100 021200 001000 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 000200 012200 021200 001000 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 000200 011110 021100 001000 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 000200 011210 021200 001200 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 000210 011110 021200 001200 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 021110 022200 001200 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 111110 012200 001200 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 211110 222200 001200 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 211110 212200 101200 000000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 211110 212200 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000100 200110 211110 212200 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000102 200120 211210 212200 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000102 200120 211210 211110 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000122 200220 212210 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000122 200210 212211 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"000122 200222 212211 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"001122 200122 212211 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"022222 200122 212211 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"022222 201122 211111 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"022222 222222 221111 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 221111 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222111 222110 202200 202000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222111 222110 201200 212000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222111 222110 202200 212200", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 212111 211110 212200 212200", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 212122 222222 212200 212200", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222122 211110 212200", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222122 222222 212200", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 221122 222122 211110", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 221122 222122 222222", nil);    
+}
+
 - (void)testAlphaBeta
 {
     [st release];
