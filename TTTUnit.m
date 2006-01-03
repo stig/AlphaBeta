@@ -160,6 +160,24 @@
     STAssertEquals([ab maxPly], (unsigned)5, nil);
 }
 
+- (void)testFullRun
+{
+    [ab setMaxPly:9];
+    [ab setState:st];
+
+    STAssertEqualObjects([[ab aiMove] string], @"100 000 000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"100 020 000", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"100 120 000", nil);
+    
+    STAssertEqualObjects([[ab aiMove] string], @"100 120 200", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"101 120 200", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"121 120 200", nil);
+    
+    STAssertEqualObjects([[ab aiMove] string], @"121 120 210", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"121 122 210", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"121 122 211", nil);    
+}
+
 - (void)testFindMoves
 {
     [ab setMaxPly:2];   // states below assumes a ply 2 search
