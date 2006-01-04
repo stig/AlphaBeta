@@ -125,6 +125,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     
     @try {
         [[self currentState] applyMove:m];
+        [moves addObject:m];
     }
     @catch (id any) {
         if (!canUndo) {
@@ -133,7 +134,6 @@ const float AlphaBetaFitnessMin = -1000000000.0;
         }
         return nil;
     }
-    [moves addObject:m];
     return [self currentState];
 }
 
