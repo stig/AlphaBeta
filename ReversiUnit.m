@@ -202,10 +202,16 @@
 - (void)testFailMove
 {
     AlphaBeta *ab = [[AlphaBeta alloc] initWithState:st];
-    STAssertNil([ab move:[[ReversiMove alloc] initWithCol:0 andRow:0]], nil);
+    STAssertNil([ab move:[ReversiMove newWithCol:0 andRow:0]], nil);
     
     STAssertEquals([ab countStates], (unsigned)1, nil);
     STAssertEquals([ab countMoves], (unsigned)0, nil);
+
+    STAssertNil([ab move:[ReversiMove newWithCol:0 andRow:-10]], nil);
+    STAssertEquals([st player], (int)1, nil);
+
+    STAssertNil([ab move:[ReversiMove newWithCol:3 andRow:4]], nil);
+    STAssertEquals([st player], (int)1, nil);
 }
 
 - (void)testAlphaBeta

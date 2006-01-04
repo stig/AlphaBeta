@@ -240,7 +240,7 @@ again:
         }
     }
     else if (me != player) {
-        [moves addObject:[[ReversiMove alloc] initWithCol:-1 andRow:-1]];
+        [moves addObject:[ReversiMove newWithCol:-1 andRow:-1]];
     }
 
     return [moves autorelease];
@@ -260,9 +260,11 @@ again:
         return self;
     }
     else if (x < 0 || x > (size-1) || y < 0 || y > (size-1)) {
+        player = me;
         [NSException raise:@"illegal move" format:@"Illegal move"];
     }
     else if (board[x][y] != 0) {
+        player = me;
         [NSException raise:@"square busy" format:@"Square busy"];
     }
 
