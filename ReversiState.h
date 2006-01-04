@@ -21,6 +21,7 @@ typedef struct _ReversiStateCount {
 
 - (int)size;
 - (int)player;
+- (int**)board;
 - (NSString *)string;
 - (id)initWithBoardSize:(int)theSize;
 - (ReversiStateCount)countSquares;
