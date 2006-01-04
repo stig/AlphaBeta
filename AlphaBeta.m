@@ -84,10 +84,14 @@ const float AlphaBetaFitnessMin = -1000000000.0;
 
     int i;
     for (i = 0; i < [mvs count]; i++) {
-        [self move:[mvs objectAtIndex:i]];
-        float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
-        alpha = alpha > sc ? alpha : sc;
-        [self undo];
+        if ([self move:[mvs objectAtIndex:i]]) {
+            float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
+            alpha = alpha > sc ? alpha : sc;
+            [self undo];
+        }
+        else {
+            NSLog(@"internal ab failure at ply %u; %@", ply, [mvs objectAtIndex:i]);
+        }
     }
     return alpha;
 }
@@ -101,13 +105,17 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     float beta  = AlphaBetaFitnessMax;
     for (i = 0; i < [mvs count]; i++) {
         id m = [mvs objectAtIndex:i];
-        [self move:m];
-        float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:maxPly-1];
-        if (sc > alpha) {
-            alpha = sc;
-            best = m;
+        if ([self move:m]) {
+            float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:maxPly-1];
+            if (sc > alpha) {
+                alpha = sc;
+                best = m;
+            }
+            [self undo];
         }
-        [self undo];
+        else {
+            NSLog(@"failed to perform move: %@", m);
+        }
     }
     return [self move:best];
 }
@@ -124,10 +132,13 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     }
     
     @try {
-        [[self currentState] applyMove:m];
+        if (![[self currentState] applyMove:m]) {
+            [NSException raise:@"movefail" format:@"Failed applying move"];
+        }
         [moves addObject:m];
     }
     @catch (id any) {
+        NSLog(@"Failed applying move: %@", [any reason]);
         if (!canUndo) {
             [states removeLastObject];
             NSLog(@"removing last state");

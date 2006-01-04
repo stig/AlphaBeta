@@ -170,6 +170,35 @@
     STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222112 211112 212222", nil);    
 }
 
+- (void)testWeirdExceptionCase
+{
+    [st release];
+    st = [[ReversiState alloc] initWithBoardSize:6];
+    
+    AlphaBeta *ab = [[AlphaBeta alloc] initWithState:st];
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:-1 andRow:-1]] string], @"000000 000000 002100 001200 000000 000000", nil);
+    
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:2 andRow:4]] string], @"000000 000000 002100 002200 002000 000000", nil);
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:3 andRow:4]] string], @"000000 000000 002100 002100 002100 000000", nil);
+
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:4 andRow:4]] string], @"000000 000000 002100 002200 002220 000000", nil);
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:3 andRow:5]] string], @"000000 000000 002100 002100 002120 000100", nil);
+    
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:4 andRow:3]] string], @"000000 000000 002100 002220 002120 000100", nil);
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:5 andRow:4]] string], @"000000 000000 002100 002210 002111 000100", nil);
+    
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:4 andRow:5]] string], @"000000 000000 002100 002210 002211 000120", nil);
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:5 andRow:5]] string], @"000000 000000 002100 002210 002211 000111", nil);
+    
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:4 andRow:2]] string], @"000000 000000 002220 002210 002211 000111", nil);
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:2 andRow:5]] string], @"000000 000000 002220 002210 002111 001111", nil);
+
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:5 andRow:3]] string], @"000000 000000 002220 002222 002111 001111", nil);
+    STAssertEquals([ab countStates], (unsigned)13, nil);
+    STAssertNotNil([[ab aiMove] string], nil);
+    STAssertEquals([ab countStates], (unsigned)14, nil);
+}
+
 - (void)testFailMove
 {
     AlphaBeta *ab = [[AlphaBeta alloc] initWithState:st];

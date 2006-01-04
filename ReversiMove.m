@@ -19,6 +19,11 @@
     return self;
 }
 
++ (id)newWithCol:(int)x andRow:(int)y
+{
+    return [[ReversiMove alloc] initWithCol:x andRow:y];
+}
+
 - (int)col
 {
     return col;

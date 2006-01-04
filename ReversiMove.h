@@ -12,6 +12,7 @@
     int row;
     int col;
 }
++ (id)newWithCol:(int)x andRow:(int)y;
 - (id)initWithCol:(int)x andRow:(int)y;
 - (int)col;
 - (int)row;
