@@ -160,14 +160,14 @@
     STAssertEqualObjects([[ab aiMove] string], @"022222 222222 221111 221110 201200 200000", nil);
     STAssertEqualObjects([[ab aiMove] string], @"122222 212222 221111 221110 201200 200000", nil);
     STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222111 222110 202200 202000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222111 222110 201200 212000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222111 222110 202200 212200", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 212111 211110 212200 212200", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 212122 222222 212200 212200", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222122 211110 212200", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222122 211220 212220", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222112 211111 212220", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222112 211112 212222", nil);    
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222111 222110 202100 202100", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222120 202102 202100", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 202102 202100", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 202202 202220", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 201202 212220", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 222202 212220", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 222201 211111", nil);
+    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222221 222221 222221 211111", nil);    
 }
 
 - (void)testWeirdExceptionCase
@@ -197,6 +197,14 @@
     STAssertEquals([ab countStates], (unsigned)13, nil);
     STAssertNotNil([[ab aiMove] string], nil);
     STAssertEquals([ab countStates], (unsigned)14, nil);
+
+    /* Test for weird case where with finding moves */
+    [ab undo];
+    STAssertEqualObjects([[ab move:[ReversiMove newWithCol:5 andRow:2]] string], @"000000 000000 002221 002211 002111 001111", nil);
+    STAssertEquals([[ab currentState] player], (int)2, nil);
+    NSArray *a = [[ab currentState] listAvailableMoves];
+    STAssertEquals([a count], (unsigned)1, nil);
+    STAssertEqualObjects([[a lastObject] string], @"-1-1", nil);
 }
 
 - (void)testFailMove

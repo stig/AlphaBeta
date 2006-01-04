@@ -240,6 +240,7 @@ again:
         }
     }
     else if (me != player) {
+        [moves removeAllObjects];
         [moves addObject:[ReversiMove newWithCol:-1 andRow:-1]];
     }
 
