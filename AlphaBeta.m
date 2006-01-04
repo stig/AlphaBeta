@@ -116,9 +116,23 @@ const float AlphaBetaFitnessMin = -1000000000.0;
 {
     id s = [self currentState];
     if (!canUndo) {
-        [states addObject:[s copy]];
+        id cp = [s copy];
+        if (!cp) {
+            [NSException raise:@"copyfail" format:@"Copying state failed"];
+        }
+        [states addObject:cp];
     }
-    [[self currentState] applyMove:m];
+    
+    @try {
+        [[self currentState] applyMove:m];
+    }
+    @catch (id any) {
+        if (!canUndo) {
+            [states removeLastObject];
+            NSLog(@"removing last state");
+        }
+        return nil;
+    }
     [moves addObject:m];
     return [self currentState];
 }
@@ -133,8 +147,8 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     if (!canUndo) {
         [states removeLastObject];
     }
-    else {
-        [s undoMove:[moves lastObject]];
+    else if (![s undoMove:[moves lastObject]]) {
+        [NSException raise:@"undofail" format:@"Failed to undo move"];
     }
     [moves removeLastObject];
     return [self currentState];

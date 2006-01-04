@@ -11,13 +11,13 @@
 @protocol AlphaBetaState
 - (float)fitness;
 - (NSMutableArray *)listAvailableMoves;
-- (void)applyMove:(id)m;
+- (id)applyMove:(id)m;
 @end
 
 @protocol AlphaBetaStateWithCopy <AlphaBetaState, NSCopying>
 @end
 
 @protocol AlphaBetaStateWithUndo <AlphaBetaState>
-- (void)undoMove:(id)m;
+- (id)undoMove:(id)m;
 @end
 

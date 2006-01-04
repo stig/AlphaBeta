@@ -29,7 +29,7 @@
     return player;
 }
 
-- (void)applyMove:(id)m
+- (id)applyMove:(id)m
 {
     int row = [m row];
     int col = [m col];
@@ -44,9 +44,10 @@
     else {
         [NSException raise:@"square busy" format:@"Move already taken (%d, %d)", row, col];
     }
+    return self;
 }
 
-- (void)undoMove:(id)m
+- (id)undoMove:(id)m
 {
     int row = [m row];
     int col = [m col];
@@ -61,6 +62,7 @@
     else {
         [NSException raise:@"square not taken" format:@"Move not taken (%d, %d)", row, col];
     }
+    return self;
 }
 
 static float calcFitness(int me, int counts[3])

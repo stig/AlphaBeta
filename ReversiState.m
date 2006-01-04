@@ -246,7 +246,7 @@ again:
     return [moves autorelease];
 }
 
-- (void)applyMove:(id)m
+- (id)applyMove:(id)m
 {
     int x = [m col];
     int y = [m row];
@@ -257,7 +257,7 @@ again:
     player = not_me;
 
     if (x == -1 && y == -1) {
-        return;
+        return self;
     }
     else if (x < 0 || x > (size-1) || y < 0 || y > (size-1)) {
         [NSException raise:@"illegal move" format:@"Illegal move"];
@@ -388,10 +388,11 @@ again:
 
     if (flipped) {
         board[x][y] = me;
-        return;
+        return self;
     }
     player = me;
     [NSException raise:@"illegal move" format:@"Move achieved nothing: %@ for player %d (on %@)", [m string], player, [self string]];
+    return nil;
 }
 
 - (NSString *)string

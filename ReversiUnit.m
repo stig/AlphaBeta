@@ -170,6 +170,15 @@
     STAssertEqualObjects([[ab aiMove] string], @"122222 212222 211122 222112 211112 212222", nil);    
 }
 
+- (void)testFailMove
+{
+    AlphaBeta *ab = [[AlphaBeta alloc] initWithState:st];
+    STAssertNil([ab move:[[ReversiMove alloc] initWithCol:0 andRow:0]], nil);
+    
+    STAssertEquals([ab countStates], (unsigned)1, nil);
+    STAssertEquals([ab countMoves], (unsigned)0, nil);
+}
+
 - (void)testAlphaBeta
 {
     [st release];
