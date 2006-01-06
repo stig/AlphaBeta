@@ -178,8 +178,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
 - (BOOL)isGameOver
 {
     NSArray *a = [[self currentState] listAvailableMoves];
-    BOOL yn = [a count] ? NO : YES;
-    return yn;
+    return [a count] ? NO : YES;
 }
 
 @end
