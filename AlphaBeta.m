@@ -140,6 +140,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     @catch (id any) {
         NSLog(@"Failed applying move: %@", [any reason]);
         if (!canUndo) {
+            [[states lastObject] release];
             [states removeLastObject];
             NSLog(@"removing last state");
         }
@@ -156,6 +157,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
 
     id s = [self currentState];
     if (!canUndo) {
+        [[states lastObject] release];
         [states removeLastObject];
     }
     else if (![s undoMove:[moves lastObject]]) {

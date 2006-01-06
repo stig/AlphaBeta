@@ -220,7 +220,7 @@
 
 - (NSMutableArray *)listAvailableMoves
 {
-    NSMutableArray *moves = [NSMutableArray new];
+    NSMutableArray *moves = [[NSMutableArray new] autorelease];
     int me, i, j;
 
     me = player;
@@ -228,7 +228,7 @@ again:
     for (i = 0; i < size; i++) {
         for (j = 0; j < size; j++) {
             if ([self validMove:me col:i row:j]) {
-                [moves addObject:[[ReversiMove alloc] initWithCol:i andRow:j]];
+                [moves addObject:[[ReversiMove newWithCol:i andRow:j] autorelease]];
             }
         }
     }
@@ -241,10 +241,10 @@ again:
     }
     else if (me != player) {
         [moves removeAllObjects];
-        [moves addObject:[ReversiMove newWithCol:-1 andRow:-1]];
+        [moves addObject:[[ReversiMove newWithCol:-1 andRow:-1] autorelease]];
     }
 
-    return [moves autorelease];
+    return moves;
 }
 
 - (id)applyMove:(id)m

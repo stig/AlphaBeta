@@ -114,7 +114,7 @@ static float calcFitness(int me, int counts[3])
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
             if (!board[i][j]) {
-                [moves addObject:[[TTTMove alloc] initWithCol:i andRow:j]];
+                [moves addObject:[[TTTMove newWithCol:i andRow:j] autorelease]];
             }
         }
     }
