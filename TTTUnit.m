@@ -165,17 +165,17 @@
     [ab setMaxPly:9];
     [ab setState:st];
 
-    STAssertEqualObjects([[ab aiMove] string], @"100 000 000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"100 020 000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"100 120 000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"100 000 000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"100 020 000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"100 120 000", nil);
     
-    STAssertEqualObjects([[ab aiMove] string], @"100 120 200", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"101 120 200", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"121 120 200", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"100 120 200", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"101 120 200", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"121 120 200", nil);
     
-    STAssertEqualObjects([[ab aiMove] string], @"121 120 210", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"121 122 210", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"121 122 211", nil);    
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"121 120 210", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"121 122 210", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"121 122 211", nil);    
 }
 
 - (void)testFindMoves
@@ -184,14 +184,14 @@
     [ab setState:st];
     STAssertNil([ab lastMove], nil);
     
-    STAssertNotNil([ab aiMove], nil);
+    STAssertNotNil([ab fixedDepthSearch], nil);
     STAssertEqualObjects([[ab currentState] string], @"000 010 000", nil);
     STAssertEquals([ab countMoves], (unsigned)1, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)-4.0, 0.1, nil);
     STAssertEqualsWithAccuracy([ab fitness], (float)-4.0, 0.1, nil);
     STAssertEqualObjects([[ab lastMove] string], @"11", nil);
     
-    [ab aiMove];
+    [ab fixedDepthSearch];
     STAssertEqualObjects([[ab currentState] string], @"200 010 000", nil);
     STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEqualsWithAccuracy([[ab currentState] fitness], (float)1.0, 0.1, nil);
