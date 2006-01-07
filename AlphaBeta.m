@@ -21,6 +21,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
         moves = [NSMutableArray new];
         canUndo = NO;
         [self setMaxPly:3];
+        reachedPly = -1;
     }
     return self;
 }
@@ -123,6 +124,36 @@ const float AlphaBetaFitnessMin = -1000000000.0;
         }
     }
     return [self move:best];
+}
+
+- (id)iterativeSearch
+{
+    return [self iterativeSearchWithTime:0.3];
+}
+
+- (id)iterativeSearchWithTime:(NSTimeInterval)time
+{
+    id best = nil;
+    int ply;
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:time];
+    for (ply = 1;; ply++) {
+        if ([self fixedDepthSearchToDepth:ply]) {
+            [best autorelease];
+            best = [[self lastMove] retain];
+            [self undo];
+            reachedPly = ply;
+        }
+        if ([self reachedPly] < ply || [date compare:[NSDate date]] < 0) {
+            break;
+        }
+    }
+    return [self move:best];
+}
+
+- (int)reachedPly
+{
+    return reachedPly;
 }
 
 - (id)move:(id)m

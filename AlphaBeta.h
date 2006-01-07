@@ -15,6 +15,7 @@ extern const float AlphaBetaFitnessMin;
     NSMutableArray *states;
     NSMutableArray *moves;
     unsigned maxPly;
+    int reachedPly;
     BOOL canUndo;
 }
 - (id)initWithState:(id)st;
@@ -23,6 +24,9 @@ extern const float AlphaBetaFitnessMin;
 - (id)lastMove;
 - (id)fixedDepthSearch;
 - (id)fixedDepthSearchToDepth:(unsigned)ply;
+- (id)iterativeSearch;
+- (id)iterativeSearchWithTime:(NSTimeInterval)s;
+- (int)reachedPly;
 - (unsigned)countMoves;
 - (unsigned)countStates;
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(unsigned)ply;

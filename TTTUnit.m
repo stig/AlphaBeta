@@ -178,6 +178,20 @@
     STAssertEqualObjects([[ab fixedDepthSearch] string], @"121 122 211", nil);    
 }
 
+- (void)testIterativeRun
+{
+    id it;
+    [ab setState:st];
+    STAssertEquals([ab reachedPly], (int)-1, nil);
+    while (it = [[ab iterativeSearch] retain]) {
+        STAssertTrue([ab reachedPly] > 0, nil);
+        [ab undo];
+        STAssertEqualObjects([ab fixedDepthSearchToDepth:[ab reachedPly]], it, nil);
+        [it release];
+    }
+    STAssertEquals([ab countMoves], (unsigned)9, nil);
+}
+
 - (void)testFindMoves
 {
     [ab setMaxPly:2];   // states below assumes a ply 2 search
