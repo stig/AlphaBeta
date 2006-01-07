@@ -148,7 +148,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     id best = nil;
     int ply;
     
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:time];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:time/2.0];
     for (ply = 1;; ply++) {
         if ([self fixedDepthSearchToDepth:ply]) {
             [best autorelease];
