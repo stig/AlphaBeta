@@ -21,6 +21,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
         moves = [NSMutableArray new];
         canUndo = NO;
         [self setMaxPly:3];
+        [self setMaxTime:0.3];
         reachedPly = -1;
     }
     return self;
@@ -139,7 +140,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
 
 - (id)iterativeSearch
 {
-    return [self iterativeSearchWithTime:0.3];
+    return [self iterativeSearchWithTime:[self maxTime]];
 }
 
 - (id)iterativeSearchWithTime:(NSTimeInterval)time
@@ -222,6 +223,16 @@ const float AlphaBetaFitnessMin = -1000000000.0;
 - (void)setMaxPly:(unsigned)ply
 {
     maxPly = ply;
+}
+
+- (NSTimeInterval)maxTime
+{
+    return maxTime;
+}
+
+- (void)setMaxTime:(NSTimeInterval)time
+{
+    maxTime = time;
 }
 
 - (BOOL)isGameOver

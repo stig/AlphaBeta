@@ -15,6 +15,7 @@ extern const float AlphaBetaFitnessMin;
     NSMutableArray *states;
     NSMutableArray *moves;
     unsigned maxPly;
+    NSTimeInterval maxTime;
     int reachedPly;
     BOOL foundEnd;
     BOOL canUndo;
@@ -35,6 +36,8 @@ extern const float AlphaBetaFitnessMin;
 - (id)undo;
 - (unsigned)maxPly;
 - (void)setMaxPly:(unsigned)ply;
+- (NSTimeInterval)maxTime;
+- (void)setMaxTime:(NSTimeInterval)time;
 - (float)fitness;
 - (BOOL)isGameOver;
 @end
