@@ -190,7 +190,6 @@ const float AlphaBetaFitnessMin = -1000000000.0;
         if (!canUndo) {
             [[states lastObject] release];
             [states removeLastObject];
-            NSLog(@"removing last state");
         }
         return nil;
     }
