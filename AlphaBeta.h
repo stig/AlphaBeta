@@ -16,6 +16,7 @@ extern const float AlphaBetaFitnessMin;
     NSMutableArray *moves;
     unsigned maxPly;
     int reachedPly;
+    BOOL foundEnd;
     BOOL canUndo;
 }
 - (id)initWithState:(id)st;

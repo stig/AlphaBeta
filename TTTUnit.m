@@ -185,6 +185,7 @@
     STAssertEquals([ab reachedPly], (int)-1, nil);
     while (it = [[ab iterativeSearch] retain]) {
         STAssertTrue([ab reachedPly] > 0, nil);
+        STAssertTrue([ab reachedPly] < 10, nil);
         [ab undo];
         STAssertEqualObjects([ab fixedDepthSearchToDepth:[ab reachedPly]], it, nil);
         [it release];

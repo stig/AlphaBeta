@@ -80,6 +80,9 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     NSMutableArray *mvs = [[self currentState] listAvailableMoves];
 
     if (![mvs count] || ply <= 0) {
+        if (![mvs count]) {
+            foundEnd = YES;
+        }
         return [[self currentState] fitness];
     }
 
@@ -109,7 +112,9 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     id best = nil;
     float alpha = AlphaBetaFitnessMin - 1; // worse than min fitness.
     float beta  = AlphaBetaFitnessMax;
+    int reachedEnd = 0;
     for (i = 0; i < [mvs count]; i++) {
+        foundEnd = NO;
         id m = [mvs objectAtIndex:i];
         if ([self move:m]) {
             float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:depth-1];
@@ -122,6 +127,12 @@ const float AlphaBetaFitnessMin = -1000000000.0;
         else {
             NSLog(@"failed to perform move: %@", m);
         }
+        if (foundEnd) {
+            reachedEnd++;
+        }
+    }
+    if (reachedEnd == [mvs count]) {
+        foundEnd = YES;
     }
     return [self move:best];
 }
@@ -144,7 +155,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
             [self undo];
             reachedPly = ply;
         }
-        if ([self reachedPly] < ply || [date compare:[NSDate date]] < 0) {
+        if (foundEnd || [date compare:[NSDate date]] < 0) {
             break;
         }
     }
