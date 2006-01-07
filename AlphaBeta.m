@@ -78,7 +78,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
 {
     NSMutableArray *mvs = [[self currentState] listAvailableMoves];
 
-    if (![mvs count] || !ply) {
+    if (![mvs count] || ply <= 0) {
         return [[self currentState] fitness];
     }
 
@@ -96,7 +96,12 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     return alpha;
 }
 
-- (id)aiMove
+- (id)fixedDepthSearch
+{
+    return [self fixedDepthSearchToDepth:[self maxPly]];
+}
+
+- (id)fixedDepthSearchToDepth:(unsigned)depth
 {
     NSMutableArray *mvs = [[self currentState] listAvailableMoves];
     int i;
@@ -106,7 +111,7 @@ const float AlphaBetaFitnessMin = -1000000000.0;
     for (i = 0; i < [mvs count]; i++) {
         id m = [mvs objectAtIndex:i];
         if ([self move:m]) {
-            float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:maxPly-1];
+            float sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:depth-1];
             if (sc > alpha) {
                 alpha = sc;
                 best = m;

@@ -136,38 +136,38 @@
     [ab setMaxPly:3];
     
     STAssertEqualObjects([st string], @"000000 000000 002100 001200 000000 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 000000 011100 001200 000000 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 000000 011100 022200 000000 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 000000 011100 021200 001000 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 000200 012200 021200 001000 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 000200 011110 021100 001000 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 000200 011210 021200 001200 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 000210 011110 021200 001200 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 021110 022200 001200 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 111110 012200 001200 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 211110 222200 001200 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 211110 212200 101200 000000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000000 200210 211110 212200 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000100 200110 211110 212200 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000102 200120 211210 212200 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000102 200120 211210 211110 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000122 200220 212210 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000122 200210 212211 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"000122 200222 212211 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"001122 200122 212211 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"022222 200122 212211 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"022222 201122 211111 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"022222 222222 221111 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 221111 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222111 222110 202200 202000", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222111 222110 202100 202100", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222120 202102 202100", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 202102 202100", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 202202 202220", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 201202 212220", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 222202 212220", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222211 222111 222201 211111", nil);
-    STAssertEqualObjects([[ab aiMove] string], @"122222 212222 222221 222221 222221 211111", nil);    
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 000000 011100 001200 000000 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 000000 011100 022200 000000 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 000000 011100 021200 001000 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 000200 012200 021200 001000 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 000200 011110 021100 001000 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 000200 011210 021200 001200 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 000210 011110 021200 001200 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 200210 021110 022200 001200 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 200210 111110 012200 001200 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 200210 211110 222200 001200 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 200210 211110 212200 101200 000000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000000 200210 211110 212200 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000100 200110 211110 212200 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000102 200120 211210 212200 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000102 200120 211210 211110 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000122 200220 212210 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000122 200210 212211 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"000122 200222 212211 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"001122 200122 212211 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"022222 200122 212211 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"022222 201122 211111 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"022222 222222 221111 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 221111 221110 201200 200000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 222111 222110 202200 202000", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 222111 222110 202100 202100", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 222211 222120 202102 202100", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 222211 222111 202102 202100", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 222211 222111 202202 202220", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 222211 222111 201202 212220", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 222211 222111 222202 212220", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 222211 222111 222201 211111", nil);
+    STAssertEqualObjects([[ab fixedDepthSearch] string], @"122222 212222 222221 222221 222221 211111", nil);    
 }
 
 - (void)testWeirdExceptionCase
@@ -195,7 +195,7 @@
 
     STAssertEqualObjects([[ab move:[ReversiMove newWithCol:5 andRow:3]] string], @"000000 000000 002220 002222 002111 001111", nil);
     STAssertEquals([ab countStates], (unsigned)13, nil);
-    STAssertNotNil([[ab aiMove] string], nil);
+    STAssertNotNil([[ab fixedDepthSearch] string], nil);
     STAssertEquals([ab countStates], (unsigned)14, nil);
 
     /* Test for weird case where with finding moves */
@@ -236,12 +236,12 @@
     [ab setMaxPly:1];   // states below assumes a ply 2 search
     STAssertNil([ab lastMove], nil);
 
-    STAssertNoThrow([ab aiMove], nil); // why is this failing?
+    STAssertNoThrow([ab fixedDepthSearch], nil); // why is this failing?
     STAssertEquals([ab countMoves], (unsigned)1, nil);
     STAssertEquals([ab countStates], (unsigned)2, nil);
     STAssertEqualsWithAccuracy([ab fitness], (float)-3.0, 0.0001, @"got %f", [ab fitness]);
     
-    STAssertNoThrow([ab aiMove], nil); // why is this failing?
+    STAssertNoThrow([ab fixedDepthSearch], nil); // why is this failing?
     STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEquals([ab countStates], (unsigned)3, nil);
     STAssertEqualsWithAccuracy([ab fitness], (float)-1.0, 0.0001, @"got %f", [ab fitness]);

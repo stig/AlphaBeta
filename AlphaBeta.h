@@ -22,7 +22,7 @@ extern const float AlphaBetaFitnessMin;
 - (id)currentState;
 - (id)lastMove;
 - (id)fixedDepthSearch;
-- (id)fixedDepthSearchWithDepth:(unsigned)ply;
+- (id)fixedDepthSearchToDepth:(unsigned)ply;
 - (unsigned)countMoves;
 - (unsigned)countStates;
 - (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(unsigned)ply;
