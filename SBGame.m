@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return self;
 }
 
-/** Allocate and initialize object. */
+/** Shortcut for calling alloc & initWithState:. */
 + (id)newWithState:(id)this
 {
     return [[self alloc] initWithState:this];
@@ -147,6 +147,9 @@ exception if the instance has already been instantiated with a state. */
 - (id)searchWithSearcher:(id)this andLimit:(id)lim
 {
     id best = [this moveFromState:[self state] withLimit:lim];
+    if (!best)
+        [NSException raise:@"nomove"
+					format:@"%@ with limit %@ returned no move for %@", this, lim, [self state]];
     return [self move:best];
 }
 

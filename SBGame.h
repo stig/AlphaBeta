@@ -23,15 +23,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 /**
-Protocol for states. States used with SBGame must conform to this protocol in
-order for things to work. 
+Protocol for states. States used with SBGame must conform to this
+protocol in order for things to work. 
 */
 @protocol SBGameState
 
 /**
-Should return the current fitness, i.e. a number indicating for fortuitous the
-state is for the current player. Use a high positive number for very good, high
-negative number for very bad.
+Should return the current fitness, i.e. a number indicating for
+fortuitous the state is for the current player. Use a high positive
+number for very good, high negative number for very bad.
 
 The number returned from this method must lie in the range defined by
 SBAlphaBetaFitnessMax and SBAlphaBetaFitnessMin (currently +1e6 to -1e6).
