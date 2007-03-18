@@ -26,9 +26,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (id)init
 {
     if (self = [super init]) {
-        int i, j;
-        for (i = 0; i < 3; i++) {
-            for (j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 board[i][j] = 0;
             }
         }
@@ -39,9 +38,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (int)winner
 {
-    int i, t1 = 3, t2 = 3;
-    
-    for (i = 0; i < 3; i++) {
+    int t1 = 3, t2 = 3;
+    for (int i = 0; i < 3; i++) {
         int j, tv = 3, th = 3;
         for (j = 0; j < 3; j++) {
             th &= board[i][j];  /* horizontally? */
@@ -65,46 +63,29 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return player;
 }
 
-- (id)applyMove:(id)m
+- (id)stateByApplyingMove:(id)m
 {
-    int row = [m row];
-    int col = [m col];
+    int row = [[m objectForKey:@"row"] intValue];
+    int col = [[m objectForKey:@"col"] intValue];
 
     if (row > 2 || row < 0 || col > 2 || col < 0) {
         [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
-    }
-    else if (!board[col][row]) {
-        board[col][row] = player;
-        player = 3 - player;
-    }
-    else {
+
+    } else if (board[col][row]) {
         [NSException raise:@"square busy" format:@"Move already taken (%d, %d)", row, col];
     }
-    return self;
+    
+    id copy = NSCopyObject(self, 0, [self zone]);
+    ((TTTState *)copy)->board[col][row] = player;
+    ((TTTState *)copy)->player = 3 - player;
+
+    return copy;
 }
 
-- (id)undoMove:(id)m
-{
-    int row = [m row];
-    int col = [m col];
-
-    if (row > 2 || row < 0 || col > 2 || col < 0) {
-        [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
-    }
-    else if (board[col][row]) {
-        board[col][row] = 0;
-        player = 3 - player;
-    }
-    else {
-        [NSException raise:@"square not taken" format:@"Move not taken (%d, %d)", row, col];
-    }
-    return self;
-}
-
-static float calcFitness(int me, int counts[3])
+static double calcFitness(int me, int counts[3])
 {
     int you = 3 - me;
-    float score = 0.0;
+    double score = 0.0;
     if (counts[me] && !counts[you]) {
         score += counts[me] * counts[me];
     }
@@ -115,10 +96,10 @@ static float calcFitness(int me, int counts[3])
 }
 
 
-- (float)currentFitness
+- (double)currentFitness
 {
     int i, j, me;
-    float score = 0.0;
+    double score = 0.0;
     int countd1[3] = {0};
     int countd2[3] = {0};
 
@@ -146,11 +127,13 @@ static float calcFitness(int me, int counts[3])
     if (abs([self currentFitness]) > 100) {
         return moves;
     }
-    int i, j;
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
             if (!board[i][j]) {
-                [moves addObject:[TTTMove moveWithCol:i andRow:j]];
+                [moves addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                    [NSNumber numberWithInt: i], @"col",
+                    [NSNumber numberWithInt: j], @"row",
+                    nil]];
             }
         }
     }
@@ -160,9 +143,8 @@ static float calcFitness(int me, int counts[3])
 - (NSString *)description
 {
     NSMutableString *s = [NSMutableString string];
-    int i, j;
-    for (i = 0; i < 3; i++) {
-        for (j = 0; j < 3; j++) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
             [s appendFormat:@"%d", board[j][i]];
         }
         if (i < 2) {

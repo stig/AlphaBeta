@@ -1,6 +1,6 @@
 /*
-The validMove: and applyMove: methods are based on code in Gnome Iagno which is Copyright (C) 1998-2004 Ian Peters.
-Copyright (C) 2006 Stig Brautaset. All rights reserved.
+The validMove: and transformWithMove: methods are based on code in Gnome Iagno which is Copyright (C) 1998-2004 Ian Peters.
+Copyright (C) 2006-2007 Stig Brautaset. All rights reserved.
  
 This file is part of SBAlphaBeta.
 
@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #import "SBReversiState.h"
-#import "SBReversiMove.h"
 
 @implementation SBReversiState
 
@@ -117,7 +116,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
            count.c[2] > count.c[1] ? 2 : 0;
 }
 
-- (float)currentFitness
+- (double)currentFitness
 {
     NSArray *moves;
     int mine, diff, me, you;
@@ -258,6 +257,14 @@ again:
     return moves;
 }
 
+- (NSDictionary *)moveWithCol:(int)c andRow:(int)r
+{
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+        [NSNumber numberWithInt: c], @"col",
+        [NSNumber numberWithInt: r], @"row",
+        nil];
+}
+
 - (id)moveForCol:(int)x andRow:(int)y
 {
     int me = [self player];
@@ -279,7 +286,7 @@ again:
 
     /* A "move" is an array of coordinates;
        the first is the actual move, the subsequent is all flipped pieces */
-    NSMutableArray *arr = [NSMutableArray arrayWithObject:[SBReversiMove moveWithCol:x andRow:y]];
+    NSMutableArray *arr = [NSMutableArray arrayWithObject:[self moveWithCol:x andRow:y]];
 
     /* left */
     for (tx = x - 1; tx >= 0 && board[tx][y] == not_me; tx--)
@@ -287,7 +294,7 @@ again:
     if (tx >= 0 && tx != x - 1 && board[tx][y] == me) {
         tx = x - 1;
         while (tx >= 0 && board[tx][y] == not_me) {
-            [arr addObject:[SBReversiMove moveWithCol:tx andRow:y]];
+            [arr addObject:[self moveWithCol:tx andRow:y]];
             tx--;
         }
     }
@@ -298,7 +305,7 @@ again:
     if (tx < size && tx != x + 1 && board[tx][y] == me) {
         tx = x + 1;
         while (tx < size && board[tx][y] == not_me) {
-            [arr addObject:[SBReversiMove moveWithCol:tx andRow:y]];
+            [arr addObject:[self moveWithCol:tx andRow:y]];
             tx++;
         }
     }
@@ -309,7 +316,7 @@ again:
     if (ty >= 0 && ty != y - 1 && board[x][ty] == me) {
         ty = y - 1;
         while (ty >= 0 && board[x][ty] == not_me) {
-            [arr addObject:[SBReversiMove moveWithCol:x andRow:ty]];
+            [arr addObject:[self moveWithCol:x andRow:ty]];
             ty--;
         }
     }
@@ -320,7 +327,7 @@ again:
     if (ty < size && ty != y + 1 && board[x][ty] == me) {
         ty = y + 1;
         while (ty < size && board[x][ty] == not_me) {
-            [arr addObject:[SBReversiMove moveWithCol:x andRow:ty]];
+            [arr addObject:[self moveWithCol:x andRow:ty]];
             ty++;
         }
     }
@@ -336,7 +343,7 @@ again:
         tx = x - 1;
         ty = y - 1;
         while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
-            [arr addObject:[SBReversiMove moveWithCol:tx andRow:ty]];
+            [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx--;
             ty--;
         }
@@ -353,7 +360,7 @@ again:
         tx = x - 1;
         ty = y + 1;
         while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
-            [arr addObject:[SBReversiMove moveWithCol:tx andRow:ty]];
+            [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx--;
             ty++;
         }
@@ -370,7 +377,7 @@ again:
         tx = x + 1;
         ty = y + 1;
         while (tx < size && ty < size && board[tx][ty] == not_me) {
-            [arr addObject:[SBReversiMove moveWithCol:tx andRow:ty]];
+            [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx++;
             ty++;
         }
@@ -387,7 +394,7 @@ again:
         tx = x + 1;
         ty = y - 1;
         while (tx < size && ty >= 0 && board[tx][ty] == not_me) {
-            [arr addObject:[SBReversiMove moveWithCol:tx andRow:ty]];
+            [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx++;
             ty--;
         }
@@ -436,33 +443,37 @@ again:
     }
 }
 
--(id)applyMove:(id)move
+-(void)transformWithMove:(id)move
 {
     if (![self isPassMove:move]) {
         [self validateMove:move];
         NSEnumerator *e = [move objectEnumerator];
         id m;
         while (m = [e nextObject]) {
-            board[ [m col] ][ [m row] ] = player;
+            int row = [[m objectForKey:@"row"] intValue];
+            int col = [[m objectForKey:@"col"] intValue];
+            board[ col ][ row ] = player;
         }
     }
     player = 3 - player;
-    return self;
 }
 
-- (id)undoMove:(id)move
+- (void)undoTransformWithMove:(id)move
 {
     if (![self isPassMove:move]) {
         [self validateMove:move];
         NSEnumerator *e = [move objectEnumerator];
         id m = [e nextObject];
-        board[ [m col] ][ [m row] ] = 0;
+        int row = [[m objectForKey:@"row"] intValue];
+        int col = [[m objectForKey:@"col"] intValue];
+        board[ col ][ row ] = 0;
         while (m = [e nextObject]) {
-            board[ [m col] ][ [m row] ] = player;
+            int row = [[m objectForKey:@"row"] intValue];
+            int col = [[m objectForKey:@"col"] intValue];
+            board[ col ][ row ] = player;
         }
     }
     player = 3 - player;
-    return self;
 }
 
 - (int)pieceAtRow:(int)r col:(int)c

@@ -19,24 +19,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import <Foundation/Foundation.h>
 #import <SBAlphaBeta/SBAlphaBeta.h>
 
 typedef struct _ReversiStateCount {
     unsigned c[3];
 } SBReversiStateCount;
 
-@interface SBReversiState : NSObject <SBGameState> {
+@interface SBReversiState : NSObject <SBMutableAlphaBetaState> {
     int player;
     int size;
     int **board;
 }
+
+- (int)player;
+- (int)winner;
 
 - (int)size;
 - (int**)board;
 - (id)initWithBoardSize:(int)theSize;
 - (SBReversiStateCount)countSquares;
 - (id)moveForCol:(int)x andRow:(int)y;
+
+- (NSDictionary *)moveWithCol:(int)c andRow:(int)r;
 
 /* for the View */
 - (int)pieceAtRow:(int)row col:(int)col;

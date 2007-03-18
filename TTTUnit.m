@@ -20,14 +20,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #import "TTTUnit.h"
-#import <TTT/TTTMove.h>
 
 @implementation TTTUnit
 
 - (void)setUp
 {
-    ab = [SBAlphaBeta new];
     st = [TTTState new];
+    ab = [SBAlphaBeta newWithState:st];
     moves = nil;
 }
 
@@ -37,53 +36,51 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [st release];
 }
 
-- (void)testMove
+- (id)moveWithCol:(int)c andRow:(int)r
 {
-    id move = [TTTMove moveWithCol:2 andRow:1];
-    STAssertTrue([move col] == 2, nil);
-    STAssertTrue([move row] == 1, nil);
-    STAssertEqualObjects([move description], @"(2,1)", nil);
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+        [NSNumber numberWithInt: r], @"row",
+        [NSNumber numberWithInt: c], @"col",
+        nil];
 }
 
 - (void)testAvailMovesAndFitness
 {
-    [ab setState:st];
-    
-    id cs = [ab state];
+    id cs = [ab currentState];
     STAssertEqualObjects([cs description], @"000 000 000", nil);
     STAssertEquals([[cs movesAvailable] count], (unsigned)9, nil);
-    STAssertEqualsWithAccuracy([cs currentFitness], (float)0.0, 0.000001, nil);
+    STAssertEqualsWithAccuracy([cs currentFitness], (double)0.0, 0.000001, nil);
     
-    [ab move:[TTTMove moveWithCol:0 andRow:0]];
-    [ab move:[TTTMove moveWithCol:1 andRow:0]];
-    [ab move:[TTTMove moveWithCol:0 andRow:1]];
-    [ab move:[TTTMove moveWithCol:2 andRow:0]];
-    [ab move:[TTTMove moveWithCol:0 andRow:2]];
+    [ab applyMove:[self moveWithCol:0 andRow:0]];
+    [ab applyMove:[self moveWithCol:1 andRow:0]];
+    [ab applyMove:[self moveWithCol:0 andRow:1]];
+    [ab applyMove:[self moveWithCol:2 andRow:0]];
+    [ab applyMove:[self moveWithCol:0 andRow:2]];
     
-    cs = [ab state];
+    cs = [ab currentState];
     STAssertEqualObjects([cs description], @"122 100 100", nil);
     STAssertEquals([[cs movesAvailable] count], (unsigned)0, nil);
-    STAssertEqualsWithAccuracy([cs currentFitness], (float)-901.0, 0.000001, nil);
+    STAssertEqualsWithAccuracy([cs currentFitness], (double)-901.0, 0.000001, nil);
     
-    [ab undo];
-    [ab undo];
-    [ab move:[TTTMove moveWithCol:0 andRow:2]]; // player 2
-    [ab move:[TTTMove moveWithCol:2 andRow:0]];
-    [ab move:[TTTMove moveWithCol:1 andRow:1]];
-    [ab move:[TTTMove moveWithCol:2 andRow:1]];
+    [ab undoLastMove];
+    [ab undoLastMove];
+    [ab applyMove:[self moveWithCol:0 andRow:2]]; // player 2
+    [ab applyMove:[self moveWithCol:2 andRow:0]];
+    [ab applyMove:[self moveWithCol:1 andRow:1]];
+    [ab applyMove:[self moveWithCol:2 andRow:1]];
 
-    cs = [ab state];
+    cs = [ab currentState];
     STAssertEqualObjects([cs description], @"121 121 200", nil);
     STAssertEquals([[cs movesAvailable] count], (unsigned)2, nil);
-    STAssertEqualsWithAccuracy([cs currentFitness], (float)1.0, 0.000001, nil);
+    STAssertEqualsWithAccuracy([cs currentFitness], (double)1.0, 0.000001, nil);
 
-    [ab move:[TTTMove moveWithCol:2 andRow:2]];
-    [ab move:[TTTMove moveWithCol:1 andRow:2]];
+    [ab applyMove:[self moveWithCol:2 andRow:2]];
+    [ab applyMove:[self moveWithCol:1 andRow:2]];
     
-    cs = [ab state];
+    cs = [ab currentState];
     STAssertEqualObjects([cs description], @"121 121 212", nil);
     STAssertEquals([[cs movesAvailable] count], (unsigned)0, nil);
-    STAssertEqualsWithAccuracy([cs currentFitness], (float)0.0, 0.000001, nil);
+    STAssertEqualsWithAccuracy([cs currentFitness], (double)0.0, 0.000001, nil);
     
 }
 
@@ -93,23 +90,23 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertEquals([moves count], (unsigned)9, nil);
     int i;
     for (i = 0; i < 9; i++) {
-        id s;
+        id m2;
         switch (i) {
-            case 0: s = @"(0,0)"; break;
-            case 1: s = @"(0,1)"; break;
-            case 2: s = @"(0,2)"; break;
-            case 3: s = @"(1,0)"; break;
-            case 4: s = @"(1,1)"; break;
-            case 5: s = @"(1,2)"; break;
-            case 6: s = @"(2,0)"; break;
-            case 7: s = @"(2,1)"; break;
-            case 8: s = @"(2,2)"; break;
+            case 0: m2 = [self moveWithCol:0 andRow:0]; break;
+            case 1: m2 = [self moveWithCol:0 andRow:1]; break;
+            case 2: m2 = [self moveWithCol:0 andRow:2]; break;
+            case 3: m2 = [self moveWithCol:1 andRow:0]; break;
+            case 4: m2 = [self moveWithCol:1 andRow:1]; break;
+            case 5: m2 = [self moveWithCol:1 andRow:2]; break;
+            case 6: m2 = [self moveWithCol:2 andRow:0]; break;
+            case 7: m2 = [self moveWithCol:2 andRow:1]; break;
+            case 8: m2 = [self moveWithCol:2 andRow:2]; break;
         }
         id m = [moves objectAtIndex:i];
-        STAssertEqualObjects([m description], s, nil);
-        [st applyMove:m];
+        STAssertEqualObjects(m, m2, nil);
+        st = [ab applyMove:m];
         STAssertTrue(![[st description] isEqualToString:@"000 000 000"], nil);
-        [st undoMove:m];
+        st = [ab undoLastMove];
         STAssertEqualObjects([st description], @"000 000 000", nil);
     }
 }
@@ -118,13 +115,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     STAssertTrue([st player] == 1, nil);
     STAssertEqualObjects([st description], @"000 000 000", nil);
-    STAssertEquals([st currentFitness], (float)0.0, nil);
-    [st applyMove:[TTTMove moveWithCol:0 andRow:0]];
-    STAssertEqualsWithAccuracy([st currentFitness], (float)-3.0, 0.0001, nil);
-    [st applyMove:[TTTMove moveWithCol:0 andRow:1]];
-    STAssertEqualsWithAccuracy([st currentFitness], (float)1.0, 0.0001, nil);
-    [st applyMove:[TTTMove moveWithCol:1 andRow:1]];
-    STAssertEqualsWithAccuracy([st currentFitness], (float)-7.0, 0.0001, nil);
+    STAssertEquals([ab currentFitness], (double)0.0, nil);
+    [ab applyMove:[self moveWithCol:0 andRow:0]];
+    STAssertEqualsWithAccuracy([ab currentFitness], (double)-3.0, 0.0001, nil);
+    [ab applyMove:[self moveWithCol:0 andRow:1]];
+    STAssertEqualsWithAccuracy([ab currentFitness], (double)1.0, 0.0001, nil);
+    [ab applyMove:[self moveWithCol:1 andRow:1]];
+    STAssertEqualsWithAccuracy([ab currentFitness], (double)-7.0, 0.0001, nil);
 }
 
 - (void)testState
@@ -134,10 +131,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     
     int i;
     for (i = 9; i > 2; i--) {
-        STAssertNotNil(moves = [st movesAvailable], nil);
+        STAssertNotNil(moves = [ab movesAvailable], nil);
         STAssertEquals([moves count], (unsigned)i, nil);
         id m = [moves objectAtIndex:0];
-        [st applyMove:m];
+        st = [ab applyMove:m];
         STAssertTrue([st player] == i % 2 + 1, @"expected(%d): %d, got: %d", i, i % 2 + 1, [st player]);
         
         id s = nil;
@@ -154,82 +151,61 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
-- (void)testInitAndSetState
+- (void)testInit
 {
-    STAssertNotNil(ab, @"got nil back");
-    STAssertNil([ab state], @"did not get expected state back");
-    [ab setState:st];
-    STAssertTrue([ab state] == st, @"did not get expected state back");
-    STAssertThrows([ab setState:nil], @"can set state when already set");
-    STAssertThrows([ab setState:st], @"can set state when already set");
+    STAssertNotNil(ab, nil);
+    STAssertTrue([ab currentState] == st, @"did get expected state back");
     STAssertEquals([ab countMoves], (unsigned)0, nil);
     STAssertEquals([ab isGameOver], (BOOL)NO, nil);
 }
 
-- (void)testMaxPly
-{
-    STAssertEquals([ab maxPly], (unsigned)3, nil);
-    [ab setMaxPly:5];
-    STAssertEquals([ab maxPly], (unsigned)5, nil);
-}
-
 - (void)testFullRun
 {
-    [ab setMaxPly:9];
-    [ab setState:st];
-
-    STAssertEqualObjects([[ab fixedDepthSearch] description], @"100 000 000", nil);
-    STAssertEqualObjects([[ab fixedDepthSearch] description], @"100 020 000", nil);
-    STAssertEqualObjects([[ab fixedDepthSearch] description], @"100 120 000", nil);
+    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"100 000 000", nil);
+    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"100 020 000", nil);
+    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"100 120 000", nil);
     
-    STAssertEqualObjects([[ab fixedDepthSearch] description], @"100 120 200", nil);
-    STAssertEqualObjects([[ab fixedDepthSearch] description], @"101 120 200", nil);
-    STAssertEqualObjects([[ab fixedDepthSearch] description], @"121 120 200", nil);
+    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"100 120 200", nil);
+    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"101 120 200", nil);
+    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"121 120 200", nil);
     
-    STAssertEqualObjects([[ab fixedDepthSearch] description], @"121 120 210", nil);
-    STAssertEqualObjects([[ab fixedDepthSearch] description], @"121 122 210", nil);
-    STAssertEqualObjects([[ab fixedDepthSearch] description], @"121 122 211", nil);
-    
-    STAssertEquals([ab winner], 0, @"draw (as you would expect)");
+    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"121 120 210", nil);
+    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"121 122 210", nil);
+    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"121 122 211", nil);
 }
 
 - (void)testIterativeRun
 {
-    [ab setState:st];
-    STAssertEquals([ab reachedPly], (int)-1, nil);
-    int i;
+    unsigned i;
     for (i = 0; i < 9; i++) {
-        STAssertNoThrow([ab iterativeSearch], nil);
-        STAssertTrue([ab reachedPly] > 0, nil);
-        STAssertTrue([ab reachedPly] < 10, nil);
-        id m = [ab lastMove];
-        [ab undo];
-        STAssertNoThrow([ab fixedDepthSearchWithPly:[ab reachedPly]], nil);
-        STAssertEqualObjects([[ab lastMove] description], [m description], nil);
+        id m1, m2;
+        STAssertEquals([ab countMoves], i, nil);
+        STAssertNoThrow(m1 = [ab moveFromSearchWithInterval:0.3], nil);
+        STAssertTrue([ab plyReachedForSearch] > 0, nil);
+        STAssertTrue([ab plyReachedForSearch] < 10, nil);
+        STAssertNoThrow(m2 = [ab moveFromSearchWithPly:[ab plyReachedForSearch]], nil);
+        STAssertEqualObjects([m1 description], [m2 description], @"%@", [ab currentState]);
+        STAssertNotNil([ab applyMove:m2], nil);
     }
-    STAssertThrows([ab iterativeSearch], @"didn't throw?");
+    STAssertThrows([ab applyMoveFromSearchWithInterval:1.0], nil);
     STAssertEquals([ab countMoves], (unsigned)9, nil);
 }
 
 - (void)testFindMoves
 {
-    [ab setMaxPly:2];   // states below assumes a ply 2 search
-    [ab setState:st];
     STAssertNil([ab lastMove], nil);
     
-    STAssertNotNil([ab fixedDepthSearch], nil);
-    STAssertEqualObjects([[ab state] description], @"000 010 000", nil);
+    STAssertNotNil([ab applyMoveFromSearchWithPly:1], nil);
+    STAssertEqualObjects([[ab currentState] description], @"000 010 000", nil);
     STAssertEquals([ab countMoves], (unsigned)1, nil);
-    STAssertEqualsWithAccuracy([[ab state] currentFitness], (float)-4.0, 0.1, nil);
-    STAssertEqualsWithAccuracy([ab currentFitness], (float)-4.0, 0.1, nil);
-    STAssertEqualObjects([[ab lastMove] description], @"(1,1)", nil);
+    STAssertEqualsWithAccuracy([ab currentFitness], (double)-4.0, 0.1, nil);
+    STAssertEqualObjects([ab lastMove], [self moveWithCol:1 andRow:1], nil);
     
-    [ab fixedDepthSearch];
-    STAssertEqualObjects([[ab state] description], @"200 010 000", nil);
+    [ab applyMoveFromSearchWithInterval:3];
+    STAssertEqualObjects([[ab currentState] description], @"200 010 000", nil);
     STAssertEquals([ab countMoves], (unsigned)2, nil);
-    STAssertEqualsWithAccuracy([[ab state] currentFitness], (float)1.0, 0.1, nil);
-    STAssertEqualsWithAccuracy([ab currentFitness], (float)1.0, 0.1, nil);
-    STAssertEqualObjects([[ab lastMove] description], @"(0,0)", nil);
+    STAssertEqualsWithAccuracy([ab currentFitness], (double)1.0, 0.1, nil);
+    STAssertEqualObjects([ab lastMove], [self moveWithCol:0 andRow:0], nil);
 }
 
 @end

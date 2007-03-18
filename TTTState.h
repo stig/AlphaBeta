@@ -19,11 +19,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import <Foundation/Foundation.h>
-#import "SBAlphaBeta.h"
-#import "TTTMove.h"
+#import "SBAlphaBetaState.h"
 
-@interface TTTState : NSObject <SBGameState> {
+@interface TTTState : NSObject <SBAlphaBetaState> {
     int board[3][3];
     int player;
 }

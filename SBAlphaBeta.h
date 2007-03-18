@@ -19,74 +19,96 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-/** @mainpage
+/**
+@file SBAlphaBeta/SBAlphaBeta.h
+@brief MiniMax with Alpha-Beta pruning (aka Alpha-Beta algorithm)
+@mainpage SBAlphaBeta
 
-@section Introduction
+SBAlphaBeta encapsulates the Alpha-Beta algorithm (aka MiniMax search with Alpha-Beta pruning) and can be used to create AIs for a large range of two-player games. No prior experience with Artificial Intelligence  is necessary.
 
-SBAlphaBeta is a generic implementation of Alpha-Beta algorithm (aka MiniMax
-search with alpha-beta pruning). This implementation in Objective-C is heavily
-inspired by GGTL[0], but method names have been changed to comply with
-Objective-C naming guidelines.
+In order to use SBAlphaBeta your state class must implement the four methods in the SBAlphaBetaState protocol.
 
-[0] http://brautaset.org/software/#ggtl
-
-@section Synopsis
+Assuming MyGameState implements the required protocol, here's how one could implement a very simple game:
 
 @code
-#import <SBAlphaBeta/SBAlphaBeta.h>
+id state = [MyGameState new];
+id ab = [SBAlphaBeta newWithState:state];
 
-MyGameState *state = [[MyGameState alloc] init];
-SBAlphaBeta *ab = [[SBAlphaBeta alloc] initWithState:state];
+for (int turn = 1; ; turn++) {
 
-// Traverse the game tree depth-first to a depth of 4. Pick
-// the move that will put the current player in the best worst
-// case if its opponent plays optimally.
-[ab fixedDepthSearchWithPly:4];
-
-// Iterate down the game-tree for 5 seconds, starting at depth
-// N=1, then to depths N+1, N+2 etc. Pick the move found at the
-// deepest completed search.
-[ab iterativeSearchWithTime:5.0];
-
-// Perform a user-selected move
-[ab move:[MyGameMove moveWithString:@"attack!"];
-
+    // This NSLog output will be boring
+    // unless you override -description.
+    NSLog(@"%@", [ab currentState]);
+    
+    if ([ab isGameOver]) {
+        // Could be done in the loop condition, but then
+        // we wouldn't see the final state of the game
+        break;
+     
+    } else if (turn & 2) {
+        // Spend 300 ms searching for the best move,
+        // then apply that move to the current state
+        [ab applyMoveFromSearchWithInterval:0.3];
+        
+    }
+    else {
+        id move = <get move from user>;
+        [ab applyMove:move];
+    }
+}
 @endcode
 
-@section Description
+@section applicability_sec Applicability
 
-SBAlphaBeta works with states and moves. It must be initialised with the initial
-state of the game before use (using either the -[initWithState:] constructor or
-the -[setState:] method). All states must implement the SBGameState protocol.
+For the Alpha-Beta algorithm to be applicable for your game, it needs to be a so-called two-player <a href="http://en.wikipedia.org/wiki/Zero-sum">zero-sum</a> <a href="http://en.wikipedia.org/wiki/Perfect_information">perfect information</a> game. This sounds like very small slice of the whole game pai, but it actually encompasses a whole slew of games. Chess, Go, Othello, Connect-4 etc all fall in this category.
 
-SBAlphaBeta is much less picky about moves than states. At the moment the only
-restriction for moves is that they have to be real objects; you cannot use a
-struct. You can use any Objective-C object of your choice though.
+@section code_sec Getting the code
+
+You can download a <a href="download/SBAlphaBeta-0.1.dmg">disk image</a> containing an embeddable framework, or you can get the source from Subversion:
+
+@verbatim
+svn co http://svn.brautaset.org/SBAlphaBeta/trunk SBAlphaBeta
+@endverbatim
+
+@section feedback_sec Feedback / Bugreports
+
+Please send praise and bile to <a href="mailto:stig@brautaset.org">stig@brautaset.org</a>.
 
 */
 
+#import <Foundation/Foundation.h>
+#import "SBAlphaBetaState.h"
 
-#import <SBAlphaBeta/SBGame.h>
+@interface SBAlphaBeta : NSObject {
+    @private
+    BOOL mutableStates;
+    NSMutableArray *stateHistory;
+    NSMutableArray *moveHistory;
 
-@interface SBAlphaBeta : SBGame {
-    unsigned maxPly;
-    NSTimeInterval maxTime;
-    int reachedPly;
+    unsigned plyReached;
     BOOL foundEnd;
 }
 
-- (id)fixedDepthSearch;
-- (id)fixedDepthSearchWithPly:(unsigned)ply;
-- (id)iterativeSearch;
-- (id)iterativeSearchWithTime:(double)seconds;
++ (id)newWithState:(id)this;
+- (id)initWithState:(id)this;
 
-- (int)reachedPly;
-- (unsigned)maxPly;
-- (void)setMaxPly:(unsigned)ply;
-- (NSTimeInterval)maxTime;
-- (void)setMaxTime:(NSTimeInterval)time;
+- (id)lastMove;
+- (id)currentState;
+- (BOOL)isGameOver;
+- (BOOL)currentPlayerMustPass;
+- (unsigned)countMoves;
+- (id)applyMove:(id)m;
+- (id)undoLastMove;
 
+/* messages forwarded to the state */
+- (double)currentFitness;
+- (NSArray *)movesAvailable;
 
+/* search methods */
+- (id)moveFromSearchWithPly:(unsigned)ply;
+- (id)moveFromSearchWithInterval:(NSTimeInterval)interval;
+- (id)applyMoveFromSearchWithPly:(unsigned)ply;
+- (id)applyMoveFromSearchWithInterval:(NSTimeInterval)interval;
+- (unsigned)plyReachedForSearch;
 @end
-
 
