@@ -1,17 +1,20 @@
 
 NAME=SBAlphaBeta
-VERSION=0.1
+VERSION=0.2
 RELEASENAME=$(NAME)-$(VERSION)
 DMG=$(RELEASENAME).dmg
+DMGURL=http://code.brautaset.org/files/$(DMG)
 
-doc:
+site:
 	rm -rf build/html
 	perl -pi -e 's/#import/#include/' *.h *.m 
 	(cat Doxyfile; echo "PROJECT_NUMBER=$(VERSION)") | doxygen -
+	perl -pi -e 's{__VERSION__}{$(VERSION)}g' build/html/*.html
+	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' build/html/*.html
 	perl -pi -e 's/#include/#import/' *.h *.m 
 
-upload-doc: doc
-	rsync -ruv --delete --exclude download* build/html/ brautaset.org:code/$(NAME)/
+upload-site: site
+	rsync -ruv --delete build/html/ stig@brautaset.org:code/$(NAME)/
 
 install:
 	xcodebuild -target SBPerceptron install
@@ -27,4 +30,4 @@ dmg:
 	hdiutil create -fs HFS+ -volname $(RELEASENAME) -srcfolder build/tmp $(DMG)
 
 upload-dmg: dmg
-	scp $(DMG) brautaset.org:code/$(NAME)/download/
+	scp $(DMG) stig@brautaset.org:code/files/

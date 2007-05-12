@@ -58,16 +58,32 @@ for (int turn = 1; ; turn++) {
 }
 @endcode
 
+@section maturity_sec A note on code & interface maturity
+
+Though the code is mature and well tested, I'm still not entirely happy with the interface presented to the user. Thus, the interface may change between releases. The broad strokes are there, however, so if you use SBAlphaBeta to implement a game you should find it relatively simple to update to new versions.
+
+@section users_sec Who/what uses SBAlphaBeta?
+
+I maintain several Cocoa games for Mac OS X that all use SBAlphaBeta to provide their AIs. For example:
+
+@li <a href="/Phage">Phage</a> - an abstract strategy game not <em>entirely</em> unlike Chess
+@li <a href="/Auberon">Auberon</a> - a Connect-4 game
+@li <a href="/Desdemona">Desdemona</a> - a Reversi (Othello) game
+
 @section applicability_sec Applicability
 
 For the Alpha-Beta algorithm to be applicable for your game, it needs to be a so-called two-player <a href="http://en.wikipedia.org/wiki/Zero-sum">zero-sum</a> <a href="http://en.wikipedia.org/wiki/Perfect_information">perfect information</a> game. This sounds like very small slice of the whole game pai, but it actually encompasses a whole slew of games. Chess, Go, Othello, Connect-4 etc all fall in this category.
 
 @section code_sec Getting the code
 
-You can download a <a href="download/SBAlphaBeta-0.1.dmg">disk image</a> containing an embeddable framework, or you can get the source from Subversion:
+Download <a href="__DMGURL__">SBAlphaBeta __VERSION__</a>, containing an embeddable framework, or get the source from Subversion:
 
 @verbatim
+# bleeding edge
 svn co http://svn.brautaset.org/SBAlphaBeta/trunk SBAlphaBeta
+
+# latest released version
+svn co http://svn.brautaset.org/SBAlphaBeta/tags/__VERSION__ SBAlphaBeta
 @endverbatim
 
 @section feedback_sec Feedback / Bugreports
