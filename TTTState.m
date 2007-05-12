@@ -36,7 +36,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return self;
 }
 
-- (int)winner
+- (double)endStateScore
 {
     int t1 = 3, t2 = 3;
     for (int i = 0; i < 3; i++) {
@@ -45,22 +45,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
             th &= board[i][j];  /* horizontally? */
             tv &= board[j][i];  /* vertically? */
         }
+        
+        /* Vertical or Horisontal winning line? */
         if (tv || th)
-            return tv + th; /* only one can win... */
+            return (tv + th) == player ? 1.0 : -1.0;
 
         t1 &= board[i][i];      /* diagonally (1) */
         t2 &= board[i][2-i];    /* diagonally (2) */
     }
     if (t1 || t2)
-        return t1 + t2;
+        return (t1 + t2) == player ? 1.0 : -1.0;
     
-    return 0;
-}
-
-
-- (int)player
-{
-    return player;
+    return 0.0;
 }
 
 - (id)stateByApplyingMove:(id)m
@@ -103,7 +99,7 @@ static double calcFitness(int me, int counts[3])
     int countd1[3] = {0};
     int countd2[3] = {0};
 
-    me = [self player];
+    me = player;
     for (i = 0; i < 3; i++) {
         int counth[3] = {0};
         int countv[3] = {0};

@@ -77,11 +77,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
+- (void)testPlayer
+{
+    SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    [ab applyMoveFromSearchWithPly:1];
+    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    [ab undoLastMove];
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+}
+
 - (void)testStateAndFitness8x8
 {
     SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
 
-    STAssertTrue([st player] == 1, nil);
+    STAssertTrue([ab playerTurn] == 1, nil);
     STAssertTrue([ab currentFitness] == 0.0, @"got: %f", [st currentFitness]);
 
     SBReversiStateCount c = [st countSquares];
@@ -110,25 +120,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     st = [[SBReversiState alloc] initWithBoardSize:4];
     SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
 
-    STAssertEquals([st player], (int)1, nil);
-    STAssertEquals([st currentFitness], (double)0.0, nil);
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentFitness], (double)0.0, nil);
 
     STAssertEqualObjects([st description], @"1: 0000 0210 0120 0000", nil);
 
     STAssertNoThrow(st = [ab applyMove:[st moveForCol:1 andRow:0]], nil);
     STAssertEqualObjects([st description], @"2: 0100 0110 0120 0000", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-3.0, 0.0001, @"got %f", [st currentFitness]);
-    STAssertEquals([st player], (int)2, nil);
+    STAssertEquals([ab playerTurn], (unsigned)2, nil);
 
     STAssertNoThrow(st = [ab applyMove:[st moveForCol:2 andRow:0]], nil);
     STAssertEqualObjects([st description], @"1: 0120 0120 0120 0000", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)0.0, 0.0001, @"got %f", [st currentFitness]);
-    STAssertEquals([st player], (int)1, nil);
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
 
     STAssertNoThrow(st = [ab applyMove:[st moveForCol:3 andRow:3]], nil);
     STAssertEqualObjects([st description], @"2: 0120 0120 0110 0001", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-1.0, 0.0001, @"got %f", [st currentFitness]);
-    STAssertEquals([st player], (int)2, nil);
+    STAssertEquals([ab playerTurn], (unsigned)2, nil);
 }
 
 - (void)testTrace
@@ -137,42 +147,48 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     st = [[SBReversiState alloc] initWithBoardSize:6];
 
     SBAlphaBeta *ab = [[SBAlphaBeta alloc] initWithState:st];
-    
     STAssertEqualObjects([st description], @"1: 000000 000000 002100 001200 000000 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 000000 000000 011100 001200 000000 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 000000 000000 011100 022200 000000 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 000000 000000 011100 021200 001000 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 000000 000200 012200 021200 001000 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 000000 000200 011110 021100 001000 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 000000 000200 011210 021200 001200 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 000000 000210 011110 021200 001200 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 000000 200210 021110 022200 001200 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 000000 200210 111110 012200 001200 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 000000 200210 211110 222200 001200 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 000000 200210 211110 212200 101200 000000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 000000 200210 211110 212200 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 000100 200110 211110 212200 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 000102 200120 211210 212200 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 000102 200120 211210 211110 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 000122 200220 212210 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 000122 200210 212211 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 000122 200222 212211 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 001122 200122 212211 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 022222 200122 212211 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 022222 201122 211111 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 022222 222222 221111 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 122222 212222 221111 221110 201200 200000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 122222 212222 222111 222110 202200 202000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 122222 212222 222111 222110 202100 202100", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 122222 212222 222211 222120 202102 202100", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 122222 212222 222211 222111 202102 202100", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 122222 212222 222211 222111 202202 202220", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 122222 212222 222211 222111 201202 212220", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 122222 212222 222211 222111 222202 212220", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"2: 122222 212222 222211 222111 222201 211111", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], @"1: 122222 212222 222221 222221 222221 211111", nil);
     
-    STAssertEquals([[ab currentState] winner], (int)2, @"player 2 won");
+    id s, states = [[NSArray arrayWithObjects:
+        @"2: 000000 000000 011100 001200 000000 000000",
+        @"1: 000000 000000 011100 022200 000000 000000",
+        @"2: 000000 000000 011100 021200 001000 000000",
+        @"1: 000000 000200 012200 021200 001000 000000",
+        @"2: 000000 000200 011110 021100 001000 000000",
+        @"1: 000000 000200 011210 021200 001200 000000",
+        @"2: 000000 000210 011110 021200 001200 000000",
+        @"1: 000000 200210 021110 022200 001200 000000",
+        @"2: 000000 200210 111110 012200 001200 000000",
+        @"1: 000000 200210 211110 222200 001200 000000",
+        @"2: 000000 200210 211110 212200 101200 000000",
+        @"1: 000000 200210 211110 212200 201200 200000",
+        @"2: 000100 200110 211110 212200 201200 200000",
+        @"1: 000102 200120 211210 212200 201200 200000",
+        @"2: 000102 200120 211210 211110 201200 200000",
+        @"1: 000122 200220 212210 221110 201200 200000",
+        @"2: 000122 200210 212211 221110 201200 200000",
+        @"1: 000122 200222 212211 221110 201200 200000",
+        @"2: 001122 200122 212211 221110 201200 200000",
+        @"1: 022222 200122 212211 221110 201200 200000",
+        @"2: 022222 201122 211111 221110 201200 200000",
+        @"1: 022222 222222 221111 221110 201200 200000",
+        @"2: 122222 212222 221111 221110 201200 200000",
+        @"1: 122222 212222 222111 222110 202200 202000",
+        @"2: 122222 212222 222111 222110 202100 202100",
+        @"1: 122222 212222 222211 222120 202102 202100",
+        @"2: 122222 212222 222211 222111 202102 202100",
+        @"1: 122222 212222 222211 222111 202202 202220",
+        @"2: 122222 212222 222211 222111 201202 212220",
+        @"1: 122222 212222 222211 222111 222202 212220",
+        @"2: 122222 212222 222211 222111 222201 211111",
+        @"1: 122222 212222 222221 222221 222221 211111",
+        nil] objectEnumerator];
+    
+    while (s = [states nextObject]) {
+        STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], s, nil);
+    }
+    
+    STAssertEquals([ab winner], (unsigned)2, @"player 2 won");
 }
 
 - (void)testWeirdExceptionCase
@@ -209,7 +225,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     /* Test for weird case where with finding moves */
     [ab undoLastMove];
     STAssertEqualObjects([[ab applyMove:[st moveForCol:5 andRow:2]] description], @"2: 000000 000000 002221 002211 002111 001111", nil);
-    STAssertEquals([[ab currentState] player], (int)2, nil);
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
     NSArray *a = [[ab currentState] movesAvailable];
     STAssertEquals([a count], (unsigned)1, nil);
     STAssertTrue([[a lastObject] isKindOfClass:[NSNull class]], nil);
@@ -218,18 +234,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)testFailMove
 {
     SBAlphaBeta *ab = [[SBAlphaBeta alloc] initWithState:st];
-    STAssertEquals([st player], (int)1, nil);    
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);    
 
     STAssertThrows([ab applyMove:[st moveForCol:0 andRow:0]], nil);
-    STAssertEquals([st player], (int)1, nil);    
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);    
     STAssertEquals([ab countMoves], (unsigned)0, nil);
 
     STAssertThrows([ab applyMove:[st moveForCol:0 andRow:-10]], nil);
-    STAssertEquals([st player], (int)1, nil);    
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);    
     STAssertEquals([ab countMoves], (unsigned)0, nil);
     
     STAssertThrows([ab applyMove:[st moveForCol:3 andRow:4]], nil);
-    STAssertEquals([st player], (int)1, nil);
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
     STAssertEquals([ab countMoves], (unsigned)0, nil);
 }
 
@@ -238,7 +254,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [st release];
     st = [[SBReversiState alloc] initWithBoardSize:4];
     
-    int **board = [st board];
+    int **board = ((SBReversiState *)st)->board;
     int i, j;
     for (i = 0; i < 4; i++)
         for (j = 0; j < 4; j++)
@@ -248,11 +264,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     board[1][0] = 1;
 
     SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
-    STAssertEquals([[ab currentState] player], (int)1, @"it is player 1");
+    STAssertEquals([ab playerTurn], (unsigned)1, @"it is player 1");
     STAssertTrue([ab currentPlayerMustPass], @"must pass");
     
     STAssertNotNil([ab applyMove:[NSNull null]], @"can apply pass move");
-    STAssertEquals([[ab currentState] player], (int)2, @"it is player 1");
+    STAssertEquals([ab playerTurn], (unsigned)2, @"it is player 1");
     STAssertFalse([ab currentPlayerMustPass], @"must NOT pass");
 }
 

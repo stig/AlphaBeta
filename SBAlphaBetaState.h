@@ -40,6 +40,13 @@ Use a high positive number for very good, high negative number for very bad. The
 */
 - (double)currentFitness;
 
+/**
+Indicates the result at an end state. Return a positive value if the receiving state is a winning state for the current player, negative for a loss, or 0 if it is a draw. The result of calling this method on a non-leaf state is undefined.
+
+SBAlphaBeta only cares whether the values returned from this method are negative, positive or zero; but you may wish to implement it to return a score that you can use for a high-score list.
+*/
+- (double)endStateScore;
+
 /** 
 Returns an array of all the available moves for the current player. An empty array means that there are no moves possible and that this is an end state. Use NSNull instances for pass moves, if your game allows passing.
 */

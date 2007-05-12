@@ -198,7 +198,7 @@ Performs a fixed-depth search to the given @p ply and applies the best move foun
 - (id)applyMoveFromSearchWithPly:(unsigned)ply
 {
     id best = [self moveFromSearchWithPly:ply];
-    return [self applyMove:best];
+    return best ? [self applyMove:best] : nil;
 }
 
 /**
@@ -239,7 +239,7 @@ search that lasts up to 300 milliseconds.
 - (id)applyMoveFromSearchWithInterval:(NSTimeInterval)interval
 {
     id best = [self moveFromSearchWithInterval:interval];
-    return [self applyMove:best];
+    return best ? [self applyMove:best] : nil;
 }    
 
 #pragma mark Methods
@@ -291,6 +291,28 @@ Returns the new current state.
 {
     return [moveHistory count];
 }
+
+/**
+Returns 1 or 2, depending on whose turn it is to move.
+Player "1" is arbitrarily defined to be the player whose turn it is to play at the start of the game, which is not necessarily the same as the state itself thinks of as player 1 (if it thinks of the players in those terms; it may use @"a" or @"b" instead).
+*/
+- (unsigned)playerTurn
+{
+    return ([self countMoves] % 2) + 1;
+}
+
+/**
+Returns 1 or 2 for the winning player, or 0 if the game ended in a draw.
+*/
+- (unsigned)winner
+{
+    double score = [[self currentState] endStateScore];
+    if (!score)
+        return 0;
+    unsigned player = [self playerTurn];
+    return score > 0 ? player : 3 - player;
+}
+
 
 /** Returns true if the game is finished, false otherwise. */
 - (BOOL)isGameOver

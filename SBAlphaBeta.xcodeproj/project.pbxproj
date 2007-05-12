@@ -24,7 +24,7 @@
 		535026490B3AFEDF0012DAE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		5350264B0B3AFF0D0012DAE7 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* SBAlphaBeta.framework */; };
 		5350264C0B3AFF120012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		53762BDC0BA3145C0089CB6D /* SBAlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */; settings = {ATTRIBUTES = (); }; };
+		53762BDC0BA3145C0089CB6D /* SBAlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 

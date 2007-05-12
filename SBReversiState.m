@@ -72,17 +72,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return self;
 }
 
-- (int**)board
+- (NSArray *)board
 {
-    return board;
+    id r = [NSMutableArray array];
+    for (int i = 0; i < size; i++) {
+        id c = [NSMutableArray array];
+        for (int j = 0; j < size; j++)
+            [c addObject:[NSNumber numberWithInt: board[i][j]]];
+        [r addObject:c];
+    }
+    return r;
 }
 
-- (int)player
-{
-    return player;
-}
-
-- (int)size
+- (int)boardSize
 {
     return size;
 }
@@ -109,11 +111,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 }
 
 
-- (int)winner
+- (double)endStateScore
 {
     SBReversiStateCount count = [self countSquares];
-    return count.c[1] > count.c[2] ? 1 :
-           count.c[2] > count.c[1] ? 2 : 0;
+    return (double)count.c[player] - count.c[3 - player];
 }
 
 - (double)currentFitness
@@ -267,7 +268,7 @@ again:
 
 - (id)moveForCol:(int)x andRow:(int)y
 {
-    int me = [self player];
+    int me = player;
     int not_me = 3 - me;
     int tx, ty;
 

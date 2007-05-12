@@ -111,31 +111,73 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
+- (void)testLastMove
+{
+    STAssertNil([ab lastMove], nil);
+
+    [ab applyMove:[self moveWithCol:0 andRow:0]];
+    STAssertNotNil([ab lastMove], nil);
+
+    [ab undoLastMove];
+    STAssertNil([ab lastMove], nil);
+}
+
+- (void)testCountMoves
+{
+    STAssertEquals([ab countMoves], (unsigned)0, nil);
+
+    [ab applyMove:[self moveWithCol:0 andRow:0]];
+    STAssertEquals([ab countMoves], (unsigned)1, nil);
+    
+    [ab applyMove:[self moveWithCol:0 andRow:1]];
+    STAssertEquals([ab countMoves], (unsigned)2, nil);
+    
+    [ab undoLastMove];
+    STAssertEquals([ab countMoves], (unsigned)1, nil);    
+}
+
+- (void)testPlayerTurn
+{
+    STAssertEquals(st->player, (unsigned)1, nil);
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    
+    st = [ab applyMove:[self moveWithCol:0 andRow:0]];
+    STAssertEquals(st->player, (unsigned)2, nil);
+    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    
+    st = [ab applyMove:[self moveWithCol:0 andRow:1]];
+    STAssertEquals(st->player, (unsigned)1, nil);
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+
+    st = [ab undoLastMove];
+    STAssertEquals(st->player, (unsigned)2, nil);
+    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+}
+
 - (void)testFitness
 {
-    STAssertTrue([st player] == 1, nil);
-    STAssertEqualObjects([st description], @"000 000 000", nil);
     STAssertEquals([ab currentFitness], (double)0.0, nil);
+
     [ab applyMove:[self moveWithCol:0 andRow:0]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-3.0, 0.0001, nil);
+
     [ab applyMove:[self moveWithCol:0 andRow:1]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)1.0, 0.0001, nil);
+
     [ab applyMove:[self moveWithCol:1 andRow:1]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-7.0, 0.0001, nil);
 }
 
-- (void)testState
+- (void)testStateAndMoves
 {
-    STAssertTrue([st player] == 1, nil);
-    STAssertEqualObjects([st description], @"000 000 000", nil);
-    
-    int i;
+    STAssertEqualObjects([[ab currentState] description], @"000 000 000", nil);
+
+    unsigned i;
     for (i = 9; i > 2; i--) {
         STAssertNotNil(moves = [ab movesAvailable], nil);
-        STAssertEquals([moves count], (unsigned)i, nil);
+        STAssertEquals([moves count], i, nil);
         id m = [moves objectAtIndex:0];
         st = [ab applyMove:m];
-        STAssertTrue([st player] == i % 2 + 1, @"expected(%d): %d, got: %d", i, i % 2 + 1, [st player]);
         
         id s = nil;
         switch (i) {
@@ -149,6 +191,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         }
         STAssertEqualObjects([st description], s, @"got(%d): %@", i, [st description]);
     }
+    STAssertEquals([ab winner], (unsigned)1, nil);
 }
 
 - (void)testInit
@@ -159,19 +202,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertEquals([ab isGameOver], (BOOL)NO, nil);
 }
 
-- (void)testFullRun
+- (void)testFullRunReachesDraw
 {
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"100 000 000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"100 020 000", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"100 120 000", nil);
+    id states = [NSArray arrayWithObjects:
+        @"100 000 000", @"100 020 000", @"100 120 000",
+        @"100 120 200", @"101 120 200", @"121 120 200",
+        @"121 120 210", @"121 122 210", @"121 122 211",
+        nil];
     
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"100 120 200", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"101 120 200", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"121 120 200", nil);
+    for (int i = 0; [ab applyMoveFromSearchWithPly:9]; i++) {
+        id s = [[ab currentState] description];
+        STAssertEqualObjects(s, [states objectAtIndex:i], nil);
+    }
     
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"121 120 210", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"121 122 210", nil);
-    STAssertEqualObjects([[ab applyMoveFromSearchWithPly:9] description], @"121 122 211", nil);
+    /* Turns out the only winning move is not to play. */
+    STAssertEquals([ab winner], (unsigned)0, @"reached a draw");
 }
 
 - (void)testIterativeRun
@@ -187,14 +232,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         STAssertEqualObjects([m1 description], [m2 description], @"%@", [ab currentState]);
         STAssertNotNil([ab applyMove:m2], nil);
     }
-    STAssertThrows([ab applyMoveFromSearchWithInterval:1.0], nil);
+    STAssertNil([ab applyMoveFromSearchWithInterval:1.0], nil);
     STAssertEquals([ab countMoves], (unsigned)9, nil);
 }
 
-- (void)testFindMoves
+- (void)testFixedPlySearch
 {
-    STAssertNil([ab lastMove], nil);
-    
     STAssertNotNil([ab applyMoveFromSearchWithPly:1], nil);
     STAssertEqualObjects([[ab currentState] description], @"000 010 000", nil);
     STAssertEquals([ab countMoves], (unsigned)1, nil);

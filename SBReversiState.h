@@ -26,16 +26,14 @@ typedef struct _ReversiStateCount {
 } SBReversiStateCount;
 
 @interface SBReversiState : NSObject <SBMutableAlphaBetaState> {
+@public
     int player;
     int size;
     int **board;
 }
 
-- (int)player;
-- (int)winner;
-
-- (int)size;
-- (int**)board;
+- (NSArray *)board;
+- (int)boardSize;
 - (id)initWithBoardSize:(int)theSize;
 - (SBReversiStateCount)countSquares;
 - (id)moveForCol:(int)x andRow:(int)y;
