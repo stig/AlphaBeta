@@ -16,6 +16,7 @@ site:
 	perl -pi -e 's/#include/#import/' *.h *.m 
 
 upload-site: site
+	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK" 
 	rsync -ruv --delete build/html/ stig@brautaset.org:code/$(NAME)/
 
 dmg: install
