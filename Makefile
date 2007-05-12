@@ -19,9 +19,9 @@ upload-site: site
 	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK" 
 	rsync -ruv --delete build/html/ stig@brautaset.org:code/$(NAME)/
 
-dmg: install
+dmg: 	
 	rm -rf build/tmp/ $(DMG)
-	setCFBundleVersion $(VERSION)
+	setCFBundleVersion.pl $(VERSION)
 	xcodebuild -target $(NAME) clean
 	xcodebuild -target Tests
 	xcodebuild -target $(NAME) install
@@ -30,5 +30,6 @@ dmg: install
 	hdiutil create -fs HFS+ -volname $(RELEASENAME) -srcfolder build/tmp $(DMG)
 
 upload-dmg: dmg
-	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK" && echo "$(DMG) already uploaded" || scp $(DMG) $(UP)
+	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK" && echo "$(DMG) already uploaded" && false
+	scp $(DMG) $(UP)
 
