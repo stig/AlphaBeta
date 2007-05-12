@@ -1,7 +1,7 @@
 NAME=SBAlphaBeta
-VERSION=0.2
+VERSION=0.3
 
-RELEASENAME=$(NAME)-$(VERSION)
+RELEASENAME=$(NAME)_$(VERSION)
 DMG=$(RELEASENAME).dmg
 
 UP=stig@brautaset.org:code/files/
@@ -10,7 +10,7 @@ DMGURL=http://code.brautaset.org/files/$(DMG)
 site:
 	rm -rf build/html
 	perl -pi -e 's/#import/#include/' *.h *.m 
-	(cat Doxyfile; echo "PROJECT_NUMBER=$(VERSION)") | doxygen -
+	doxygen 
 	perl -pi -e 's{__VERSION__}{$(VERSION)}g' build/html/*.html
 	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' build/html/*.html
 	perl -pi -e 's/#include/#import/' *.h *.m 
