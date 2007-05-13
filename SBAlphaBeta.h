@@ -121,11 +121,7 @@ For the Alpha-Beta algorithm to be applicable for your game, it needs to be a so
 Download <a href="__DMGURL__">SBAlphaBeta __VERSION__</a>, containing an embeddable framework, or get the source from Subversion:
 
 @verbatim
-# bleeding edge
-svn co http://svn.brautaset.org/SBAlphaBeta/trunk SBAlphaBeta
-
-# latest released version
-svn co http://svn.brautaset.org/SBAlphaBeta/tags/__VERSION__ SBAlphaBeta
+svn co http://svn.brautaset.org/trunk/SBAlphaBeta SBAlphaBeta
 @endverbatim
 
 @section feedback_sec Feedback / Bugreports
