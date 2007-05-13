@@ -167,13 +167,11 @@ Returns the best move found.
 {
     double alpha = -INFINITY;
     double beta  = +INFINITY;
-    int leafCount = 0;
     
-    id m, best = nil;
+    id best = nil;
     NSArray *mvs = [self movesAvailable];
     NSEnumerator *iter = [mvs objectEnumerator];
-    while (m = [iter nextObject]) {
-        foundEnd = NO;
+    for (id m; m = [iter nextObject]; ) {
         
         [self move:m];
         double sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
@@ -182,12 +180,7 @@ Returns the best move found.
             best = m;
         }
         [self undo];
-        
-        if (foundEnd)
-            leafCount++;
     }
-    if (leafCount == [mvs count])
-        foundEnd = YES;
     
     return best;
 }

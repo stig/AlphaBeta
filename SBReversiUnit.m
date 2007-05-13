@@ -77,6 +77,27 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
+- (void)testIterativeTimeKeeping
+{
+    SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
+    id times = [@"0.05 0.1 0.2 0.5 1.0 2.0" componentsSeparatedByString:@" "];
+    for (unsigned i = 0; i < [times count]; i++) {
+        double interval = [[times objectAtIndex:i] doubleValue];
+
+        NSDate *start = [NSDate date];
+        [ab moveFromSearchWithInterval:interval];
+        double duration = -[start timeIntervalSinceNow];
+
+        /* _Must_ finish in less time than the interval */
+        STAssertTrue( duration < interval, @"%f <= %f", duration, interval);
+
+        /* We should really tolerate finishing up to 10% early...
+        double accuracy = interval * 0.9;
+        STAssertTrue( duration > accuracy, @"%f <= %f", duration, accuracy);
+        */
+    }
+}
+
 - (void)testPlayer
 {
     SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
