@@ -216,6 +216,10 @@ search that lasts up to 300 milliseconds.
         double alpha = -INFINITY;
         double beta  = +INFINITY;
 
+        /** @todo When searching to ply N+1, order the moves so we
+            search the most promising one from search to ply N.
+            This has the potential of speeding up search a lot.
+         */
         NSEnumerator *iter = [mvs objectEnumerator];
 
         for (id m; m = [iter nextObject]; ) {
