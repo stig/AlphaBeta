@@ -221,8 +221,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testIterativeRun
 {
-    unsigned i;
-    for (i = 0; i < 9; i++) {
+    for (unsigned i = 0; i < 9; i++) {
         id m1, m2;
         STAssertEquals([ab countMoves], i, nil);
         STAssertNoThrow(m1 = [ab moveFromSearchWithInterval:0.3], nil);

@@ -167,7 +167,7 @@ Returns the best move found.
 {
     double alpha = -INFINITY;
     double beta  = +INFINITY;
-    int reachedEnd = 0;
+    int leafCount = 0;
     
     id m, best = nil;
     NSArray *mvs = [self movesAvailable];
@@ -184,9 +184,9 @@ Returns the best move found.
         [self undo];
         
         if (foundEnd)
-            reachedEnd++;
+            leafCount++;
     }
-    if (reachedEnd == [mvs count])
+    if (leafCount == [mvs count])
         foundEnd = YES;
     
     return best;
@@ -211,22 +211,56 @@ search that lasts up to 300 milliseconds.
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval
 {
     id best = nil;
-    unsigned ply;
     
-    foundEnd = NO;
-    
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:interval/3.0];
-    for (ply = 1;; ply++) {
-        if ([date compare:[NSDate date]] < 0 || foundEnd)
-            break;
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:interval/2.0];
+
+    NSArray *mvs = [self movesAvailable];
+    for (unsigned ply = 1;; ply++) {
+
+        unsigned leafCount = 0;
+        id bestAtThisPly = nil;
+
+        double alpha = -INFINITY;
+        double beta  = +INFINITY;
+
+        NSEnumerator *iter = [mvs objectEnumerator];
+
+        for (id m; m = [iter nextObject]; ) {
         
-        id move = [self moveFromSearchWithPly:ply];
-        if (move) {
-            best = move;
-            plyReached = ply;
+            /* Reset the 'reached a leaf state' indicator. */
+            foundEnd = NO;
+
+            /* Check if we have any time left. */
+            if ([date compare:[NSDate date]] < 0)
+                goto time_is_up;
+
+            [self move:m];
+            double sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
+            if (sc > alpha) {
+                alpha = sc;
+                bestAtThisPly = m;
+            }
+            [self undo];
+            
+            if (foundEnd)
+                leafCount++;
         }
+
+        /* If we got here then we should replace the current best move,
+           since we just finished a search to a deeper level than before.
+         */
+        best = bestAtThisPly;
+        plyReached = ply;
+
+        /* If we found a leaf state for every move, then we're done. We
+           don't need to search deeper.
+         */
+        if (leafCount == [mvs count])
+            break;
+            
     }
-    
+
+time_is_up:
     return best;
 }
 
