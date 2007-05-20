@@ -1,6 +1,6 @@
 /*
 The validMove: and transformWithMove: methods are based on code in Gnome Iagno which is Copyright (C) 1998-2004 Ian Peters.
-Copyright (C) 2006-2007 Stig Brautaset. All rights reserved.
+Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
  
 This file is part of SBAlphaBeta.
 
