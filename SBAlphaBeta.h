@@ -1,5 +1,4 @@
-/**
-@page license License
+/*
 
 Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
 
@@ -127,6 +126,10 @@ svn co http://svn.brautaset.org/trunk/SBAlphaBeta SBAlphaBeta
 
 Please send praise and bile to <a href="mailto:stig@brautaset.org">stig@brautaset.org</a>.
 
+@section lisence_sec Lisence
+
+Alphabeta is released under the GNU GPL2.
+
 @page changes Changes
 
 @section v03_sec Version 0.3 (2007-XX-XX)
@@ -142,7 +145,7 @@ This release has seen substantial updates. This is _not_ a drop-in replacement f
 
 @li Classes and interfaces have received a prefix to make their names more unique.
 @li The interfaces for states have been renamed to SBAlphaBetaState and SBMutableAlphaBetaState.
-@li There are now some minor @ref moves_sec "restrictions on moves", which allows us to do more error checking in the controller.
+@li There are now some minor restrictions on moves, which allows us to do more error checking in the controller.
 @li Several confusing "convenience" methods have been dropped.
 @li Many methods have been renamed for clarity.
 

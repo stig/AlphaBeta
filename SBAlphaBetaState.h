@@ -36,7 +36,7 @@ This protocol exists solely because I hate duplication. Please pretend that it d
 /**
 Should return the current fitness. The fitness is a number indicating for fortuitous the state is for the current player.
 
-Use a high positive number for very good, high negative number for very bad. The legal range is +/- INFINITY.
+Use a high positive number for very good, high negative number for very bad.
 */
 - (double)currentFitness;
 

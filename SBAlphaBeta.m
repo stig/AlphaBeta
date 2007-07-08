@@ -26,17 +26,22 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /** 
 Encapsulation of the Alpha-Beta algorithm.
 
-This class encapsulates the Alpha-Beta algorithm. No prior experience with Artificial Intelligence is required in order to use it.
+There is nothing magic about what SBAlphaBeta does. It does a brute-force search of as much of the searchspace of your game it has time to. SBAlphaBeta works by with states and moves. A <em>state</em> is a discrete game state--a point in time between moves. A <em>move</em> contains the information required for transforming a state into its successor.
 
-@section states_sec Requirements for states
+SBAlphaBeta cares not what the types of the states or moves are. States can further be either immutable or mutable and must implement <em>either</em> the SBAlphaBetaState <em>or</em> the SBMutableAlphaBetaState protocols respectively. @ref statemutability_sec has a short discussion on the pros and cons of each.
 
-States must implement <em>either</em> the SBAlphaBetaState <em>or</em> the SBMutableAlphaBetaState protocol. See their respective documentation for details of which methods this entails.
+Moves must implement the below <em>informal</em> protocol. Personally I end up using a mix of NSArray, NSDictionary and NSNumber instances for moves. These already implement the required protocol. I've found using NSNulls convenient for pass moves (not necessary for all games).
 
-Though not <em>required</em>, it is advisable that you also override -description. This way some of the exceptions thrown by SBAlphaBeta will make much more sense.
+@code
+-(BOOL)isEqual:(id)object;
+-(unsigned)hash;
+@endcode
 
-@subsection statemutability_sec Should I use mutable or immutable states?
+Though not required it is advised that you override -description to return something sensible for both states and moves. This can make debugging easier if you make a false step and feed SBAlphaBeta unexpected data, as the exceptions thrown will make more sense.
 
-It's a good question. They each have their own pros and cons.
+@section statemutability_sec Should I use mutable or immutable states?
+
+It's a good question. I've toyed with the idea of only supporting They each have their own pros and cons. 
 
 @li If you go with mutable states, the moves you return from -movesAvailable must contain enough information to undo the effects of a move; with immutable states they don't.
 
@@ -47,17 +52,6 @@ It's a good question. They each have their own pros and cons.
 @li Immutable states offer the possibility of loop detection (not implemented yet), which can be 
 
 @li Implementation of immutable states is simpler is several cases (no need to implement undo).
-
-@section moves_sec Notes on moves
-
-Moves does not have to be of any particular class (both NSArray and NSDictionary are good candidates), but they must implement the following two methods:
-
-@li -(BOOL)isEqual:(id)object;
-@li -(unsigned)hash;
-
-Use NSNull instances for pass moves, if your game allows passing.
-
-Though not <em>required</em>, it is advisable that you also override -description. This way some of the exceptions thrown by SBAlphaBeta will make much more sense.
 
 */
 
