@@ -61,7 +61,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 /**
-@file SBAlphaBeta/SBAlphaBeta.h
+@file 
 @brief MiniMax with Alpha-Beta pruning (aka Alpha-Beta algorithm)
 @mainpage SBAlphaBeta
 
@@ -131,7 +131,8 @@ Please send praise and bile to <a href="mailto:stig@brautaset.org">stig@brautase
 
 @section v03_sec Version 0.3 (2007-XX-XX)
 
-Added an @p -endStateScore method to the state protocols. This, in combination with SBAlphaBeta's new @p -playerTurn method, lets SBAlphaBeta deduce the winner (see the @p -winner method) of a game.
+@li Added an @p -endStateScore method to the state protocols. This, in combination with SBAlphaBeta's new @p -playerTurn method, lets SBAlphaBeta deduce the winner (see the @p -winner method) of a game.
+@li Renamed the project (not the classes) and added an AlphaBeta.h header.
 
 @bug No date filled in for 0.3 release
 

@@ -19,5 +19,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
+/** @file AlphaBeta/AlphaBeta.h
+    Main header.
+ */
 #import <AlphaBeta/SBAlphaBeta.h>
 #import <AlphaBeta/SBAlphaBetaState.h>
