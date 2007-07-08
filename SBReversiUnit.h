@@ -19,11 +19,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import "AlphaBeta.h"
+#import <SenTestingKit/SenTestingKit.h>
+#import "SBReversiState.h"
 
-@interface TTTState : NSObject <SBAlphaBetaState> {
-    int board[3][3];
-@public
-    unsigned player;
+@interface SBReversiUnit : SenTestCase {
+    SBReversiState *st;
+    NSArray *moves;
 }
+
 @end

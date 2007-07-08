@@ -7,23 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		534E13270C400E4800995A05 /* AlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 534E13250C400E4800995A05 /* AlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5350230B0B3AB2930012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		535023150B3AB2BD0012DAE7 /* SBAlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 5350230F0B3AB2BD0012DAE7 /* SBAlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		535023160B3AB2BD0012DAE7 /* SBAlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 535023100B3AB2BD0012DAE7 /* SBAlphaBeta.m */; };
 		535023ED0B3AB8A80012DAE7 /* TTTState.h in Headers */ = {isa = PBXBuildFile; fileRef = 535023E90B3AB8A80012DAE7 /* TTTState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		535023EE0B3AB8A80012DAE7 /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 535023EA0B3AB8A80012DAE7 /* TTTState.m */; };
 		5350240E0B3ABA140012DAE7 /* TTTUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5350240D0B3ABA140012DAE7 /* TTTUnit.m */; };
-		5350242E0B3ABAF50012DAE7 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
+		5350242E0B3ABAF50012DAE7 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* SBAlphaBeta.framework */; };
 		5350242F0B3ABAFB0012DAE7 /* TTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535023DF0B3AB87F0012DAE7 /* TTT.framework */; };
 		5350246F0B3AC3540012DAE7 /* SBReversiState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5350246B0B3AC3540012DAE7 /* SBReversiState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		535024700B3AC3540012DAE7 /* SBReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5350246C0B3AC3540012DAE7 /* SBReversiState.m */; };
 		535024730B3AC3870012DAE7 /* SBReversiUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024720B3AC3870012DAE7 /* SBReversiUnit.m */; };
 		535024760B3AC3A20012DAE7 /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535024600B3AC2D90012DAE7 /* SBReversi.framework */; };
-		535026430B3AFE9F0012DAE7 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
+		535026430B3AFE9F0012DAE7 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* SBAlphaBeta.framework */; };
 		535026470B3AFEB50012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		535026490B3AFEDF0012DAE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
-		5350264B0B3AFF0D0012DAE7 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
+		5350264B0B3AFF0D0012DAE7 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* SBAlphaBeta.framework */; };
 		5350264C0B3AFF120012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		53762BDC0BA3145C0089CB6D /* SBAlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -73,7 +72,6 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF5E0370ADEE00C91783 /* SBAlphaBeta_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlphaBeta_Prefix.pch; sourceTree = "<group>"; };
-		534E13250C400E4800995A05 /* AlphaBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBeta.h; sourceTree = "<group>"; };
 		5350230F0B3AB2BD0012DAE7 /* SBAlphaBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlphaBeta.h; sourceTree = "<group>"; };
 		535023100B3AB2BD0012DAE7 /* SBAlphaBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlphaBeta.m; sourceTree = "<group>"; };
 		535023DF0B3AB87F0012DAE7 /* TTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,7 +90,7 @@
 		535024720B3AC3870012DAE7 /* SBReversiUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBReversiUnit.m; sourceTree = "<group>"; };
 		53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlphaBetaState.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlphaBeta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DC2EF5B0486A6940098B216 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SBAlphaBeta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -101,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5350264B0B3AFF0D0012DAE7 /* AlphaBeta.framework in Frameworks */,
+				5350264B0B3AFF0D0012DAE7 /* SBAlphaBeta.framework in Frameworks */,
 				5350264C0B3AFF120012DAE7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5350242E0B3ABAF50012DAE7 /* AlphaBeta.framework in Frameworks */,
+				5350242E0B3ABAF50012DAE7 /* SBAlphaBeta.framework in Frameworks */,
 				5350242F0B3ABAFB0012DAE7 /* TTT.framework in Frameworks */,
 				535024760B3AC3A20012DAE7 /* SBReversi.framework in Frameworks */,
 			);
@@ -120,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				535026430B3AFE9F0012DAE7 /* AlphaBeta.framework in Frameworks */,
+				535026430B3AFE9F0012DAE7 /* SBAlphaBeta.framework in Frameworks */,
 				535026470B3AFEB50012DAE7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,7 +137,7 @@
 		034768DFFF38A50411DB9C8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */,
+				8DC2EF5B0486A6940098B216 /* SBAlphaBeta.framework */,
 				535023DF0B3AB87F0012DAE7 /* TTT.framework */,
 				535023F40B3AB9000012DAE7 /* Tests.octest */,
 				535024600B3AC2D90012DAE7 /* SBReversi.framework */,
@@ -152,7 +150,6 @@
 			children = (
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
-				534E132B0C400E6600995A05 /* Tests */,
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
@@ -186,6 +183,7 @@
 			children = (
 				53762BEA0BA315450089CB6D /* Reversi */,
 				53762BE90BA315360089CB6D /* TicTacToe */,
+				53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */,
 				5350230F0B3AB2BD0012DAE7 /* SBAlphaBeta.h */,
 				535023100B3AB2BD0012DAE7 /* SBAlphaBeta.m */,
 			);
@@ -213,22 +211,13 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */,
-				32DBCF5E0370ADEE00C91783 /* SBAlphaBeta_Prefix.pch */,
-				534E13250C400E4800995A05 /* AlphaBeta.h */,
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		534E132B0C400E6600995A05 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
 				535024710B3AC3870012DAE7 /* SBReversiUnit.h */,
 				535024720B3AC3870012DAE7 /* SBReversiUnit.m */,
 				5350240C0B3ABA140012DAE7 /* TTTUnit.h */,
 				5350240D0B3ABA140012DAE7 /* TTTUnit.m */,
+				32DBCF5E0370ADEE00C91783 /* SBAlphaBeta_Prefix.pch */,
 			);
-			name = Tests;
+			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 		53762BE90BA315360089CB6D /* TicTacToe */ = {
@@ -274,7 +263,6 @@
 			files = (
 				535023150B3AB2BD0012DAE7 /* SBAlphaBeta.h in Headers */,
 				53762BDC0BA3145C0089CB6D /* SBAlphaBetaState.h in Headers */,
-				534E13270C400E4800995A05 /* AlphaBeta.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,9 +328,9 @@
 			productReference = 535024600B3AC2D90012DAE7 /* SBReversi.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8DC2EF4F0486A6940098B216 /* AlphaBeta */ = {
+		8DC2EF4F0486A6940098B216 /* SBAlphaBeta */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "AlphaBeta" */;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "SBAlphaBeta" */;
 			buildPhases = (
 				8DC2EF500486A6940098B216 /* Headers */,
 				8DC2EF520486A6940098B216 /* Resources */,
@@ -353,10 +341,10 @@
 			);
 			dependencies = (
 			);
-			name = AlphaBeta;
+			name = SBAlphaBeta;
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = SBAlphaBeta;
-			productReference = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */;
+			productReference = 8DC2EF5B0486A6940098B216 /* SBAlphaBeta.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -364,13 +352,13 @@
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "AlphaBeta" */;
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "SBAlphaBeta" */;
 			hasScannedForEncodings = 1;
 			mainGroup = 0867D691FE84028FC02AAC07 /* SBAlphaBeta */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
 			targets = (
-				8DC2EF4F0486A6940098B216 /* AlphaBeta */,
+				8DC2EF4F0486A6940098B216 /* SBAlphaBeta */,
 				5350245F0B3AC2D90012DAE7 /* SBReversi */,
 				535023DE0B3AB87F0012DAE7 /* TTT */,
 				535023F30B3AB9000012DAE7 /* Tests */,
@@ -466,12 +454,12 @@
 /* Begin PBXTargetDependency section */
 		535023E60B3AB88F0012DAE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
+			target = 8DC2EF4F0486A6940098B216 /* SBAlphaBeta */;
 			targetProxy = 535023E50B3AB88F0012DAE7 /* PBXContainerItemProxy */;
 		};
 		535023FB0B3AB9060012DAE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
+			target = 8DC2EF4F0486A6940098B216 /* SBAlphaBeta */;
 			targetProxy = 535023FA0B3AB9060012DAE7 /* PBXContainerItemProxy */;
 		};
 		535023FD0B3AB9060012DAE7 /* PBXTargetDependency */ = {
@@ -481,7 +469,7 @@
 		};
 		535024670B3AC2E40012DAE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
+			target = 8DC2EF4F0486A6940098B216 /* SBAlphaBeta */;
 			targetProxy = 535024660B3AC2E40012DAE7 /* PBXContainerItemProxy */;
 		};
 		535024750B3AC3980012DAE7 /* PBXTargetDependency */ = {
@@ -522,7 +510,7 @@
 					"-seg1addr",
 					0xb0000000,
 				);
-				PRODUCT_NAME = AlphaBeta;
+				PRODUCT_NAME = SBAlphaBeta;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = YES;
 			};
@@ -548,7 +536,7 @@
 					"-seg1addr",
 					0xb0000000,
 				);
-				PRODUCT_NAME = AlphaBeta;
+				PRODUCT_NAME = SBAlphaBeta;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -748,7 +736,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "AlphaBeta" */ = {
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "SBAlphaBeta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB91AE08733DA50010E9CD /* Debug */,
@@ -757,7 +745,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "AlphaBeta" */ = {
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "SBAlphaBeta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB91B208733DA50010E9CD /* Debug */,

@@ -1,15 +1,28 @@
-//
-//  ReversiState.m
-//  AlphaBeta
-//
-//  Created by Stig Brautaset on 18/12/2005.
-//  Copyright 2005 Stig Brautaset. All rights reserved.
-//
+/*
+The validMove: and transformWithMove: methods are based on code in Gnome Iagno which is Copyright (C) 1998-2004 Ian Peters.
+Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
+ 
+This file is part of AlphaBeta.
 
-#import "ReversiState.h"
-#import "ReversiMove.h"
+AlphaBeta is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
-@implementation ReversiState
+AlphaBeta is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with AlphaBeta; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+*/
+
+#import "SBReversiState.h"
+
+@implementation SBReversiState
 
 - (id)init
 {
@@ -59,32 +72,21 @@
     return self;
 }
 
-- (int**)board
+- (NSArray *)board
 {
-    return board;
+    id r = [NSMutableArray array];
+    for (int i = 0; i < size; i++) {
+        id c = [NSMutableArray array];
+        for (int j = 0; j < size; j++)
+            [c addObject:[NSNumber numberWithInt: board[i][j]]];
+        [r addObject:c];
+    }
+    return r;
 }
 
-- (int)player
-{
-    return player;
-}
-
-- (int)size
+- (int)boardSize
 {
     return size;
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    ReversiState *copy = [[ReversiState allocWithZone:zone] initWithBoardSize:size andPlayer:player];
-    int i, j;
-    int **b = [copy board];
-    for (i = 0; i < size; i++) {
-        for (j = 0; j < size; j++) {
-            b[i][j] = board[i][j];
-        }
-    }
-    return copy;
 }
 
 - (void)dealloc
@@ -96,10 +98,10 @@
     [super dealloc];
 }
 
-- (ReversiStateCount)countSquares
+- (SBReversiStateCount)countSquares
 {
     int i, j;
-    ReversiStateCount count = {{0}};
+    SBReversiStateCount count = {{0}};
     for (i = 0; i < size; i++) {
         for (j = 0; j < size; j++) {
             count.c[ board[i][j] ]++;
@@ -108,17 +110,27 @@
     return count;
 }
 
-- (float)fitness
+
+- (double)endStateScore
+{
+    SBReversiStateCount count = [self countSquares];
+    return (double)count.c[player] - count.c[3 - player];
+}
+
+- (double)currentFitness
 {
     NSArray *moves;
     int mine, diff, me, you;
-    ReversiStateCount counts;
+    SBReversiStateCount counts;
 
     me = player;
     you = 3 - me;
 
-    moves = [self listAvailableMoves];
+    moves = [self movesAvailable];
     if (!moves) {
+        [NSException raise:@"unexpected" format:@"Unexpected return"];
+    }
+    else if (![moves count]) {
         counts = [self countSquares];
         mine = counts.c[me] - counts.c[you];
         return (float)(mine > 0 ? +100000.0 :
@@ -128,7 +140,7 @@
     mine = [moves count];
 
     player = 3 - player;
-    moves = [self listAvailableMoves];
+    moves = [self movesAvailable];
     player = 3 - player;
 
     diff = mine - [moves count];
@@ -215,53 +227,67 @@
     return NO;
 }
 
-- (NSMutableArray *)listAvailableMoves
+- (NSArray *)movesAvailable
 {
-    NSMutableArray *moves = [NSMutableArray new];
+    NSMutableArray *moves = [NSMutableArray array];
     int me, i, j;
 
     me = player;
 again:
     for (i = 0; i < size; i++) {
         for (j = 0; j < size; j++) {
-            if ([self validMove:me col:i row:j]) {
-                [moves addObject:[[ReversiMove alloc] initWithCol:i andRow:j]];
+            id m = [self moveForCol:i andRow:j];
+            if (m != nil) {
+                [moves addObject:m];
             }
         }
     }
 
     if (![moves count]) {
         if (me == player) {
-            me = 3 - me;
+            player = 3 - player;
             goto again;
         }
     }
     else if (me != player) {
-        [moves addObject:[[ReversiMove alloc] initWithCol:-1 andRow:-1]];
+        [moves removeAllObjects];
+        [moves addObject:[NSNull null]];
     }
 
-    return [moves autorelease];
+    player = me;
+    return moves;
 }
 
-- (void)applyMove:(id)m
+- (NSDictionary *)moveWithCol:(int)c andRow:(int)r
 {
-    int x = [m col];
-    int y = [m row];
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+        [NSNumber numberWithInt: c], @"col",
+        [NSNumber numberWithInt: r], @"row",
+        nil];
+}
+
+- (id)moveForCol:(int)x andRow:(int)y
+{
     int me = player;
     int not_me = 3 - me;
-    int tx, ty, flipped = 0;
-
-    player = not_me;
+    int tx, ty;
 
     if (x == -1 && y == -1) {
-        return;
+        /* pass move */
+        return [NSArray arrayWithObject:[NSNull null]];
     }
     else if (x < 0 || x > (size-1) || y < 0 || y > (size-1)) {
+        return nil;
         [NSException raise:@"illegal move" format:@"Illegal move"];
     }
     else if (board[x][y] != 0) {
+         return nil;
         [NSException raise:@"square busy" format:@"Square busy"];
     }
+
+    /* A "move" is an array of coordinates;
+       the first is the actual move, the subsequent is all flipped pieces */
+    NSMutableArray *arr = [NSMutableArray arrayWithObject:[self moveWithCol:x andRow:y]];
 
     /* left */
     for (tx = x - 1; tx >= 0 && board[tx][y] == not_me; tx--)
@@ -269,10 +295,9 @@ again:
     if (tx >= 0 && tx != x - 1 && board[tx][y] == me) {
         tx = x - 1;
         while (tx >= 0 && board[tx][y] == not_me) {
-            board[tx][y] = me;
+            [arr addObject:[self moveWithCol:tx andRow:y]];
             tx--;
         }
-        flipped++;
     }
 
     /* right */
@@ -281,10 +306,9 @@ again:
     if (tx < size && tx != x + 1 && board[tx][y] == me) {
         tx = x + 1;
         while (tx < size && board[tx][y] == not_me) {
-            board[tx][y] = me;
+            [arr addObject:[self moveWithCol:tx andRow:y]];
             tx++;
         }
-        flipped++;
     }
 
     /* up */
@@ -293,10 +317,9 @@ again:
     if (ty >= 0 && ty != y - 1 && board[x][ty] == me) {
         ty = y - 1;
         while (ty >= 0 && board[x][ty] == not_me) {
-            board[x][ty] = me;
+            [arr addObject:[self moveWithCol:x andRow:ty]];
             ty--;
         }
-        flipped++;
     }
 
     /* down */
@@ -305,10 +328,9 @@ again:
     if (ty < size && ty != y + 1 && board[x][ty] == me) {
         ty = y + 1;
         while (ty < size && board[x][ty] == not_me) {
-            board[x][ty] = me;
+            [arr addObject:[self moveWithCol:x andRow:ty]];
             ty++;
         }
-        flipped++;
     }
 
     /* up/left */
@@ -322,11 +344,10 @@ again:
         tx = x - 1;
         ty = y - 1;
         while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
-            board[tx][ty] = me;
+            [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx--;
             ty--;
         }
-        flipped++;
     }
 
     /* up/right */
@@ -340,11 +361,10 @@ again:
         tx = x - 1;
         ty = y + 1;
         while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
-            board[tx][ty] = me;
+            [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx--;
             ty++;
         }
-        flipped++;
     }
 
     /* down/right */
@@ -358,11 +378,10 @@ again:
         tx = x + 1;
         ty = y + 1;
         while (tx < size && ty < size && board[tx][ty] == not_me) {
-            board[tx][ty] = me;
+            [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx++;
             ty++;
         }
-        flipped++;
     }
 
     /* down/left */
@@ -376,24 +395,22 @@ again:
         tx = x + 1;
         ty = y - 1;
         while (tx < size && ty >= 0 && board[tx][ty] == not_me) {
-            board[tx][ty] = me;
+            [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx++;
             ty--;
         }
-        flipped++;
     }
 
-    if (flipped) {
-        board[x][y] = me;
-        return;
+    if ([arr count] < 2) {
+        /* didn't flip any pieces; not a valid move */
+        return nil;
     }
-    player = me;
-    [NSException raise:@"illegal move" format:@"Move achieved nothing: %@ for player %d (on %@)", [m string], player, [self string]];
+    return arr;
 }
 
-- (NSString *)string
+- (NSString *)description
 {
-    NSMutableString *s = [NSMutableString string];
+    NSMutableString *s = [NSMutableString stringWithFormat: @"%d: ", player];
     int i, j;
     for (i = 0; i < size; i++) {
         for (j = 0; j < size; j++) {
@@ -403,7 +420,71 @@ again:
             [s appendFormat:@" "];
         }
     }
-    return [s autorelease];
+    return s;
+}
+
+- (BOOL)isPassMove:(id)move
+{
+    if ([move isKindOfClass:[NSNull class]])
+        return YES;
+        
+    /* trying to get rid of this case ... */
+    if ([move isKindOfClass:[NSArray class]] && [move count] == 1 && [[move lastObject] isKindOfClass:[NSNull class]])
+        return YES;
+    return NO;
+}
+
+- (void)validateMove:(id)move
+{
+    if (![move isKindOfClass:[NSArray class]]) {
+        [NSException raise:@"broken move" format:@"not an array"];
+
+    } else if ([move count] < 2) {
+        [NSException raise:@"broken move" format:@"not flipping pieces?"];
+    }
+}
+
+-(void)transformWithMove:(id)move
+{
+    if (![self isPassMove:move]) {
+        [self validateMove:move];
+        NSEnumerator *e = [move objectEnumerator];
+        id m;
+        while (m = [e nextObject]) {
+            int row = [[m objectForKey:@"row"] intValue];
+            int col = [[m objectForKey:@"col"] intValue];
+            board[ col ][ row ] = player;
+        }
+    }
+    player = 3 - player;
+}
+
+- (void)undoTransformWithMove:(id)move
+{
+    if (![self isPassMove:move]) {
+        [self validateMove:move];
+        NSEnumerator *e = [move objectEnumerator];
+        id m = [e nextObject];
+        int row = [[m objectForKey:@"row"] intValue];
+        int col = [[m objectForKey:@"col"] intValue];
+        board[ col ][ row ] = 0;
+        while (m = [e nextObject]) {
+            int row = [[m objectForKey:@"row"] intValue];
+            int col = [[m objectForKey:@"col"] intValue];
+            board[ col ][ row ] = player;
+        }
+    }
+    player = 3 - player;
+}
+
+- (int)pieceAtRow:(int)r col:(int)c
+{
+    return board[r][c];
+}
+
+- (void)getRows:(int *)rows cols:(int *)cols
+{
+    *rows = *cols = size;
 }
 
 

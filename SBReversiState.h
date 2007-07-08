@@ -19,11 +19,29 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import "AlphaBeta.h"
+#import <AlphaBeta/AlphaBeta.h>
 
-@interface TTTState : NSObject <SBAlphaBetaState> {
-    int board[3][3];
+typedef struct _ReversiStateCount {
+    unsigned c[3];
+} SBReversiStateCount;
+
+@interface SBReversiState : NSObject <SBMutableAlphaBetaState> {
 @public
-    unsigned player;
+    int player;
+    int size;
+    int **board;
 }
+
+- (NSArray *)board;
+- (int)boardSize;
+- (id)initWithBoardSize:(int)theSize;
+- (SBReversiStateCount)countSquares;
+- (id)moveForCol:(int)x andRow:(int)y;
+
+- (NSDictionary *)moveWithCol:(int)c andRow:(int)r;
+
+/* for the View */
+- (int)pieceAtRow:(int)row col:(int)col;
+- (void)getRows:(int*)rows cols:(int*)cols;
+
 @end
