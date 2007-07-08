@@ -206,7 +206,7 @@ search that lasts up to 300 milliseconds.
 {
     id best = nil;
     
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:interval/2.0];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:interval/2.5];
 
     NSArray *mvs = [self movesAvailable];
     for (unsigned ply = 1;; ply++) {
