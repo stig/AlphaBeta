@@ -26,11 +26,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /** 
 Encapsulation of the Alpha-Beta algorithm.
 
-There is nothing magic about what SBAlphaBeta does. It does a brute-force search of as much of the searchspace of your game it has time to. SBAlphaBeta works by with states and moves. A <em>state</em> is a discrete game state--a point in time between moves. A <em>move</em> contains the information required for transforming a state into its successor.
+SBAlphaBeta is a generic implementation of the Alpha-Beta algorithm. It doesn't need to know anything at all about the rules of your game; other than that it is between two players that takes turn moving. It can be used to create AIs for a whole host of games.
 
-SBAlphaBeta cares not what the types of the states or moves are. States can further be either immutable or mutable and must implement <em>either</em> the SBAlphaBetaState <em>or</em> the SBMutableAlphaBetaState protocols respectively. @ref statemutability_sec has a short discussion on the pros and cons of each.
+To use SBAlphaBeta you need to initialise it with an instance of your game state class; this will be used as the initial state of the game. A state is a discrete game state--a point in time between moves. A move contains the information required for transforming a state into its successor.
 
-Moves must implement the below <em>informal</em> protocol. Personally I end up using a mix of NSArray, NSDictionary and NSNumber instances for moves. These already implement the required protocol. I've found using NSNulls convenient for pass moves (not necessary for all games).
+SBAlphaBeta cares not what the types of your states and moves are. States can be immutable or mutable and must implement either the SBAlphaBetaState or the SBMutableAlphaBetaState protocol. The section @ref statemutability_sec has a short discussion on the pros and cons of each.
+
+Moves must implement the below informal protocol. Personally I like using  NSArray, NSDictionary, NSString and NSNumber; these classes already implement the required protocol. I've also found NSNull convenient for pass moves.
 
 @code
 -(BOOL)isEqual:(id)object;
@@ -41,17 +43,13 @@ Though not required it is advised that you override -description to return somet
 
 @section statemutability_sec Should I use mutable or immutable states?
 
-It's a good question. I've toyed with the idea of only supporting They each have their own pros and cons. 
+It's a good question. I've toyed with the idea of only supporting one, to avoid the dilemma of having to choose. The problem is that I can't pick which one to support. They each have their own pros and cons. 
 
-@li If you go with mutable states, the moves you return from -movesAvailable must contain enough information to undo the effects of a move; with immutable states they don't.
+If you go with mutable states, the moves you return from -movesAvailable must contain enough information to undo the effects of a move; with immutable states they don't. This can mean your moves must contain more information. On the other hand, having more information in the moves might make applying the move cheaper.
 
-@li With immutable states you have to make a complete copy of the entire state, which can be expensive, but on the other hand undo is extremely cheap: you just pop the stack.
+Consider Reversi: if you use mutable states your moves must contain a list of all the slots that were flipped, in addition to the slot where you put your piece, because it is impossible to deduce that when the time comes to revert the move. This uses more memory and if your game has a high branching factor this might become significant. On the other hand if you use immutable states there is no need to implement undo; SBAlphaBeta has a copy of the previous state on its history stack already, so it just pops off the current one. Your moves don't need to contain anything but the coordinates of the slot you're putting your piece. However, your routine to perform a move must now be more clever and find which pieces to flip; with rich moves you just have to flip the pieces specified in the move.
 
-@li Many optimisations should be possible when using immutable states.
-
-@li Immutable states offer the possibility of loop detection (not implemented yet), which can be 
-
-@li Implementation of immutable states is simpler is several cases (no need to implement undo).
+With immutable states you have to make a complete copy of the entire state, which can be expensive; on the other hand undo is extremely cheap, and you don't have to write any code to do it. Again, SBAlphaBeta just pops a stack.
 
 */
 
@@ -78,7 +76,7 @@ It's a good question. I've toyed with the idea of only supporting They each have
 
         } else {
             [NSException raise:@"not-a-state"
-                        format:@"State %@ lacks necessary methods"];
+                        format:@"State %@ lacks necessary methods", this];
         }
         stateHistory = [[NSMutableArray arrayWithObject:this] retain];
         moveHistory = [NSMutableArray new];
