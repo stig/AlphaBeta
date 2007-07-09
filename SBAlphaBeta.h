@@ -61,12 +61,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 /**
 @file 
-@brief MiniMax with Alpha-Beta pruning (aka Alpha-Beta algorithm)
-@mainpage SBAlphaBeta
+@brief Generic implementation of the Alpha-Beta algorithm.
 
-SBAlphaBeta encapsulates the Alpha-Beta algorithm (aka MiniMax search with Alpha-Beta pruning) and can be used to create AIs for a large range of two-player games. No prior experience with Artificial Intelligence  is necessary.
+@mainpage AlphaBeta
 
-In order to use SBAlphaBeta your state class must implement the three methods in the SBAlphaBetaState protocol, or the four methods in the SBMutableAlphaBetaState protocol. See @ref statemutability_sec to help you chose.
+SBAlphaBeta encapsulates the Alpha-Beta algorithm (aka MiniMax search with Alpha-Beta pruning) and can be used to create AIs for a large range of two-player games. No prior experience with Artificial Intelligence is necessary.
+
+For the Alpha-Beta algorithm to be applicable to your game it needs to be a two-player <a href="http://en.wikipedia.org/wiki/Zero-sum">zero-sum</a> <a href="http://en.wikipedia.org/wiki/Perfect_information">perfect information</a> game. The last one basically rules out any game that has an element of chance. Yatzee? Right out the window. Poker? Forget about it. Jenga? Not even <em>close</em>. Chess, Checkers, Go, Othello and Connect-4 all fall in this category though. So does a whole slew of other games.
+
+XXXX Notes about search space
+
+
+The search space (the collection of all possible states) of all interesting games is too large to search exhaustively in any reasonable time. For example, it has been suggested that Chess has more possible game states than there are electrons in the known universe.
+
+The Alpha-Beta algorithm works by search through only part of the search space.
 
 Assuming MyGameState implements SBAlphaBetaState, here's how one could implement a very simple game:
 
@@ -74,33 +82,28 @@ Assuming MyGameState implements SBAlphaBetaState, here's how one could implement
 id state = [MyGameState new];
 id ab = [SBAlphaBeta newWithState:state];
 
-for (int turn = 1; ; turn++) {
+while (![ab isGameOver]) {
 
     // This NSLog output will be boring
     // unless you override -description.
     NSLog(@"%@", [ab currentState]);
-    
-    if ([ab isGameOver]) {
-        // Could be done in the loop condition, but then
-        // we wouldn't see the final state of the game
-        break;
-     
-    } else if (turn & 2) {
+
+    if (1 == [ab playerTurn]) {
         // Spend 300 ms searching for the best move,
         // then apply that move to the current state
         [ab applyMoveFromSearchWithInterval:0.3];
         
     }
     else {
-        id move = <get move from user>;
-        [ab applyMove:move];
+        // Get a move from a human player and apply that
+        [ab applyMove:get_player_move()];
     }
 }
 @endcode
 
 @section maturity_sec A note on code & interface maturity
 
-Though the code is mature and well tested, I'm still not entirely happy with the interface presented to the user. Thus, the interface may change between releases. The broad strokes are there, however, so if you use SBAlphaBeta to implement a game you should find it relatively simple to update to new versions.
+Though the underlying code is quite mature and well tested, I'm still not entirely happy with the interface. Thus the API may still change between releases. The broad strokes are there, however, so you should find it relatively simple to update to any new versions.
 
 @section users_sec Who/what uses SBAlphaBeta?
 
@@ -110,25 +113,21 @@ I maintain several Cocoa games for Mac OS X that all use SBAlphaBeta to provide 
 @li <a href="/Auberon">Auberon</a> - a Connect-4 game
 @li <a href="/Desdemona">Desdemona</a> - a Reversi (Othello) game
 
-@section applicability_sec Applicability
-
-For the Alpha-Beta algorithm to be applicable for your game, it needs to be a so-called two-player <a href="http://en.wikipedia.org/wiki/Zero-sum">zero-sum</a> <a href="http://en.wikipedia.org/wiki/Perfect_information">perfect information</a> game. This sounds like very small slice of the whole game pai, but it actually encompasses a whole slew of games. Chess, Go, Othello, Connect-4 etc all fall in this category.
-
 @section code_sec Getting the code
 
-Download <a href="__DMGURL__">SBAlphaBeta __VERSION__</a>, containing an embeddable framework, or get the source from Subversion:
+Download <a href="__DMGURL__">AlphaBeta __VERSION__</a>, containing an embeddable framework, or get the source from Subversion:
 
 @verbatim
-svn co http://svn.brautaset.org/trunk/SBAlphaBeta SBAlphaBeta
+svn co http://svn.brautaset.org/trunk/AlphaBeta AlphaBeta
 @endverbatim
 
 @section feedback_sec Feedback / Bugreports
 
 Please send praise and bile to <a href="mailto:stig@brautaset.org">stig@brautaset.org</a>.
 
-@section lisence_sec Lisence
+@section lisence_sec Copyright & Lisence
 
-Alphabeta is released under the GNU GPL2.
+AlphaBeta is released under the GPL2.
 
 @page changes Changes
 
@@ -136,6 +135,7 @@ Alphabeta is released under the GNU GPL2.
 
 @li Added an @p -endStateScore method to the state protocols. This, in combination with SBAlphaBeta's new @p -playerTurn method, lets SBAlphaBeta deduce the winner (see the @p -winner method) of a game.
 @li Renamed the project (not the classes) and added an AlphaBeta.h header.
+@li Greatly improved the documentation.
 
 @bug No date filled in for 0.3 release
 
