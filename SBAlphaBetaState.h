@@ -55,7 +55,7 @@ Returns an array of all the available moves for the current player. An empty arr
 @end
 
 /**
-Protocol for working with mutable states.
+Protocol for mutable states.
 
 The following methods are required for SBAlphaBeta to work with mutable states.
 */
@@ -77,7 +77,7 @@ This means that each move returned by -movesAvailable must contain enough inform
 @end
 
 /**
-Protocol for working with immutable states.
+Protocol for immutable states.
 
 Your immutable states must implement the following methods.
 */
