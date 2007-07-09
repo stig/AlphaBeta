@@ -121,6 +121,8 @@ Download <a href="__DMGURL__">AlphaBeta __VERSION__</a>, containing an embeddabl
 svn co http://svn.brautaset.org/trunk/AlphaBeta AlphaBeta
 @endverbatim
 
+If you're using a previous version, be sure to find out <a href="http://svn.brautaset.org/trunk/AlphaBeta/Changes">what has changed</a>.
+
 @section feedback_sec Feedback / Bugreports
 
 Please send praise and bile to <a href="mailto:stig@brautaset.org">stig@brautaset.org</a>.
@@ -128,30 +130,5 @@ Please send praise and bile to <a href="mailto:stig@brautaset.org">stig@brautase
 @section lisence_sec Copyright & Lisence
 
 AlphaBeta is released under the GPL2.
-
-@page changes Changes
-
-@section v03_sec Version 0.3 (2007-XX-XX)
-
-@li Added an @p -endStateScore method to the state protocols. This, in combination with SBAlphaBeta's new @p -playerTurn method, lets SBAlphaBeta deduce the winner (see the @p -winner method) of a game.
-@li Renamed the project (not the classes) and added an AlphaBeta.h header.
-@li Greatly improved the documentation.
-
-@bug No date filled in for 0.3 release
-
-@section v02_sec Version 0.2 (2007-03-27)
-
-This release has seen substantial updates. This is _not_ a drop-in replacement for version 0.1. This is a "back to sanity" release.
-
-@li Classes and interfaces have received a prefix to make their names more unique.
-@li The interfaces for states have been renamed to SBAlphaBetaState and SBMutableAlphaBetaState.
-@li There are now some minor restrictions on moves, which allows us to do more error checking in the controller.
-@li Several confusing "convenience" methods have been dropped.
-@li Many methods have been renamed for clarity.
-
-@section v01_sec Version 0.1 (2006-03-11)
-
-This was the initial release.
-
 
 */
