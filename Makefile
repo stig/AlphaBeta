@@ -9,11 +9,9 @@ DMGURL=http://code.brautaset.org/files/$(DMG)
 
 site:
 	rm -rf build/html
-	perl -pi -e 's/#import/#include/' *.h *.m 
 	doxygen 
 	perl -pi -e 's{__VERSION__}{$(VERSION)}g' build/html/*.html
 	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' build/html/*.html
-	perl -pi -e 's/#include/#import/' *.h *.m 
 
 upload-site: site
 	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK" 
