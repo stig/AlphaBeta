@@ -85,7 +85,7 @@ interlinked, so it makes sense to test them together. -applyMove and
    We reach a win state for player 1, then for player 2.
    Test current player's low fitness at end of the game.
 */
-- (void)test02IsGameOverWithWin
+- (void)test02GameOverWithWin
 {
     NSArray *moves = [NSArray arrayWithObjects:
         [self moveWithCol:0 andRow:0],
@@ -114,7 +114,7 @@ interlinked, so it makes sense to test them together. -applyMove and
 /* Case 2: game over because there are no more legal moves.
    We reach a draw state, where fitness is zero.
 */
-- (void)test03IsGameOverWithDraw
+- (void)test02GameOverWithDraw
 {
     NSArray *moves = [NSArray arrayWithObjects:
         [self moveWithCol:0 andRow:0],
@@ -137,7 +137,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEqualsWithAccuracy([ab currentFitness], (double)0.0, 0.000001, nil);
 }
 
-- (void)test04Fitness
+- (void)test03Fitness
 {
     STAssertEquals([ab currentFitness], (double)0.0, nil);
 
@@ -152,7 +152,7 @@ interlinked, so it makes sense to test them together. -applyMove and
 }
 
 
-- (void)test05MovesAvailable
+- (void)test04MovesAvailable
 {
     id moves;
     STAssertNotNil(moves = [ab movesAvailable], nil);
@@ -201,7 +201,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEquals([[ab movesAvailable] count], (unsigned)0, nil);
 }
 
-- (void)testStateAndMoves
+- (void)test05StateAndMoves
 {
     STAssertEqualObjects([[ab currentState] description], @"000 000 000", nil);
     unsigned i;
@@ -227,53 +227,53 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEquals([ab winner], (unsigned)1, nil);
 }
 
+- (void)test06SearchWithPly1
+{
+    STAssertNotNil([ab applyMoveFromSearchWithPly:1], nil);
+    STAssertEqualObjects([[ab currentState] description], @"000 010 000", nil);
+    STAssertEqualsWithAccuracy([ab currentFitness], (double)-4.0, 0.1, nil);
+}
 
-- (void)testFullRunReachesDraw
+- (void)test06SearchWithPly9
 {
     id states = [NSArray arrayWithObjects:
         @"100 000 000", @"100 020 000", @"100 120 000",
         @"100 120 200", @"101 120 200", @"121 120 200",
         @"121 120 210", @"121 122 210", @"121 122 211",
         nil];
-    
-    for (int i = 0; [ab applyMoveFromSearchWithPly:9]; i++) {
-        id s = [[ab currentState] description];
+    for (int i = 0; i < [states count]; i++) {
+        id s = [[ab applyMoveFromSearchWithPly:9] description];
         STAssertEqualObjects(s, [states objectAtIndex:i], nil);
     }
-    
-    /* Turns out the only winning move is not to play. */
-    STAssertEquals([ab winner], (unsigned)0, @"reached a draw");
 }
 
-- (void)testIterativeRun
+- (void)test07SearchWithInterval3
+{
+    id states = [NSArray arrayWithObjects:
+        @"000 010 000", @"200 010 000", @"200 110 000",
+        @"200 112 000", @"210 112 000", @"210 112 020",
+        @"210 112 120", @"212 112 120", @"212 112 121",
+        nil];
+    for (int i = 0; i < [states count]; i++) {
+        id s = [[ab applyMoveFromSearchWithInterval:3.0] description];
+        STAssertEqualObjects(s, [states objectAtIndex:i], nil);
+    }
+}
+
+- (void)test08PlyReachedForSearch
 {
     for (unsigned i = 0; i < 9; i++) {
-        id m1, m2;
-        STAssertEquals([ab countMoves], i, nil);
-        STAssertNoThrow(m1 = [ab moveFromSearchWithInterval:0.3], nil);
-        STAssertTrue([ab plyReachedForSearch] > 0, nil);
-        STAssertTrue([ab plyReachedForSearch] < 10, nil);
-        STAssertNoThrow(m2 = [ab moveFromSearchWithPly:[ab plyReachedForSearch]], nil);
-        STAssertEqualObjects([m1 description], [m2 description], @"%@", [ab currentState]);
+        id m1 = [ab moveFromSearchWithInterval:3.0];
+        unsigned plyReached = [ab plyReachedForSearch];
+        STAssertTrue(plyReached > 0, nil);
+        STAssertTrue(plyReached < 10, nil);
+
+        id m2 = [ab moveFromSearchWithPly:plyReached];
+        STAssertEqualObjects([m1 description], [m2 description], nil );
+
         STAssertNotNil([ab applyMove:m2], nil);
     }
-    STAssertNil([ab applyMoveFromSearchWithInterval:1.0], nil);
     STAssertEquals([ab countMoves], (unsigned)9, nil);
-}
-
-- (void)testFixedPlySearch
-{
-    STAssertNotNil([ab applyMoveFromSearchWithPly:1], nil);
-    STAssertEqualObjects([[ab currentState] description], @"000 010 000", nil);
-    STAssertEquals([ab countMoves], (unsigned)1, nil);
-    STAssertEqualsWithAccuracy([ab currentFitness], (double)-4.0, 0.1, nil);
-    STAssertEqualObjects([ab lastMove], [self moveWithCol:1 andRow:1], nil);
-    
-    [ab applyMoveFromSearchWithInterval:3];
-    STAssertEqualObjects([[ab currentState] description], @"200 010 000", nil);
-    STAssertEquals([ab countMoves], (unsigned)2, nil);
-    STAssertEqualsWithAccuracy([ab currentFitness], (double)1.0, 0.1, nil);
-    STAssertEqualObjects([ab lastMove], [self moveWithCol:0 andRow:0], nil);
 }
 
 @end
