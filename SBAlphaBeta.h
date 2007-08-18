@@ -65,16 +65,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @mainpage AlphaBeta
 
-SBAlphaBeta encapsulates the Alpha-Beta algorithm (aka MiniMax search with Alpha-Beta pruning) and can be used to create AIs for a large range of two-player games. No prior experience with Artificial Intelligence is necessary.
+SBAlphaBeta encapsulates the Alpha-Beta algorithm (aka Minimax search with Alpha-Beta pruning) and can be used to create AIs for a large range of two-player games. No prior experience with Artificial Intelligence is necessary.
 
-For the Alpha-Beta algorithm to be applicable to your game it needs to be a two-player <a href="http://en.wikipedia.org/wiki/Zero-sum">zero-sum</a> <a href="http://en.wikipedia.org/wiki/Perfect_information">perfect information</a> game. The last one basically rules out any game that has an element of chance. Yatzee? Right out the window. Poker? Forget about it. Jenga? Not even <em>close</em>. Chess, Checkers, Go, Othello and Connect-4 all fall in this category though. So does a whole slew of other games.
+For the Alpha-Beta algorithm to be applicable to your game it needs to be a two-player <a href="http://en.wikipedia.org/wiki/Zero-sum">zero sum</a> <a href="http://en.wikipedia.org/wiki/Perfect_information">perfect information</a> game. The term <em>two-player</em> just means that there must be two opposing sides (football is considered two-player, for example). A <em>zero sum</em> game is one where an advantage for one player is an equally large disadvantage for the other. <em>Perfect information</em> basically rules out any game that has an element of chance. Yatzee? Right out the window. Poker? Forget about it. Jenga? Not even <em>close</em>.
 
-XXXX Notes about search space
+For games that have these properties, for example Chess, Checkers, Go, Othello, Connect-4 and Tic-Tac-Toe, it is possible to set up a game tree to aid in the selection of the next move. For simplicity, consider the starting state of Tic-Tac-Toe to be the root of a tree. The root has nine branches, each leading to a successor state. Each of these has 8 branches leading to <em>its</em> successor states and so on. Some of the paths through the tree will end before others (a winning state is reached before all the slots have been filled) but some paths continue until there are no more legal moves. For Tic-Tac-Toe this will invariably happen at depth 9 (or <em>ply</em> 9 in game-tree terminology).
+
+After having exhausted the search space of the game, it is easy to find the paths that will lead to victory for either player. Knowing the path that x can take to the fastest victory is generally of little use, because o can thwart x's plans of a swift victory any time it is her turn to move. Thus, instead of traversing the  path leading to the fastest possible victory, x's best aim is to pick a path  where her <em>worst</em> outcome will be victory (the <em>best worst-case</em> path).
+
+The Minimax algorithm tries to find the best worst case path through a search tree. It is very time-consuming, and alpha-beta pruning is a way of speeding up the algorithm. I encourage you to read my article on <a href="http://blog.brautaset.org/2007/08/17/game-tree-search-the-minimax-and-alpha-beta-algorithms/">game-tree search, the Minimax algorithm and alpha-beta pruning</a> if you don't already know how it all hangs together.
 
 
-The search space (the collection of all possible states) of all interesting games is too large to search exhaustively in any reasonable time. For example, it has been suggested that Chess has more possible game states than there are electrons in the known universe.
-
-The Alpha-Beta algorithm works by search through only part of the search space.
+@section example_sec Example
 
 Assuming MyGameState implements SBAlphaBetaState, here's how one could implement a very simple game:
 
