@@ -24,9 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import <TTT/TTTState.h>
 
 @interface TTTUnit : SenTestCase {
-    TTTState *st;
     SBAlphaBeta *ab;
-    NSArray *moves;
 }
 
 @end

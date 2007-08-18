@@ -25,17 +25,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)setUp
 {
-    st = [TTTState new];
-    ab = [SBAlphaBeta newWithState:st];
-    moves = nil;
+    ab = [SBAlphaBeta newWithState:[TTTState new]];
 }
 
 - (void)tearDown
 {
     [ab release];
-    [st release];
 }
 
+/* Helper method */
 - (id)moveWithCol:(int)c andRow:(int)r
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -86,7 +84,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testAvailMoves
 {
-    STAssertNotNil(moves = [st movesAvailable], nil);
+    id moves;
+    STAssertNotNil(moves = [ab movesAvailable], nil);
     STAssertEquals([moves count], (unsigned)9, nil);
     int i;
     for (i = 0; i < 9; i++) {
@@ -104,8 +103,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         }
         id m = [moves objectAtIndex:i];
         STAssertEqualObjects(m, m2, nil);
-        st = [ab applyMove:m];
+
+        id st = [ab applyMove:m];
         STAssertTrue(![[st description] isEqualToString:@"000 000 000"], nil);
+
         st = [ab undoLastMove];
         STAssertEqualObjects([st description], @"000 000 000", nil);
     }
@@ -138,6 +139,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testPlayerTurn
 {
+    TTTState *st = [ab currentState];
     STAssertEquals(st->player, (unsigned)1, nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
     
@@ -171,13 +173,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)testStateAndMoves
 {
     STAssertEqualObjects([[ab currentState] description], @"000 000 000", nil);
-
     unsigned i;
     for (i = 9; i > 2; i--) {
+        id moves;
         STAssertNotNil(moves = [ab movesAvailable], nil);
         STAssertEquals([moves count], i, nil);
         id m = [moves objectAtIndex:0];
-        st = [ab applyMove:m];
+        id st = [ab applyMove:m];
         
         id s = nil;
         switch (i) {
@@ -197,7 +199,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)testInit
 {
     STAssertNotNil(ab, nil);
-    STAssertTrue([ab currentState] == st, @"did get expected state back");
+    STAssertNotNil([ab currentState], nil);
     STAssertEquals([ab countMoves], (unsigned)0, nil);
     STAssertEquals([ab isGameOver], (BOOL)NO, nil);
 }
