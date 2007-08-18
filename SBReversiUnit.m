@@ -19,8 +19,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import <AlphaBeta/AlphaBeta.h>
-
 #import "SBReversiUnit.h"
 
 
@@ -28,23 +26,23 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)setUp
 {
-    st = [SBReversiState new];
-    moves = nil;
+    ab = [SBAlphaBeta newWithState:[SBReversiState new]];
 }
 
 - (void)tearDown
 {
-    [st release];
+    [ab release];
 }
 
 - (void)testAvailMoves6x6
 {
-    [st release];
-    st = [[SBReversiState alloc] initWithBoardSize:6];
+    id st = [[SBReversiState alloc] initWithBoardSize:6];
     SBReversiStateCount c = [st countSquares];
     STAssertEquals(c.c[0], (unsigned)32, nil);
     STAssertEquals(c.c[1], (unsigned)2, nil);
     STAssertEquals(c.c[2], (unsigned)2, nil);
+    
+    id moves;
     STAssertNotNil(moves = [st movesAvailable], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
     int i;
@@ -62,6 +60,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testAvailMoves8x8
 {
+    id st = [ab currentState];
+    SBReversiStateCount c = [st countSquares];
+    STAssertEquals(c.c[0], (unsigned)60, nil);
+    STAssertEquals(c.c[1], (unsigned)2, nil);
+    STAssertEquals(c.c[2], (unsigned)2, nil);
+
+    id moves;
     STAssertNotNil(moves = [st movesAvailable], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
     int i;
@@ -79,7 +84,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testIterativeTimeKeeping
 {
-    SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
     id times = [@"0.05 0.1 0.2 0.5 1.0 2.0" componentsSeparatedByString:@" "];
     for (unsigned i = 0; i < [times count]; i++) {
         double interval = [[times objectAtIndex:i] doubleValue];
@@ -100,21 +104,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testPlayer
 {
-    SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
+
     [ab applyMoveFromSearchWithPly:1];
     STAssertEquals([ab playerTurn], (unsigned)2, nil);
+
     [ab undoLastMove];
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
 }
 
 - (void)testStateAndFitness8x8
 {
-    SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
-
     STAssertTrue([ab playerTurn] == 1, nil);
-    STAssertTrue([ab currentFitness] == 0.0, @"got: %f", [st currentFitness]);
+    STAssertTrue([ab currentFitness] == 0.0, @"got: %f", [ab currentFitness]);
 
+    id st = [ab currentState];
     SBReversiStateCount c = [st countSquares];
     STAssertEquals(c.c[0], (unsigned)60, nil);
     STAssertEquals(c.c[1], (unsigned)2, nil);
@@ -137,9 +141,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testStateAndFitness4x4
 {
-    [st release];
-    st = [[SBReversiState alloc] initWithBoardSize:4];
-    SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
+    [ab release];
+    id st = [[SBReversiState alloc] initWithBoardSize:4];
+    ab = [SBAlphaBeta newWithState:st];
 
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
     STAssertEquals([ab currentFitness], (double)0.0, nil);
@@ -164,10 +168,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testTrace
 {
-    [st release];
-    st = [[SBReversiState alloc] initWithBoardSize:6];
+    id st = [[SBReversiState alloc] initWithBoardSize:6];
 
-    SBAlphaBeta *ab = [[SBAlphaBeta alloc] initWithState:st];
+    [ab release];
+    ab = [[SBAlphaBeta alloc] initWithState:st];
     STAssertEqualObjects([st description], @"1: 000000 000000 002100 001200 000000 000000", nil);
     
     id s, states = [[NSArray arrayWithObjects:
@@ -214,10 +218,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testWeirdExceptionCase
 {
-    [st release];
-    st = [[SBReversiState alloc] initWithBoardSize:6];
+    id st = [[SBReversiState alloc] initWithBoardSize:6];
     
-    SBAlphaBeta *ab = [[SBAlphaBeta alloc] initWithState:st];
+    [ab release];
+    ab = [[SBAlphaBeta alloc] initWithState:st];
     
     /* make player 2 start this time. Cannot go via ab to do this, as it's strictly an illegal move. */
     [st transformWithMove:[st moveForCol:-1 andRow:-1]];
@@ -254,15 +258,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testFailMove
 {
-    SBAlphaBeta *ab = [[SBAlphaBeta alloc] initWithState:st];
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);    
-
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    id st = [ab currentState];
+    
     STAssertThrows([ab applyMove:[st moveForCol:0 andRow:0]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);    
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
     STAssertEquals([ab countMoves], (unsigned)0, nil);
 
     STAssertThrows([ab applyMove:[st moveForCol:0 andRow:-10]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);    
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
     STAssertEquals([ab countMoves], (unsigned)0, nil);
     
     STAssertThrows([ab applyMove:[st moveForCol:3 andRow:4]], nil);
@@ -272,8 +276,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testMustPass
 {
-    [st release];
-    st = [[SBReversiState alloc] initWithBoardSize:4];
+    id st = [[SBReversiState alloc] initWithBoardSize:4];
     
     int **board = ((SBReversiState *)st)->board;
     int i, j;
@@ -284,7 +287,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     board[0][0] = 2;
     board[1][0] = 1;
 
-    SBAlphaBeta *ab = [SBAlphaBeta newWithState:st];
+    [ab release];
+    ab = [SBAlphaBeta newWithState:st];
     STAssertEquals([ab playerTurn], (unsigned)1, @"it is player 1");
     STAssertTrue([ab currentPlayerMustPass], @"must pass");
     
@@ -296,10 +300,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testSBAlphaBeta
 {
-    [st release];
-    st = [[SBReversiState alloc] initWithBoardSize:4];
+    id st = [[SBReversiState alloc] initWithBoardSize:4];
+    [ab release];
 
-    SBAlphaBeta *ab = [[SBAlphaBeta alloc] initWithState:st];
+    ab = [[SBAlphaBeta alloc] initWithState:st];
     STAssertNotNil(ab, @"got nil back");
     STAssertTrue([ab currentState] == st, @"did not get expected state back");
     STAssertEquals([ab countMoves], (unsigned)0, nil);

@@ -20,11 +20,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "SBReversiState.h"
+#import <AlphaBeta/AlphaBeta.h>
+#import <SBReversi/SBReversiState.h>
 
 @interface SBReversiUnit : SenTestCase {
-    SBReversiState *st;
-    NSArray *moves;
+    SBAlphaBeta *ab;
 }
 
 @end
