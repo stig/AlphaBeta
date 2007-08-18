@@ -83,6 +83,7 @@ interlinked, so it makes sense to test them together. -applyMove and
 
 /* Case 1: game over because one of the players won.
    We reach a win state for player 1, then for player 2.
+   Test current player's low fitness at end of the game.
 */
 - (void)testIsGameOverWithWin
 {
@@ -100,16 +101,18 @@ interlinked, so it makes sense to test them together. -applyMove and
     }
     STAssertTrue([ab isGameOver], nil);
     STAssertEquals([ab winner], (unsigned)1, nil);
+    STAssertEqualsWithAccuracy([ab currentFitness], (double)-897.0, 0.001, nil);
 
     [ab undoLastMove];
     [ab applyMove:[self moveWithCol:2 andRow:2]];
     [ab applyMove:[self moveWithCol:2 andRow:1]];
     STAssertTrue([ab isGameOver], nil);
     STAssertEquals([ab winner], (unsigned)2, nil);
+    STAssertEqualsWithAccuracy([ab currentFitness], (double)-896.0, 0.001, nil);
 }
 
 /* Case 2: game over because there are no more legal moves.
-   We reach a draw state.
+   We reach a draw state, where fitness is zero.
 */
 - (void)testIsGameOverWithDraw
 {
@@ -131,6 +134,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     }
     STAssertTrue([ab isGameOver], nil);
     STAssertEquals([ab winner], (unsigned)0, nil);
+    STAssertEqualsWithAccuracy([ab currentFitness], (double)0.0, 0.000001, nil);
 }
 
 - (void)testAvailMovesAndFitness
