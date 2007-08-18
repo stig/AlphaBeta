@@ -300,12 +300,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)testSBAlphaBeta
 {
-    id st = [[SBReversiState alloc] initWithBoardSize:4];
-    [ab release];
-
-    ab = [[SBAlphaBeta alloc] initWithState:st];
     STAssertNotNil(ab, @"got nil back");
-    STAssertTrue([ab currentState] == st, @"did not get expected state back");
     STAssertEquals([ab countMoves], (unsigned)0, nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)0.0, 0.0001, @"got %f", [ab currentFitness]);
 
