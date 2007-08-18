@@ -42,10 +42,87 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         nil];
 }
 
+- (void)testCurrentState_lastMove_countMoves_playerTurn
+{
+    STAssertNil([ab lastMove], nil);
+    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEqualObjects([[ab currentState] description], @"000 000 000", nil);
+
+    id m1 = [self moveWithCol:0 andRow:0];
+    [ab applyMove:m1];
+    STAssertEqualObjects([ab lastMove], m1, nil);
+    STAssertEquals([ab countMoves], (unsigned)1, nil);
+    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    STAssertEqualObjects([[ab currentState] description], @"100 000 000", nil);
+    
+    id m2 = [self moveWithCol:1 andRow:0];
+    [ab applyMove:m2];
+    STAssertEqualObjects([ab lastMove], m2, nil);
+    STAssertEquals([ab countMoves], (unsigned)2, nil);
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEqualObjects([[ab currentState] description], @"120 000 000", nil);
+
+    [ab undoLastMove];
+    STAssertEqualObjects([ab lastMove], m1, nil);
+    STAssertEquals([ab countMoves], (unsigned)1, nil);
+    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    STAssertEqualObjects([[ab currentState] description], @"100 000 000", nil);
+
+    id m3 = [self moveWithCol:1 andRow:1];
+    [ab applyMove:m3];
+    STAssertEqualObjects([ab lastMove], m3, nil);
+    STAssertEquals([ab countMoves], (unsigned)2, nil);
+    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEqualObjects([[ab currentState] description], @"100 020 000", nil);
+}
+
+/* Case 1: game over because one of the players won */
+- (void)testIsGameOver_winner_1
+{
+    NSArray *moves = [NSArray arrayWithObjects:
+        [self moveWithCol:0 andRow:0],
+        [self moveWithCol:0 andRow:1],
+        [self moveWithCol:1 andRow:0],
+        [self moveWithCol:1 andRow:1],
+        [self moveWithCol:2 andRow:0],
+        nil];
+    for (int i = 0; i < [moves count]; i++) {
+        STAssertFalse([ab isGameOver], nil);
+        STAssertThrows([ab winner], nil);
+        [ab applyMove:[moves objectAtIndex:i]];
+    }
+    STAssertTrue([ab isGameOver], nil);
+    STAssertEquals([ab winner], (unsigned)1, nil);
+
+}
+
+/* Case 2: game over because there are no more legal moves */
+- (void)testIsGameOver_winner_2
+{
+    NSArray *moves = [NSArray arrayWithObjects:
+        [self moveWithCol:0 andRow:0],
+        [self moveWithCol:0 andRow:1],
+        [self moveWithCol:1 andRow:0],
+        [self moveWithCol:1 andRow:1],
+        [self moveWithCol:2 andRow:1],
+        [self moveWithCol:2 andRow:0],
+        [self moveWithCol:0 andRow:2],
+        [self moveWithCol:1 andRow:2],
+        [self moveWithCol:2 andRow:2],
+        nil];
+    for (int i = 0; i < [moves count]; i++) {
+        STAssertFalse([ab isGameOver], nil);
+        STAssertThrows([ab winner], nil);
+        [ab applyMove:[moves objectAtIndex:i]];
+    }
+    STAssertTrue([ab isGameOver], nil);
+    STAssertEquals([ab winner], (unsigned)0, nil);
+}
+
 - (void)testAvailMovesAndFitness
 {
     id cs = [ab currentState];
-    STAssertEqualObjects([cs description], @"000 000 000", nil);
     STAssertEquals([[cs movesAvailable] count], (unsigned)9, nil);
     STAssertEqualsWithAccuracy([cs currentFitness], (double)0.0, 0.000001, nil);
     
@@ -110,50 +187,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         st = [ab undoLastMove];
         STAssertEqualObjects([st description], @"000 000 000", nil);
     }
-}
-
-- (void)testLastMove
-{
-    STAssertNil([ab lastMove], nil);
-
-    [ab applyMove:[self moveWithCol:0 andRow:0]];
-    STAssertNotNil([ab lastMove], nil);
-
-    [ab undoLastMove];
-    STAssertNil([ab lastMove], nil);
-}
-
-- (void)testCountMoves
-{
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
-
-    [ab applyMove:[self moveWithCol:0 andRow:0]];
-    STAssertEquals([ab countMoves], (unsigned)1, nil);
-    
-    [ab applyMove:[self moveWithCol:0 andRow:1]];
-    STAssertEquals([ab countMoves], (unsigned)2, nil);
-    
-    [ab undoLastMove];
-    STAssertEquals([ab countMoves], (unsigned)1, nil);    
-}
-
-- (void)testPlayerTurn
-{
-    TTTState *st = [ab currentState];
-    STAssertEquals(st->player, (unsigned)1, nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    
-    st = [ab applyMove:[self moveWithCol:0 andRow:0]];
-    STAssertEquals(st->player, (unsigned)2, nil);
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
-    
-    st = [ab applyMove:[self moveWithCol:0 andRow:1]];
-    STAssertEquals(st->player, (unsigned)1, nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
-
-    st = [ab undoLastMove];
-    STAssertEquals(st->player, (unsigned)2, nil);
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
 }
 
 - (void)testFitness

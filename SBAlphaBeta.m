@@ -330,6 +330,10 @@ Returns 1 or 2 for the winning player, or 0 if the game ended in a draw.
 */
 - (unsigned)winner
 {
+    if (![self isGameOver])
+        [NSException raise:@"game-not-over"
+                    format:@"Cannot determine winner; game has not ended yet"];
+
     double score = [[self currentState] endStateScore];
     if (!score)
         return 0;
