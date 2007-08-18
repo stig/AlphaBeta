@@ -42,6 +42,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         nil];
 }
 
+/* -currentState, -lastMove, -countMoves & -playerTurn are heavily
+interlinked, so it makes sense to test them together. -applyMove and
+-undoLastMove are also tested here, albeit implicitly.
+*/
 - (void)testCurrentState_lastMove_countMoves_playerTurn
 {
     STAssertNil([ab lastMove], nil);
@@ -77,8 +81,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertEqualObjects([[ab currentState] description], @"100 020 000", nil);
 }
 
-/* Case 1: game over because one of the players won */
-- (void)testIsGameOver_winner_1
+/* Case 1: game over because one of the players won.
+   We reach a win state for player 1, then for player 2.
+*/
+- (void)testIsGameOverWithWin
 {
     NSArray *moves = [NSArray arrayWithObjects:
         [self moveWithCol:0 andRow:0],
@@ -95,10 +101,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertTrue([ab isGameOver], nil);
     STAssertEquals([ab winner], (unsigned)1, nil);
 
+    [ab undoLastMove];
+    [ab applyMove:[self moveWithCol:2 andRow:2]];
+    [ab applyMove:[self moveWithCol:2 andRow:1]];
+    STAssertTrue([ab isGameOver], nil);
+    STAssertEquals([ab winner], (unsigned)2, nil);
 }
 
-/* Case 2: game over because there are no more legal moves */
-- (void)testIsGameOver_winner_2
+/* Case 2: game over because there are no more legal moves.
+   We reach a draw state.
+*/
+- (void)testIsGameOverWithDraw
 {
     NSArray *moves = [NSArray arrayWithObjects:
         [self moveWithCol:0 andRow:0],
