@@ -279,7 +279,7 @@ Returns the new current state.
     if (NSNotFound == [moves indexOfObject:m]) {
         /* Check that move is in the current allowed move list */
         [NSException raise:@"illegalmove"
-                    format:@"%@ is not a legal move", m];
+                    format:@"%@ is not one of the legal moves: %@", m, moves];
     }
 
     return [self move:m];

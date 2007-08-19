@@ -152,7 +152,7 @@ interlinked, so it makes sense to test them together. -applyMove and
 }
 
 
-- (void)test04MovesAvailable
+- (void)test04LegalMoves
 {
     id moves;
     STAssertNotNil(moves = [ab movesAvailable], nil);
@@ -222,7 +222,7 @@ interlinked, so it makes sense to test them together. -applyMove and
             case 4: s = @"120 210 120"; break;
             case 3: s = @"121 210 120"; break;
         }
-        STAssertEqualObjects([st description], s, @"got(%d): %@", i, [st description]);
+        STAssertEqualObjects([st description], s, nil);
     }
     STAssertEquals([ab winner], (unsigned)1, nil);
 }
