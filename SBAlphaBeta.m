@@ -134,10 +134,11 @@ With immutable states you have to make a complete copy of the entire state, whic
 {
     NSArray *mvs = [self movesAvailable];
     
-    if (![mvs count])
-        foundEnd = YES;
-    if (![mvs count] || ply <= 0)
+    if (![mvs count] || ply <= 0) {
+        if (![mvs count])
+            foundEnd = YES;
         return [self currentFitness];
+    }
     
     id m, iter = [mvs objectEnumerator];
     while (m = [iter nextObject]) {
@@ -199,7 +200,6 @@ search that lasts up to 300 milliseconds.
     id best = nil;
     
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:interval/2.5];
-
     NSArray *mvs = [self movesAvailable];
     for (unsigned ply = 1;; ply++) {
 
@@ -247,7 +247,6 @@ search that lasts up to 300 milliseconds.
          */
         if (leafCount == [mvs count])
             break;
-            
     }
 
 time_is_up:
