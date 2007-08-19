@@ -132,6 +132,7 @@ With immutable states you have to make a complete copy of the entire state, whic
 
 - (double)abWithAlpha:(double)alpha beta:(double)beta plyLeft:(unsigned)ply
 {
+    NSAutoreleasePool *pool = [NSAutoreleasePool new];
     NSArray *mvs = [self movesAvailable];
     
     if (![mvs count] || ply <= 0) {
@@ -148,6 +149,7 @@ With immutable states you have to make a complete copy of the entire state, whic
         [self undo];
     }
     
+    [pool release];
     return alpha;
 }
 
