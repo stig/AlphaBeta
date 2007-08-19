@@ -234,39 +234,44 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-4.0, 0.1, nil);
 }
 
-- (void)test06SearchWithPly9
+- (NSArray *)states
 {
-    id states = [NSArray arrayWithObjects:
+    return [NSArray arrayWithObjects:
         @"100 000 000", @"100 020 000", @"100 120 000",
         @"100 120 200", @"101 120 200", @"121 120 200",
         @"121 120 210", @"121 122 210", @"121 122 211",
         nil];
-    for (int i = 0; i < [states count]; i++) {
+}
+
+- (void)test06SearchWithPly9
+{
+    id states = [self states];
+    for (unsigned i = 0; i < [states count]; i++) {
         id s = [[ab applyMoveFromSearchWithPly:9] description];
         STAssertEqualObjects(s, [states objectAtIndex:i], nil);
     }
 }
 
-- (void)test07SearchWithInterval3
+/* This tests relies on being able to search to ply 9 in 300 seconds.
+   The time should be more than adequate... */
+- (void)test07SearchWithInterval300
 {
-    id states = [NSArray arrayWithObjects:
-        @"000 010 000", @"200 010 000", @"200 110 000",
-        @"200 112 000", @"210 112 000", @"210 112 020",
-        @"210 112 120", @"212 112 120", @"212 112 121",
-        nil];
-    for (int i = 0; i < [states count]; i++) {
-        id s = [[ab applyMoveFromSearchWithInterval:3.0] description];
+    id states = [self states];
+    for (unsigned i = 0; i < [states count]; i++) {
+        id s = [[ab applyMoveFromSearchWithInterval:300.0] description];
         STAssertEqualObjects(s, [states objectAtIndex:i], nil);
+        STAssertEquals([ab plyReachedForSearch], 9-i, nil);
     }
 }
 
+/* This test relies on NOT being able to search to ply 9 in 0.5 second. */
 - (void)test08PlyReachedForSearch
 {
-    for (unsigned i = 0; i < 9; i++) {
-        id m1 = [ab moveFromSearchWithInterval:3.0];
+    for (unsigned i = 9; i > 0; i--) {
+        id m1 = [ab moveFromSearchWithInterval:0.5];
         unsigned plyReached = [ab plyReachedForSearch];
         STAssertTrue(plyReached > 0, nil);
-        STAssertTrue(plyReached < 10, nil);
+        STAssertTrue(plyReached < 9, nil);
 
         id m2 = [ab moveFromSearchWithPly:plyReached];
         STAssertEqualObjects([m1 description], [m2 description], nil );

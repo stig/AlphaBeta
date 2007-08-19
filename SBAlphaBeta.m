@@ -135,8 +135,8 @@ With immutable states you have to make a complete copy of the entire state, whic
     NSArray *mvs = [self movesAvailable];
     
     if (![mvs count] || ply <= 0) {
-        if (![mvs count])
-            foundEnd = YES;
+        if ([mvs count])
+            foundEnd = NO;
         return [self currentFitness];
     }
     
@@ -218,7 +218,7 @@ search that lasts up to 300 milliseconds.
         for (id m; m = [iter nextObject]; ) {
         
             /* Reset the 'reached a leaf state' indicator. */
-            foundEnd = NO;
+            foundEnd = YES;
 
             /* Check if we have any time left. */
             if ([date compare:[NSDate date]] < 0)
