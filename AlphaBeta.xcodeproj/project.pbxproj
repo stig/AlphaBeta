@@ -18,7 +18,7 @@
 		5350242F0B3ABAFB0012DAE7 /* TTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535023DF0B3AB87F0012DAE7 /* TTT.framework */; };
 		5350246F0B3AC3540012DAE7 /* SBReversiState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5350246B0B3AC3540012DAE7 /* SBReversiState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		535024700B3AC3540012DAE7 /* SBReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5350246C0B3AC3540012DAE7 /* SBReversiState.m */; };
-		535024730B3AC3870012DAE7 /* SBReversiUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024720B3AC3870012DAE7 /* SBReversiUnit.m */; };
+		535024730B3AC3870012DAE7 /* Reversi8x8Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024720B3AC3870012DAE7 /* Reversi8x8Unit.m */; };
 		535024760B3AC3A20012DAE7 /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535024600B3AC2D90012DAE7 /* SBReversi.framework */; };
 		535026430B3AFE9F0012DAE7 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
 		535026470B3AFEB50012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
@@ -26,6 +26,8 @@
 		5350264B0B3AFF0D0012DAE7 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
 		5350264C0B3AFF120012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		53762BDC0BA3145C0089CB6D /* SBAlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53CED62E0C7891FE008CB8F3 /* Reversi6x6Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CED62D0C7891FE008CB8F3 /* Reversi6x6Unit.m */; };
+		53CED6340C7895BC008CB8F3 /* Reversi4x4Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CED6330C7895BC008CB8F3 /* Reversi4x4Unit.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -88,9 +90,11 @@
 		535024610B3AC2D90012DAE7 /* SBReversi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SBReversi-Info.plist"; sourceTree = "<group>"; };
 		5350246B0B3AC3540012DAE7 /* SBReversiState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBReversiState.h; sourceTree = "<group>"; };
 		5350246C0B3AC3540012DAE7 /* SBReversiState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBReversiState.m; sourceTree = "<group>"; };
-		535024710B3AC3870012DAE7 /* SBReversiUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBReversiUnit.h; sourceTree = "<group>"; };
-		535024720B3AC3870012DAE7 /* SBReversiUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBReversiUnit.m; sourceTree = "<group>"; };
+		535024710B3AC3870012DAE7 /* ReversiUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiUnit.h; sourceTree = "<group>"; };
+		535024720B3AC3870012DAE7 /* Reversi8x8Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reversi8x8Unit.m; sourceTree = "<group>"; };
 		53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlphaBetaState.h; sourceTree = "<group>"; };
+		53CED62D0C7891FE008CB8F3 /* Reversi6x6Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reversi6x6Unit.m; sourceTree = "<group>"; };
+		53CED6330C7895BC008CB8F3 /* Reversi4x4Unit.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Reversi4x4Unit.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlphaBeta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -223,8 +227,10 @@
 		534E132B0C400E6600995A05 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				535024710B3AC3870012DAE7 /* SBReversiUnit.h */,
-				535024720B3AC3870012DAE7 /* SBReversiUnit.m */,
+				535024710B3AC3870012DAE7 /* ReversiUnit.h */,
+				53CED6330C7895BC008CB8F3 /* Reversi4x4Unit.m */,
+				53CED62D0C7891FE008CB8F3 /* Reversi6x6Unit.m */,
+				535024720B3AC3870012DAE7 /* Reversi8x8Unit.m */,
 				5350240C0B3ABA140012DAE7 /* TTTUnit.h */,
 				5350240D0B3ABA140012DAE7 /* TTTUnit.m */,
 			);
@@ -441,7 +447,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5350240E0B3ABA140012DAE7 /* TTTUnit.m in Sources */,
-				535024730B3AC3870012DAE7 /* SBReversiUnit.m in Sources */,
+				535024730B3AC3870012DAE7 /* Reversi8x8Unit.m in Sources */,
+				53CED62E0C7891FE008CB8F3 /* Reversi6x6Unit.m in Sources */,
+				53CED6340C7895BC008CB8F3 /* Reversi4x4Unit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,8 +23,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import <AlphaBeta/AlphaBeta.h>
 #import <SBReversi/SBReversiState.h>
 
-@interface SBReversiUnit : SenTestCase {
+@interface Reversi8x8Unit : SenTestCase {
     SBAlphaBeta *ab;
 }
+@end
 
+@interface Reversi6x6Unit : SenTestCase {
+    SBAlphaBeta *ab;
+}
+@end
+
+@interface Reversi4x4Unit : SenTestCase {
+    SBAlphaBeta *ab;
+}
 @end
