@@ -25,7 +25,7 @@ typedef struct _ReversiStateCount {
     unsigned c[3];
 } SBReversiStateCount;
 
-@interface SBReversiState : NSObject <SBMutableAlphaBetaState> {
+@interface SBReversiBase : NSObject <SBAlphaBetaStateCommon> {
 @public
     int player;
     int size;
@@ -38,10 +38,19 @@ typedef struct _ReversiStateCount {
 - (SBReversiStateCount)countSquares;
 - (id)moveForCol:(int)x andRow:(int)y;
 
+- (BOOL)isPassMove:(id)m;
+- (void)validateMove:(id)move;
+
 - (NSDictionary *)moveWithCol:(int)c andRow:(int)r;
 
 /* for the View */
 - (int)pieceAtRow:(int)row col:(int)col;
 - (void)getRows:(int*)rows cols:(int*)cols;
 
+@end
+
+@interface SBReversiState : SBReversiBase <SBAlphaBetaState>
+@end
+
+@interface SBMutableReversiState : SBReversiBase <SBMutableAlphaBetaState>
 @end

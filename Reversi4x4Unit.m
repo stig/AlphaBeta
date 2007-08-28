@@ -21,6 +21,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import "ReversiUnit.h"
 
+@implementation MutableReversi4x4Unit
+
+- (void)setUp
+{
+    id state = [[SBMutableReversiState alloc] initWithBoardSize:4];
+    ab = [SBAlphaBeta newWithState:state];
+}
+
+@end
 
 @implementation Reversi4x4Unit
 

@@ -21,6 +21,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import "TTTUnit.h"
 
+@implementation TTTMutableUnit
+
+- (void)setUp
+{
+    ab = [SBAlphaBeta newWithState:[TTTMutableState new]];
+}
+
+@end
+
 @implementation TTTUnit
 
 - (void)setUp

@@ -21,29 +21,39 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import "SBReversiState.h"
 
-@implementation SBReversiState
+@implementation SBMutableReversiState
 
--(id)stateByApplyingMove:(id)move
+-(void)transformWithMove:(id)move
 {
-    SBReversiState *copy = [[SBReversiState alloc] initWithBoardSize:[self boardSize]];
-
-    for (int i = 0; i < size; i++)
-        for (int j = 0; j < size; j++)
-            copy->board[i][j] = ((SBReversiState*)self)->board[i][j];
-
     if (![self isPassMove:move]) {
         [self validateMove:move];
         NSEnumerator *e = [move objectEnumerator];
-        for (id m; m = [e nextObject];) {
+        id m;
+        while (m = [e nextObject]) {
             int row = [[m objectForKey:@"row"] intValue];
             int col = [[m objectForKey:@"col"] intValue];
-            copy->board[ col ][ row ] = player;
+            board[ col ][ row ] = player;
         }
     }
+    player = 3 - player;
+}
 
-    copy->player = 3 - player;
-
-    return copy;
+- (void)undoTransformWithMove:(id)move
+{
+    if (![self isPassMove:move]) {
+        [self validateMove:move];
+        NSEnumerator *e = [move objectEnumerator];
+        id m = [e nextObject];
+        int row = [[m objectForKey:@"row"] intValue];
+        int col = [[m objectForKey:@"col"] intValue];
+        board[ col ][ row ] = 0;
+        while (m = [e nextObject]) {
+            int row = [[m objectForKey:@"row"] intValue];
+            int col = [[m objectForKey:@"col"] intValue];
+            board[ col ][ row ] = player;
+        }
+    }
+    player = 3 - player;
 }
 
 
