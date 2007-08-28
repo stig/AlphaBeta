@@ -31,36 +31,24 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (id)initWithBoardSize:(int)theSize
 {
+
+    if (theSize > MAXSIZE)
+        [NSException raise:@"size-too-large"
+                    format:@"Size (%d) is larger than maximum (%d)", theSize, MAXSIZE];
+
     if (self = [super init]) {
         size = theSize;
         player = 1;
-        board = NSZoneMalloc([self zone], size * (sizeof(int*)));
-        if (board) {
-            board[0] = NSZoneMalloc([self zone], size * size * (sizeof(int)));
-            if (board[0]) {
-                int i, j;
-                for (i = 1; i < size; i++) {
-                    board[i] = board[0] + i * size;
-                }
-                for (i = 0; i < size; i++) {
-                    for (j = 0; j < size; j++) {
-                        board[i][j] = 0;
-                    }
-                }
-                board[size/2-1][size/2] = player;
-                board[size/2][size/2-1] = player;
-                board[size/2-1][size/2-1] = 3 - player;
-                board[size/2][size/2] = 3 - player;
-            }
-            else {
-                [self release];
-                return nil;
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                board[i][j] = 0;
             }
         }
-        else {
-            [self release];
-            return nil;
-        }
+        board[size/2-1][size/2] = player;
+        board[size/2][size/2-1] = player;
+        board[size/2-1][size/2-1] = 3 - player;
+        board[size/2][size/2] = 3 - player;
     }
     return self;
 }
@@ -87,15 +75,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (int)boardSize
 {
     return size;
-}
-
-- (void)dealloc
-{
-    if (board) {
-        free(board[0]);
-    }
-    free(board);
-    [super dealloc];
 }
 
 - (SBReversiStateCount)countSquares

@@ -25,11 +25,13 @@ typedef struct _ReversiStateCount {
     unsigned c[3];
 } SBReversiStateCount;
 
+#define MAXSIZE 20
+
 @interface SBReversiBase : NSObject <SBAlphaBetaStateCommon> {
 @public
     int player;
     int size;
-    int **board;
+    int board[MAXSIZE][MAXSIZE];
 }
 
 - (NSArray *)board;

@@ -111,14 +111,12 @@ interlinked, so it makes sense to test them together. -applyMove and
 {
     id st = [ab currentState];
     
-    int **board = ((SBReversiState *)st)->board;
-    int i, j;
-    for (i = 0; i < 4; i++)
-        for (j = 0; j < 4; j++)
-            board[i][j] = 0;
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            ((SBReversiBase *)st)->board[i][j] = 0;
 
-    board[0][0] = 2;
-    board[1][0] = 1;
+    ((SBReversiBase *)st)->board[0][0] = 2;
+    ((SBReversiBase *)st)->board[1][0] = 1;
 
     STAssertEquals([ab playerTurn], (unsigned)1, @"it is player 1");
     STAssertTrue([ab currentPlayerMustPass], @"must pass");

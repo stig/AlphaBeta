@@ -25,11 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 -(id)stateByApplyingMove:(id)move
 {
-    SBReversiState *copy = [[SBReversiState alloc] initWithBoardSize:[self boardSize]];
-
-    for (int i = 0; i < size; i++)
-        for (int j = 0; j < size; j++)
-            copy->board[i][j] = ((SBReversiState*)self)->board[i][j];
+    SBReversiState *copy = (SBReversiState*)NSCopyObject(self, 0, [self zone]);
 
     if (![self isPassMove:move]) {
         [self validateMove:move];
@@ -43,7 +39,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     copy->player = 3 - player;
 
-    return copy;
+    return [copy autorelease];
 }
 
 
