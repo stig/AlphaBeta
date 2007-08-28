@@ -132,23 +132,33 @@ With immutable states you have to make a complete copy of the entire state, whic
 
 - (double)abWithAlpha:(double)alpha beta:(double)beta plyLeft:(unsigned)ply
 {
-    NSAutoreleasePool *pool = [NSAutoreleasePool new];
-    NSArray *mvs = [self movesAvailable];
-    
-    if (![mvs count] || ply <= 0) {
-        if ([mvs count])
-            foundEnd = NO;
+
+    /* For correctness we should really check for end of the game before
+       we check if we have reached max ply, but doing this speeds up
+       fixed-depth search by 33% (for Reversi).
+     */
+    if (!ply) {
+        foundEnd = NO;
         return [self currentFitness];
     }
+
+    NSAutoreleasePool *pool = [NSAutoreleasePool new];
+    NSArray *mvs = [self movesAvailable];
+    if (![mvs count])
+        return [self currentFitness];
     
-    id m, iter = [mvs objectEnumerator];
-    while (m = [iter nextObject]) {
+    id iter = [mvs objectEnumerator];
+    for (id m; m = [iter nextObject];) {
         [self move:m];
         double sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
         alpha = alpha > sc ? alpha : sc;
         [self undo];
+        
+        if (alpha > beta)
+            goto cut;
     }
-    
+
+cut:
     [pool release];
     return alpha;
 }
@@ -247,8 +257,11 @@ search that lasts up to 300 milliseconds.
         /* If we found a leaf state for every move, then we're done. We
            don't need to search deeper.
          */
-        if (leafCount == [mvs count])
+        if (leafCount == [mvs count]) {
+            /* See note above in the internal ab method. */
+            plyReached--;
             break;
+        }
     }
 
 time_is_up:
