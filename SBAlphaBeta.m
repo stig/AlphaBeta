@@ -102,35 +102,30 @@ With immutable states you have to make a complete copy of the entire state, whic
 
 - (id)move:(id)m
 {
+    id state = [self currentState];
     if (mutableStates) {
-        [[self currentState] transformWithMove:m];
+        [state transformWithMove:m];
     
     } else {
-        id state = [[self currentState] stateByApplyingMove:m];
+        state = [state stateByApplyingMove:m];
         [stateHistory addObject:state];
     }
-    [moveHistory addObject:m];
-    return [self currentState];
+    return state;
 }
 
-- (id)undo
+- (id)undo:(id)m
 {
     if (mutableStates) {
-        [[self currentState] undoTransformWithMove:[self lastMove]];
+        [[self currentState] undoTransformWithMove:m];
 
     } else {
-        if ([moveHistory count] + 1 != [stateHistory count])
-            [NSException raise:@"corruption"
-                        format:@"Corruption: state & move count disagrees"];
         [stateHistory removeLastObject];
     }
     
-    /* in both cases we now remove the last move */
-    [moveHistory removeLastObject];
     return [self currentState];
 }
 
-- (double)abWithAlpha:(double)alpha beta:(double)beta plyLeft:(unsigned)ply
+- (double)abWithState:(id)state alpha:(double)alpha beta:(double)beta plyLeft:(unsigned)ply
 {
 
     /* For correctness we should really check for end of the game before
@@ -149,10 +144,10 @@ With immutable states you have to make a complete copy of the entire state, whic
     
     id iter = [mvs objectEnumerator];
     for (id m; m = [iter nextObject];) {
-        [self move:m];
-        double sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
+        id nextState = [self move:m];
+        double sc = -[self abWithState:nextState alpha:-beta beta:-alpha plyLeft:ply-1];
         alpha = alpha > sc ? alpha : sc;
-        [self undo];
+        [self undo:m];
         
         if (alpha > beta)
             goto cut;
@@ -179,13 +174,13 @@ Returns the best move found.
     NSEnumerator *iter = [mvs objectEnumerator];
     for (id m; m = [iter nextObject]; ) {
         
-        [self move:m];
-        double sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
+        id state = [self move:m];
+        double sc = -[self abWithState:state alpha:-beta beta:-alpha plyLeft:ply-1];
         if (sc > alpha) {
             alpha = sc;
             best = m;
         }
-        [self undo];
+        [self undo:m];
     }
     
     return best;
@@ -236,13 +231,13 @@ search that lasts up to 300 milliseconds.
             if ([date compare:[NSDate date]] < 0)
                 goto time_is_up;
 
-            [self move:m];
-            double sc = -[self abWithAlpha:-beta beta:-alpha plyLeft:ply-1];
+            id state = [self move:m];
+            double sc = -[self abWithState:state alpha:-beta beta:-alpha plyLeft:ply-1];
             if (sc > alpha) {
                 alpha = sc;
                 bestAtThisPly = m;
             }
-            [self undo];
+            [self undo:m];
             
             if (foundEnd)
                 leafCount++;
@@ -295,6 +290,7 @@ Returns the new current state.
                     format:@"%@ is not one of the legal moves: %@", m, moves];
     }
 
+    [moveHistory addObject:m];
     return [self move:m];
 }
 
@@ -309,7 +305,9 @@ Returns the new current state.
         [NSException raise:@"undo"
                     format:@"No moves to undo"];
     }
-    return [self undo];
+    [self undo:[self lastMove]];
+    [moveHistory removeLastObject];
+    return [self currentState];
 }
 
 /** Returns the current state. */
