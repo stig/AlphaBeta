@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     NSMutableArray *moveHistory;
 
     unsigned plyReached;
+    unsigned statesVisited;
     BOOL foundEnd;
 }
 
@@ -54,7 +55,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval;
 - (id)applyMoveFromSearchWithPly:(unsigned)ply;
 - (id)applyMoveFromSearchWithInterval:(NSTimeInterval)interval;
+
+/* metadata releated to search */
+- (unsigned)countStatesVisited;
 - (unsigned)plyReachedForSearch;
+
 @end
 
 

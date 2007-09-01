@@ -236,6 +236,11 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEquals([ab winner], (unsigned)1, nil);
 }
 
+- (void)test06SearchWithPly0
+{
+    STAssertNil([ab applyMoveFromSearchWithPly:0], nil);
+}
+
 - (void)test06SearchWithPly1
 {
     STAssertNotNil([ab applyMoveFromSearchWithPly:1], nil);
@@ -259,6 +264,11 @@ interlinked, so it makes sense to test them together. -applyMove and
         id s = [[ab applyMoveFromSearchWithPly:9] description];
         STAssertEqualObjects(s, [states objectAtIndex:i], nil);
     }
+}
+
+- (void)test07SearchWithInterval0
+{
+    STAssertNil([ab applyMoveFromSearchWithInterval:0.0], nil);
 }
 
 /* This tests relies on being able to search to ply 9 in 300 seconds.
@@ -289,5 +299,40 @@ interlinked, so it makes sense to test them together. -applyMove and
     }
     STAssertEquals([ab countMoves], (unsigned)9, nil);
 }
+
+- (void)test09fixedDepthVisitedStates
+{
+
+    /* Counts of states doesn't increase much at higher plies because we're getting close to the end of the game. */
+    id stateCounts = [NSArray arrayWithObjects: /* minimax numbers in comments */
+        @"1:9",     @"2:35",    @"3:166",       /*  9       81      585     */
+        @"4:629",   @"5:2776",  @"6:4707",      /*  3609    18729   73449   */
+        @"7:16263", @"8:18566", @"9:25597",     /*  221625  422073  549945  */
+        @"99:25597",    /* Test that searching past end of game has no effect. */
+        nil];
+
+    for (int i = 0; i < [stateCounts count]; i++) {
+        id cnt = [[stateCounts objectAtIndex:i] componentsSeparatedByString:@":"];
+        STAssertNotNil([ab moveFromSearchWithPly:[[cnt objectAtIndex:0] intValue]], nil);
+        STAssertEquals([ab countStatesVisited], (unsigned)[[cnt objectAtIndex:1] intValue], nil);
+    }
+}
+
+- (void)test09iterativeVisitedStates
+{
+    STAssertNotNil([ab moveFromSearchWithInterval:0.3], nil);
+    
+    unsigned visited = [ab countStatesVisited];
+    unsigned ply = [ab plyReachedForSearch];
+    STAssertTrue(ply > 1, @"reached more than 1 ply");
+    STAssertTrue(ply < 9, @"reached more than 9 ply");
+    
+    [ab moveFromSearchWithPly:ply];
+    unsigned visitedFixed = [ab countStatesVisited];
+    STAssertTrue(visited > visitedFixed,        @"visited > visitedFixed");
+    STAssertTrue(visited < visitedFixed * 1.5,  @"visited < visitedFixed * 1.5");
+}
+
+
 
 @end

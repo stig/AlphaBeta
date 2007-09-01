@@ -127,7 +127,8 @@ With immutable states you have to make a complete copy of the entire state, whic
 
 - (double)abWithState:(id)state alpha:(double)alpha beta:(double)beta plyLeft:(unsigned)ply
 {
-
+    statesVisited++;
+    
     /* For correctness we should really check for end of the game before
        we check if we have reached max ply, but doing this speeds up
        fixed-depth search by 33% (for Reversi).
@@ -149,7 +150,7 @@ With immutable states you have to make a complete copy of the entire state, whic
         alpha = alpha > sc ? alpha : sc;
         [self undo:m];
         
-        if (alpha > beta)
+        if (alpha >= beta)
             goto cut;
     }
 
@@ -169,10 +170,12 @@ Returns the best move found.
     double alpha = -INFINITY;
     double beta  = +INFINITY;
     
+    statesVisited = 0;
+    
     id best = nil;
     NSArray *mvs = [self movesAvailable];
     NSEnumerator *iter = [mvs objectEnumerator];
-    for (id m; m = [iter nextObject]; ) {
+    for (id m; ply && (m = [iter nextObject]); ) {
         
         id state = [self move:m];
         double sc = -[self abWithState:state alpha:-beta beta:-alpha plyLeft:ply-1];
@@ -215,6 +218,7 @@ search that lasts up to 300 milliseconds.
 
         double alpha = -INFINITY;
         double beta  = +INFINITY;
+        statesVisited = 0;
 
         /** @todo When searching to ply N+1, order the moves so we
             search the most promising one from search to ply N.
@@ -368,6 +372,15 @@ Return the depth reached by the last iterative search. The returned value is und
 {
     return plyReached;
 }
+
+/**
+Return the number of states visited by the last search. If the last search was an iterative one, the number of visited states is accumulated across all the iterations.
+*/
+- (unsigned)countStatesVisited
+{
+    return statesVisited;
+}
+
 
 /** Returns true if the current player has no option but to pass. */
 - (BOOL)currentPlayerMustPass
