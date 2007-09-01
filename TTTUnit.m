@@ -293,7 +293,7 @@ interlinked, so it makes sense to test them together. -applyMove and
         STAssertTrue(plyReached < 9, nil);
 
         id m2 = [ab moveFromSearchWithPly:plyReached];
-        STAssertEqualObjects([m1 description], [m2 description], nil );
+        STAssertEqualObjects([m1 description], [m2 description], @"iter: %u", i );
 
         STAssertNotNil([ab applyMove:m2], nil);
     }
@@ -330,6 +330,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     for (int i = 1; i <= ply; i++) {
         [ab moveFromSearchWithPly:i];
         acc += [ab countStatesVisited];
+//        NSLog(@"ply/acc: %u %u", i, acc);
     }
     STAssertEquals(visited, acc, @"ply: %u, acc: %u", ply, acc);
 }

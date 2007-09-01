@@ -129,6 +129,15 @@ With immutable states you have to make a complete copy of the entire state, whic
 {
     statesVisited++;
     
+    /* If we're doing iterative search and have run out of time, return.
+       It doesn't matter what value we return, because it will be
+       ignored. Benchmarks reveals this test is quite cheap, so taking
+       the tiny performance hit is certainly worth it for the accuracy
+       it gives us in timekeeping.
+     */
+    if (dateLimit && [dateLimit compare:[NSDate date]] < 0)
+        return 0.0;
+    
     /* For correctness we should really check for end of the game before
        we check if we have reached max ply, but doing this speeds up
        fixed-depth search by 33% (for Reversi).
@@ -137,7 +146,7 @@ With immutable states you have to make a complete copy of the entire state, whic
         foundEnd = NO;
         return [self currentFitness];
     }
-
+    
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
     NSArray *mvs = [self movesAvailable];
     if (![mvs count])
@@ -171,6 +180,7 @@ Returns the best move found.
     double beta  = +INFINITY;
     
     statesVisited = 0;
+    dateLimit = nil;
     
     id best = nil;
     NSArray *mvs = [self movesAvailable];
@@ -210,7 +220,7 @@ search that lasts up to 300 milliseconds.
     id best = nil;
     unsigned accumulatedStatesVisited = 0;
     
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:interval/2.5];
+    dateLimit = [NSDate dateWithTimeIntervalSinceNow:interval * .98];
     NSArray *mvs = [self movesAvailable];
     for (unsigned ply = 1;; ply++) {
 
@@ -232,10 +242,6 @@ search that lasts up to 300 milliseconds.
             /* Reset the 'reached a leaf state' indicator. */
             foundEnd = YES;
 
-            /* Check if we have any time left. */
-            if ([date compare:[NSDate date]] < 0)
-                goto time_is_up;
-
             id state = [self move:m];
             double sc = -[self abWithState:state alpha:-beta beta:-alpha plyLeft:ply-1];
             if (sc > alpha) {
@@ -243,6 +249,10 @@ search that lasts up to 300 milliseconds.
                 bestAtThisPly = m;
             }
             [self undo:m];
+
+            /* Check if we have any time left. */
+            if ([dateLimit compare:[NSDate date]] < 0)
+                goto time_is_up;
             
             if (foundEnd)
                 leafCount++;

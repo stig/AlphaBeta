@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     NSMutableArray *stateHistory;
     NSMutableArray *moveHistory;
 
+    NSDate *dateLimit;
     unsigned plyReached;
     unsigned statesVisited;
     BOOL foundEnd;

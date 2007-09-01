@@ -137,10 +137,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         /* _Must_ finish in less time than the interval */
         STAssertTrue( duration < interval, @"%f <= %f", duration, interval);
 
-        /* We should really tolerate finishing up to 10% early...
-        double accuracy = interval * 0.9;
+        /* We should really tolerate finishing up to 10% early... */
+        double accuracy = interval * 0.98;
         STAssertTrue( duration > accuracy, @"%f <= %f", duration, accuracy);
-        */
     }
 }
 

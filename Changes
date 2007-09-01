@@ -8,6 +8,7 @@ v0.3 @ 2007-XX-XX)
   the winner of a game.
 * Renamed the project (not the classes) and added an AlphaBeta.h header.
 * Greatly improved the documentation.
+* Greatly improved the timekeeping of the iterative search.
 
 v0.2 @ 2007-03-27
 
