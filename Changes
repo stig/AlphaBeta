@@ -1,5 +1,12 @@
 v0.3 @ 2007-XX-XX)
 
+* Fixed several major bugs:
+  - Alpha-Beta cut-offs are now in effect. This speeds up searches enormously.
+  - The iterative search routines would end a search early if it found
+    an early end state (rather than if _all_ the 'leaf' states it saw were
+    early end states).
+* Speeded up search a bit by not computing available moves if we have
+  reached the maximum search depth.
 * Added an -endStateScore method to both the state protocols.
 * Added -playerTurn method to SBAlphaBeta. For simplicity SBAlphaBeta
   enumerates the players 1 and 2, regardless of how the states
