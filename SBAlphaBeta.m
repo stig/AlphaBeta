@@ -208,6 +208,7 @@ search that lasts up to 300 milliseconds.
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval
 {
     id best = nil;
+    unsigned accumulatedStatesVisited = 0;
     
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:interval/2.5];
     NSArray *mvs = [self movesAvailable];
@@ -252,6 +253,7 @@ search that lasts up to 300 milliseconds.
          */
         best = bestAtThisPly;
         plyReached = ply;
+        accumulatedStatesVisited += statesVisited;
 
         /* If we found a leaf state for every move, then we're done. We
            don't need to search deeper.
@@ -264,6 +266,7 @@ search that lasts up to 300 milliseconds.
     }
 
 time_is_up:
+    statesVisited = accumulatedStatesVisited;
     return best;
 }
 
@@ -374,7 +377,9 @@ Return the depth reached by the last iterative search. The returned value is und
 }
 
 /**
-Return the number of states visited by the last search. If the last search was an iterative one, the number of visited states is accumulated across all the iterations.
+Return the number of states visited by the last search.
+
+If the last search was an iterative one, the number of visited states is accumulated across all the *completed* iterations.
 */
 - (unsigned)countStatesVisited
 {

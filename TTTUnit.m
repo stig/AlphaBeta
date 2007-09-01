@@ -321,16 +321,17 @@ interlinked, so it makes sense to test them together. -applyMove and
 - (void)test09iterativeVisitedStates
 {
     STAssertNotNil([ab moveFromSearchWithInterval:0.3], nil);
-    
     unsigned visited = [ab countStatesVisited];
     unsigned ply = [ab plyReachedForSearch];
     STAssertTrue(ply > 1, @"reached more than 1 ply");
     STAssertTrue(ply < 9, @"reached more than 9 ply");
     
-    [ab moveFromSearchWithPly:ply];
-    unsigned visitedFixed = [ab countStatesVisited];
-    STAssertTrue(visited > visitedFixed,        @"visited > visitedFixed (ply: %u)", ply);
-    STAssertTrue(visited < visitedFixed * 1.5,  @"visited < visitedFixed * 1.5 (ply: %u)", ply);
+    unsigned acc = 0;
+    for (int i = 1; i <= ply; i++) {
+        [ab moveFromSearchWithPly:i];
+        acc += [ab countStatesVisited];
+    }
+    STAssertEquals(visited, acc, @"ply: %u, acc: %u", ply, acc);
 }
 
 
