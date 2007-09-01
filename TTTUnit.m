@@ -329,8 +329,8 @@ interlinked, so it makes sense to test them together. -applyMove and
     
     [ab moveFromSearchWithPly:ply];
     unsigned visitedFixed = [ab countStatesVisited];
-    STAssertTrue(visited > visitedFixed,        @"visited > visitedFixed");
-    STAssertTrue(visited < visitedFixed * 1.5,  @"visited < visitedFixed * 1.5");
+    STAssertTrue(visited > visitedFixed,        @"visited > visitedFixed (ply: %u)", ply);
+    STAssertTrue(visited < visitedFixed * 1.5,  @"visited < visitedFixed * 1.5 (ply: %u)", ply);
 }
 
 
