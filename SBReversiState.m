@@ -1,6 +1,6 @@
 /*
-Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
-
+Copyright (C) 2007 Stig Brautaset. All rights reserved.
+ 
 This file is part of AlphaBeta.
 
 AlphaBeta is free software; you can redistribute it and/or modify
@@ -19,17 +19,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import "AlphaBeta.h"
+#import "SBReversiState.h"
 
-@interface TTTBase : NSObject <SBAlphaBetaStateCommon> {
-    int board[3][3];
-@public
-    unsigned player;
+@implementation SBReversiState
+
+-(id)stateByApplyingMove:(id)move
+{
+    SBReversiState *copy = (SBReversiState*)NSCopyObject(self, 0, [self zone]);
+
+    if (![self isPassMove:move]) {
+        [self validateMove:move];
+        NSEnumerator *e = [move objectEnumerator];
+        for (id m; m = [e nextObject];) {
+            int row = [[m objectForKey:@"row"] intValue];
+            int col = [[m objectForKey:@"col"] intValue];
+            copy->board[ col ][ row ] = player;
+        }
+    }
+
+    copy->player = 3 - player;
+
+    return [copy autorelease];
 }
-@end
 
-@interface TTTState : TTTBase <SBAlphaBetaState>
-@end
 
-@interface TTTMutableState : TTTBase <SBMutableAlphaBetaState>
 @end

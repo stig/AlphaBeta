@@ -1,43 +1,26 @@
-//
-//  AlphaBeta.h
-//  AlphaBeta
-//
-//  Created by Stig Brautaset on 11/12/2005.
-//  Copyright 2005 Stig Brautaset. All rights reserved.
-//
+/**
+Copyright (C) 2007 Stig Brautaset. All rights reserved.
 
-#import <Foundation/Foundation.h>
+This file is part of AlphaBeta.
 
-extern const float AlphaBetaFitnessMax;
-extern const float AlphaBetaFitnessMin;
+AlphaBeta is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
-@interface AlphaBeta : NSObject {
-    NSMutableArray *states;
-    NSMutableArray *moves;
-    unsigned maxPly;
-    NSTimeInterval maxTime;
-    int reachedPly;
-    BOOL foundEnd;
-    BOOL canUndo;
-}
-- (id)initWithState:(id)st;
-- (void)setState:(id)st;
-- (id)currentState;
-- (id)lastMove;
-- (id)fixedDepthSearch;
-- (id)fixedDepthSearchToDepth:(unsigned)ply;
-- (id)iterativeSearch;
-- (id)iterativeSearchWithTime:(NSTimeInterval)s;
-- (int)reachedPly;
-- (unsigned)countMoves;
-- (unsigned)countStates;
-- (float)abWithAlpha:(float)alpha beta:(float)beta plyLeft:(unsigned)ply;
-- (id)move:(id)m;
-- (id)undo;
-- (unsigned)maxPly;
-- (void)setMaxPly:(unsigned)ply;
-- (NSTimeInterval)maxTime;
-- (void)setMaxTime:(NSTimeInterval)time;
-- (float)fitness;
-- (BOOL)isGameOver;
-@end
+AlphaBeta is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with AlphaBeta; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+*/
+
+/** @file AlphaBeta/AlphaBeta.h
+    Main header file for external code to use.
+ */
+#import <AlphaBeta/SBAlphaBeta.h>
+#import <AlphaBeta/SBAlphaBetaState.h>

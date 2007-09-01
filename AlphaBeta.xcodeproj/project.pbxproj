@@ -7,129 +7,147 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		53238EDD0963623E0064AFCD /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
-		53238EDF096362420064AFCD /* Reversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C397CD095566D700E6E128 /* Reversi.framework */; };
-		53238EE0096362490064AFCD /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5357B5180955D68100E12436 /* TicTacToe.framework */; };
-		53238EFD096366D50064AFCD /* TTTUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53238EFC096366D50064AFCD /* TTTUnit.m */; };
-		53238FD1096400410064AFCD /* ReversiUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53238FD0096400410064AFCD /* ReversiUnit.m */; };
-		5357B52D0955D6D500E12436 /* TTTMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45888094C7C8A00E1D64E /* TTTMove.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5357B52E0955D6D600E12436 /* TTTMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45889094C7C8A00E1D64E /* TTTMove.m */; };
-		5357B52F0955D6D600E12436 /* TTTState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45883094C7C4300E1D64E /* TTTState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5357B5300955D6D700E12436 /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45884094C7C4300E1D64E /* TTTState.m */; };
-		53B45868094C7B2800E1D64E /* AlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B45866094C7B2700E1D64E /* AlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		53B4591D094C9BEF00E1D64E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		53C397E40955681C00E6E128 /* ReversiState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C397E20955681C00E6E128 /* ReversiState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		53C397E50955681C00E6E128 /* ReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E30955681C00E6E128 /* ReversiState.m */; };
-		53C397E80955682D00E6E128 /* ReversiMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C397E60955682D00E6E128 /* ReversiMove.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		53C397E90955682D00E6E128 /* ReversiMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C397E70955682D00E6E128 /* ReversiMove.m */; };
-		53EC354609576BE200AC6EBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		53EC355809576BFB00AC6EBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		53F5D6CB09543C8C008D0B74 /* AlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B45867094C7B2800E1D64E /* AlphaBeta.m */; };
-		53F5D93E0954A560008D0B74 /* AlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F5D93C0954A560008D0B74 /* AlphaBetaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5305DF400C818134009D7D04 /* SBReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DDAA90C817E9700587EFB /* SBReversiState.m */; };
+		5305DF650C81AC38009D7D04 /* ReversiProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5305DF640C81AC38009D7D04 /* ReversiProfile.m */; };
+		5305DF790C81AE76009D7D04 /* SBAlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 535023100B3AB2BD0012DAE7 /* SBAlphaBeta.m */; };
+		5305DF7A0C81AE78009D7D04 /* SBMutableReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DDAAA0C81809400587EFB /* SBMutableReversiState.m */; };
+		5305DF7B0C81AE79009D7D04 /* SBReversiBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5350246C0B3AC3540012DAE7 /* SBReversiBase.m */; };
+		5305DF7C0C81AE7C009D7D04 /* SBReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DDAA90C817E9700587EFB /* SBReversiState.m */; };
+		530DDAAB0C81809400587EFB /* SBMutableReversiState.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DDAAA0C81809400587EFB /* SBMutableReversiState.m */; };
+		534E13270C400E4800995A05 /* AlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 534E13250C400E4800995A05 /* AlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5350230B0B3AB2930012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		535023150B3AB2BD0012DAE7 /* SBAlphaBeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 5350230F0B3AB2BD0012DAE7 /* SBAlphaBeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		535023160B3AB2BD0012DAE7 /* SBAlphaBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 535023100B3AB2BD0012DAE7 /* SBAlphaBeta.m */; };
+		535023ED0B3AB8A80012DAE7 /* TTTState.h in Headers */ = {isa = PBXBuildFile; fileRef = 535023E90B3AB8A80012DAE7 /* TTTState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		535023EE0B3AB8A80012DAE7 /* TTTState.m in Sources */ = {isa = PBXBuildFile; fileRef = 535023EA0B3AB8A80012DAE7 /* TTTState.m */; };
+		5350240E0B3ABA140012DAE7 /* TTTUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5350240D0B3ABA140012DAE7 /* TTTUnit.m */; };
+		5350242E0B3ABAF50012DAE7 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
+		5350242F0B3ABAFB0012DAE7 /* TTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535023DF0B3AB87F0012DAE7 /* TTT.framework */; };
+		5350246F0B3AC3540012DAE7 /* SBReversiState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5350246B0B3AC3540012DAE7 /* SBReversiState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		535024700B3AC3540012DAE7 /* SBReversiBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5350246C0B3AC3540012DAE7 /* SBReversiBase.m */; };
+		535024730B3AC3870012DAE7 /* Reversi8x8Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024720B3AC3870012DAE7 /* Reversi8x8Unit.m */; };
+		535024760B3AC3A20012DAE7 /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535024600B3AC2D90012DAE7 /* SBReversi.framework */; };
+		535026430B3AFE9F0012DAE7 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
+		535026470B3AFEB50012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		535026490B3AFEDF0012DAE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		5350264B0B3AFF0D0012DAE7 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
+		5350264C0B3AFF120012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		53762BDC0BA3145C0089CB6D /* SBAlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53A028910C7A419E0039662A /* TTTMutableState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A0288F0C7A419E0039662A /* TTTMutableState.m */; };
+		53A028920C7A419E0039662A /* TTTBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A028900C7A419E0039662A /* TTTBase.m */; };
+		53CED62E0C7891FE008CB8F3 /* Reversi6x6Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CED62D0C7891FE008CB8F3 /* Reversi6x6Unit.m */; };
+		53CED6340C7895BC008CB8F3 /* Reversi4x4Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CED6330C7895BC008CB8F3 /* Reversi4x4Unit.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildStyle section */
-		014CEA440018CDF011CA2923 /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				ZERO_LINK = YES;
-			};
-			name = Debug;
-		};
-		014CEA450018CDF011CA2923 /* Release */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-/* End PBXBuildStyle section */
-
 /* Begin PBXContainerItemProxy section */
-		53238ED1096362340064AFCD /* PBXContainerItemProxy */ = {
+		535023E50B3AB88F0012DAE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = AlphaBeta;
+			remoteInfo = SBAlphaBeta;
 		};
-		53238ED3096362340064AFCD /* PBXContainerItemProxy */ = {
+		535023FA0B3AB9060012DAE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 53C397CC095566D700E6E128;
-			remoteInfo = Reversi;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = SBAlphaBeta;
 		};
-		53238ED5096362340064AFCD /* PBXContainerItemProxy */ = {
+		535023FC0B3AB9060012DAE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5357B5170955D68100E12436;
-			remoteInfo = TicTacToe;
+			remoteGlobalIDString = 535023DE0B3AB87F0012DAE7;
+			remoteInfo = TTT;
+		};
+		535024660B3AC2E40012DAE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = SBAlphaBeta;
+		};
+		535024740B3AC3980012DAE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5350245F0B3AC2D90012DAE7;
+			remoteInfo = SBReversi;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		32DBCF5E0370ADEE00C91783 /* AlphaBeta_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBeta_Prefix.pch; sourceTree = "<group>"; };
-		53238ECB0963622C0064AFCD /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		53238ECC0963622C0064AFCD /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
-		53238EFB096366D50064AFCD /* TTTUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTUnit.h; sourceTree = "<group>"; };
-		53238EFC096366D50064AFCD /* TTTUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTUnit.m; sourceTree = "<group>"; };
-		53238FCF096400410064AFCD /* ReversiUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiUnit.h; sourceTree = "<group>"; };
-		53238FD0096400410064AFCD /* ReversiUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiUnit.m; sourceTree = "<group>"; };
-		5357B5180955D68100E12436 /* TicTacToe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TicTacToe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5357B5190955D68100E12436 /* TicTacToe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "TicTacToe-Info.plist"; sourceTree = "<group>"; };
-		53B45866094C7B2700E1D64E /* AlphaBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBeta.h; sourceTree = "<group>"; };
-		53B45867094C7B2800E1D64E /* AlphaBeta.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = AlphaBeta.m; sourceTree = "<group>"; usesTabs = 0; };
-		53B45883094C7C4300E1D64E /* TTTState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTState.h; sourceTree = "<group>"; };
-		53B45884094C7C4300E1D64E /* TTTState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTState.m; sourceTree = "<group>"; };
-		53B45888094C7C8A00E1D64E /* TTTMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTMove.h; sourceTree = "<group>"; };
-		53B45889094C7C8A00E1D64E /* TTTMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTMove.m; sourceTree = "<group>"; };
-		53C397CD095566D700E6E128 /* Reversi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reversi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		53C397CE095566D700E6E128 /* Reversi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Reversi-Info.plist"; sourceTree = "<group>"; };
-		53C397E20955681C00E6E128 /* ReversiState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiState.h; sourceTree = "<group>"; };
-		53C397E30955681C00E6E128 /* ReversiState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiState.m; sourceTree = "<group>"; };
-		53C397E60955682D00E6E128 /* ReversiMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiMove.h; sourceTree = "<group>"; };
-		53C397E70955682D00E6E128 /* ReversiMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiMove.m; sourceTree = "<group>"; };
-		53F5D93C0954A560008D0B74 /* AlphaBetaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBetaState.h; sourceTree = "<group>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF5E0370ADEE00C91783 /* SBAlphaBeta_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlphaBeta_Prefix.pch; sourceTree = "<group>"; };
+		5305DF520C81A8A1009D7D04 /* ReversiProfile */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReversiProfile; sourceTree = BUILT_PRODUCTS_DIR; };
+		5305DF640C81AC38009D7D04 /* ReversiProfile.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ReversiProfile.m; sourceTree = "<group>"; };
+		530DDAA90C817E9700587EFB /* SBReversiState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBReversiState.m; sourceTree = "<group>"; };
+		530DDAAA0C81809400587EFB /* SBMutableReversiState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SBMutableReversiState.m; sourceTree = "<group>"; };
+		534E13250C400E4800995A05 /* AlphaBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaBeta.h; sourceTree = "<group>"; };
+		5350230F0B3AB2BD0012DAE7 /* SBAlphaBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlphaBeta.h; sourceTree = "<group>"; };
+		535023100B3AB2BD0012DAE7 /* SBAlphaBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBAlphaBeta.m; sourceTree = "<group>"; };
+		535023DF0B3AB87F0012DAE7 /* TTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		535023E00B3AB87F0012DAE7 /* TTT-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "TTT-Info.plist"; sourceTree = "<group>"; };
+		535023E90B3AB8A80012DAE7 /* TTTState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTState.h; sourceTree = "<group>"; };
+		535023EA0B3AB8A80012DAE7 /* TTTState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTState.m; sourceTree = "<group>"; };
+		535023F40B3AB9000012DAE7 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		535023F60B3AB9000012DAE7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		5350240C0B3ABA140012DAE7 /* TTTUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTUnit.h; sourceTree = "<group>"; };
+		5350240D0B3ABA140012DAE7 /* TTTUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTUnit.m; sourceTree = "<group>"; };
+		535024600B3AC2D90012DAE7 /* SBReversi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SBReversi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		535024610B3AC2D90012DAE7 /* SBReversi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "SBReversi-Info.plist"; sourceTree = "<group>"; };
+		5350246B0B3AC3540012DAE7 /* SBReversiState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBReversiState.h; sourceTree = "<group>"; };
+		5350246C0B3AC3540012DAE7 /* SBReversiBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBReversiBase.m; sourceTree = "<group>"; };
+		535024710B3AC3870012DAE7 /* ReversiUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiUnit.h; sourceTree = "<group>"; };
+		535024720B3AC3870012DAE7 /* Reversi8x8Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reversi8x8Unit.m; sourceTree = "<group>"; };
+		53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlphaBetaState.h; sourceTree = "<group>"; };
+		53A0288F0C7A419E0039662A /* TTTMutableState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TTTMutableState.m; sourceTree = "<group>"; };
+		53A028900C7A419E0039662A /* TTTBase.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TTTBase.m; sourceTree = "<group>"; };
+		53CED62D0C7891FE008CB8F3 /* Reversi6x6Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reversi6x6Unit.m; sourceTree = "<group>"; };
+		53CED6330C7895BC008CB8F3 /* Reversi4x4Unit.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Reversi4x4Unit.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlphaBeta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		53238EC80963622C0064AFCD /* Frameworks */ = {
+		5305DF500C81A8A1009D7D04 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53238EDD0963623E0064AFCD /* AlphaBeta.framework in Frameworks */,
-				53238EDF096362420064AFCD /* Reversi.framework in Frameworks */,
-				53238EE0096362490064AFCD /* TicTacToe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5357B5160955D68100E12436 /* Frameworks */ = {
+		535023DD0B3AB87F0012DAE7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53EC355809576BFB00AC6EBC /* Foundation.framework in Frameworks */,
+				5350264B0B3AFF0D0012DAE7 /* AlphaBeta.framework in Frameworks */,
+				5350264C0B3AFF120012DAE7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		53C397CB095566D700E6E128 /* Frameworks */ = {
+		535023F10B3AB9000012DAE7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53EC354609576BE200AC6EBC /* Foundation.framework in Frameworks */,
+				5350242E0B3ABAF50012DAE7 /* AlphaBeta.framework in Frameworks */,
+				5350242F0B3ABAFB0012DAE7 /* TTT.framework in Frameworks */,
+				535024760B3AC3A20012DAE7 /* SBReversi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5350245E0B3AC2D90012DAE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				535026430B3AFE9F0012DAE7 /* AlphaBeta.framework in Frameworks */,
+				535026470B3AFEB50012DAE7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53B4591D094C9BEF00E1D64E /* Foundation.framework in Frameworks */,
+				5350230B0B3AB2930012DAE7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,27 +166,25 @@
 			isa = PBXGroup;
 			children = (
 				8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */,
-				53C397CD095566D700E6E128 /* Reversi.framework */,
-				5357B5180955D68100E12436 /* TicTacToe.framework */,
-				53238ECB0963622C0064AFCD /* UnitTests.octest */,
+				535023DF0B3AB87F0012DAE7 /* TTT.framework */,
+				535023F40B3AB9000012DAE7 /* Tests.octest */,
+				535024600B3AC2D90012DAE7 /* SBReversi.framework */,
+				5305DF520C81A8A1009D7D04 /* ReversiProfile */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0867D691FE84028FC02AAC07 /* AlphaBeta */ = {
+		0867D691FE84028FC02AAC07 /* SBAlphaBeta */ = {
 			isa = PBXGroup;
 			children = (
-				08FB77AEFE84172EC02AAC07 /* AlphaBeta */,
-				53C397D8095566F700E6E128 /* Reversi */,
-				5357B5260955D69600E12436 /* TicTacToe */,
-				53238EC0096361FF0064AFCD /* UnitTests */,
+				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
+				534E132B0C400E6600995A05 /* Tests */,
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				53238ECC0963622C0064AFCD /* UnitTests-Info.plist */,
 			);
-			name = AlphaBeta;
+			name = SBAlphaBeta;
 			sourceTree = "<group>";
 		};
 		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
@@ -183,27 +199,30 @@
 		089C1665FE841158C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				535024610B3AC2D90012DAE7 /* SBReversi-Info.plist */,
+				535023F60B3AB9000012DAE7 /* Tests-Info.plist */,
+				535023E00B3AB87F0012DAE7 /* TTT-Info.plist */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
-				53C397CE095566D700E6E128 /* Reversi-Info.plist */,
-				5357B5190955D68100E12436 /* TicTacToe-Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		08FB77AEFE84172EC02AAC07 /* AlphaBeta */ = {
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				53B45866094C7B2700E1D64E /* AlphaBeta.h */,
-				53B45867094C7B2800E1D64E /* AlphaBeta.m */,
-				53F5D93C0954A560008D0B74 /* AlphaBetaState.h */,
+				53762BEA0BA315450089CB6D /* Reversi */,
+				53762BE90BA315360089CB6D /* TicTacToe */,
+				5350230F0B3AB2BD0012DAE7 /* SBAlphaBeta.h */,
+				535023100B3AB2BD0012DAE7 /* SBAlphaBeta.m */,
 			);
-			name = AlphaBeta;
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -211,6 +230,8 @@
 		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				D2F7E79907B2D74100F64583 /* CoreData.framework */,
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
@@ -219,40 +240,45 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32DBCF5E0370ADEE00C91783 /* AlphaBeta_Prefix.pch */,
+				5305DF640C81AC38009D7D04 /* ReversiProfile.m */,
+				53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */,
+				32DBCF5E0370ADEE00C91783 /* SBAlphaBeta_Prefix.pch */,
+				534E13250C400E4800995A05 /* AlphaBeta.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		53238EC0096361FF0064AFCD /* UnitTests */ = {
+		534E132B0C400E6600995A05 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				53238FCF096400410064AFCD /* ReversiUnit.h */,
-				53238FD0096400410064AFCD /* ReversiUnit.m */,
-				53238EFB096366D50064AFCD /* TTTUnit.h */,
-				53238EFC096366D50064AFCD /* TTTUnit.m */,
+				535024710B3AC3870012DAE7 /* ReversiUnit.h */,
+				53CED6330C7895BC008CB8F3 /* Reversi4x4Unit.m */,
+				53CED62D0C7891FE008CB8F3 /* Reversi6x6Unit.m */,
+				535024720B3AC3870012DAE7 /* Reversi8x8Unit.m */,
+				5350240C0B3ABA140012DAE7 /* TTTUnit.h */,
+				5350240D0B3ABA140012DAE7 /* TTTUnit.m */,
 			);
-			name = UnitTests;
+			name = Tests;
 			sourceTree = "<group>";
 		};
-		5357B5260955D69600E12436 /* TicTacToe */ = {
+		53762BE90BA315360089CB6D /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
-				53B45883094C7C4300E1D64E /* TTTState.h */,
-				53B45884094C7C4300E1D64E /* TTTState.m */,
-				53B45888094C7C8A00E1D64E /* TTTMove.h */,
-				53B45889094C7C8A00E1D64E /* TTTMove.m */,
+				535023E90B3AB8A80012DAE7 /* TTTState.h */,
+				53A028900C7A419E0039662A /* TTTBase.m */,
+				535023EA0B3AB8A80012DAE7 /* TTTState.m */,
+				53A0288F0C7A419E0039662A /* TTTMutableState.m */,
 			);
 			name = TicTacToe;
 			sourceTree = "<group>";
 		};
-		53C397D8095566F700E6E128 /* Reversi */ = {
+		53762BEA0BA315450089CB6D /* Reversi */ = {
 			isa = PBXGroup;
 			children = (
-				53C397E60955682D00E6E128 /* ReversiMove.h */,
-				53C397E70955682D00E6E128 /* ReversiMove.m */,
-				53C397E20955681C00E6E128 /* ReversiState.h */,
-				53C397E30955681C00E6E128 /* ReversiState.m */,
+				5350246B0B3AC3540012DAE7 /* SBReversiState.h */,
+				5350246C0B3AC3540012DAE7 /* SBReversiBase.m */,
+				530DDAA90C817E9700587EFB /* SBReversiState.m */,
+				530DDAAA0C81809400587EFB /* SBMutableReversiState.m */,
 			);
 			name = Reversi;
 			sourceTree = "<group>";
@@ -260,21 +286,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		5357B5130955D68100E12436 /* Headers */ = {
+		535023DA0B3AB87F0012DAE7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5357B52D0955D6D500E12436 /* TTTMove.h in Headers */,
-				5357B52F0955D6D600E12436 /* TTTState.h in Headers */,
+				535023ED0B3AB8A80012DAE7 /* TTTState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		53C397C8095566D700E6E128 /* Headers */ = {
+		5350245B0B3AC2D90012DAE7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53C397E40955681C00E6E128 /* ReversiState.h in Headers */,
-				53C397E80955682D00E6E128 /* ReversiMove.h in Headers */,
+				5350246F0B3AC3540012DAE7 /* SBReversiState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,221 +306,93 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53B45868094C7B2800E1D64E /* AlphaBeta.h in Headers */,
-				53F5D93E0954A560008D0B74 /* AlphaBetaState.h in Headers */,
+				535023150B3AB2BD0012DAE7 /* SBAlphaBeta.h in Headers */,
+				53762BDC0BA3145C0089CB6D /* SBAlphaBetaState.h in Headers */,
+				534E13270C400E4800995A05 /* AlphaBeta.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		53238ECA0963622C0064AFCD /* UnitTests */ = {
+		5305DF510C81A8A1009D7D04 /* ReversiProfile */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 53238ECD0963622D0064AFCD /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildConfigurationList = 5305DF600C81A8C9009D7D04 /* Build configuration list for PBXNativeTarget "ReversiProfile" */;
 			buildPhases = (
-				53238EC60963622C0064AFCD /* Resources */,
-				53238EC70963622C0064AFCD /* Sources */,
-				53238EC80963622C0064AFCD /* Frameworks */,
-				53238EC90963622C0064AFCD /* ShellScript */,
+				5305DF4F0C81A8A1009D7D04 /* Sources */,
+				5305DF500C81A8A1009D7D04 /* Frameworks */,
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "UnitTests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTests;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = octest;
-			};
 			dependencies = (
-				53238ED2096362340064AFCD /* PBXTargetDependency */,
-				53238ED4096362340064AFCD /* PBXTargetDependency */,
-				53238ED6096362340064AFCD /* PBXTargetDependency */,
 			);
-			name = UnitTests;
-			productName = UnitTests;
-			productReference = 53238ECB0963622C0064AFCD /* UnitTests.octest */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>UnitTests</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.UnitTests</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
-</dict>
-</plist>
-";
-			productType = "com.apple.product-type.bundle";
+			name = ReversiProfile;
+			productName = ReversiProfile;
+			productReference = 5305DF520C81A8A1009D7D04 /* ReversiProfile */;
+			productType = "com.apple.product-type.tool";
 		};
-		5357B5170955D68100E12436 /* TicTacToe */ = {
+		535023DE0B3AB87F0012DAE7 /* TTT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5357B51A0955D68200E12436 /* Build configuration list for PBXNativeTarget "TicTacToe" */;
+			buildConfigurationList = 535023E20B3AB8800012DAE7 /* Build configuration list for PBXNativeTarget "TTT" */;
 			buildPhases = (
-				5357B5130955D68100E12436 /* Headers */,
-				5357B5140955D68100E12436 /* Resources */,
-				5357B5150955D68100E12436 /* Sources */,
-				5357B5160955D68100E12436 /* Frameworks */,
+				535023DA0B3AB87F0012DAE7 /* Headers */,
+				535023DB0B3AB87F0012DAE7 /* Resources */,
+				535023DC0B3AB87F0012DAE7 /* Sources */,
+				535023DD0B3AB87F0012DAE7 /* Frameworks */,
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "TicTacToe-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				OPTIMIZATION_CFLAGS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = TicTacToe;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			dependencies = (
+				535023E60B3AB88F0012DAE7 /* PBXTargetDependency */,
 			);
-			name = TicTacToe;
-			productName = TicTacToe;
-			productReference = 5357B5180955D68100E12436 /* TicTacToe.framework */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>TicTacToe</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.TicTacToe</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
-</dict>
-</plist>
-";
+			name = TTT;
+			productName = TTT;
+			productReference = 535023DF0B3AB87F0012DAE7 /* TTT.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		53C397CC095566D700E6E128 /* Reversi */ = {
+		535023F30B3AB9000012DAE7 /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 53C397D2095566D800E6E128 /* Build configuration list for PBXNativeTarget "Reversi" */;
+			buildConfigurationList = 535023F70B3AB9010012DAE7 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
-				53C397C8095566D700E6E128 /* Headers */,
-				53C397C9095566D700E6E128 /* Resources */,
-				53C397CA095566D700E6E128 /* Sources */,
-				53C397CB095566D700E6E128 /* Frameworks */,
+				535023EF0B3AB9000012DAE7 /* Resources */,
+				535023F00B3AB9000012DAE7 /* Sources */,
+				535023F10B3AB9000012DAE7 /* Frameworks */,
+				535023F20B3AB9000012DAE7 /* ShellScript */,
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "Reversi-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				OPTIMIZATION_CFLAGS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = Reversi;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			dependencies = (
+				535024750B3AC3980012DAE7 /* PBXTargetDependency */,
+				535023FB0B3AB9060012DAE7 /* PBXTargetDependency */,
+				535023FD0B3AB9060012DAE7 /* PBXTargetDependency */,
 			);
-			name = Reversi;
-			productName = Reversi;
-			productReference = 53C397CD095566D700E6E128 /* Reversi.framework */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Reversi</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.Reversi</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
-</dict>
-</plist>
-";
+			name = Tests;
+			productName = Tests;
+			productReference = 535023F40B3AB9000012DAE7 /* Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		5350245F0B3AC2D90012DAE7 /* SBReversi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 535024630B3AC2DA0012DAE7 /* Build configuration list for PBXNativeTarget "SBReversi" */;
+			buildPhases = (
+				5350245B0B3AC2D90012DAE7 /* Headers */,
+				5350245C0B3AC2D90012DAE7 /* Resources */,
+				5350245D0B3AC2D90012DAE7 /* Sources */,
+				5350245E0B3AC2D90012DAE7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				535024670B3AC2E40012DAE7 /* PBXTargetDependency */,
+			);
+			name = SBReversi;
+			productName = SBReversi;
+			productReference = 535024600B3AC2D90012DAE7 /* SBReversi.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8DC2EF4F0486A6940098B216 /* AlphaBeta */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 53B4585C094C7B2300E1D64E /* Build configuration list for PBXNativeTarget "AlphaBeta" */;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "AlphaBeta" */;
 			buildPhases = (
 				8DC2EF500486A6940098B216 /* Headers */,
 				8DC2EF520486A6940098B216 /* Resources */,
@@ -505,28 +401,11 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AlphaBeta_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Library/Frameworks";
-				LIBRARY_STYLE = DYNAMIC;
-				PREBINDING = NO;
-				PRODUCT_NAME = AlphaBeta;
-				WRAPPER_EXTENSION = framework;
-			};
 			dependencies = (
 			);
 			name = AlphaBeta;
 			productInstallPath = "$(HOME)/Library/Frameworks";
-			productName = AlphaBeta;
+			productName = SBAlphaBeta;
 			productReference = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */;
 			productType = "com.apple.product-type.framework";
 		};
@@ -535,45 +414,41 @@
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 53B45860094C7B2300E1D64E /* Build configuration list for PBXProject "AlphaBeta" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				014CEA440018CDF011CA2923 /* Debug */,
-				014CEA450018CDF011CA2923 /* Release */,
-			);
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "AlphaBeta" */;
 			hasScannedForEncodings = 1;
-			mainGroup = 0867D691FE84028FC02AAC07 /* AlphaBeta */;
+			mainGroup = 0867D691FE84028FC02AAC07 /* SBAlphaBeta */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
 			targets = (
 				8DC2EF4F0486A6940098B216 /* AlphaBeta */,
-				53C397CC095566D700E6E128 /* Reversi */,
-				5357B5170955D68100E12436 /* TicTacToe */,
-				53238ECA0963622C0064AFCD /* UnitTests */,
+				5350245F0B3AC2D90012DAE7 /* SBReversi */,
+				535023DE0B3AB87F0012DAE7 /* TTT */,
+				535023F30B3AB9000012DAE7 /* Tests */,
+				5305DF510C81A8A1009D7D04 /* ReversiProfile */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		53238EC60963622C0064AFCD /* Resources */ = {
+		535023DB0B3AB87F0012DAE7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5357B5140955D68100E12436 /* Resources */ = {
+		535023EF0B3AB9000012DAE7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		53C397C9095566D700E6E128 /* Resources */ = {
+		5350245C0B3AC2D90012DAE7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				535026490B3AFEDF0012DAE7 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +463,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		53238EC90963622C0064AFCD /* ShellScript */ = {
+		535023F20B3AB9000012DAE7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -604,30 +479,46 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		53238EC70963622C0064AFCD /* Sources */ = {
+		5305DF4F0C81A8A1009D7D04 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53238EFD096366D50064AFCD /* TTTUnit.m in Sources */,
-				53238FD1096400410064AFCD /* ReversiUnit.m in Sources */,
+				5305DF650C81AC38009D7D04 /* ReversiProfile.m in Sources */,
+				5305DF790C81AE76009D7D04 /* SBAlphaBeta.m in Sources */,
+				5305DF7A0C81AE78009D7D04 /* SBMutableReversiState.m in Sources */,
+				5305DF7B0C81AE79009D7D04 /* SBReversiBase.m in Sources */,
+				5305DF7C0C81AE7C009D7D04 /* SBReversiState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5357B5150955D68100E12436 /* Sources */ = {
+		535023DC0B3AB87F0012DAE7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5357B52E0955D6D600E12436 /* TTTMove.m in Sources */,
-				5357B5300955D6D700E12436 /* TTTState.m in Sources */,
+				535023EE0B3AB8A80012DAE7 /* TTTState.m in Sources */,
+				53A028910C7A419E0039662A /* TTTMutableState.m in Sources */,
+				53A028920C7A419E0039662A /* TTTBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		53C397CA095566D700E6E128 /* Sources */ = {
+		535023F00B3AB9000012DAE7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53C397E50955681C00E6E128 /* ReversiState.m in Sources */,
-				53C397E90955682D00E6E128 /* ReversiMove.m in Sources */,
+				5350240E0B3ABA140012DAE7 /* TTTUnit.m in Sources */,
+				535024730B3AC3870012DAE7 /* Reversi8x8Unit.m in Sources */,
+				53CED62E0C7891FE008CB8F3 /* Reversi6x6Unit.m in Sources */,
+				53CED6340C7895BC008CB8F3 /* Reversi4x4Unit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5350245D0B3AC2D90012DAE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				535024700B3AC3540012DAE7 /* SBReversiBase.m in Sources */,
+				530DDAAB0C81809400587EFB /* SBMutableReversiState.m in Sources */,
+				5305DF400C818134009D7D04 /* SBReversiState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,27 +526,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53F5D6CB09543C8C008D0B74 /* AlphaBeta.m in Sources */,
+				535023160B3AB2BD0012DAE7 /* SBAlphaBeta.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		53238ED2096362340064AFCD /* PBXTargetDependency */ = {
+		535023E60B3AB88F0012DAE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
-			targetProxy = 53238ED1096362340064AFCD /* PBXContainerItemProxy */;
+			targetProxy = 535023E50B3AB88F0012DAE7 /* PBXContainerItemProxy */;
 		};
-		53238ED4096362340064AFCD /* PBXTargetDependency */ = {
+		535023FB0B3AB9060012DAE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 53C397CC095566D700E6E128 /* Reversi */;
-			targetProxy = 53238ED3096362340064AFCD /* PBXContainerItemProxy */;
+			target = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
+			targetProxy = 535023FA0B3AB9060012DAE7 /* PBXContainerItemProxy */;
 		};
-		53238ED6096362340064AFCD /* PBXTargetDependency */ = {
+		535023FD0B3AB9060012DAE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5357B5170955D68100E12436 /* TicTacToe */;
-			targetProxy = 53238ED5096362340064AFCD /* PBXContainerItemProxy */;
+			target = 535023DE0B3AB87F0012DAE7 /* TTT */;
+			targetProxy = 535023FC0B3AB9060012DAE7 /* PBXContainerItemProxy */;
+		};
+		535024670B3AC2E40012DAE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
+			targetProxy = 535024660B3AC2E40012DAE7 /* PBXContainerItemProxy */;
+		};
+		535024750B3AC3980012DAE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5350245F0B3AC2D90012DAE7 /* SBReversi */;
+			targetProxy = 535024740B3AC3980012DAE7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -671,203 +572,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		53238ECE0963622D0064AFCD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "UnitTests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTests;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		53238ECF0963622D0064AFCD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "UnitTests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTests;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
-		53238ED00963622D0064AFCD /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "UnitTests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTests;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Default;
-		};
-		5357B51B0955D68200E12436 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "TicTacToe-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = TicTacToe;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Debug;
-		};
-		5357B51C0955D68200E12436 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "TicTacToe-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = TicTacToe;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Release;
-		};
-		5357B51D0955D68200E12436 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "TicTacToe-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = TicTacToe;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Default;
-		};
-		53B4585D094C7B2300E1D64E /* Debug */ = {
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -876,29 +581,154 @@
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AlphaBeta_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				GCC_PREFIX_HEADER = SBAlphaBeta_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_STYLE = DYNAMIC;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0xb0000000,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AlphaBeta;
 				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SBAlphaBeta_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0xb0000000,
+				);
+				PRODUCT_NAME = AlphaBeta;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "";
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "";
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+		5305DF610C81A8C9009D7D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GENERATE_MASTER_OBJECT_FILE = NO;
+				INSTALL_PATH = "$(HOME)/bin";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ReversiProfile;
 				ZERO_LINK = NO;
 			};
 			name = Debug;
 		};
-		53B4585E094C7B2300E1D64E /* Release */ = {
+		5305DF620C81A8C9009D7D04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GENERATE_MASTER_OBJECT_FILE = NO;
+				INSTALL_PATH = "$(HOME)/bin";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ReversiProfile;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		535023E30B3AB8800012DAE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TTT-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TTT;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		535023E40B3AB8800012DAE7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
@@ -906,225 +736,188 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AlphaBeta_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_STYLE = DYNAMIC;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "TTT-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0xb0000000,
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = AlphaBeta;
-				WRAPPER_EXTENSION = framework;
+				PRODUCT_NAME = TTT;
 				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
-		53B4585F094C7B2300E1D64E /* Default */ = {
+		535023F80B3AB9010012DAE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AlphaBeta_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_STYLE = DYNAMIC;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0xb0000000,
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = AlphaBeta;
-				WRAPPER_EXTENSION = framework;
+				PRODUCT_NAME = Tests;
+				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
-			};
-			name = Default;
-		};
-		53B45861094C7B2300E1D64E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
 			};
 			name = Debug;
 		};
-		53B45862094C7B2300E1D64E /* Release */ = {
+		535023F90B3AB9010012DAE7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
-		53B45863094C7B2300E1D64E /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Default;
-		};
-		53C397D3095566D800E6E128 /* Debug */ = {
+		535024640B3AC2DA0012DAE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "Reversi-Info.plist";
+				INFOPLIST_FILE = "SBReversi-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
 					"-seg1addr",
-					0xc0000000,
+					0xbb000000,
 				);
-				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Reversi;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
+				PRODUCT_NAME = SBReversi;
+				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
-		53C397D4095566D800E6E128 /* Release */ = {
+		535024650B3AC2DA0012DAE7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "Reversi-Info.plist";
+				INFOPLIST_FILE = "SBReversi-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
 					"-seg1addr",
-					0xc0000000,
+					0xbb000000,
 				);
-				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Reversi;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
+				PRODUCT_NAME = SBReversi;
+				ZERO_LINK = NO;
 			};
 			name = Release;
-		};
-		53C397D5095566D800E6E128 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "Reversi-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-					"-seg1addr",
-					0xc0000000,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = Reversi;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Default;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		53238ECD0963622D0064AFCD /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "AlphaBeta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				53238ECE0963622D0064AFCD /* Debug */,
-				53238ECF0963622D0064AFCD /* Release */,
-				53238ED00963622D0064AFCD /* Default */,
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		5357B51A0955D68200E12436 /* Build configuration list for PBXNativeTarget "TicTacToe" */ = {
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "AlphaBeta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5357B51B0955D68200E12436 /* Debug */,
-				5357B51C0955D68200E12436 /* Release */,
-				5357B51D0955D68200E12436 /* Default */,
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		53B4585C094C7B2300E1D64E /* Build configuration list for PBXNativeTarget "AlphaBeta" */ = {
+		5305DF600C81A8C9009D7D04 /* Build configuration list for PBXNativeTarget "ReversiProfile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				53B4585D094C7B2300E1D64E /* Debug */,
-				53B4585E094C7B2300E1D64E /* Release */,
-				53B4585F094C7B2300E1D64E /* Default */,
+				5305DF610C81A8C9009D7D04 /* Debug */,
+				5305DF620C81A8C9009D7D04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
-		53B45860094C7B2300E1D64E /* Build configuration list for PBXProject "AlphaBeta" */ = {
+		535023E20B3AB8800012DAE7 /* Build configuration list for PBXNativeTarget "TTT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				53B45861094C7B2300E1D64E /* Debug */,
-				53B45862094C7B2300E1D64E /* Release */,
-				53B45863094C7B2300E1D64E /* Default */,
+				535023E30B3AB8800012DAE7 /* Debug */,
+				535023E40B3AB8800012DAE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
-		53C397D2095566D800E6E128 /* Build configuration list for PBXNativeTarget "Reversi" */ = {
+		535023F70B3AB9010012DAE7 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				53C397D3095566D800E6E128 /* Debug */,
-				53C397D4095566D800E6E128 /* Release */,
-				53C397D5095566D800E6E128 /* Default */,
+				535023F80B3AB9010012DAE7 /* Debug */,
+				535023F90B3AB9010012DAE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		535024630B3AC2DA0012DAE7 /* Build configuration list for PBXNativeTarget "SBReversi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				535024640B3AC2DA0012DAE7 /* Debug */,
+				535024650B3AC2DA0012DAE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import "TTTState.h"
 
-@implementation TTTState
+@implementation TTTMutableState
 
-- (id)stateByApplyingMove:(id)m
+- (void)transformWithMove:(id)m
 {
     int row = [[m objectForKey:@"row"] intValue];
     int col = [[m objectForKey:@"col"] intValue];
@@ -35,11 +35,24 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         [NSException raise:@"square busy" format:@"Move already taken (%d, %d)", row, col];
     }
     
-    id copy = NSCopyObject(self, 0, [self zone]);
-    ((TTTState *)copy)->board[col][row] = player;
-    ((TTTState *)copy)->player = 3 - player;
+    board[col][row] = player;
+    player = 3 - player;
+}
 
-    return copy;
+- (void)undoTransformWithMove:(id)m
+{
+    int row = [[m objectForKey:@"row"] intValue];
+    int col = [[m objectForKey:@"col"] intValue];
+
+    if (row > 2 || row < 0 || col > 2 || col < 0) {
+        [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
+
+    } else if (!board[col][row]) {
+        [NSException raise:@"square not busy" format:@"Move not taken (%d, %d)", row, col];
+    }
+    
+    board[col][row] = 0;
+    player = 3 - player;
 }
 
 @end
