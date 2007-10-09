@@ -389,7 +389,7 @@ Returns 1 or 2 for the winning player, or 0 if the game ended in a draw.
 /**
 Return the depth reached by the last iterative search. The returned value is undefined if no iterative search has been executed yet.
  */
-- (unsigned)plyReachedForSearch
+- (unsigned)depthForSearch
 {
     return plyReached;
 }
@@ -399,7 +399,7 @@ Return the number of states visited by the last search.
 
 If the last search was an iterative one, the number of visited states is accumulated across all the *completed* iterations.
 */
-- (unsigned)countStatesVisited
+- (unsigned)stateCountForSearch
 {
     return statesVisited;
 }

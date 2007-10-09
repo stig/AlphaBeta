@@ -40,9 +40,9 @@ int main(int argc, char **argv)
             [ab moveFromSearchWithInterval:[[opts objectForKey:@"--time"] doubleValue]];
 
         printf("%u %lf %u %u (visited/time/ply/skip)\n",
-            [ab countStatesVisited],
+            [ab stateCountForSearch],
             (double)-[date timeIntervalSinceNow],
-            fixed ? ply : [ab plyReachedForSearch],
+            fixed ? ply : [ab depthForSearch],
             skip
         );
     }

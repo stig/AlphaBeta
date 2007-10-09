@@ -58,8 +58,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (id)applyMoveFromSearchWithInterval:(NSTimeInterval)interval;
 
 /* metadata releated to search */
-- (unsigned)countStatesVisited;
-- (unsigned)plyReachedForSearch;
+- (unsigned)stateCountForSearch;
+- (unsigned)depthForSearch;
 
 @end
 
