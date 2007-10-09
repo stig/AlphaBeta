@@ -96,7 +96,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return (double)count.c[player] - count.c[3 - player];
 }
 
-- (double)currentFitness
+- (double)fitness
 {
     NSArray *moves;
     int mine, diff, me, you;

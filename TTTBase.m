@@ -73,7 +73,7 @@ static double calcFitness(int me, int counts[3])
 }
 
 
-- (double)currentFitness
+- (double)fitness
 {
     int i, j, me;
     double score = 0.0;
@@ -101,7 +101,7 @@ static double calcFitness(int me, int counts[3])
 - (NSArray *)movesAvailable
 {
     NSMutableArray *moves = [NSMutableArray array];
-    if (abs([self currentFitness]) > 100) {
+    if (abs([self fitness]) > 100) {
         return moves;
     }
     for (int i = 0; i < 3; i++) {

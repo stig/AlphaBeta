@@ -420,7 +420,7 @@ If the last search was an iterative one, the number of visited states is accumul
 /** Returns currentFitness from the current state. */
 - (double)currentFitness
 {
-    return [[self currentState] currentFitness];
+    return [[self currentState] fitness];
 }
 
 /** Returns available moves from the current state. */

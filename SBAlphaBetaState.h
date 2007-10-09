@@ -38,7 +38,7 @@ Should return the current fitness. The fitness is a number indicating for fortui
 
 Use a high positive number for very good, high negative number for very bad.
 */
-- (double)currentFitness;
+- (double)fitness;
 
 /**
 Indicates the result at an end state. Return a positive value if the receiving state is a winning state for the current player, negative for a loss, or 0 if it is a draw. The result of calling this method on a non-leaf state is undefined.
