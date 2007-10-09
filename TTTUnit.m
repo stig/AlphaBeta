@@ -164,7 +164,7 @@ interlinked, so it makes sense to test them together. -applyMove and
 - (void)test04LegalMoves
 {
     id moves;
-    STAssertNotNil(moves = [ab movesAvailable], nil);
+    STAssertNotNil(moves = [ab currentLegalMoves], nil);
     STAssertEquals([moves count], (unsigned)9, nil);
     
     for (int i = 0; i < [moves count]; i++) {
@@ -191,7 +191,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     [ab applyMove:[self moveWithCol:0 andRow:2]];
     
     STAssertEqualObjects([[ab currentState] description], @"122 100 100", nil);
-    STAssertEquals([[ab movesAvailable] count], (unsigned)0, nil);
+    STAssertEquals([[ab currentLegalMoves] count], (unsigned)0, nil);
     
     [ab undoLastMove];
     [ab undoLastMove];
@@ -201,13 +201,13 @@ interlinked, so it makes sense to test them together. -applyMove and
     [ab applyMove:[self moveWithCol:2 andRow:1]];
 
     STAssertEqualObjects([[ab currentState] description], @"121 121 200", nil);
-    STAssertEquals([[ab movesAvailable] count], (unsigned)2, nil);
+    STAssertEquals([[ab currentLegalMoves] count], (unsigned)2, nil);
 
     [ab applyMove:[self moveWithCol:2 andRow:2]];
     [ab applyMove:[self moveWithCol:1 andRow:2]];
     
     STAssertEqualObjects([[ab currentState] description], @"121 121 212", nil);
-    STAssertEquals([[ab movesAvailable] count], (unsigned)0, nil);
+    STAssertEquals([[ab currentLegalMoves] count], (unsigned)0, nil);
 }
 
 - (void)test05StateAndMoves
@@ -216,7 +216,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     unsigned i;
     for (i = 9; i > 2; i--) {
         id moves;
-        STAssertNotNil(moves = [ab movesAvailable], nil);
+        STAssertNotNil(moves = [ab currentLegalMoves], nil);
         STAssertEquals([moves count], i, nil);
         id m = [moves objectAtIndex:0];
         id st = [ab applyMove:m];

@@ -38,7 +38,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (id)initWithState:(id)this;
 
 - (id)lastMove;
-- (id)currentState;
 - (BOOL)isGameOver;
 - (BOOL)currentPlayerMustPass;
 - (unsigned)countMoves;
@@ -47,9 +46,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (id)applyMove:(id)m;
 - (id)undoLastMove;
 
-/* messages forwarded to the state */
+- (id)currentState;
 - (double)currentFitness;
-- (NSArray *)movesAvailable;
+- (NSArray *)currentLegalMoves;
 
 /* search methods */
 - (id)moveFromSearchWithPly:(unsigned)ply;

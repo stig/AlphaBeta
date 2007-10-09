@@ -45,7 +45,7 @@ Though not required it is advised that you override -description to return somet
 
 It's a good question. I've toyed with the idea of only supporting one, to avoid the dilemma of having to choose. The problem is that I can't pick which one to support. They each have their own pros and cons. 
 
-If you go with mutable states, the moves you return from -movesAvailable must contain enough information to undo the effects of a move; with immutable states they don't. This can mean your moves must contain more information. On the other hand, having more information in the moves might make applying the move cheaper.
+If you go with mutable states, the moves you return from -currentLegalMoves must contain enough information to undo the effects of a move; with immutable states they don't. This can mean your moves must contain more information. On the other hand, having more information in the moves might make applying the move cheaper.
 
 Consider Reversi: if you use mutable states your moves must contain a list of all the slots that were flipped, in addition to the slot where you put your piece, because it is impossible to deduce that when the time comes to revert the move. This uses more memory and if your game has a high branching factor this might become significant. On the other hand if you use immutable states there is no need to implement undo; SBAlphaBeta has a copy of the previous state on its history stack already, so it just pops off the current one. Your moves don't need to contain anything but the coordinates of the slot you're putting your piece. However, your routine to perform a move must now be more clever and find which pieces to flip; with rich moves you just have to flip the pieces specified in the move.
 
@@ -148,7 +148,7 @@ With immutable states you have to make a complete copy of the entire state, whic
     }
     
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
-    NSArray *mvs = [self movesAvailable];
+    NSArray *mvs = [self currentLegalMoves];
     if (![mvs count])
         return [self currentFitness];
     
@@ -186,7 +186,7 @@ Returns the best move found.
     dateLimit = nil;
     
     id best = nil;
-    NSArray *mvs = [self movesAvailable];
+    NSArray *mvs = [self currentLegalMoves];
     NSEnumerator *iter = [mvs objectEnumerator];
     for (id m; ply && (m = [iter nextObject]); ) {
         
@@ -224,7 +224,7 @@ search that lasts up to 300 milliseconds.
     unsigned accumulatedStatesVisited = 0;
     
     dateLimit = [NSDate dateWithTimeIntervalSinceNow:interval * .98];
-    NSArray *mvs = [self movesAvailable];
+    NSArray *mvs = [self currentLegalMoves];
     for (unsigned ply = 1;; ply++) {
 
         unsigned leafCount = 0;
@@ -308,7 +308,7 @@ Returns the new current state.
 */
 - (id)applyMove:(id)m
 {
-    id moves = [self movesAvailable];
+    id moves = [self currentLegalMoves];
     if (NSNotFound == [moves indexOfObject:m]) {
         /* Check that move is in the current allowed move list */
         [NSException raise:@"illegalmove"
@@ -382,7 +382,7 @@ Returns 1 or 2 for the winning player, or 0 if the game ended in a draw.
 /** Returns true if the game is finished, false otherwise. */
 - (BOOL)isGameOver
 {
-    NSArray *a = [self movesAvailable];
+    NSArray *a = [self currentLegalMoves];
     return [a count] ? NO : YES;
 }
 
@@ -408,7 +408,7 @@ If the last search was an iterative one, the number of visited states is accumul
 /** Returns true if the current player has no option but to pass. */
 - (BOOL)currentPlayerMustPass
 {
-    id mvs = [self movesAvailable];
+    id mvs = [self currentLegalMoves];
     if (mvs && [mvs count] == 1)
         if ([[mvs lastObject] isKindOfClass:[NSNull class]])
             return YES;
@@ -424,7 +424,7 @@ If the last search was an iterative one, the number of visited states is accumul
 }
 
 /** Returns available moves from the current state. */
-- (NSArray *)movesAvailable
+- (NSArray *)currentLegalMoves
 {
     return [[self currentState] legalMoves];
 }
