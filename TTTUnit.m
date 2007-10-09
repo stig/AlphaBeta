@@ -63,14 +63,14 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEqualObjects([[ab currentState] description], @"000 000 000", nil);
 
     id m1 = [self moveWithCol:0 andRow:0];
-    [ab applyMove:m1];
+    [ab performMove:m1];
     STAssertEqualObjects([ab lastMove], m1, nil);
     STAssertEquals([ab countMoves], (unsigned)1, nil);
     STAssertEquals([ab playerTurn], (unsigned)2, nil);
     STAssertEqualObjects([[ab currentState] description], @"100 000 000", nil);
     
     id m2 = [self moveWithCol:1 andRow:0];
-    [ab applyMove:m2];
+    [ab performMove:m2];
     STAssertEqualObjects([ab lastMove], m2, nil);
     STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
@@ -83,7 +83,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEqualObjects([[ab currentState] description], @"100 000 000", nil);
 
     id m3 = [self moveWithCol:1 andRow:1];
-    [ab applyMove:m3];
+    [ab performMove:m3];
     STAssertEqualObjects([ab lastMove], m3, nil);
     STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
@@ -106,15 +106,15 @@ interlinked, so it makes sense to test them together. -applyMove and
     for (int i = 0; i < [moves count]; i++) {
         STAssertFalse([ab isGameOver], nil);
         STAssertThrows([ab winner], nil);
-        [ab applyMove:[moves objectAtIndex:i]];
+        [ab performMove:[moves objectAtIndex:i]];
     }
     STAssertTrue([ab isGameOver], nil);
     STAssertEquals([ab winner], (unsigned)1, nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-897.0, 0.001, nil);
 
     [ab undoLastMove];
-    [ab applyMove:[self moveWithCol:2 andRow:2]];
-    [ab applyMove:[self moveWithCol:2 andRow:1]];
+    [ab performMove:[self moveWithCol:2 andRow:2]];
+    [ab performMove:[self moveWithCol:2 andRow:1]];
     STAssertTrue([ab isGameOver], nil);
     STAssertEquals([ab winner], (unsigned)2, nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-896.0, 0.001, nil);
@@ -139,7 +139,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     for (int i = 0; i < [moves count]; i++) {
         STAssertFalse([ab isGameOver], nil);
         STAssertThrows([ab winner], nil);
-        [ab applyMove:[moves objectAtIndex:i]];
+        [ab performMove:[moves objectAtIndex:i]];
     }
     STAssertTrue([ab isGameOver], nil);
     STAssertEquals([ab winner], (unsigned)0, nil);
@@ -150,13 +150,13 @@ interlinked, so it makes sense to test them together. -applyMove and
 {
     STAssertEquals([ab currentFitness], (double)0.0, nil);
 
-    [ab applyMove:[self moveWithCol:0 andRow:0]];
+    [ab performMove:[self moveWithCol:0 andRow:0]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-3.0, 0.0001, nil);
 
-    [ab applyMove:[self moveWithCol:0 andRow:1]];
+    [ab performMove:[self moveWithCol:0 andRow:1]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)1.0, 0.0001, nil);
 
-    [ab applyMove:[self moveWithCol:1 andRow:1]];
+    [ab performMove:[self moveWithCol:1 andRow:1]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-7.0, 0.0001, nil);
 }
 
@@ -184,27 +184,27 @@ interlinked, so it makes sense to test them together. -applyMove and
         STAssertEqualObjects(m, m2, nil);
     }
     
-    [ab applyMove:[self moveWithCol:0 andRow:0]];
-    [ab applyMove:[self moveWithCol:1 andRow:0]];
-    [ab applyMove:[self moveWithCol:0 andRow:1]];
-    [ab applyMove:[self moveWithCol:2 andRow:0]];
-    [ab applyMove:[self moveWithCol:0 andRow:2]];
+    [ab performMove:[self moveWithCol:0 andRow:0]];
+    [ab performMove:[self moveWithCol:1 andRow:0]];
+    [ab performMove:[self moveWithCol:0 andRow:1]];
+    [ab performMove:[self moveWithCol:2 andRow:0]];
+    [ab performMove:[self moveWithCol:0 andRow:2]];
     
     STAssertEqualObjects([[ab currentState] description], @"122 100 100", nil);
     STAssertEquals([[ab currentLegalMoves] count], (unsigned)0, nil);
     
     [ab undoLastMove];
     [ab undoLastMove];
-    [ab applyMove:[self moveWithCol:0 andRow:2]]; // player 2
-    [ab applyMove:[self moveWithCol:2 andRow:0]];
-    [ab applyMove:[self moveWithCol:1 andRow:1]];
-    [ab applyMove:[self moveWithCol:2 andRow:1]];
+    [ab performMove:[self moveWithCol:0 andRow:2]]; // player 2
+    [ab performMove:[self moveWithCol:2 andRow:0]];
+    [ab performMove:[self moveWithCol:1 andRow:1]];
+    [ab performMove:[self moveWithCol:2 andRow:1]];
 
     STAssertEqualObjects([[ab currentState] description], @"121 121 200", nil);
     STAssertEquals([[ab currentLegalMoves] count], (unsigned)2, nil);
 
-    [ab applyMove:[self moveWithCol:2 andRow:2]];
-    [ab applyMove:[self moveWithCol:1 andRow:2]];
+    [ab performMove:[self moveWithCol:2 andRow:2]];
+    [ab performMove:[self moveWithCol:1 andRow:2]];
     
     STAssertEqualObjects([[ab currentState] description], @"121 121 212", nil);
     STAssertEquals([[ab currentLegalMoves] count], (unsigned)0, nil);
@@ -219,7 +219,7 @@ interlinked, so it makes sense to test them together. -applyMove and
         STAssertNotNil(moves = [ab currentLegalMoves], nil);
         STAssertEquals([moves count], i, nil);
         id m = [moves objectAtIndex:0];
-        id st = [ab applyMove:m];
+        id st = [ab performMove:m];
         
         id s = nil;
         switch (i) {
@@ -297,7 +297,7 @@ interlinked, so it makes sense to test them together. -applyMove and
         id m2 = [ab moveFromSearchWithPly:plyReached];
         STAssertEqualObjects([m1 description], [m2 description], @"iter: %u", i );
 
-        STAssertNotNil([ab applyMove:m2], nil);
+        STAssertNotNil([ab performMove:m2], nil);
     }
     STAssertEquals([ab countMoves], (unsigned)9, nil);
 }

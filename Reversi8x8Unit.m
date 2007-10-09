@@ -74,15 +74,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
     id st = [ab currentState];
     
-    STAssertThrows([ab applyMove:[st moveForCol:0 andRow:0]], nil);
+    STAssertThrows([ab performMove:[st moveForCol:0 andRow:0]], nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
     STAssertEquals([ab countMoves], (unsigned)0, nil);
 
-    STAssertThrows([ab applyMove:[st moveForCol:0 andRow:-10]], nil);
+    STAssertThrows([ab performMove:[st moveForCol:0 andRow:-10]], nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
     STAssertEquals([ab countMoves], (unsigned)0, nil);
     
-    STAssertThrows([ab applyMove:[st moveForCol:3 andRow:4]], nil);
+    STAssertThrows([ab performMove:[st moveForCol:3 andRow:4]], nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
     STAssertEquals([ab countMoves], (unsigned)0, nil);
 }
@@ -111,15 +111,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     STAssertEqualObjects([st description], @"1: 00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000", nil);
 
-    st = [ab applyMove:[st moveForCol:3 andRow:2]];
+    st = [ab performMove:[st moveForCol:3 andRow:2]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-3.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEqualObjects([st description], @"2: 00000000 00000000 00010000 00011000 00012000 00000000 00000000 00000000", nil);
 
-    st = [ab applyMove:[st moveForCol:4 andRow:2]];
+    st = [ab performMove:[st moveForCol:4 andRow:2]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)0.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEqualObjects([st description], @"1: 00000000 00000000 00012000 00012000 00012000 00000000 00000000 00000000", nil);
 
-    st = [ab applyMove:[st moveForCol:5 andRow:5]];
+    st = [ab performMove:[st moveForCol:5 andRow:5]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-2.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEqualObjects([st description], @"2: 00000000 00000000 00012000 00012000 00011000 00000100 00000000 00000000", nil);
 }

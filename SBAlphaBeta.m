@@ -208,7 +208,7 @@ Performs a fixed-depth search to the given @p ply and applies the best move foun
 - (id)applyMoveFromSearchWithPly:(unsigned)ply
 {
     id best = [self moveFromSearchWithPly:ply];
-    return best ? [self applyMove:best] : nil;
+    return best ? [self performMove:best] : nil;
 }
 
 /**
@@ -297,7 +297,7 @@ search that lasts up to 300 milliseconds.
 - (id)applyMoveFromSearchWithInterval:(NSTimeInterval)interval
 {
     id best = [self moveFromSearchWithInterval:interval];
-    return best ? [self applyMove:best] : nil;
+    return best ? [self performMove:best] : nil;
 }    
 
 #pragma mark Methods
@@ -306,7 +306,7 @@ search that lasts up to 300 milliseconds.
 Apply the given move to the current state.
 Returns the new current state.
 */
-- (id)applyMove:(id)m
+- (id)performMove:(id)m
 {
     id moves = [self currentLegalMoves];
     if (NSNotFound == [moves indexOfObject:m]) {

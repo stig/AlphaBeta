@@ -37,18 +37,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 + (id)newWithState:(id)this;
 - (id)initWithState:(id)this;
 
-- (id)lastMove;
-- (BOOL)isGameOver;
-- (BOOL)currentPlayerMustPass;
-- (unsigned)countMoves;
-- (unsigned)playerTurn;
-- (unsigned)winner;
-- (id)applyMove:(id)m;
-- (id)undoLastMove;
-
 - (id)currentState;
 - (double)currentFitness;
 - (NSArray *)currentLegalMoves;
+
+- (id)performMove:(id)m;
+- (id)undoLastMove;
+
+- (id)lastMove;
+
+- (BOOL)isGameOver;
+- (unsigned)winner;
+- (BOOL)currentPlayerMustPass;
+
+- (unsigned)countMoves;
+- (unsigned)playerTurn;
 
 /* search methods */
 - (id)moveFromSearchWithPly:(unsigned)ply;
@@ -103,7 +106,7 @@ while (![ab isGameOver]) {
     }
     else {
         // Get a move from a human player and apply that
-        [ab applyMove:get_player_move()];
+        [ab performMove:get_player_move()];
     }
 }
 @endcode

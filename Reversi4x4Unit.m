@@ -56,14 +56,14 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEqualObjects([[ab currentState] description], @"1: 0000 0210 0120 0000", nil);
 
     id m1 = [[ab currentState] moveForCol:0 andRow:1];
-    [ab applyMove:m1];
+    [ab performMove:m1];
     STAssertEqualObjects([ab lastMove], m1, nil);
     STAssertEquals([ab countMoves], (unsigned)1, nil);
     STAssertEquals([ab playerTurn], (unsigned)2, nil);
     STAssertEqualObjects([[ab currentState] description], @"2: 0000 1110 0120 0000", nil);
     
     id m2 = [[ab currentState] moveForCol:0 andRow:2];
-    [ab applyMove:m2];
+    [ab performMove:m2];
     STAssertEqualObjects([ab lastMove], m2, nil);
     STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
@@ -76,7 +76,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEqualObjects([[ab currentState] description], @"2: 0000 1110 0120 0000", nil);
 
     id m3 = [[ab currentState] moveForCol:2 andRow:0];
-    [ab applyMove:m3];
+    [ab performMove:m3];
     STAssertEqualObjects([ab lastMove], m3, nil);
     STAssertEquals([ab countMoves], (unsigned)2, nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
@@ -91,17 +91,17 @@ interlinked, so it makes sense to test them together. -applyMove and
 
     STAssertEqualObjects([st description], @"1: 0000 0210 0120 0000", nil);
 
-    STAssertNoThrow(st = [ab applyMove:[st moveForCol:1 andRow:0]], nil);
+    STAssertNoThrow(st = [ab performMove:[st moveForCol:1 andRow:0]], nil);
     STAssertEqualObjects([st description], @"2: 0100 0110 0120 0000", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-3.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEquals([ab playerTurn], (unsigned)2, nil);
 
-    STAssertNoThrow(st = [ab applyMove:[st moveForCol:2 andRow:0]], nil);
+    STAssertNoThrow(st = [ab performMove:[st moveForCol:2 andRow:0]], nil);
     STAssertEqualObjects([st description], @"1: 0120 0120 0120 0000", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)0.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
 
-    STAssertNoThrow(st = [ab applyMove:[st moveForCol:3 andRow:3]], nil);
+    STAssertNoThrow(st = [ab performMove:[st moveForCol:3 andRow:3]], nil);
     STAssertEqualObjects([st description], @"2: 0120 0120 0110 0001", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-1.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEquals([ab playerTurn], (unsigned)2, nil);
@@ -121,7 +121,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEquals([ab playerTurn], (unsigned)1, @"it is player 1");
     STAssertTrue([ab currentPlayerMustPass], @"must pass");
     
-    STAssertNotNil([ab applyMove:[NSNull null]], @"can apply pass move");
+    STAssertNotNil([ab performMove:[NSNull null]], @"can apply pass move");
     STAssertEquals([ab playerTurn], (unsigned)2, @"it is player 1");
     STAssertFalse([ab currentPlayerMustPass], @"must NOT pass");
 }

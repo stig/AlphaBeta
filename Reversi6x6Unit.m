@@ -123,29 +123,29 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     
     STAssertEqualObjects([st description], @"2: 000000 000000 002100 001200 000000 000000", nil);
     
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:2 andRow:4]] description], @"1: 000000 000000 002100 002200 002000 000000", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:3 andRow:4]] description], @"2: 000000 000000 002100 002100 002100 000000", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:2 andRow:4]] description], @"1: 000000 000000 002100 002200 002000 000000", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:3 andRow:4]] description], @"2: 000000 000000 002100 002100 002100 000000", nil);
 
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:4 andRow:4]] description], @"1: 000000 000000 002100 002200 002220 000000", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:3 andRow:5]] description], @"2: 000000 000000 002100 002100 002120 000100", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:4 andRow:4]] description], @"1: 000000 000000 002100 002200 002220 000000", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:3 andRow:5]] description], @"2: 000000 000000 002100 002100 002120 000100", nil);
     
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:4 andRow:3]] description], @"1: 000000 000000 002100 002220 002120 000100", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:5 andRow:4]] description], @"2: 000000 000000 002100 002210 002111 000100", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:4 andRow:3]] description], @"1: 000000 000000 002100 002220 002120 000100", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:4]] description], @"2: 000000 000000 002100 002210 002111 000100", nil);
     
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:4 andRow:5]] description], @"1: 000000 000000 002100 002210 002211 000120", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:5 andRow:5]] description], @"2: 000000 000000 002100 002210 002211 000111", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:4 andRow:5]] description], @"1: 000000 000000 002100 002210 002211 000120", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:5]] description], @"2: 000000 000000 002100 002210 002211 000111", nil);
     
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:4 andRow:2]] description], @"1: 000000 000000 002220 002210 002211 000111", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:2 andRow:5]] description], @"2: 000000 000000 002220 002210 002111 001111", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:4 andRow:2]] description], @"1: 000000 000000 002220 002210 002211 000111", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:2 andRow:5]] description], @"2: 000000 000000 002220 002210 002111 001111", nil);
 
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:5 andRow:3]] description], @"1: 000000 000000 002220 002222 002111 001111", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:3]] description], @"1: 000000 000000 002220 002222 002111 001111", nil);
     STAssertEquals([ab countMoves], (unsigned)11, nil);
     STAssertNotNil([ab applyMoveFromSearchWithPly:3], nil);
     STAssertEquals([ab countMoves], (unsigned)12, nil);
 
     /* Test for weird case where with finding moves */
     [ab undoLastMove];
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:5 andRow:2]] description], @"2: 000000 000000 002221 002211 002111 001111", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:2]] description], @"2: 000000 000000 002221 002211 002111 001111", nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
     NSArray *a = [[ab currentState] legalMoves];
     STAssertEquals([a count], (unsigned)1, nil);
