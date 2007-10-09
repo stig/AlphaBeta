@@ -54,7 +54,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertEquals(c.c[2], (unsigned)2, nil);
     
     id moves;
-    STAssertNotNil(moves = [st movesAvailable], nil);
+    STAssertNotNil(moves = [st legalMoves], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
     int i;
     for (i = 0; i < 4; i++) {
@@ -147,7 +147,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [ab undoLastMove];
     STAssertEqualObjects([st = [ab applyMove:[st moveForCol:5 andRow:2]] description], @"2: 000000 000000 002221 002211 002111 001111", nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    NSArray *a = [[ab currentState] movesAvailable];
+    NSArray *a = [[ab currentState] legalMoves];
     STAssertEquals([a count], (unsigned)1, nil);
     STAssertTrue([[a lastObject] isKindOfClass:[NSNull class]], nil);
 }

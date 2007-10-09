@@ -54,7 +54,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertEquals(c.c[2], (unsigned)2, nil);
 
     id moves;
-    STAssertNotNil(moves = [st movesAvailable], nil);
+    STAssertNotNil(moves = [st legalMoves], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
     int i;
     for (i = 0; i < 4; i++) {

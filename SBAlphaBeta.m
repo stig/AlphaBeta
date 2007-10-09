@@ -426,7 +426,7 @@ If the last search was an iterative one, the number of visited states is accumul
 /** Returns available moves from the current state. */
 - (NSArray *)movesAvailable
 {
-    return [[self currentState] movesAvailable];
+    return [[self currentState] legalMoves];
 }
 
 

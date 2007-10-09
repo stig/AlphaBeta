@@ -98,7 +98,7 @@ static double calcFitness(int me, int counts[3])
     return score;
 }
 
-- (NSArray *)movesAvailable
+- (NSArray *)legalMoves
 {
     NSMutableArray *moves = [NSMutableArray array];
     if (abs([self fitness]) > 100) {

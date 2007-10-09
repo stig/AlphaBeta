@@ -50,7 +50,7 @@ SBAlphaBeta only cares whether the values returned from this method are negative
 /** 
 Returns an array of all the available moves for the current player. An empty array means that there are no moves possible and that this is an end state. Use NSNull instances for pass moves, if your game allows passing.
 */
-- (NSArray *)movesAvailable;
+- (NSArray *)legalMoves;
 
 @end
 
@@ -69,7 +69,7 @@ Should apply the given move to the state, transforming it into its successor. Pl
 /** 
 The opposite of -transformWithMove:. The move passed in will always be the <em>last</em> move that was applied to it with -transformWithMove:, and the effect of this method should be to produce the previous state.
 
-This means that each move returned by -movesAvailable must contain enough information to revert the move. For Othello, for example, each move could be an of co-ordinates: the first is the slot to put the current piece, the remaining are for pieces to flip.
+This means that each move returned by -legalMoves must contain enough information to revert the move. For Othello, for example, each move could be an of co-ordinates: the first is the slot to put the current piece, the remaining are for pieces to flip.
 
 */
 - (void)undoTransformWithMove:(id)m;

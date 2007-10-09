@@ -105,7 +105,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     me = player;
     you = 3 - me;
 
-    moves = [self movesAvailable];
+    moves = [self legalMoves];
     if (!moves) {
         [NSException raise:@"unexpected" format:@"Unexpected return"];
     }
@@ -119,7 +119,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     mine = [moves count];
 
     player = 3 - player;
-    moves = [self movesAvailable];
+    moves = [self legalMoves];
     player = 3 - player;
 
     diff = mine - [moves count];
@@ -206,7 +206,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return NO;
 }
 
-- (NSArray *)movesAvailable
+- (NSArray *)legalMoves
 {
     NSMutableArray *moves = [NSMutableArray array];
     int me, i, j;
