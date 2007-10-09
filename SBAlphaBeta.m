@@ -348,7 +348,7 @@ Returns the new current state.
 }
 
 /** Returns a count of the number of moves since the initial state. */
-- (unsigned)countMoves
+- (unsigned)countPerformedMoves
 {
     return [moveHistory count];
 }
@@ -359,7 +359,7 @@ Player "1" is arbitrarily defined to be the player whose turn it is to play at t
 */
 - (unsigned)playerTurn
 {
-    return ([self countMoves] % 2) + 1;
+    return ([self countPerformedMoves] % 2) + 1;
 }
 
 /**

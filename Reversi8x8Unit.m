@@ -76,15 +76,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     
     STAssertThrows([ab performMove:[st moveForCol:0 andRow:0]], nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
 
     STAssertThrows([ab performMove:[st moveForCol:0 andRow:-10]], nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
     
     STAssertThrows([ab performMove:[st moveForCol:3 andRow:4]], nil);
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
 }
 
 - (void)test03PlayerTurn

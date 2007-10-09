@@ -43,14 +43,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (id)performMove:(id)m;
 - (id)undoLastMove;
-
 - (id)lastMove;
+- (unsigned)countPerformedMoves;
 
 - (BOOL)isGameOver;
 - (unsigned)winner;
 - (BOOL)currentPlayerMustPass;
 
-- (unsigned)countMoves;
 - (unsigned)playerTurn;
 
 /* search methods */

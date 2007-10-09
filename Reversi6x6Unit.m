@@ -139,9 +139,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertEqualObjects([st = [ab performMove:[st moveForCol:2 andRow:5]] description], @"2: 000000 000000 002220 002210 002111 001111", nil);
 
     STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:3]] description], @"1: 000000 000000 002220 002222 002111 001111", nil);
-    STAssertEquals([ab countMoves], (unsigned)11, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)11, nil);
     STAssertNotNil([ab applyMoveFromSearchWithPly:3], nil);
-    STAssertEquals([ab countMoves], (unsigned)12, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)12, nil);
 
     /* Test for weird case where with finding moves */
     [ab undoLastMove];
