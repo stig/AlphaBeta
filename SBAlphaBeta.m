@@ -357,7 +357,7 @@ Returns the new current state.
 Returns 1 or 2, depending on whose turn it is to move.
 Player "1" is arbitrarily defined to be the player whose turn it is to play at the start of the game, which is not necessarily the same as the state itself thinks of as player 1 (if it thinks of the players in those terms; it may use @"a" or @"b" instead).
 */
-- (unsigned)playerTurn
+- (unsigned)currentPlayer
 {
     return ([self countPerformedMoves] % 2) + 1;
 }
@@ -374,7 +374,7 @@ Returns 1 or 2 for the winning player, or 0 if the game ended in a draw.
     double score = [[self currentState] endStateScore];
     if (!score)
         return 0;
-    unsigned player = [self playerTurn];
+    unsigned player = [self currentPlayer];
     return score > 0 ? player : 3 - player;
 }
 

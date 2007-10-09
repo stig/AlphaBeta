@@ -51,7 +51,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         nil];
 }
 
-/* -currentState, -lastMove, -countPerformedMoves & -playerTurn are heavily
+/* -currentState, -lastMove, -countPerformedMoves & -currentPlayer are heavily
 interlinked, so it makes sense to test them together. -applyMove and
 -undoLastMove are also tested here, albeit implicitly.
 */
@@ -59,34 +59,34 @@ interlinked, so it makes sense to test them together. -applyMove and
 {
     STAssertNil([ab lastMove], nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEqualObjects([[ab currentState] description], @"000 000 000", nil);
 
     id m1 = [self moveWithCol:0 andRow:0];
     [ab performMove:m1];
     STAssertEqualObjects([ab lastMove], m1, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)1, nil);
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)2, nil);
     STAssertEqualObjects([[ab currentState] description], @"100 000 000", nil);
     
     id m2 = [self moveWithCol:1 andRow:0];
     [ab performMove:m2];
     STAssertEqualObjects([ab lastMove], m2, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)2, nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEqualObjects([[ab currentState] description], @"120 000 000", nil);
 
     [ab undoLastMove];
     STAssertEqualObjects([ab lastMove], m1, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)1, nil);
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)2, nil);
     STAssertEqualObjects([[ab currentState] description], @"100 000 000", nil);
 
     id m3 = [self moveWithCol:1 andRow:1];
     [ab performMove:m3];
     STAssertEqualObjects([ab lastMove], m3, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)2, nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEqualObjects([[ab currentState] description], @"100 020 000", nil);
 }
 

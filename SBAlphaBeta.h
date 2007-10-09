@@ -40,6 +40,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (id)currentState;
 - (double)currentFitness;
 - (NSArray *)currentLegalMoves;
+- (unsigned)currentPlayer;
 
 - (id)performMove:(id)m;
 - (id)undoLastMove;
@@ -49,8 +50,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (BOOL)isGameOver;
 - (unsigned)winner;
 - (BOOL)currentPlayerMustPass;
-
-- (unsigned)playerTurn;
 
 /* search methods */
 - (id)moveFromSearchWithPly:(unsigned)ply;
@@ -97,7 +96,7 @@ while (![ab isGameOver]) {
     // unless you override -description.
     NSLog(@"%@", [ab currentState]);
 
-    if (1 == [ab playerTurn]) {
+    if (1 == [ab currentPlayer]) {
         // Spend 300 ms searching for the best move,
         // then apply that move to the current state
         [ab applyMoveFromSearchWithInterval:0.3];

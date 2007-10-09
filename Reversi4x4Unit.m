@@ -44,7 +44,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [ab release];
 }
 
-/* -currentState, -lastMove, -countPerformedMoves & -playerTurn are heavily
+/* -currentState, -lastMove, -countPerformedMoves & -currentPlayer are heavily
 interlinked, so it makes sense to test them together. -applyMove and
 -undoLastMove are also tested here, albeit implicitly.
 */
@@ -52,41 +52,41 @@ interlinked, so it makes sense to test them together. -applyMove and
 {
     STAssertNil([ab lastMove], nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEqualObjects([[ab currentState] description], @"1: 0000 0210 0120 0000", nil);
 
     id m1 = [[ab currentState] moveForCol:0 andRow:1];
     [ab performMove:m1];
     STAssertEqualObjects([ab lastMove], m1, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)1, nil);
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)2, nil);
     STAssertEqualObjects([[ab currentState] description], @"2: 0000 1110 0120 0000", nil);
     
     id m2 = [[ab currentState] moveForCol:0 andRow:2];
     [ab performMove:m2];
     STAssertEqualObjects([ab lastMove], m2, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)2, nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEqualObjects([[ab currentState] description], @"1: 0000 1110 2220 0000", nil);
 
     [ab undoLastMove];
     STAssertEqualObjects([ab lastMove], m1, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)1, nil);
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)2, nil);
     STAssertEqualObjects([[ab currentState] description], @"2: 0000 1110 0120 0000", nil);
 
     id m3 = [[ab currentState] moveForCol:2 andRow:0];
     [ab performMove:m3];
     STAssertEqualObjects([ab lastMove], m3, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)2, nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEqualObjects([[ab currentState] description], @"1: 0020 1120 0120 0000", nil);
 }
 
 - (void)test02StateAndFitness
 {
     id st = [ab currentState];
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEquals([ab currentFitness], (double)0.0, nil);
 
     STAssertEqualObjects([st description], @"1: 0000 0210 0120 0000", nil);
@@ -94,17 +94,17 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertNoThrow(st = [ab performMove:[st moveForCol:1 andRow:0]], nil);
     STAssertEqualObjects([st description], @"2: 0100 0110 0120 0000", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-3.0, 0.0001, @"got %f", [st currentFitness]);
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)2, nil);
 
     STAssertNoThrow(st = [ab performMove:[st moveForCol:2 andRow:0]], nil);
     STAssertEqualObjects([st description], @"1: 0120 0120 0120 0000", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)0.0, 0.0001, @"got %f", [st currentFitness]);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 
     STAssertNoThrow(st = [ab performMove:[st moveForCol:3 andRow:3]], nil);
     STAssertEqualObjects([st description], @"2: 0120 0120 0110 0001", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-1.0, 0.0001, @"got %f", [st currentFitness]);
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)2, nil);
 }
 
 - (void)test03MustPass
@@ -118,11 +118,11 @@ interlinked, so it makes sense to test them together. -applyMove and
     ((SBReversiBase *)st)->board[0][0] = 2;
     ((SBReversiBase *)st)->board[1][0] = 1;
 
-    STAssertEquals([ab playerTurn], (unsigned)1, @"it is player 1");
+    STAssertEquals([ab currentPlayer], (unsigned)1, @"it is player 1");
     STAssertTrue([ab currentPlayerMustPass], @"must pass");
     
     STAssertNotNil([ab performMove:[NSNull null]], @"can apply pass move");
-    STAssertEquals([ab playerTurn], (unsigned)2, @"it is player 1");
+    STAssertEquals([ab currentPlayer], (unsigned)2, @"it is player 1");
     STAssertFalse([ab currentPlayerMustPass], @"must NOT pass");
 }
 

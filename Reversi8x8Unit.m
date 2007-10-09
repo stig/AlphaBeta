@@ -71,36 +71,36 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)test02IllegalMoveThrows
 {
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     id st = [ab currentState];
     
     STAssertThrows([ab performMove:[st moveForCol:0 andRow:0]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
 
     STAssertThrows([ab performMove:[st moveForCol:0 andRow:-10]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
     
     STAssertThrows([ab performMove:[st moveForCol:3 andRow:4]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
 }
 
-- (void)test03PlayerTurn
+- (void)test03currentPlayer
 {
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 
     [ab applyMoveFromSearchWithPly:1];
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)2, nil);
 
     [ab undoLastMove];
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 }
 
 - (void)test04StateAndFitness
 {
-    STAssertTrue([ab playerTurn] == 1, nil);
+    STAssertTrue([ab currentPlayer] == 1, nil);
     STAssertTrue([ab currentFitness] == 0.0, @"got: %f", [ab currentFitness]);
 
     id st = [ab currentState];

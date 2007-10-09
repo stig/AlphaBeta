@@ -146,7 +146,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     /* Test for weird case where with finding moves */
     [ab undoLastMove];
     STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:2]] description], @"2: 000000 000000 002221 002211 002111 001111", nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     NSArray *a = [[ab currentState] legalMoves];
     STAssertEquals([a count], (unsigned)1, nil);
     STAssertTrue([[a lastObject] isKindOfClass:[NSNull class]], nil);
