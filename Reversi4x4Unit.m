@@ -109,14 +109,14 @@ interlinked, so it makes sense to test them together. -applyMove and
 
 - (void)test03MustPass
 {
-    id st = [ab currentState];
+    SBReversiState *st = [ab currentState];
     
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
-            ((SBReversiBase *)st)->board[i][j] = 0;
+            st->board[i][j] = 0;
 
-    ((SBReversiBase *)st)->board[0][0] = 2;
-    ((SBReversiBase *)st)->board[1][0] = 1;
+    st->board[0][0] = 2;
+    st->board[1][0] = 1;
 
     STAssertEquals([ab currentPlayer], (unsigned)1, @"it is player 1");
     STAssertTrue([ab currentPlayerMustPass], @"must pass");

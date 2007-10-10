@@ -104,10 +104,11 @@ With immutable states you have to make a complete copy of the entire state, whic
 {
     id state = [self currentState];
     if (mutableStates) {
-        [state transformWithMove:m];
+        [state applyMove:m];
     
     } else {
-        state = [state stateByApplyingMove:m];
+        state = [state copy];
+        [state applyMove:m];
         [stateHistory addObject:state];
     }
     return state;

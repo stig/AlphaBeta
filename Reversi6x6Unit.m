@@ -118,7 +118,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)test03WeirdExceptionCase
 {
-    SBReversiBase *st = [ab currentState];
+    SBReversiState *st = [ab currentState];
     st->player = 2;
     
     STAssertEqualObjects([st description], @"2: 000000 000000 002100 001200 000000 000000", nil);
