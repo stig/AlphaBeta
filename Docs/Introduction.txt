@@ -5,47 +5,25 @@ with Alpha-Beta pruning) and can be used to create AIs for a large
 range of two-player games. No prior experience with Artificial
 Intelligence is necessary.
 
-For the Alpha-Beta algorithm to be applicable to your game it needs to
-be a two-player <a href="http://en.wikipedia.org/wiki/Zero-sum">zero
+For Alpha-Beta to be applicable to your game it needs to be a
+two-player <a href="http://en.wikipedia.org/wiki/Zero-sum">zero
 sum</a> <a
 href="http://en.wikipedia.org/wiki/Perfect_information">perfect
 information</a> game. The term <em>two-player</em> just means that
-there must be two opposing sides (football is considered two-player,
-for example). A <em>zero sum</em> game is one where an advantage for
+there must be two opposing sides. (Football is considered two-player,
+for example.) A <em>zero sum</em> game is one where an advantage for
 one player is an equally large disadvantage for the other. <em>Perfect
 information</em> basically rules out any game that has an element of
 chance. Yatzee? Right out the window. Poker? Forget about it. Jenga?
 Not even <em>close</em>.
 
-For games that have these properties, for example Chess, Checkers, Go,
-Othello, Connect-4 and Tic-Tac-Toe, it is possible to set up a game
-tree to aid in the selection of the next move. For simplicity,
-consider the starting state of Tic-Tac-Toe to be the root of a tree.
-The root has nine branches, each leading to a successor state. Each of
-these has 8 branches leading to <em>its</em> successor states and so
-on. Some of the paths through the tree will end before others (a
-winning state is reached before all the slots have been filled) but
-some paths continue until there are no more legal moves. For
-Tic-Tac-Toe this will invariably happen at depth 9 (or <em>ply</em> 9
-in game-tree terminology).
-
-After having exhausted the search space of the game, it is easy to
-find the paths that will lead to victory for either player. Knowing
-the path that x can take to the fastest victory is generally of little
-use, because o can thwart x's plans of a swift victory any time it is
-her turn to move. Thus, instead of traversing the  path leading to the
-fastest possible victory, x's best aim is to pick a path  where her
-<em>worst</em> outcome will be victory (the <em>best worst-case</em>
-path).
-
-The Minimax algorithm tries to find the best worst case path through a
-search tree. It is very time-consuming, and alpha-beta pruning is a
-way of speeding up the algorithm. I encourage you to read my article
-on <a
+SBAlphaBeta can be used to help create an AI for all games with these
+properties, e.g. Chess, Checkers, Go, Othello, Connect-4 and
+Tic-Tac-Toe to mention a few. I encourage you to read my article on <a
 href="http://blog.brautaset.org/2007/08/17/game-tree-search-the-
 minimax-and-alpha-beta-algorithms/">game-tree search, the Minimax
-algorithm and alpha-beta pruning</a> if you don't already know how it
-all hangs together.
+algorithm and alpha-beta pruning</a> if you don't already know how the
+MiniMax and AlphaBeta algorithms work.
 
 
 @section example_sec Example
@@ -59,13 +37,13 @@ id ab = [SBAlphaBeta newWithState:state];
 
 while (![ab isGameOver]) {
 
-    // This NSLog output will be boring
-    // unless you override -description.
+    // This NSLog output will be boring unless you
+    // override -description in your state class.
     NSLog(@"%@", [ab currentState]);
 
     if (1 == [ab currentPlayer]) {
         // Spend 300 ms searching for the best move,
-        // then apply that move to the current state
+        // then apply that move to the current state.
         [ab performMoveFromSearchWithInterval:0.3];
         
     }
@@ -86,11 +64,9 @@ find it relatively simple to update to any new versions.
 @section users_sec Who/what uses SBAlphaBeta?
 
 I maintain several Cocoa games for Mac OS X that all use SBAlphaBeta
-to provide their AIs. For example:
+to provide their AIs. See <a href="http://code.brautaset.org/">this
+page</a> for examples.
 
-@li <a href="/Phage">Phage</a> - an abstract strategy game not <em>entirely</em> unlike Chess
-@li <a href="/Auberon">Auberon</a> - a Connect-4 game
-@li <a href="/Desdemona">Desdemona</a> - a Reversi (Othello) game
 
 @section code_sec Getting the code
 
