@@ -438,7 +438,7 @@ again:
     player = 3 - player;
 }
 
-- (void)undoTransformWithMove:(id)move
+- (void)undoMove:(id)move
 {
     if (![self isPassMove:move]) {
         [self validateMove:move];

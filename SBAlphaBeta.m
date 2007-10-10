@@ -117,7 +117,7 @@ With immutable states you have to make a complete copy of the entire state, whic
 - (id)undo:(id)m
 {
     if (mutableStates) {
-        [[self currentState] undoTransformWithMove:m];
+        [[self currentState] undoMove:m];
 
     } else {
         [stateHistory removeLastObject];

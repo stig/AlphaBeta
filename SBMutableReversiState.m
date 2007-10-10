@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @implementation SBMutableReversiState
 
-- (void)undoTransformWithMove:(id)move
+- (void)undoMove:(id)move
 {
     if (![self isPassMove:move]) {
         [self validateMove:move];

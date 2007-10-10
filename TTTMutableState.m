@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @implementation TTTMutableState
 
-- (void)undoTransformWithMove:(id)m
+- (void)undoMove:(id)m
 {
     int row = [[m objectForKey:@"row"] intValue];
     int col = [[m objectForKey:@"col"] intValue];

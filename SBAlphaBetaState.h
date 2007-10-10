@@ -72,6 +72,6 @@ The opposite of -applyMove:. The move passed in will always be the <em>last</em>
 This means that each move returned by -legalMoves must contain enough information to revert the move. For Othello, for example, each move could be an of co-ordinates: the first is the slot to put the current piece, the remaining are for pieces to flip.
 
 */
-- (void)undoTransformWithMove:(id)m;
+- (void)undoMove:(id)m;
 
 @end
