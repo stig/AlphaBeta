@@ -224,7 +224,7 @@ search that lasts up to 300 milliseconds.
     id best = nil;
     unsigned accumulatedStatesVisited = 0;
     
-    dateLimit = [NSDate dateWithTimeIntervalSinceNow:interval * .98];
+    dateLimit = [NSDate dateWithTimeIntervalSinceNow:interval * .975];
     NSArray *mvs = [self currentLegalMoves];
     for (unsigned ply = 1;; ply++) {
 
