@@ -407,7 +407,7 @@ If the last search was an iterative one, the number of visited states is accumul
 
 
 /** Returns true if the current player has no option but to pass. */
-- (BOOL)currentPlayerMustPass
+- (BOOL)isForcedPass
 {
     id mvs = [self currentLegalMoves];
     if (mvs && [mvs count] == 1)

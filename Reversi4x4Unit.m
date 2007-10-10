@@ -119,11 +119,11 @@ interlinked, so it makes sense to test them together. -applyMove and
     st->board[1][0] = 1;
 
     STAssertEquals([ab currentPlayer], (unsigned)1, @"it is player 1");
-    STAssertTrue([ab currentPlayerMustPass], @"must pass");
+    STAssertTrue([ab isForcedPass], @"must pass");
     
     STAssertNotNil([ab performMove:[NSNull null]], @"can apply pass move");
     STAssertEquals([ab currentPlayer], (unsigned)2, @"it is player 1");
-    STAssertFalse([ab currentPlayerMustPass], @"must NOT pass");
+    STAssertFalse([ab isForcedPass], @"must NOT pass");
 }
 
 @end
