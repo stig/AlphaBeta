@@ -1,0 +1,64 @@
+Encapsulation of the Alpha-Beta algorithm.
+
+SBAlphaBeta is a generic implementation of the Alpha-Beta algorithm.
+It doesn't need to know anything at all about the rules of your game;
+other than that it is between two players that takes turn moving. It
+can be used to create AIs for a whole host of games.
+
+To use SBAlphaBeta you need to initialise it with an instance of your
+game state class; this will be used as the initial state of the game.
+A state is a discrete game state--a point in time between moves. A
+move contains the information required for transforming a state into
+its successor.
+
+SBAlphaBeta cares not what the types of your states and moves are.
+States can be immutable or mutable and must implement either the
+SBAlphaBetaState or the SBMutableAlphaBetaState protocol. The section
+@ref statemutability_sec has a short discussion on the pros and cons
+of each.
+
+Moves must implement the below informal protocol. Personally I like
+using  NSArray, NSDictionary, NSString and NSNumber; these classes
+already implement the required protocol. I've also found NSNull
+convenient for pass moves.
+
+@code
+-(BOOL)isEqual:(id)object;
+-(unsigned)hash;
+@endcode
+
+Though not required it is advised that you override -description to
+return something sensible for both states and moves. This can make
+debugging easier if you make a false step and feed SBAlphaBeta
+unexpected data, as the exceptions thrown will make more sense.
+
+@section statemutability_sec Should I use mutable or immutable states?
+
+It's a good question. I've toyed with the idea of only supporting one,
+to avoid the dilemma of having to choose. The problem is that I can't
+pick which one to support. They each have their own pros and cons.
+
+If you go with mutable states, the moves you return from
+-currentLegalMoves must contain enough information to undo the effects
+of a move; with immutable states they don't. This can mean your moves
+must contain more information. On the other hand, having more
+information in the moves might make applying the move cheaper.
+
+Consider Reversi: if you use mutable states your moves must contain a
+list of all the slots that were flipped, in addition to the slot where
+you put your piece, because it is impossible to deduce that when the
+time comes to revert the move. This uses more memory and if your game
+has a high branching factor this might become significant. On the
+other hand if you use immutable states there is no need to implement
+undo; SBAlphaBeta has a copy of the previous state on its history
+stack already, so it just pops off the current one. Your moves don't
+need to contain anything but the coordinates of the slot you're
+putting your piece. However, your routine to perform a move must now
+be more clever and find which pieces to flip; with rich moves you just
+have to flip the pieces specified in the move.
+
+With immutable states you have to make a complete copy of the entire
+state, which can be expensive; on the other hand undo is extremely
+cheap, and you don't have to write any code to do it. Again,
+SBAlphaBeta just pops a stack.
+
