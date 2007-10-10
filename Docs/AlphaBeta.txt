@@ -12,13 +12,13 @@ move contains the information required for transforming a state into
 its successor.
 
 SBAlphaBeta cares not what the types of your states and moves are.
-States can be immutable or mutable and must implement either the
-SBAlphaBetaSearching or the SBUndoableAlphaBetaSearching protocol. The section
-@ref statemutability_sec has a short discussion on the pros and cons
-of each.
+States must implement at least the SBAlphaBetaSearching protocol, and
+optionally the SBUndoableAlphaBetaSearching protocol. The section @ref
+statemutability_sec has a short discussion on the pros and cons of
+each.
 
 Moves must implement the below informal protocol. Personally I like
-using  NSArray, NSDictionary, NSString and NSNumber; these classes
+using NSArray, NSDictionary, NSString and NSNumber; these classes
 already implement the required protocol. I've also found NSNull
 convenient for pass moves.
 
