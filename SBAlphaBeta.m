@@ -206,7 +206,7 @@ Returns the best move found.
 /**
 Performs a fixed-depth search to the given @p ply and applies the best move found.
  */
-- (id)applyMoveFromSearchWithDepth:(unsigned)ply
+- (id)performMoveFromSearchWithDepth:(unsigned)ply
 {
     id best = [self moveFromSearchWithDepth:ply];
     return best ? [self performMove:best] : nil;
@@ -295,7 +295,7 @@ Performs an iterative search for up to @p interval seconds and applies the best 
 Fractional seconds are supported, so an interval of 0.3 makes for a
 search that lasts up to 300 milliseconds.
  */
-- (id)applyMoveFromSearchWithInterval:(NSTimeInterval)interval
+- (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval
 {
     id best = [self moveFromSearchWithInterval:interval];
     return best ? [self performMove:best] : nil;

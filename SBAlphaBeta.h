@@ -54,8 +54,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /* search methods */
 - (id)moveFromSearchWithDepth:(unsigned)ply;
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval;
-- (id)applyMoveFromSearchWithDepth:(unsigned)ply;
-- (id)applyMoveFromSearchWithInterval:(NSTimeInterval)interval;
+- (id)performMoveFromSearchWithDepth:(unsigned)ply;
+- (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval;
 
 /* metadata releated to search */
 - (unsigned)stateCountForSearch;
@@ -99,7 +99,7 @@ while (![ab isGameOver]) {
     if (1 == [ab currentPlayer]) {
         // Spend 300 ms searching for the best move,
         // then apply that move to the current state
-        [ab applyMoveFromSearchWithInterval:0.3];
+        [ab performMoveFromSearchWithInterval:0.3];
         
     }
     else {

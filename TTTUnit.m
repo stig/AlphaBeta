@@ -238,12 +238,12 @@ interlinked, so it makes sense to test them together. -applyMove and
 
 - (void)test06SearchWithDepth0
 {
-    STAssertThrows([ab applyMoveFromSearchWithDepth:0], nil);
+    STAssertThrows([ab performMoveFromSearchWithDepth:0], nil);
 }
 
 - (void)test06SearchWithDepth1
 {
-    STAssertNotNil([ab applyMoveFromSearchWithDepth:1], nil);
+    STAssertNotNil([ab performMoveFromSearchWithDepth:1], nil);
     STAssertEqualObjects([[ab currentState] description], @"000 010 000", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-4.0, 0.1, nil);
 }
@@ -261,14 +261,14 @@ interlinked, so it makes sense to test them together. -applyMove and
 {
     id states = [self states];
     for (unsigned i = 0; i < [states count]; i++) {
-        id s = [[ab applyMoveFromSearchWithDepth:9] description];
+        id s = [[ab performMoveFromSearchWithDepth:9] description];
         STAssertEqualObjects(s, [states objectAtIndex:i], nil);
     }
 }
 
 - (void)test07SearchWithInterval0
 {
-    STAssertNotNil([ab applyMoveFromSearchWithInterval:0.0], nil);
+    STAssertNotNil([ab performMoveFromSearchWithInterval:0.0], nil);
     STAssertEquals([ab stateCountForSearch], (unsigned)9, nil);
     STAssertEquals([ab depthForSearch], (unsigned)1, nil);
 }
@@ -279,7 +279,7 @@ interlinked, so it makes sense to test them together. -applyMove and
 {
     id states = [self states];
     for (unsigned i = 0; i < [states count]; i++) {
-        id s = [[ab applyMoveFromSearchWithInterval:300.0] description];
+        id s = [[ab performMoveFromSearchWithInterval:300.0] description];
         STAssertEqualObjects(s, [states objectAtIndex:i], nil);
         STAssertEquals([ab depthForSearch], 9-i, nil);
     }
