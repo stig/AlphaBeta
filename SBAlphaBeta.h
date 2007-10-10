@@ -22,6 +22,24 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import <Foundation/Foundation.h>
 
+// Required protocol for states.
+@protocol SBAlphaBetaState < NSCopying >
+
+- (double)fitness;
+- (double)endStateScore;
+- (NSArray *)legalMoves;
+- (void)applyMove:(id)m;
+
+@end
+
+// Additional optional protocol for states.
+@protocol SBMutableAlphaBetaState < SBAlphaBetaState >
+
+- (void)undoMove:(id)m;
+
+@end
+
+
 @interface SBAlphaBeta : NSObject {
     @private
     BOOL mutableStates;

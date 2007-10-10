@@ -30,7 +30,6 @@
 		535026490B3AFEDF0012DAE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		5350264B0B3AFF0D0012DAE7 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */; };
 		5350264C0B3AFF120012DAE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		53762BDC0BA3145C0089CB6D /* SBAlphaBetaState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53A028910C7A419E0039662A /* TTTMutableState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A0288F0C7A419E0039662A /* TTTMutableState.m */; };
 		53CED62E0C7891FE008CB8F3 /* Reversi6x6Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CED62D0C7891FE008CB8F3 /* Reversi6x6Unit.m */; };
 		53CED6340C7895BC008CB8F3 /* Reversi4x4Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CED6330C7895BC008CB8F3 /* Reversi4x4Unit.m */; };
@@ -101,7 +100,6 @@
 		5350246B0B3AC3540012DAE7 /* SBReversiState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBReversiState.h; sourceTree = "<group>"; };
 		535024710B3AC3870012DAE7 /* ReversiUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiUnit.h; sourceTree = "<group>"; };
 		535024720B3AC3870012DAE7 /* Reversi8x8Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reversi8x8Unit.m; sourceTree = "<group>"; };
-		53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBAlphaBetaState.h; sourceTree = "<group>"; };
 		53A0288F0C7A419E0039662A /* TTTMutableState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TTTMutableState.m; sourceTree = "<group>"; };
 		53CED62D0C7891FE008CB8F3 /* Reversi6x6Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reversi6x6Unit.m; sourceTree = "<group>"; };
 		53CED6330C7895BC008CB8F3 /* Reversi4x4Unit.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Reversi4x4Unit.m; sourceTree = "<group>"; };
@@ -208,6 +206,7 @@
 			children = (
 				53762BEA0BA315450089CB6D /* Reversi */,
 				53762BE90BA315360089CB6D /* TicTacToe */,
+				534E13250C400E4800995A05 /* AlphaBeta.h */,
 				5350230F0B3AB2BD0012DAE7 /* SBAlphaBeta.h */,
 				535023100B3AB2BD0012DAE7 /* SBAlphaBeta.m */,
 			);
@@ -236,9 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				5305DF640C81AC38009D7D04 /* ReversiProfile.m */,
-				53762BDA0BA3145C0089CB6D /* SBAlphaBetaState.h */,
 				32DBCF5E0370ADEE00C91783 /* SBAlphaBeta_Prefix.pch */,
-				534E13250C400E4800995A05 /* AlphaBeta.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -300,7 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				535023150B3AB2BD0012DAE7 /* SBAlphaBeta.h in Headers */,
-				53762BDC0BA3145C0089CB6D /* SBAlphaBetaState.h in Headers */,
 				534E13270C400E4800995A05 /* AlphaBeta.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

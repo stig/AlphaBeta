@@ -1,0 +1,65 @@
+Your state class must implement all the methods specified by the
+SBAlphaBetaSearching protocol, defined in the SBAlphaBeta.h header
+file.
+
+The methods and their responsebilities are:
+
+    - (double)fitness;
+
+        This method should return the _fitness_ of the state. The
+        fitness is a number indicating how fortuitous the state is for
+        the current player. (I.e. the probability of winning after
+        reaching this state.)
+        
+        Use a large positive number to indicate that a state is very
+        good, or a large negative number for very bad.
+
+    - (double)endStateScore;
+
+        Indicates the result at an end state. Return a positive value
+        if the receiving state is a winning state for the current
+        player, negative for a loss, or 0 if it is a draw. The result
+        of calling this method on a non-leaf state is undefined.
+
+        SBAlphaBeta only cares whether the values returned from this
+        method are negative, positive or zero; but you may wish to
+        implement it to return a score that you can use for a
+        high-score list.
+
+    - (NSArray *)legalMoves;
+
+        This method must be implemented to return an array of all the
+        legal moves available to the current player.
+        
+        Return an empty array to signify that there are no moves
+        possible and that this is an end state. (Aka "leaf state".)
+        
+        Return an array containing a single NSNull instance to signify
+        that the current player is forced to pass. (If your game
+        supports this.) If passing is always an option, this method
+        must always return a pass move.
+
+    - (void)applyMove:(id)m;
+
+        Must transform a state into its successor, given a valid move.
+        Must be implemented to handle pass moves, if your game
+        supports these. Given a pass move, this method must at the
+        very least update the receiver's idea of which player's turn
+        it is.
+
+You may opt to implement an additional method:
+
+    - (void)undoMove:(id)m;
+
+        This is the opposite of -applyMove:. The move passed to it
+        will always be the <em>last</em> move that was applied to the
+        receiver with -applyMove:. The effect of this method should be
+        to produce the previous state.
+
+        This means that each move returned by -legalMoves must contain
+        enough information to revert the move. For Reversi, for
+        example, each move could be an array of co-ordinates: the
+        first is the slot to put the current piece, the remaining are
+        for pieces to flip.
+
+
