@@ -402,7 +402,7 @@ If the last search was an iterative one, the number of visited states is accumul
 }
 
 
-/** Returns true if the current player has no option but to pass. */
+/** Returns true if the current player is forced to pass. (I.e., her only legal move is a pass move.) */
 - (BOOL)isForcedPass
 {
     id mvs = [self currentLegalMoves];
