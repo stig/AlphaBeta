@@ -110,7 +110,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         nil] objectEnumerator];
     
     while (s = [states nextObject]) {
-        STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], s, nil);
+        STAssertEqualObjects([[ab applyMoveFromSearchWithDepth:3] description], s, nil);
     }
     
     STAssertEquals([ab winner], (unsigned)2, @"player 2 won");
@@ -140,7 +140,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:3]] description], @"1: 000000 000000 002220 002222 002111 001111", nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)11, nil);
-    STAssertNotNil([ab applyMoveFromSearchWithPly:3], nil);
+    STAssertNotNil([ab applyMoveFromSearchWithDepth:3], nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)12, nil);
 
     /* Test for weird case where with finding moves */

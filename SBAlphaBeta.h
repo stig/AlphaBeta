@@ -52,9 +52,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (BOOL)currentPlayerMustPass;
 
 /* search methods */
-- (id)moveFromSearchWithPly:(unsigned)ply;
+- (id)moveFromSearchWithDepth:(unsigned)ply;
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval;
-- (id)applyMoveFromSearchWithPly:(unsigned)ply;
+- (id)applyMoveFromSearchWithDepth:(unsigned)ply;
 - (id)applyMoveFromSearchWithInterval:(NSTimeInterval)interval;
 
 /* metadata releated to search */

@@ -236,14 +236,14 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEquals([ab winner], (unsigned)1, nil);
 }
 
-- (void)test06SearchWithPly0
+- (void)test06SearchWithDepth0
 {
-    STAssertThrows([ab applyMoveFromSearchWithPly:0], nil);
+    STAssertThrows([ab applyMoveFromSearchWithDepth:0], nil);
 }
 
-- (void)test06SearchWithPly1
+- (void)test06SearchWithDepth1
 {
-    STAssertNotNil([ab applyMoveFromSearchWithPly:1], nil);
+    STAssertNotNil([ab applyMoveFromSearchWithDepth:1], nil);
     STAssertEqualObjects([[ab currentState] description], @"000 010 000", nil);
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-4.0, 0.1, nil);
 }
@@ -257,11 +257,11 @@ interlinked, so it makes sense to test them together. -applyMove and
         nil];
 }
 
-- (void)test06SearchWithPly9
+- (void)test06SearchWithDepth9
 {
     id states = [self states];
     for (unsigned i = 0; i < [states count]; i++) {
-        id s = [[ab applyMoveFromSearchWithPly:9] description];
+        id s = [[ab applyMoveFromSearchWithDepth:9] description];
         STAssertEqualObjects(s, [states objectAtIndex:i], nil);
     }
 }
@@ -294,7 +294,7 @@ interlinked, so it makes sense to test them together. -applyMove and
         STAssertTrue(plyReached > 0, nil);
         STAssertTrue(plyReached < 9, nil);
 
-        id m2 = [ab moveFromSearchWithPly:plyReached];
+        id m2 = [ab moveFromSearchWithDepth:plyReached];
         STAssertEqualObjects([m1 description], [m2 description], @"iter: %u", i );
 
         STAssertNotNil([ab performMove:m2], nil);
@@ -315,7 +315,7 @@ interlinked, so it makes sense to test them together. -applyMove and
 
     for (int i = 0; i < [stateCounts count]; i++) {
         id cnt = [[stateCounts objectAtIndex:i] componentsSeparatedByString:@":"];
-        STAssertNotNil([ab moveFromSearchWithPly:[[cnt objectAtIndex:0] intValue]], nil);
+        STAssertNotNil([ab moveFromSearchWithDepth:[[cnt objectAtIndex:0] intValue]], nil);
         STAssertEquals([ab stateCountForSearch], (unsigned)[[cnt objectAtIndex:1] intValue], nil);
     }
 }
@@ -330,7 +330,7 @@ interlinked, so it makes sense to test them together. -applyMove and
     
     unsigned acc = 0;
     for (int i = 1; i <= ply; i++) {
-        [ab moveFromSearchWithPly:i];
+        [ab moveFromSearchWithDepth:i];
         acc += [ab stateCountForSearch];
 //        NSLog(@"ply/acc: %u %u", i, acc);
     }

@@ -91,7 +91,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 
-    [ab applyMoveFromSearchWithPly:1];
+    [ab applyMoveFromSearchWithDepth:1];
     STAssertEquals([ab currentPlayer], (unsigned)2, nil);
 
     [ab undoLastMove];

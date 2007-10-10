@@ -175,7 +175,7 @@ cut:
 Performs a fixed-depth search to the given @p ply.
 Returns the best move found.
  */
-- (id)moveFromSearchWithPly:(unsigned)ply
+- (id)moveFromSearchWithDepth:(unsigned)ply
 {
     double alpha = -INFINITY;
     double beta  = +INFINITY;
@@ -206,9 +206,9 @@ Returns the best move found.
 /**
 Performs a fixed-depth search to the given @p ply and applies the best move found.
  */
-- (id)applyMoveFromSearchWithPly:(unsigned)ply
+- (id)applyMoveFromSearchWithDepth:(unsigned)ply
 {
-    id best = [self moveFromSearchWithPly:ply];
+    id best = [self moveFromSearchWithDepth:ply];
     return best ? [self performMove:best] : nil;
 }
 
@@ -286,7 +286,7 @@ time_is_up:
        probably because someone gave a ridiculously low interval. Simply set
        plyReached and perform a fixed-depth search in that case. */
     plyReached = 1;
-    return [self moveFromSearchWithPly:1];
+    return [self moveFromSearchWithDepth:1];
 }
 
 /**
