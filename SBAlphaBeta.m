@@ -67,16 +67,13 @@ With immutable states you have to make a complete copy of the entire state, whic
 - (id)initWithState:(id)this
 {
     if (self = [super init]) {
-        if ([this conformsToProtocol:@protocol(SBMutableAlphaBetaState)]) {
+        if ([this conformsToProtocol:@protocol(SBMutableAlphaBetaState)])
             mutableStates = YES;
         
-        } else if ([this conformsToProtocol:@protocol(SBAlphaBetaState)]) {
-            mutableStates = NO;
-
-        } else {
+        if (![this conformsToProtocol:@protocol(SBAlphaBetaState)])
             [NSException raise:@"not-a-state"
                         format:@"State %@ lacks necessary methods", this];
-        }
+
         stateHistory = [[NSMutableArray arrayWithObject:this] retain];
         moveHistory = [NSMutableArray new];
     }
