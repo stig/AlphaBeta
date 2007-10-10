@@ -50,7 +50,7 @@ all hangs together.
 
 @section example_sec Example
 
-Assuming MyGameState implements SBAlphaBetaState, here's how one could
+Assuming MyGameState implements SBAlphaBetaSearching, here's how one could
 implement a very simple game:
 
 @code

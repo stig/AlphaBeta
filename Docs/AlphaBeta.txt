@@ -13,7 +13,7 @@ its successor.
 
 SBAlphaBeta cares not what the types of your states and moves are.
 States can be immutable or mutable and must implement either the
-SBAlphaBetaState or the SBMutableAlphaBetaState protocol. The section
+SBAlphaBetaSearching or the SBUndoableAlphaBetaSearching protocol. The section
 @ref statemutability_sec has a short discussion on the pros and cons
 of each.
 

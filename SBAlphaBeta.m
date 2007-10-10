@@ -37,10 +37,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (id)initWithState:(id)this
 {
     if (self = [super init]) {
-        if ([this conformsToProtocol:@protocol(SBMutableAlphaBetaState)])
+        if ([this conformsToProtocol:@protocol(SBUndoableAlphaBetaSearching)])
             mutableStates = YES;
         
-        if (![this conformsToProtocol:@protocol(SBAlphaBetaState)])
+        if (![this conformsToProtocol:@protocol(SBAlphaBetaSearching)])
             [NSException raise:@"not-a-state"
                         format:@"State %@ lacks necessary methods", this];
 

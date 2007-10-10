@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import <Foundation/Foundation.h>
 
 // Required protocol for states.
-@protocol SBAlphaBetaState < NSCopying >
+@protocol SBAlphaBetaSearching < NSCopying >
 
 - (double)fitness;
 - (double)endStateScore;
@@ -32,8 +32,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @end
 
-// Additional optional protocol for states.
-@protocol SBMutableAlphaBetaState < SBAlphaBetaState >
+// Optional protocol for states.
+@protocol SBUndoableAlphaBetaSearching
 
 - (void)undoMove:(id)m;
 
