@@ -36,7 +36,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return self;
 }
 
-- (double)endStateScore
+- (int)winner
 {
     int t1 = 3, t2 = 3;
     for (int i = 0; i < 3; i++) {
@@ -48,15 +48,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         
         /* Vertical or Horisontal winning line? */
         if (tv || th)
-            return (tv + th) == player ? 1.0 : -1.0;
+            return tv + th;
 
         t1 &= board[i][i];      /* diagonally (1) */
         t2 &= board[i][2-i];    /* diagonally (2) */
     }
     if (t1 || t2)
-        return (t1 + t2) == player ? 1.0 : -1.0;
+        return t1 + t2;
     
-    return 0.0;
+    return 0;
+}
+
+- (BOOL)isDraw
+{
+    return ![self winner];
+}
+
+- (BOOL)isWin
+{
+    return [self winner] == player;
 }
 
 static double calcFitness(int me, int counts[3])

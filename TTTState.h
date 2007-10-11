@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import "AlphaBeta.h"
 
-@interface TTTState : NSObject <SBAlphaBetaSearching>
+@interface TTTState : NSObject <SBAlphaBetaSearching, SBAlphaBetaStatus>
 {
     int board[3][3];
 @public

@@ -297,11 +297,13 @@ time_is_up:
         [NSException raise:@"game-not-over"
                     format:@"Cannot determine winner; game has not ended yet"];
 
-    double score = [[self currentState] endStateScore];
-    if (!score)
+    id state = [self currentState];
+    if ([state isDraw])
         return 0;
-    unsigned player = [self currentPlayer];
-    return score > 0 ? player : 3 - player;
+
+    return [state isWin]
+        ? [self currentPlayer]
+        : 3 - [self currentPlayer];
 }
 
 

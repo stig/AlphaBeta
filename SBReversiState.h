@@ -27,7 +27,7 @@ typedef struct _ReversiStateCount {
 
 #define MAXSIZE 20
 
-@interface SBReversiState : NSObject <SBAlphaBetaSearching> {
+@interface SBReversiState : NSObject <SBAlphaBetaSearching, SBAlphaBetaStatus> {
 @public
     int player;
     int size;

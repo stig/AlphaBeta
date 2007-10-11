@@ -95,10 +95,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 }
 
 
-- (double)endStateScore
+- (BOOL)isDraw
 {
     SBReversiStateCount count = [self countSquares];
-    return (double)count.c[player] - count.c[3 - player];
+    return count.c[player] == count.c[3 - player];
+}
+
+- (BOOL)isWin
+{
+    SBReversiStateCount count = [self countSquares];
+    return count.c[player] > count.c[3 - player];
 }
 
 - (double)fitness
