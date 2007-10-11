@@ -58,11 +58,10 @@ information required for transforming a state into its successor.</p>
 <p>AlphaBeta does not care what types your states are. Only that they
 implement the <a href="#alphabetasearching">SBAlphaBetaSearching</a>
 protocol. If you wish you could implement this protocol as a category
-on an existing class.</p>
-
-<p>Neither does AlphaBeta care about the type of your moves. (With an
-exception for <em>pass moves</em>. These must be represented by an
-NSNull instance.) They must implement a simple informal protocol. </p>
+on an existing class. Neither does AlphaBeta care about the type of
+your moves. (With an exception for <em>pass moves</em>. These must be
+represented by an NSNull instance.) They must implement a simple
+informal protocol. </p>
 
 <p>Though not required it is advised that you override -description to
 return something sensible for both states and moves. This can make
@@ -110,6 +109,19 @@ Given a pass move, this method must at the very least update the
 receiver's idea of which player's turn it is.</p></dd>
 
 </dl>
+
+<h3>Informal protocol for moves [required]</h3>
+
+<p>Moves <em>must</em> implement the following informal protocol.
+NSArray, NSDictionary, NSString and NSNumber already implement it so
+if you define your moves in terms of these you get this protocol for
+free.</p>
+
+<pre>
+-(BOOL)isEqual:(id)object;
+-(unsigned)hash;
+</pre>
+
 
 <h3>SBAlphaBetaStatus [optional]</h3>
 
@@ -174,21 +186,6 @@ deduce this information from just a set of co-ordinates.</p>
 <p>A word of warning: you have to do some profiling to find out what
 works best for your specific case. In my implementation of Reversi
 there is no appreciative difference in performance of the two.</p>
-
-
-<h3>Informal protocol for moves [required]</h3>
-
-<p>Moves <em>must</em> implement the following informal protocol.
-NSArray, NSDictionary, NSString and NSNumber already implement it so
-if you define your moves in terms of these you get this protocol for
-free.</p>
-
-<pre>
--(BOOL)isEqual:(id)object;
--(unsigned)hash;
-</pre>
-
-<p>
 
 <h2 id="methods">Methods of SBAlphaBeta</h2>
 
