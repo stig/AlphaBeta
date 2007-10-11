@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Alpha-Beta game-tree search</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+
+<h1>The AlphaBeta framework</h1>
+
+<div id="toc">
+<ul>
+<li><a href="#usage">Basic usage</a></li>
+<li><a href="#limitations">Limitations</a></li>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#resources">Resources</a></li>
+<li><a href="#maturity">Maturity</a></li>
+<li><a href="#users">Users</a></li>
+<li><a href="#bugs">Bugs</a></li>
+<li><a href="#author">Author</a></li>
+</ul>
+</div>
+
+<p><em>AlphaBeta</em> is a Cocoa Objective-C framework encapsulating
+the Alpha-Beta game-tree search algorithm. It can be used to create
+computer players for a whole range of games including Chess, Checkers,
+Go, Reversi/Othello, Connect-4 and Tic-Tac-Toe to mention but a
+few.</p>
+
+<p>More specifically, Alpha-Beta search can be used in all two-player
+<a href="http://en.wikipedia.org/wiki/Zero-sum">zero sum</a> <a
+href="http://en.wikipedia.org/wiki/Perfect_information">perfect
+information</a> games. The term <em>two-player</em> just means that
+there must be two opposing sides. (Football is considered two-player,
+for example.) A <em>zero sum</em> game is one where an advantage for
+one player is an equally large disadvantage for the other. <em>Perfect
+information</em> basically rules out any game that has an element of
+chance. This last rule disqualifies Yatzee, Poker and&mdash;most
+definitely&mdash;Jenga.</p>
+
+<p>The framework aims to be easy to use: there's no need for prior
+experience with AI (Artificial Intelligence). You don't actually have
+to learn anything about game-tree search in order to use this
+framework. Should you desire to, the <a
+href="#resources">resources</a> section has links to more information
+about game-tree search and relevant algorithms.</p>
+
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+<li><a href="http://code.brautaset.org/AlphaBeta/news.xml">News</a> (RSS).</li>
+<li><a href="__DMGURL__">AlphaBeta embedded framework</a> disk image.</li>
+<li>Subversion: <a href="http://svn.brautaset.org/AlphaBeta/trunk">http://svn.brautaset.org/AlphaBeta/trunk</a>.</li>
+<li>Guide to <a href="http://blog.brautaset.org/2007/09/22/embedding-cocoa-frameworks/">embedding frameworks in Cocoa</a>.</li>
+<li><a href="http://blog.brautaset.org/2007/08/17/game-tree-search-the-minimax-and-alpha-beta-algorithms/">Game-tree search: the MiniMax and Alpha-Beta algorithms</a>.</li>
+<li>Wikipedia <a href="http://en.wikipedia.org/wiki/Game_tree">Game tree</a> article.</li>
+</ul>
+
+<h2 id="maturity">A note on code & interface maturity</h2>
+
+<p>Though the underlying code is quite mature and well tested, I'm
+still not entirely happy with the interface. Thus the API may still
+change between releases. The broad strokes are there, however, so you
+should find it relatively simple to update to any new versions.</p>
+
+<h2 id="users">Who/what uses SBAlphaBeta?</h2>
+
+<p>I maintain several Cocoa games for Mac OS X that all use this
+framework to provide their AIs. See <a
+href="http://code.brautaset.org/">this page</a> for examples.</p>
+
+<h2 id="bugs">Bugs</h2>
+
+<p>None known. Bug reports are very welcome and will be acted upon
+swiftly.</p>
+
+<h2 id="author">Author</h2>
+
+<p>The AlphaBeta Framework is written by <a
+href="mailto:stig@brautaset.org">Stig Brautaset</a>, yours truly, and
+released under the revised BSD license. You are welcome to email me
+with any queries.</p>
+
+<p><a href="http://code.brautaset.org/">http://code.brautaset.org</a>
+lists more code by me. I occasionally announce new projects on my <a
+href="http://blog.brautaset.org/">blog</a>. It also contains the
+definite list of ways to <a
+href="http://blog.brautaset.org/about/">contact me</a>. </p>
+
+</body>
+</html>
