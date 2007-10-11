@@ -14,6 +14,7 @@
 <ul>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#protocols">Protocols</a></li>
+<li><a href="#methods">Methods</a></li>
 <li><a href="#advanced">Advanced usage</a></li>
 <li><a href="#resources">Resources</a></li>
 <li><a href="#maturity">Maturity</a></li>
@@ -148,6 +149,114 @@ free.</p>
 </pre>
 
 <p>
+
+<h2 id="methods">Methods of SBAlphaBeta</h2>
+
+<dl>
+
+<dt><pre>+ (id)newWithState:(id)this</pre></dt>
+
+<dd><p>This method is a shortcut for calling alloc & initWithState:.</p></dd>
+
+<dt><pre>- (id)initWithState:(id)this</pre></dt>
+
+<dd><p>Initialise an SBAlphaBeta object with a starting state.</p></dd>
+
+<dt><pre>- (id)moveFromSearchWithDepth:(unsigned)depth</pre></dt>
+
+<dd><p>Performs a fixed-depth search to the given <code>depth</code>. Returns the best move found. </p></dd>
+
+<dt><pre>- (id)performMoveFromSearchWithDepth:(unsigned)depth</pre></dt>
+
+<dd><p>Performs a fixed-depth search to the given <code>depth</code>
+and applies the best move found. </p></dd>
+
+<dt><pre>- (id)moveFromSearchWithInterval:(NSTimeInterval)interval</pre></dt>
+
+<dd><p>Performs an iterative search for up to <code>interval</code>
+seconds. Returns the best move found. </p>
+
+<p>Fractional seconds are supported, so an interval of 0.3 makes for a
+search that lasts up to 300 milliseconds. </p></dd>
+
+<dt><pre>-
+(id)performMoveFromSearchWithInterval:(NSTimeInterval)interval</pre></
+dt>
+
+<dd><p>Performs an iterative search for up to <code>interval</code>
+seconds and applies the best move found. </p>
+
+<p>Fractional seconds are supported, so an interval of 0.3 makes for a
+search that lasts up to 300 milliseconds. </p></dd>
+
+<dt><pre>- (id)performMove:(id)m</pre></dt>
+
+<dd><p>Apply the given move to the current state. Returns the new
+current state. </p></dd>
+
+<dt><pre>- (id)undoLastMove</pre></dt>
+
+<dd><p>Undo one position from the given state. Returns the new current
+state. </p></dd>
+
+<dt><pre>- (id)currentState</pre></dt>
+
+<dd><p>Returns the current state. </p></dd>
+
+<dt><pre>- (id)lastMove</pre></dt>
+
+<dd><p>Returns the last move that was applied. </p></dd>
+
+<dt><pre>- (unsigned)countPerformedMoves</pre></dt>
+
+<dd><p>Returns a count of the number of moves since the initial state.
+</p></dd>
+
+<dt><pre>- (unsigned)currentPlayer</pre></dt>
+
+<dd><p>Returns 1 or 2, depending on whose turn it is to move. Player
+"1" is arbitrarily defined to be the player whose turn it is to play
+at the start of the game, which is not necessarily the same as the
+state itself thinks of as player 1 (if it thinks of the players in
+those terms; it may use @"a" or @"b" instead). </p></dd>
+
+<dt><pre>- (unsigned)winner</pre></dt>
+
+<dd><p>Returns 1 or 2 for the winning player, or 0 if the game ended
+in a draw. </p></dd>
+
+<dt><pre>- (BOOL)isGameOver</pre></dt>
+
+<dd><p>Returns true if the game is finished, false otherwise.
+</p></dd>
+
+<dt><pre>- (unsigned)depthForSearch</pre></dt>
+
+<dd><p>Return the depth reached by the last iterative search. The
+returned value is undefined if no iterative search has been executed
+yet. </p></dd>
+
+<dt><pre>- (unsigned)stateCountForSearch</pre></dt>
+
+<dd><p>Return the number of states visited by the last search. </p>
+
+<p>If the last search was an iterative one, the number of visited
+states is accumulated across all the *completed* iterations. </p></dd>
+
+<dt><pre>- (BOOL)isForcedPass</pre></dt>
+
+<dd><p>Returns true if the current player is forced to pass. (I.e.,
+her only legal move is a pass move.) </p></dd>
+
+<dt><pre>- (double)currentFitness</pre></dt>
+
+<dd><p>Returns currentFitness from the current state. </p></dd>
+
+<dt><pre>- (NSArray *)currentLegalMoves</pre></dt>
+
+<dd><p>Returns available moves from the current state. </p></dd>
+
+</dl>
 
 
 
