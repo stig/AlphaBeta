@@ -257,19 +257,18 @@ time_is_up:
                     format:@"%@ is not one of the legal moves: %@", m, moves];
     }
 
+    id state = [[self currentState] copy];
+    [state applyMove:m];
+    [stateHistory addObject:[state autorelease]];
     [moveHistory addObject:m];
-    return [self move:m];
+    return state;
 }
 
 
 - (id)undoLastMove
 {
-    if (![moveHistory count]) {
-        [NSException raise:@"undo"
-                    format:@"No moves to undo"];
-    }
-    [self undo:[self lastMove]];
     [moveHistory removeLastObject];
+    [stateHistory removeLastObject];
     return [self currentState];
 }
 
