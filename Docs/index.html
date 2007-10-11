@@ -12,7 +12,8 @@
 
 <div id="toc">
 <ul>
-<li><a href="#usage">Basic usage</a></li>
+<li><a href="#overview">Basic usage</a></li>
+<li><a href="#protocols">Protocols</a></li>
 <li><a href="#advanced">Advanced usage</a></li>
 <li><a href="#resources">Resources</a></li>
 <li><a href="#maturity">Maturity</a></li>
@@ -46,37 +47,94 @@ href="#resources">resources</a> section has links to more information
 about game-tree search and relevant algorithms.</p>
 
 
-<h2 id="usage">Using AlphaBeta</h2>
+<h2 id="overview">Overview</h2>
 
-<p>To use AlphaBeta you need to instantiate an instance of SBAlphaBeta
-and give it an instance of your game state class. This instance will
-be used as the initial state of the game. A state is a discrete game
-state--a point in time between moves. A move contains the information
-required for transforming a state into its successor.</p>
+<p>To use AlphaBeta you need to initialise an instance of SBAlphaBeta
+with an instance of your game state class. This instance will be used
+as the initial state of the game. A state is a discrete game
+state&mdash;a point in time between moves. A move contains the
+information required for transforming a state into its successor.</p>
 
-<p>AlphaBeta does not care what types your states and moves are. (With
-one exception: see note on <a href="#passmoves">pass moves</a> below).
-Your states must implement the SBAlphaBetaSearching protocol. Moves
-must implement this informal protocol: </p>
+<p>AlphaBeta does not care what types your states are. Only that they
+implement the <a href="#alphabetasearching">SBAlphaBetaSearching</a>
+protocol. If you wish you could implement this protocol as a category
+on an existing class.</p>
 
-<pre>
--(BOOL)isEqual:(id)object;
--(unsigned)hash;
-</pre>
-
-<p>Personally I like using a mixture of NSArray, NSDictionary,
-NSString and NSNumber instances for moves. These already implement the
-informal protocol described above.</p>
+<p>Neither does AlphaBeta care about the type of your moves. (With an
+exception for <em>pass moves</em>. These must be represented by an
+NSNull instance.) They must implement a simple informal protocol.
+NSArray, NSDictionary, NSString and NSNumber already implement it so
+if you define your moves in terms of these you get this protocol for
+free.</p>
 
 <p>Though not required it is advised that you override -description to
 return something sensible for both states and moves. This can make
 debugging easier if you make a false step and feed SBAlphaBeta
 unexpected data, as the exceptions thrown will make more sense.</p>
 
-<p id="passmoves"><strong>Pass moves</strong> are exceptions to the
-rule of not caring about type. Pass moves are represented by an NSNull
-instance. If your game does not support pass moves you can ignore this
-point. </p>
+<h2 id="protocols">Protocols</h2>
+
+<p>Your state class <em>must</em> implement all the methods specified
+by the SBAlphaBetaSearching protocol. It is defined in the
+<code>SBAlphaBeta.h</code> header file. Its methods and their
+responsebilities are:</p>
+
+<dl>
+
+<dt>- (double)fitness;</dt>
+
+<dd>This method should return the _fitness_ of the state. The
+        fitness is a number indicating how fortuitous the state is for
+        the current player. (I.e. the probability of winning after
+        reaching this state.)
+        
+        Use a large positive number to indicate that a state is very
+        good, or a large negative number for very bad.
+</dd>
+    - (double)endStateScore;
+
+        Indicates the result at an end state. Return a positive value
+        if the receiving state is a winning state for the current
+        player, negative for a loss, or 0 if it is a draw. The result
+        of calling this method on a non-leaf state is undefined.
+
+        SBAlphaBeta only cares whether the values returned from this
+        method are negative, positive or zero; but you may wish to
+        implement it to return a score that you can use for a
+        high-score list.
+
+    - (NSArray *)legalMoves;
+
+        This method must be implemented to return an array of all the
+        legal moves available to the current player.
+        
+        Return an empty array to signify that there are no moves
+        possible and that this is an end state. (Aka "leaf state".)
+        
+        Return an array containing a single NSNull instance to signify
+        that the current player is forced to pass. (If your game
+        supports this.) If passing is always an option, this method
+        must always return a pass move.
+
+    - (void)applyMove:(id)m;
+
+        Must transform a state into its successor, given a valid move.
+        Must be implemented to handle pass moves, if your game
+        supports these. Given a pass move, this method must at the
+        very least update the receiver's idea of which player's turn
+        it is.
+
+
+<p>Moves must implement the following <em>informal</em> protocol:</p>
+
+<pre>
+-(BOOL)isEqual:(id)object;
+-(unsigned)hash;
+</pre>
+
+<p>
+
+
 
 <h2 id="advanced">Advanced usage</h2>
 
