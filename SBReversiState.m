@@ -135,6 +135,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return (float)(diff + mine);
 }
 
+// This code is adapted from code that existed in Gnome Iagno
+// once upon a time. It was written by Ian Peters <itp@gnu.org>.
 - (BOOL)validMove:(int)me col:(int)x row:(int)y
 {
     int tx, ty;
@@ -249,6 +251,9 @@ again:
         [NSNumber numberWithInt: r], @"row",
         nil];
 }
+
+// This code is adapted from code that existed in Gnome Iagno
+// once upon a time. It was written by Ian Peters <itp@gnu.org>.
 
 - (id)moveForCol:(int)x andRow:(int)y
 {
