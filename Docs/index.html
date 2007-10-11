@@ -15,7 +15,6 @@
 <li><a href="#overview">Overview</a></li>
 <li><a href="#protocols">Protocols</a></li>
 <li><a href="#methods">Methods</a></li>
-<li><a href="#advanced">Advanced usage</a></li>
 <li><a href="#resources">Resources</a></li>
 <li><a href="#maturity">Maturity</a></li>
 <li><a href="#bugs">Bugs</a></li>
@@ -72,12 +71,12 @@ unexpected data, as the exceptions thrown will make more sense.</p>
 
 <h2 id="protocols">Protocols</h2>
 
-<h3>SBAlphaBetaSearching</h3>
+<h3>SBAlphaBetaSearching [required]</h3>
 
 <p>Your state class <em>must</em> implement all the methods specified
-by the SBAlphaBetaSearching protocol. It is defined in the
-<code>SBAlphaBeta.h</code> header file. In addition to the NSCoding
-protocol, its methods and their responsebilities are:</p>
+by this protocol. It is defined in the <code>SBAlphaBeta.h</code>
+header file. In addition to the NSCoding protocol, its methods and
+their responsebilities are:</p>
 
 <dl>
 
@@ -105,19 +104,18 @@ move.</p></dd>
 
 <dt><pre>- (void)applyMove:(id)m;</pre></dt>
 
-<dd><p>Must transform a state into its successor, given a valid move.
+<dd><p>Must transform a state into its successor given a valid move.
 Must be implemented to handle pass moves, if your game supports these.
 Given a pass move, this method must at the very least update the
 receiver's idea of which player's turn it is.</p></dd>
 
 </dl>
 
-<h3>SBAlphaBetaStatus</h3>
+<h3>SBAlphaBetaStatus [optional]</h3>
 
-<p>Optionally, if you want AlphaBeta to be able to tell you which
-player won at the end of the game, you can implement the
-SBAlphaBetaStatus protocol. (You might not always need this, hence it
-has been left out of the main protocol for now.)</p>
+<p>Implement this <em>optional</em> protocol if you want AlphaBeta to
+be able to tell you which player won at the end of the game. It adds
+the following methods:</p>
 
 <dl>
 
@@ -136,9 +134,51 @@ is <em>only</em> called by AlphaBeta at the end of a game.</p></dd>
 
 </dl>
 
-<h3>Informal protocol for moves</h3>
 
-<p>Moves must implement the following <em>informal</em> protocol.
+<h3>SBUndoableAlphaBetaSearch [optional]</h3>
+
+<p>AlphaBeta normally calls -copy on your states a lot during search.
+If calling -copy is particularly expensive your states may
+<em>optionally</em> implement this protocol. It contains only one
+method:</p>
+
+<dl>
+<dt><pre>- (void)undoMove:(id)m;</pre></dt>
+
+<dd><p>This is the opposite of -applyMove:. The move passed to it will
+always be the <em>last</em> move that was applied to the receiver with
+-applyMove:. The effect of this method should be to produce the
+previous state.</p>
+
+<p>This means that each move returned by -legalMoves must contain
+enough information to revert the move. For Reversi, for example, each
+move could be an array of co-ordinates: the first is the slot to put
+the current piece, the remaining are for pieces to flip.</p>
+
+</p></dd>
+
+</dl>
+
+<p>If you go down this route it is possible that you have to make
+changes to the -legalMoves and -applyMove: methods. The moves returned
+by -legalMoves must contain enough information to perform an undo
+operation. This can mean creating them might become more expensive. On
+the other hand, having more information in the moves might help make
+-applyMove: faster.</p>
+
+<p>Consider Reversi as an example. If you use undoable states your
+moves must contain a list of all the slots that were flipped, in
+addition to the slot where you put your piece. It is impossible to
+deduce this information from just a set of co-ordinates.</p>
+
+<p>A word of warning: you have to do some profiling to find out what
+works best for your specific case. In my implementation of Reversi
+there is no appreciative difference in performance of the two.</p>
+
+
+<h3>Informal protocol for moves [required]</h3>
+
+<p>Moves <em>must</em> implement the following informal protocol.
 NSArray, NSDictionary, NSString and NSNumber already implement it so
 if you define your moves in terms of these you get this protocol for
 free.</p>
@@ -257,48 +297,6 @@ her only legal move is a pass move.) </p></dd>
 <dd><p>Returns available moves from the current state. </p></dd>
 
 </dl>
-
-
-
-<h2 id="advanced">Advanced usage</h2>
-
-<p>AlphaBeta calls -copy on your states a lot during search. If this
-is expensive your states may optionally implement the
-SBUndoableAlphaBetaSearch protocol. It contains only one method:</p>
-
-<dl>
-<dt><pre>- (void)undoMove:(id)m;</pre></dt>
-
-<dd><p>This is the opposite of -applyMove:. The move passed to it will
-always be the <em>last</em> move that was applied to the receiver with
--applyMove:. The effect of this method should be to produce the
-previous state.</p>
-
-<p>This means that each move returned by -legalMoves must contain
-enough information to revert the move. For Reversi, for example, each
-move could be an array of co-ordinates: the first is the slot to put
-the current piece, the remaining are for pieces to flip.</p>
-
-</p></dd>
-
-</dl>
-
-<p>If you go down this route it is possible that you have to make
-changes to the -legalMoves and -applyMove: methods. The moves returned
-by -legalMoves must contain enough information to perform an undo
-operation. This can mean creating them might become more expensive. On
-the other hand, having more information in the moves might help make
--applyMove: faster.</p>
-
-<p>Consider Reversi as an example. If you use undoable states your
-moves must contain a list of all the slots that were flipped, in
-addition to the slot where you put your piece. It is impossible to
-deduce this information from just a set of co-ordinates.</p>
-
-<p>You have to do some profiling to find out what works best for your
-specific case. In my implementation of Reversi there is no
-appreciative difference in performance of the two.</p>
-
 
 <h2 id="resources">Resources</h2>
 
