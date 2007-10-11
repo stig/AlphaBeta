@@ -50,7 +50,6 @@ h3 { font-size: 1em }
 }
 code, pre { 
     font-size: 1.14em;
-    white-space: nowrap;
 }
 pre {
     padding: 0.3em 1em;
@@ -63,4 +62,8 @@ dt, dd {
 
 dd {
     margin-left: 2em;
+}
+
+dt pre {
+    white-space: nowrap;
 }
