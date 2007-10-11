@@ -5,7 +5,7 @@ body {  width: 40em;
         font-size: 0.9em;
         font-family: Verdana, Arial, sans-serif;
 }
-h1, h2 {
+h1, h2, h3 {
     color: saddlebrown;
 }
 h1 {
@@ -13,6 +13,7 @@ h1 {
     text-align: center;
 }
 h2 { font-size: 1.2em }
+h3 { font-size: 1em }
 
 /* Fancy styling for the TOC */
 #toc {
@@ -54,6 +55,11 @@ pre {
     padding: 0.3em 1em;
 }
 
-dt {
-    padding: 0.3em 1em;
+dt, dd {
+    padding: 0;
+    margin: 0;
+}
+
+dd {
+    margin-left: 2em;
 }

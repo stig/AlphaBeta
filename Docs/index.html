@@ -12,7 +12,7 @@
 
 <div id="toc">
 <ul>
-<li><a href="#overview">Basic usage</a></li>
+<li><a href="#overview">Overview</a></li>
 <li><a href="#protocols">Protocols</a></li>
 <li><a href="#advanced">Advanced usage</a></li>
 <li><a href="#resources">Resources</a></li>
@@ -62,10 +62,7 @@ on an existing class.</p>
 
 <p>Neither does AlphaBeta care about the type of your moves. (With an
 exception for <em>pass moves</em>. These must be represented by an
-NSNull instance.) They must implement a simple informal protocol.
-NSArray, NSDictionary, NSString and NSNumber already implement it so
-if you define your moves in terms of these you get this protocol for
-free.</p>
+NSNull instance.) They must implement a simple informal protocol. </p>
 
 <p>Though not required it is advised that you override -description to
 return something sensible for both states and moves. This can make
@@ -74,58 +71,76 @@ unexpected data, as the exceptions thrown will make more sense.</p>
 
 <h2 id="protocols">Protocols</h2>
 
+<h3>SBAlphaBetaSearching</h3>
+
 <p>Your state class <em>must</em> implement all the methods specified
 by the SBAlphaBetaSearching protocol. It is defined in the
-<code>SBAlphaBeta.h</code> header file. Its methods and their
-responsebilities are:</p>
+<code>SBAlphaBeta.h</code> header file. In addition to the NSCoding
+protocol, its methods and their responsebilities are:</p>
 
 <dl>
 
-<dt>- (double)fitness;</dt>
-
-<dd>This method should return the _fitness_ of the state. The
-        fitness is a number indicating how fortuitous the state is for
-        the current player. (I.e. the probability of winning after
-        reaching this state.)
+<dt><pre>- (double)fitness;</pre></dt>
+<dd><p>This method should return the _fitness_ of the state. The
+fitness is a number indicating how fortuitous the state is for the
+current player. (I.e. the probability of winning after reaching this
+state.)</p>
         
-        Use a large positive number to indicate that a state is very
-        good, or a large negative number for very bad.
-</dd>
-    - (double)endStateScore;
+<p>Use a large positive number to indicate that a state is very good,
+or a large negative number for very bad.</p> </dd>
 
-        Indicates the result at an end state. Return a positive value
-        if the receiving state is a winning state for the current
-        player, negative for a loss, or 0 if it is a draw. The result
-        of calling this method on a non-leaf state is undefined.
+<dt><pre>- (NSArray *)legalMoves;</pre></dt>
 
-        SBAlphaBeta only cares whether the values returned from this
-        method are negative, positive or zero; but you may wish to
-        implement it to return a score that you can use for a
-        high-score list.
-
-    - (NSArray *)legalMoves;
-
-        This method must be implemented to return an array of all the
-        legal moves available to the current player.
+<dd><p>This method must be implemented to return an array of all the
+legal moves available to the current player.</p>
         
-        Return an empty array to signify that there are no moves
-        possible and that this is an end state. (Aka "leaf state".)
+<p>Return an empty array to signify that there are no moves possible
+and that this is an end state. (A.k.a. "leaf state".)</p>
         
-        Return an array containing a single NSNull instance to signify
-        that the current player is forced to pass. (If your game
-        supports this.) If passing is always an option, this method
-        must always return a pass move.
+<p>Return an array containing a single NSNull instance to signify that
+the current player is forced to pass. (If your game supports this.) If
+passing is always an option, this method must always return a pass
+move.</p></dd>
 
-    - (void)applyMove:(id)m;
+<dt><pre>- (void)applyMove:(id)m;</pre></dt>
 
-        Must transform a state into its successor, given a valid move.
-        Must be implemented to handle pass moves, if your game
-        supports these. Given a pass move, this method must at the
-        very least update the receiver's idea of which player's turn
-        it is.
+<dd><p>Must transform a state into its successor, given a valid move.
+Must be implemented to handle pass moves, if your game supports these.
+Given a pass move, this method must at the very least update the
+receiver's idea of which player's turn it is.</p></dd>
+
+</dl>
+
+<h3>SBAlphaBetaStatus</h3>
+
+<p>Optionally, if you want AlphaBeta to be able to tell you which
+player won at the end of the game, you can implement the
+SBAlphaBetaStatus protocol. (You might not always need this, hence it
+has been left out of the main protocol for now.)</p>
+
+<dl>
+
+<dt><pre>- (BOOL)isDraw;</pre></dt>
+
+<dd><p>Must be implemented to return <code>YES</code> if this state
+is a draw, i.e. none of the players won. This method is <em>only</em>
+called by AlphaBeta at the end of a game.</p></dd>
+
+<dt><pre>- (BOOL)isWin;</pre></dt>
+
+<dd><p>Must be implemented to return <code>YES</code> if this state is
+a win <em>from the perspective of the current player</em>. This method
+is <em>only</em> called by AlphaBeta at the end of a game.</p></dd>
 
 
-<p>Moves must implement the following <em>informal</em> protocol:</p>
+</dl>
+
+<h3>Informal protocol for moves</h3>
+
+<p>Moves must implement the following <em>informal</em> protocol.
+NSArray, NSDictionary, NSString and NSNumber already implement it so
+if you define your moves in terms of these you get this protocol for
+free.</p>
 
 <pre>
 -(BOOL)isEqual:(id)object;
@@ -139,9 +154,25 @@ responsebilities are:</p>
 <h2 id="advanced">Advanced usage</h2>
 
 <p>AlphaBeta calls -copy on your states a lot during search. If this
-is expensive you may want your states to implement the
-SBUndoableAlphaBetaSearching protocol in addition to
-SBAlphaBetaSearching.</p>
+is expensive your states may optionally implement the
+SBUndoableAlphaBetaSearch protocol. It contains only one method:</p>
+
+<dl>
+<dt><pre>- (void)undoMove:(id)m;</pre></dt>
+
+<dd><p>This is the opposite of -applyMove:. The move passed to it will
+always be the <em>last</em> move that was applied to the receiver with
+-applyMove:. The effect of this method should be to produce the
+previous state.</p>
+
+<p>This means that each move returned by -legalMoves must contain
+enough information to revert the move. For Reversi, for example, each
+move could be an array of co-ordinates: the first is the slot to put
+the current piece, the remaining are for pieces to flip.</p>
+
+</p></dd>
+
+</dl>
 
 <p>If you go down this route it is possible that you have to make
 changes to the -legalMoves and -applyMove: methods. The moves returned
@@ -155,8 +186,8 @@ moves must contain a list of all the slots that were flipped, in
 addition to the slot where you put your piece. It is impossible to
 deduce this information from just a set of co-ordinates.</p>
 
-<p>You have to implement both and do some profiling to find out what
-works best for your case. In my implementation of Reversi there is no
+<p>You have to do some profiling to find out what works best for your
+specific case. In my implementation of Reversi there is no
 appreciative difference in performance of the two.</p>
 
 
