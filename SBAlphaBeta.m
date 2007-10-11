@@ -65,33 +65,22 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #pragma mark Private methods
 
-- (id)move:(id)m
+- (id)successorByApplying:(id)m to:(id)state
 {
-    id state = [self currentState];
-    if (mutableStates) {
-        [state applyMove:m];
-    
-    } else {
+    if (!mutableStates)
         state = [[state copy] autorelease];
-        [state applyMove:m];
-        [stateHistory addObject:state];
-    }
+
+    [state applyMove:m];
     return state;
 }
 
-- (id)undo:(id)m
+- (void)undoApplying:(id)m to:(id)state
 {
-    if (mutableStates) {
-        [[self currentState] undoMove:m];
-
-    } else {
-        [stateHistory removeLastObject];
-    }
-    
-    return [self currentState];
+    if (mutableStates)
+        [state undoMove:m];
 }
 
-- (double)abWithState:(id)state alpha:(double)alpha beta:(double)beta plyLeft:(unsigned)ply
+- (double)abWithState:(id)current alpha:(double)alpha beta:(double)beta plyLeft:(unsigned)ply
 {
     statesVisited++;
     
@@ -110,20 +99,22 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
      */
     if (!ply) {
         foundEnd = NO;
-        return [self currentFitness];
+        return [current fitness];
     }
     
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
-    NSArray *mvs = [self currentLegalMoves];
+    NSArray *mvs = [current legalMoves];
     if (![mvs count])
-        return [self currentFitness];
+        return [current fitness];
     
     id iter = [mvs objectEnumerator];
     for (id m; m = [iter nextObject];) {
-        id nextState = [self move:m];
-        double sc = -[self abWithState:nextState alpha:-beta beta:-alpha plyLeft:ply-1];
+
+        id successor = [self successorByApplying:m to:current];
+        double sc = -[self abWithState:successor alpha:-beta beta:-alpha plyLeft:ply-1];
+        [self undoApplying:m to:successor];
+
         alpha = alpha > sc ? alpha : sc;
-        [self undo:m];
         
         if (alpha >= beta)
             goto cut;
@@ -148,19 +139,23 @@ cut:
     dateLimit = nil;
     
     id best = nil;
-    NSArray *mvs = [self currentLegalMoves];
+    id current = [[self currentState] copy];
+
+    NSArray *mvs = [current legalMoves];
     NSEnumerator *iter = [mvs objectEnumerator];
     for (id m; ply && (m = [iter nextObject]); ) {
         
-        id state = [self move:m];
-        double sc = -[self abWithState:state alpha:-beta beta:-alpha plyLeft:ply-1];
+        id successor = [self successorByApplying:m to:current];
+        double sc = -[self abWithState:successor alpha:-beta beta:-alpha plyLeft:ply-1];
+        [self undoApplying:m to:successor];
+
         if (sc > alpha) {
             alpha = sc;
             best = m;
         }
-        [self undo:m];
     }
     
+    [current release];
     return best;
 }
 
@@ -176,7 +171,10 @@ cut:
     unsigned accumulatedStatesVisited = 0;
     
     dateLimit = [NSDate dateWithTimeIntervalSinceNow:interval * .975];
-    NSArray *mvs = [self currentLegalMoves];
+    
+    id current = [[self currentState] copy];
+    NSArray *mvs = [current legalMoves];
+    
     for (unsigned ply = 1;; ply++) {
 
         unsigned leafCount = 0;
@@ -197,13 +195,13 @@ cut:
             /* Reset the 'reached a leaf state' indicator. */
             foundEnd = YES;
 
-            id state = [self move:m];
-            double sc = -[self abWithState:state alpha:-beta beta:-alpha plyLeft:ply-1];
+            id successor = [self successorByApplying:m to:current];
+            double sc = -[self abWithState:successor alpha:-beta beta:-alpha plyLeft:ply-1];
             if (sc > alpha) {
                 alpha = sc;
                 bestAtThisPly = m;
             }
-            [self undo:m];
+            [self undoApplying:m to:successor];
 
             /* Check if we have any time left. */
             if ([dateLimit compare:[NSDate date]] < 0)
@@ -230,6 +228,7 @@ cut:
     }
 
 time_is_up:
+    [current release];
     if (statesVisited = accumulatedStatesVisited)
         return best;
 
