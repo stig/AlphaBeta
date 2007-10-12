@@ -209,7 +209,7 @@ header instead.</p>
 <dd><p>Initialises an SBAlphaBeta object with a starting state.</p></dd>
 </dl>
 
-<h3>Current state of things</h3>
+<h3>The current state of affairs</h3>
 
 <dl>
 <dt><pre>- (id)currentState</pre></dt>
@@ -228,21 +228,22 @@ in those terms; it may use @"a" or @"b" instead.) </p></dd>
 <dt><pre>- (NSArray *)currentLegalMoves</pre></dt>
 <dd><p>Returns available moves from the current state. </p></dd>
 
-</dl>
+<dt><pre>- (BOOL)isForcedPass</pre></dt>
 
-<h3>Searching for moves</h3>
+<dd><p>Returns true if the current player is forced to pass. (I.e.,
+her only legal move is a pass move.) </p></dd>
 
-<dl>
-<dt><pre>- (id)moveFromSearchWithDepth:(unsigned)depth</pre></dt>
-<dd><p>Performs a fixed-depth search to the given <code>depth</code>.
-Returns the best move found. </p></dd>
+<dt><pre>- (BOOL)isGameOver</pre></dt>
 
-<dt><pre>- (id)moveFromSearchWithInterval:(NSTimeInterval)interval</pre></dt>
-<dd><p>Performs an iterative search for up to <code>interval</code>
-seconds. Returns the best move found. </p>
+<dd><p>Returns true if the game is finished, false otherwise.
+</p></dd>
 
-<p>Fractional seconds are supported, so an interval of 0.3 makes for a
-search that lasts up to 300 milliseconds. </p></dd>
+<dt><pre>- (unsigned)winner</pre></dt>
+
+<dd><p>Returns 1 or 2 for the winning player, or 0 if the game ended
+in a draw. (This method is only available if your states implement the
+SBAlphaBetaStatus protocol.) </p></dd>
+
 </dl>
 
 <h3>Performing and undoing moves</h3>
@@ -272,28 +273,22 @@ state. </p></dd>
 
 </dl>
 
-<h3>The current state of affairs</h3>
+
+<h3>Searching for moves</h3>
 
 <dl>
 
-<dt><pre>- (BOOL)isForcedPass</pre></dt>
+<dt><pre>- (id)moveFromSearchWithDepth:(unsigned)depth</pre></dt>
+<dd><p>Returns the best move found from a fixed-depth search to
+<code>depth</code>. </p></dd>
 
-<dd><p>Returns true if the current player is forced to pass. (I.e.,
-her only legal move is a pass move.) </p></dd>
-
-<dt><pre>- (BOOL)isGameOver</pre></dt>
-
-<dd><p>Returns true if the game is finished, false otherwise.
+<dt><pre>- (id)moveFromSearchWithInterval:(NSTimeInterval)interval</pre></dt>
+<dd><p>Returns the best move found from an iterative search for
+<code>interval</code> seconds. Fractional seconds are supported, so an
+interval of 0.3 makes for a search that lasts up to 300 milliseconds.
 </p></dd>
 
-<dt><pre>- (unsigned)winner</pre></dt>
-
-<dd><p>Returns 1 or 2 for the winning player, or 0 if the game ended
-in a draw. (This method is only available if your states implement the
-SBAlphaBetaStatus protocol.) </p></dd>
-
 </dl>
-
 
 <h3>Enquiring about the past</h3>
 
@@ -323,6 +318,14 @@ states is accumulated across all the <em>completed</em> iterations. </p></dd>
 
 </dl>
 
+<h2 id="maturity">Code & interface maturity</h2>
+
+<p>The underlying code is quite mature and by now pretty well tested.
+However I'm still not entirely happy with the interface. Thus the API
+may still change between releases. (The broad strokes are there, so if
+something <em>does</em> change you should find it relatively simple to
+update to any new versions.)</p>
+
 <h2 id="resources">Resources</h2>
 
 <ul>
@@ -337,14 +340,6 @@ to provide their AIs.</li>
 <li><a href="http://blog.brautaset.org/2007/08/17/game-tree-search-the-minimax-and-alpha-beta-algorithms/">Game-tree search: the MiniMax and Alpha-Beta algorithms</a>.</li>
 <li>Wikipedia <a href="http://en.wikipedia.org/wiki/Game_tree">Game tree</a> article.</li>
 </ul>
-
-<h2 id="maturity">Code & interface maturity</h2>
-
-<p>The underlying code is quite mature and by now pretty well tested.
-However, I'm still not entirely happy with the interface. Thus the API
-may still change between releases. The broad strokes are there,
-though, so if something <em>does</em> change you should find it
-relatively simple to update to any new versions.</p>
 
 <h2 id="bugs">Bugs</h2>
 
