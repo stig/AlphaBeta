@@ -62,6 +62,6 @@ dd {
     margin-left: 2em;
 }
 
-dt pre {
+code, dt pre {
     white-space: nowrap;
 }
