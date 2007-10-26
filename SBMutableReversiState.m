@@ -29,12 +29,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         [self validateMove:move];
         NSEnumerator *e = [move objectEnumerator];
         id m = [e nextObject];
-        int row = [[m objectForKey:@"row"] intValue];
-        int col = [[m objectForKey:@"col"] intValue];
+        int row = [m intValue] / size;
+        int col = [m intValue] % size;
         board[ col ][ row ] = 0;
         while (m = [e nextObject]) {
-            int row = [[m objectForKey:@"row"] intValue];
-            int col = [[m objectForKey:@"col"] intValue];
+            int row = [m intValue] / size;
+            int col = [m intValue] % size;
             board[ col ][ row ] = player;
         }
     }
