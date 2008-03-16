@@ -1,6 +1,11 @@
-Doing an iterative search from the starting state in Reversi, here are
-the accumulated numbers of states visited at each ply:
+/** @page move_ordering Move ordering
 
+SBAlphaBeta does not support move ordering, but it's one of the things
+that I've researched a little. Doing an iterative search from the
+starting state in Reversi, here are the accumulated numbers of states
+visited at each ply:
+
+@verbatim
 ply  MiniMax  AB     R      MO      MO+R
 1    4        4      4      4       4
 2    20       18     16     16      18
@@ -12,9 +17,14 @@ ply  MiniMax  AB     R      MO      MO+R
 8    532256   23890  23343  25242   25713
 9    3992764  93985  83225  95337   85595
 
-Key:
-
 AB  = AlphaBeta
 R   = In top-level ab, iterate over moves in reverse order.
 MO  = order the moves by their fitness values in the top-level iterative ab
+@endverbatim
 
+From the above you can see what a tremendous effect AlphaBeta pruning
+has. We can also  see that although move ordering seems to have an
+effect in Reversi, it is quite small and does not seem terribly
+beneficial.
+
+*/

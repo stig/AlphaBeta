@@ -1,0 +1,12 @@
+/** @page moves Protocol for moves
+
+Moves must implement the following informal protocol. NSArray,
+NSDictionary, NSString and NSNumber already implement it so if you
+define your moves in terms of these you get this protocol for free.
+
+@code
+-(BOOL)isEqual:(id)object;
+-(unsigned)hash;
+@endcode
+
+*/

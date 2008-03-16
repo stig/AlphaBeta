@@ -41,6 +41,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 
+/**
+Initialises an SBAlphaBeta object with a starting state. The state
+@em must implement the SBAlphaBetaSearching protocol.
+*/
 - (id)initWithState:(id)this
 {
     if (self = [super init]) {
@@ -133,7 +137,10 @@ cut:
 }
 
 #pragma mark Search methods
-
+/**
+Returns the best move found from a fixed-depth search to
+depth. 
+*/
 - (id)moveFromSearchWithDepth:(unsigned)ply
 {
     double alpha = -INFINITY;
@@ -165,13 +172,21 @@ cut:
     [current release];
     return best;
 }
-
+/**
+Performs a fixed-depth search to the given depth
+and applies the best move found. 
+*/
 - (id)performMoveFromSearchWithDepth:(unsigned)ply
 {
     id best = [self moveFromSearchWithDepth:ply];
     return best ? [self performMove:best] : nil;
 }
 
+/**
+Returns the best move found from an iterative search for
+interval seconds. Fractional seconds are supported, so an
+interval of 0.3 makes for a search that lasts up to 300 milliseconds.
+*/
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval
 {
     id best = nil;
@@ -245,7 +260,10 @@ time_is_up:
     plyReached = 1;
     return [self moveFromSearchWithDepth:1];
 }
-
+/**
+Performs an iterative search for up to interval
+seconds and applies the best move found. 
+*/
 - (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval
 {
     id best = [self moveFromSearchWithInterval:interval];
@@ -253,7 +271,10 @@ time_is_up:
 }    
 
 #pragma mark Methods
-
+/**
+Apply the given move to the current state. Returns the new
+current state. 
+*/
 - (id)performMove:(id)m
 {
     id moves = [self currentLegalMoves];
@@ -270,7 +291,10 @@ time_is_up:
     return state;
 }
 
-
+/**
+Undo one position from the given state. Returns the new current
+state. 
+*/
 - (id)undoLastMove
 {
     [moveHistory removeLastObject];
@@ -293,11 +317,22 @@ time_is_up:
     return [moveHistory count];
 }
 
+/**
+Returns 1 or 2, depending on whose turn it is to move. Player
+1 is arbitrarily defined to be the player whose turn it is to play
+at the start of the game. This is not necessarily the same as the
+state itself thinks of as player 1. (It may not think of the players
+as @"a" or @"b" instead, for example.)
+*/
 - (unsigned)currentPlayer
 {
     return ([self countPerformedMoves] % 2) + 1;
 }
-
+/**
+Returns 1 or 2 for the winning player, or 0 if the game ended in a
+draw. This method can only be called if your states implement the
+SBAlphaBetaStatus protocol. 
+*/
 - (unsigned)winner
 {
     if (![self isGameOver])
@@ -320,17 +355,31 @@ time_is_up:
     return [a count] ? NO : YES;
 }
 
+/**
+Return the depth reached by the last iterative search. The
+returned value is undefined if no iterative search has been executed
+yet. 
+*/
 - (unsigned)depthForSearch
 {
     return plyReached;
 }
 
+/**
+Returns the number of states visited by the last search. 
+
+If the last search was an iterative one, the number of visited
+states is accumulated across all the completed iterations.
+*/
 - (unsigned)stateCountForSearch
 {
     return statesVisited;
 }
 
-
+/**
+Returns true if the current player is forced to pass, that is
+her only legal move is a pass move. 
+*/
 - (BOOL)isForcedPass
 {
     id mvs = [self currentLegalMoves];

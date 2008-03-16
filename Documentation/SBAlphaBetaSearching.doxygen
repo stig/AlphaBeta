@@ -1,0 +1,36 @@
+/** @protocol SBAlphaBetaSearching
+
+States @em must implement this protocol to be used with SBAlphaBeta.
+The methods are:
+
+@section sec_fitness - (double)fitness;
+
+This method should return a state's fitness: a number indicating how
+fortuitous the state is for the current player. That is, the
+probability of winning after reaching this state. Use a large positive
+number to indicate that a state is very good, or a large negative
+number for very bad.
+
+@section sec_moves - (NSArray *)legalMoves;
+
+This method must be implemented to return an array of all the legal
+moves available to the current player.
+        
+This method should return an empty array to signify that there are no
+moves possible and that this is an end state. (Also known as a leaf
+state.)
+        
+If your game supports passing, return an array containing a single
+NSNull instance to signify a pass. If passing is always an option,
+this method must always return a pass move.
+
+@section sec_apply - (void)applyMove:(id)m;
+
+Given a valid move, this method should transform the receiver into its
+successor state.
+
+It must be implemented to handle pass moves, if your game supports
+these. (Given a pass move, this method must at the very least update
+the receiver's idea of which player's turn it is.)
+
+*/

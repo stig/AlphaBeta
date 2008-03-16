@@ -30,38 +30,40 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
 
-// Required protocol for states. Your States *must* implement this
-// protocol to be used with SBAlphaBeta.
+/// Required protocol for states.
 @protocol SBAlphaBetaSearching < NSCopying >
 
+/// How good is a state for the current player?
 - (double)fitness;
+
+/// Array of legal moves for the current player.
 - (NSArray *)legalMoves;
+
+/// Applies the move and transforms the state into its successor.
 - (void)applyMove:(id)m;
 
 @end
 
-// Additional *optional* protocol for states. If you implement this
-// then SBAlphaBeta will make fewer copies of your states during
-// search. (Which could be useful if copy is an expensive operation.)
+/// Optional protocol for states.
 @protocol SBUndoableAlphaBetaSearching
 
+/// The opposite of -applyMove:.
 - (void)undoMove:(id)m;
 
 @end
 
-// Yet another additional *optional* protocol for states. If you
-// implement this then SBAlphaBeta will be able to tell you which
-// player won at the end of the game. Otherwise you'd have to query
-// the state itself manually. The methods here will only ever be
-// called after the game has ended.
+/// Another optional protocol for states.
 @protocol SBAlphaBetaStatus
 
+/// Is the state a draw?
 - (BOOL)isDraw;
+
+/// Is the state a winning state for the current player?
 - (BOOL)isWin;
 
 @end
 
-
+/// AlphaBeta search class
 @interface SBAlphaBeta : NSObject {
     @private
     BOOL mutableStates;
@@ -74,32 +76,61 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     BOOL foundEnd;
 }
 
+/// shortcut for -alloc and -initWithState:.
 + (id)newWithState:(id)this;
+
+/// Initialise an instance with a state.
 - (id)initWithState:(id)this;
 
+/// Returns the current state.
 - (id)currentState;
+
+/// Returns the fitness of the current state.
 - (double)currentFitness;
+
+/// Returns the legal moves at the current state.
 - (NSArray *)currentLegalMoves;
+
+/// Returns 1 if it is player 1's turn to move, or 2 otherwise.
 - (unsigned)currentPlayer;
 
+/// Apply the given move and move to the next state.
 - (id)performMove:(id)m;
+
+/// Undo the last move that was performed and move to the previous state.
 - (id)undoLastMove;
 
+/// Return the last move that was performed.
 - (id)lastMove;
+
+/// Count the number of moves for the entire game.
 - (unsigned)countPerformedMoves;
 
+/// Returns YES if the game is at an end state, NO otherwise.
 - (BOOL)isGameOver;
+
+/// Returns YES if the current player must pass, NO otherwise.
 - (BOOL)isForcedPass;
+
+/// Returns 1 or 2 if the game had a winner, 0 otherwise (requires SBAlphaBetaStatus)
 - (unsigned)winner;
 
-/* search methods */
+/// Returns the best move found searching to the given depth.
 - (id)moveFromSearchWithDepth:(unsigned)ply;
+
+/// Returns the best move found searching for the given time.
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval;
+
+/// Immediately apply the best move found searching to depth
 - (id)performMoveFromSearchWithDepth:(unsigned)ply;
+
+/// Immediately apply the best move found searching to interval
 - (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval;
 
-/* metadata releated to previous search */
+/// Number of states visited in the last search.
 - (unsigned)stateCountForSearch;
+
+/// Depth reached in the last iterative search.
 - (unsigned)depthForSearch;
 
 @end

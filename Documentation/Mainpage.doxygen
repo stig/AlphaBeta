@@ -1,0 +1,96 @@
+/** @mainpage The AlphaBeta framework
+
+AlphaBeta is a Cocoa Objective-C framework encapsulating
+the Alpha-Beta game-tree search algorithm. It can be used to create
+computer players for a whole range of games including Chess, Checkers,
+Go, Reversi/Othello, Connect-4 and Tic-Tac-Toe to mention but a
+few.
+
+More specifically, Alpha-Beta search can be used in all two-player
+<a href="http://en.wikipedia.org/wiki/Zero-sum">zero sum</a> <a
+href="http://en.wikipedia.org/wiki/Perfect_information">perfect
+information</a> games. The term two-player just means that
+there must be two opposing sides. (Football is considered two-player,
+for example.) A zero sum game is one where an advantage for
+one player is an equally large disadvantage for the other. Perfect
+information basically rules out any game that has an element of
+chance. This last rule disqualifies Yatzee, Poker and&mdash;most
+definitely&mdash;Jenga.
+
+The framework aims to be easy to use: there's no need for prior
+experience with AI (Artificial Intelligence). You don't actually have
+to learn anything about game-tree search in order to use this
+framework. Should you desire to, the @ref sec_resources section has
+links to more information about game-tree search and relevant
+algorithms.
+
+
+@section sec_overview Overview
+
+To use AlphaBeta you need to initialise an instance of SBAlphaBeta
+with an instance of your game state class. This instance will be used
+as the initial state of the game. A state is a discrete game
+state&mdash;a point in time between moves. A move contains the
+information required for transforming a state into its successor.
+
+AlphaBeta does not care what types your states are. Only that they
+implement the SBAlphaBetaSearching protocol. If you wish you could
+implement this protocol as a category on an existing class. Neither
+does AlphaBeta care about the type of your moves. (With an exception
+for pass moves. These must be represented by an NSNull instance.) They
+must implement a simple informal protocol. 
+
+Though not required it is advised that you override -description to
+return something sensible for both states and moves. This can make
+debugging easier if you make a false step and feed SBAlphaBeta
+unexpected data, as the exceptions thrown will make more sense.
+
+
+@section sec_maturity Code & interface maturity
+
+The underlying code is quite mature and by now pretty well tested.
+However I'm still not entirely happy with the interface. Thus the API
+may still change between releases. (The broad strokes are there, so if
+something does change you should find it relatively simple to
+update to any new versions.)
+
+I maintain three games written in Cocoa for Mac OS X that all use
+this library for their AI: <a
+href="__CODE__/Desdemona/">Desdemona</a>, <a
+href="__CODE__/Auberon/">Auberon</a>, and <a
+href="__CODE__/Phage/">Phage</a>.
+
+
+@section sec_resources Resources
+
+No downloadable binary yet, as things are still in a bit of a flux.
+You can get it from Subversion though. (Link below.)
+
+<!-- Not ready yet. 
+@li <a href="__URL__/news.xml">News</a> (RSS).</li>
+@li <a href="__DMGURL__">AlphaBeta embedded framework</a> disk image.</li>
+-->
+@li Subversion: <a href="http://svn.brautaset.org/AlphaBeta/trunk">http://svn.brautaset.org/AlphaBeta/trunk</a>.
+@li Guide to <a href="http://blog.brautaset.org/2007/09/22/embedding-cocoa-frameworks/">embedding frameworks in Cocoa</a>.
+@li <a href="http://blog.brautaset.org/2007/08/17/game-tree-search-the-minimax-and-alpha-beta-algorithms/">Game-tree search: the MiniMax and Alpha-Beta algorithms</a>.
+@li Wikipedia <a href="http://en.wikipedia.org/wiki/Game_tree">Game tree</a> article.
+
+@section sec_bugs Bugs
+
+None known. Bug reports are very welcome and will be acted upon
+swiftly.
+
+@section sec_author Author
+
+The AlphaBeta Framework is written by <a
+href="mailto:stig@brautaset.org">Stig Brautaset</a>, yours truly, and
+released under the revised BSD license. You are welcome to email me
+with any queries.
+
+<a href="__CODE__/">__CODE__</a>
+lists more code by me. I occasionally announce new projects on my <a
+href="http://blog.brautaset.org/">blog</a>. It also contains the
+definite list of ways to <a
+href="http://blog.brautaset.org/about/">contact me</a>. 
+
+*/
