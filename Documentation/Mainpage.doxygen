@@ -25,22 +25,17 @@ links to more information about game-tree search and relevant
 algorithms.
 
 To use AlphaBeta you need to initialise an instance of SBAlphaBeta
-with an instance of your game state class. This instance will be used
-as the initial state of the game. A state is a discrete game
-state&mdash;a point in time between moves. A move contains the
-information required for transforming a state into its successor.
+with an instance of your state class. A state is simply a
+representation of a discrete game state&mdash;a point in time between
+moves. AlphaBeta does not care what class your states are, only that
+they implement the SBAlphaBetaSearching protocol. If you wish you
+could implement this protocol as a category on an existing class.
 
-AlphaBeta does not care what types your states are. Only that they
-implement the SBAlphaBetaSearching protocol. If you wish you could
-implement this protocol as a category on an existing class. Neither
-does AlphaBeta care about the type of your moves. (With an exception
-for pass moves. These must be represented by an NSNull instance.) They
-must implement a simple informal protocol. 
+Moves contain the information required for transforming a state into
+its successor. AlphaBeta has fewer requirements for moves, but they
+must implement a @ref move_protocol "simple informal protocol".
 
-Though not required it is advised that you override -description to
-return something sensible for both states and moves. This can make
-debugging easier if you make a false step and feed SBAlphaBeta
-unexpected data, as the exceptions thrown will make more sense.
+@section sec_maturity Code maturity
 
 The underlying code is quite mature and by now pretty well tested.
 However I'm still not entirely happy with the interface. Thus the API

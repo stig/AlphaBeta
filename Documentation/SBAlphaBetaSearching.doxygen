@@ -2,4 +2,9 @@
 
 States @em must implement this protocol to be used with SBAlphaBeta.
 
+In addition to the methods in this protocol it is advised that you
+override -description to return something sensible. This can make
+debugging easier if you make a false step and feed SBAlphaBeta
+unexpected data. (Because the exceptions thrown will make more sense.)
+
 */

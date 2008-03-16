@@ -6,7 +6,8 @@ VERS    = $(strip $(shell agvtool mvers -terse1))
 
 DIST    = $(PROJ)_$(VERS)
 DMG     = $(DIST).dmg
-DMGURL  = http://code.brautaset.org/$(PROJ)/files/$(DMG)
+URL     = http://code.brautaset.org
+DMGURL  = $(URL)/$(PROJ)/files/$(DMG)
 CONF    = Release
 
 OBJPATH = /tmp/build/$(CONF)/$(PROJDIR)
@@ -23,6 +24,7 @@ site: _site
 _site: $(DOCS) $(SRC)
 	-rm -rf _site
 	doxygen Documentation/Doxyfile
+	find _site -type f | xargs perl -pi -e 's{__CODE__}{$(URL)}g'
 	find _site -type f | xargs perl -pi -e 's{__DMGURL__}{$(DMGURL)}g'
 	find _site -type f | xargs perl -pi -e 's{__VERSION__}{$(VERS)}g'
 
