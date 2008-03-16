@@ -1,4 +1,4 @@
-#include <Cocoa/Cocoa.h>
+#include <Foundation/Foundation.h>
 #include <AlphaBeta/AlphaBeta.h>
 #include <SBReversi/SBReversiState.h>
 
