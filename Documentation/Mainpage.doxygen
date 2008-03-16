@@ -24,9 +24,6 @@ framework. Should you desire to, the @ref sec_resources section has
 links to more information about game-tree search and relevant
 algorithms.
 
-
-@section sec_overview Overview
-
 To use AlphaBeta you need to initialise an instance of SBAlphaBeta
 with an instance of your game state class. This instance will be used
 as the initial state of the game. A state is a discrete game
@@ -45,9 +42,6 @@ return something sensible for both states and moves. This can make
 debugging easier if you make a false step and feed SBAlphaBeta
 unexpected data, as the exceptions thrown will make more sense.
 
-
-@section sec_maturity Code & interface maturity
-
 The underlying code is quite mature and by now pretty well tested.
 However I'm still not entirely happy with the interface. Thus the API
 may still change between releases. (The broad strokes are there, so if
@@ -61,36 +55,31 @@ href="__CODE__/Auberon/">Auberon</a>, and <a
 href="__CODE__/Phage/">Phage</a>.
 
 
+@section sec_download Download
+
+Download the <a href="__DMGURL__">AlphaBeta __VERSION__</a> embedded
+framework dmg (Leopard only, sorry). This bundle also contains the
+documentation found on this website, and the means to @ref xcode
+"integrate this documentation into Xcode".
+
+Alternatively you can get the <a
+href="http://svn.brautaset.org/Statistics/tags/__VERSION__/">
+source</a> from my Subversion server and build it yourself.
+
+Newer versions will be announced on my <a
+href="http://skuggdev.wordpress.com">Cocoa blog</a>.
+
 @section sec_resources Resources
 
-No downloadable binary yet, as things are still in a bit of a flux.
-You can get it from Subversion though. (Link below.)
-
-<!-- Not ready yet. 
-@li <a href="__URL__/news.xml">News</a> (RSS).</li>
-@li <a href="__DMGURL__">AlphaBeta embedded framework</a> disk image.</li>
--->
-@li Subversion: <a href="http://svn.brautaset.org/AlphaBeta/trunk">http://svn.brautaset.org/AlphaBeta/trunk</a>.
 @li Guide to <a href="http://blog.brautaset.org/2007/09/22/embedding-cocoa-frameworks/">embedding frameworks in Cocoa</a>.
 @li <a href="http://blog.brautaset.org/2007/08/17/game-tree-search-the-minimax-and-alpha-beta-algorithms/">Game-tree search: the MiniMax and Alpha-Beta algorithms</a>.
 @li Wikipedia <a href="http://en.wikipedia.org/wiki/Game_tree">Game tree</a> article.
 
-@section sec_bugs Bugs
-
-None known. Bug reports are very welcome and will be acted upon
-swiftly.
-
 @section sec_author Author
 
-The AlphaBeta Framework is written by <a
-href="mailto:stig@brautaset.org">Stig Brautaset</a>, yours truly, and
-released under the revised BSD license. You are welcome to email me
-with any queries.
+This code is a work by <a href="mailto:stig@brautaset.org">Stig
+Brautaset</a> and released under the revised BSD license.
 
-<a href="__CODE__/">__CODE__</a>
-lists more code by me. I occasionally announce new projects on my <a
-href="http://blog.brautaset.org/">blog</a>. It also contains the
-definite list of ways to <a
-href="http://blog.brautaset.org/about/">contact me</a>. 
+http://code.brautaset.org has more code by me.
 
 */
