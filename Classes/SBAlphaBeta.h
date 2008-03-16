@@ -33,13 +33,41 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /// Required protocol for states.
 @protocol SBAlphaBetaSearching < NSCopying >
 
-/// How good is a state for the current player?
+/**
+How good is a state for the current player?
+
+This method should return a state's fitness: a number indicating how
+fortuitous the state is for the current player. That is, the
+probability of winning after reaching this state. A positive number
+indicate a good state, negatives means bad. The magnitude of the value
+indicates the confidence.
+*/
 - (double)fitness;
 
-/// Array of legal moves for the current player.
+/**
+Array of legal moves for the current player.
+
+This method must be implemented to return an array of all the legal
+moves available to the current player. An empty array signifies that
+there are no moves possible and that this is an end state. (Also known
+as a leaf state.)
+
+If your game supports passing, return an array containing a single
+NSNull instance to signify a pass. If passing is always an option,
+this method must always return a pass move.
+*/
 - (NSArray *)legalMoves;
 
-/// Applies the move and transforms the state into its successor.
+/**
+Applies the move and transforms the state into its successor.
+
+Given a valid move, this method should transform the receiver into its
+successor state.
+
+It must be implemented to handle pass moves, if your game supports
+these. (Given a pass move, this method must at the very least update
+the receiver's idea of which player's turn it is.)
+*/
 - (void)applyMove:(id)m;
 
 @end
@@ -47,7 +75,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /// Optional protocol for states.
 @protocol SBUndoableAlphaBetaSearching
 
-/// The opposite of -applyMove:.
+/**
+Revert the effect of the last -applyMove: on the receiver.
+
+The effect of this method should be to revert the receiver back to the
+previous state. The move passed to it will always be the last move
+that was applied to the receiver with -applyMove:. 
+*/
 - (void)undoMove:(id)m;
 
 @end
@@ -55,10 +89,20 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /// Another optional protocol for states.
 @protocol SBAlphaBetaStatus
 
-/// Is the state a draw?
+/**
+Is the state a draw?
+
+Must be implemented to return YES if this state is a draw, i.e. none
+of the players won.
+*/
 - (BOOL)isDraw;
 
-/// Is the state a winning state for the current player?
+/**
+Is the state a winning state for the current player?
+
+Must be implemented to return YES if this state is a win from the
+perspective of the current player.
+*/
 - (BOOL)isWin;
 
 @end

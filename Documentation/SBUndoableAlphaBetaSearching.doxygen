@@ -21,10 +21,4 @@ A word of warning: you have to do some profiling to find out what
 works best for your specific case. In my implementation of Reversi
 there is little discernable difference in performance of the two.
 
-@section sec_undo undoMove:(id)m;
-
-The move passed to it will always be the last move that was applied to
-the receiver with -applyMove:. The effect of this method should be to
-produce the previous state.
-
 */

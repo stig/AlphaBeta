@@ -1,21 +1,9 @@
 /** @protocol SBAlphaBetaStatus
 
-Optional protocol for states. If you implement this then SBAlphaBeta
-will be able to tell you which player won at the end of the game.
-Otherwise you'd have to query the state itself manually. The methods
-here will only ever be called after the game has ended.
+If you implement this then SBAlphaBeta will be able to tell you which
+player won at the end of the game. Otherwise you'd have to query the
+state itself manually.
 
-
-@section sec_isdraw - (BOOL)isDraw;
-
-Must be implemented to return YES if this state is a draw, i.e. none
-of the players won. This method is only called by AlphaBeta at the end
-of a game.
-
-@section sec_iswin - (BOOL)isWin;
-
-Must be implemented to return YES if this state is a win from the
-perspective of the current player. This method is only called by
-AlphaBeta at the end of a game.
+The methods here are only used internally by the -winner method.
 
 */
