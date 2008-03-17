@@ -192,7 +192,7 @@ interval of 0.3 makes for a search that lasts up to 300 milliseconds.
     id best = nil;
     unsigned accumulatedStatesVisited = 0;
     
-    dateLimit = [NSDate dateWithTimeIntervalSinceNow:interval * .975];
+    dateLimit = [NSDate dateWithTimeIntervalSinceNow:interval * .97];
     
     id current = [[self currentState] copy];
     NSArray *mvs = [current legalMoves];
