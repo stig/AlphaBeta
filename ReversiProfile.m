@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     Class class = [[opts objectForKey:@"--mutable"] intValue]
         ? [SBMutableReversiState class]
         : [SBReversiState class];
-    SBAlphaBeta *ab = [SBAlphaBeta newWithState:[class new]];
+    SBAlphaBeta *ab = [[SBAlphaBeta alloc] initWithState:[class new]];
 
     int skip = [[opts objectForKey:@"--skip"] intValue];
     for (int i = 0; i < skip; i++)

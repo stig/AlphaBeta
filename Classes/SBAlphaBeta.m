@@ -61,11 +61,6 @@ Initialises an SBAlphaBeta object with a starting state. The state
     return self;
 }
 
-+ (id)newWithState:(id)this
-{
-    return [[self alloc] initWithState:this];
-}
-
 - (void)dealloc
 {
     [stateHistory release];

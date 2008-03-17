@@ -33,7 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 - (void)setUp
 {
-    ab = [SBAlphaBeta newWithState:[TTTMutableState new]];
+    ab = [[SBAlphaBeta alloc] initWithState:[TTTMutableState new]];
 }
 
 @end
@@ -42,7 +42,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 - (void)setUp
 {
-    ab = [SBAlphaBeta newWithState:[TTTState new]];
+    ab = [[SBAlphaBeta alloc] initWithState:[TTTState new]];
 }
 
 - (void)tearDown

@@ -35,7 +35,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 - (void)setUp
 {
     id state = [[SBMutableReversiState alloc] initWithBoardSize:6];
-    ab = [SBAlphaBeta newWithState:state];
+    ab = [[SBAlphaBeta alloc] initWithState:state];
 }
 
 @end
@@ -45,7 +45,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 - (void)setUp
 {
     id state = [[SBReversiState alloc] initWithBoardSize:6];
-    ab = [SBAlphaBeta newWithState:state];
+    ab = [[SBAlphaBeta alloc] initWithState:state];
 }
 
 - (void)tearDown

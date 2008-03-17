@@ -120,11 +120,8 @@ perspective of the current player.
     BOOL foundEnd;
 }
 
-/// shortcut for -alloc and -initWithState:.
-+ (id)newWithState:(id)this;
-
 /// Initialise an instance with a state.
-- (id)initWithState:(id)this;
+- (id)initWithState:(id)x;
 
 /// Returns the current state.
 - (id)currentState;
