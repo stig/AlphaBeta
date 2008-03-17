@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 
     int skip = [[opts objectForKey:@"--skip"] intValue];
     for (int i = 0; i < skip; i++)
-        [ab performMoveFromSearchWithDepth:1];
+        [ab performMove:[ab moveFromSearchWithDepth:1]];
 
     int fixed = [[opts objectForKey:@"--time"] isKindOfClass:[NSNull class]];
     int ply = [[opts objectForKey:@"--ply"] intValue];

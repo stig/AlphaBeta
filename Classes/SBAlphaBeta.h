@@ -162,12 +162,6 @@ perspective of the current player.
 /// Returns the best move found searching for the given time.
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval;
 
-/// Immediately apply the best move found searching to depth
-- (id)performMoveFromSearchWithDepth:(unsigned)ply;
-
-/// Immediately apply the best move found searching to interval
-- (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval;
-
 /// Number of states visited in the last search.
 - (unsigned)stateCountForSearch;
 

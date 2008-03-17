@@ -116,7 +116,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         nil] objectEnumerator];
     
     while (s = [states nextObject]) {
-        STAssertEqualObjects([[ab performMoveFromSearchWithDepth:3] description], s, nil);
+        [ab performMove:[ab moveFromSearchWithDepth:3]];
+        STAssertEqualObjects([[ab currentState] description], s, nil);
     }
     
     STAssertEquals([ab winner], (unsigned)2, @"player 2 won");
@@ -146,7 +147,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:3]] description], @"1: 000000 000000 002220 002222 002111 001111", nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)11, nil);
-    STAssertNotNil([ab performMoveFromSearchWithDepth:3], nil);
+    STAssertNotNil([ab performMove:[ab moveFromSearchWithDepth:3]], nil);
     STAssertEquals([ab countPerformedMoves], (unsigned)12, nil);
 
     /* Test for weird case where with finding moves */

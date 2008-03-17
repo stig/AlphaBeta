@@ -97,7 +97,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 {
     STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 
-    [ab performMoveFromSearchWithDepth:1];
+    [ab performMove:[ab moveFromSearchWithDepth:1]];
     STAssertEquals([ab currentPlayer], (unsigned)2, nil);
 
     [ab undoLastMove];

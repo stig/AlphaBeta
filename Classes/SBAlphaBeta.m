@@ -167,15 +167,6 @@ depth.
     [current release];
     return best;
 }
-/**
-Performs a fixed-depth search to the given depth
-and applies the best move found. 
-*/
-- (id)performMoveFromSearchWithDepth:(unsigned)ply
-{
-    id best = [self moveFromSearchWithDepth:ply];
-    return best ? [self performMove:best] : nil;
-}
 
 /**
 Returns the best move found from an iterative search for
@@ -255,17 +246,9 @@ time_is_up:
     plyReached = 1;
     return [self moveFromSearchWithDepth:1];
 }
-/**
-Performs an iterative search for up to interval
-seconds and applies the best move found. 
-*/
-- (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval
-{
-    id best = [self moveFromSearchWithInterval:interval];
-    return best ? [self performMove:best] : nil;
-}    
 
 #pragma mark Methods
+
 /**
 Apply the given move to the current state. Returns the new
 current state. 
