@@ -6,30 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<title>stig/AlphaBeta @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #cfc0b5;
-		  font-family: "helvetica"; 
-  		color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #303f4a; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #303f4a; }
-    h3 { text-align: center; color: #303f4a; }
-    a { color: #303f4a; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 	
 </head>
 
@@ -49,21 +26,44 @@
       <span class="small">by <a href="http://github.com/stig">stig</a></span></h1>
 
     <div class="description">
-      AlphaBeta is a Cocoa Objective-C framework encapsulating the Alpha-Beta game-tree search algorithm. It can be used to create computer players for a whole range of games including Chess, Checkers, Go, Reversi/Othello, Connect-4 and Tic-Tac-Toe to mention but a few.
+<em>AlphaBeta</em> is a Cocoa Objective-C framework encapsulating
+the Alpha-Beta game-tree search algorithm. It can be used to create
+computer players for a whole range of games including Chess, Checkers,
+Go, Reversi/Othello, Connect-4 and Tic-Tac-Toe to mention but a
+few.
 
     </div>
 
-    <p>
-More specifically, Alpha-Beta search can be used in all two-player zero sum perfect information games. The term two-player just means that there must be two opposing sides. (Football is considered two-player, for example.) A zero sum game is one where an advantage for one player is an equally large disadvantage for the other. Perfect information basically rules out any game that has an element of chance. This last rule disqualifies Yatzee, Poker and—most definitely—Jenga.
+<p>More specifically, Alpha-Beta search can be used in all two-player
+<a href="http://en.wikipedia.org/wiki/Zero-sum">zero sum</a> <a
+href="http://en.wikipedia.org/wiki/Perfect_information">perfect
+information</a> games. The term <em>two-player</em> just means that
+there must be two opposing sides. (Football is considered two-player,
+for example.) A <em>zero sum</em> game is one where an advantage for
+one player is an equally large disadvantage for the other. <em>Perfect
+information</em> basically rules out any game that has an element of
+chance. This last rule disqualifies Yatzee, Poker and&mdash;most
+definitely&mdash;Jenga.</p>
 
-The framework aims to be easy to use: there's no need for prior experience with AI (Artificial Intelligence). You don't actually have to learn anything about game-tree search in order to use this framework. Should you desire to, the resources section has links to more information about game-tree search and relevant algorithms.
-</p><h2>License</h2>
+<p>The framework aims to be easy to use: there's no need for prior
+experience with AI (Artificial Intelligence). You don't actually have
+to learn anything about game-tree search in order to use this
+framework. Should you desire to, the <a
+href="#resources">resources</a> section has links to more information
+about game-tree search and relevant algorithms.</p>
+
+<p>The underlying code is quite mature and by now pretty well tested.
+However I'm still not entirely happy with the interface. Thus the <a
+href="api.html">API</a> may still change between releases. (The broad
+strokes are there, so if something <em>does</em> change you should find
+it relatively simple to update to any new versions.)</p>
+
+<h2>License</h2>
 <p>Revised BSD license.</p>
-<h2>Authors</h2>
-<p>Stig Brautaset (stig@brautaset.org)<br/></p>
-<h2>Contact</h2>
-<p>Stig Brautaset (stig@brautaset.org)<br/>      </p>
 
+<h2>Author / Contact</h2>
+<p>Stig Brautaset (stig@brautaset.org)
+</p>
 
     <h2>Download</h2>
     <p>
